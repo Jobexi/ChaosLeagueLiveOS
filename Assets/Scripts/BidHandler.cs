@@ -57,6 +57,8 @@ public class BidHandler : MonoBehaviour
 
     [SerializeField] private List<SpriteRenderer> _communityPointSpriteRenderers; 
 
+    [HideInInspector] private Dictionary<string, List<string>> _redemptionsIds = new Dictionary<string, List<string>>();
+
     private void Awake()
     {
         _auctionPositions = _auctionPositionsRoot.GetComponentsInChildren<AuctionPos>();
@@ -366,6 +368,7 @@ public class BidHandler : MonoBehaviour
         if (_kingController.currentKing != null)
             TextPopupMaster.Inst.CreateTravelingIndicator(totalBidsLeftover.ToString(), totalBidsLeftover, RaffleBox, _kingController.currentKing.Ph, 0.08f, Color.white, null);
 
+        _redemptionsIds.Clear();
         _biddingQ.Clear();
         UpdateRaffleDrawIndicatorsCount(0); 
         UpdateBiddingQ();
@@ -386,6 +389,7 @@ public class BidHandler : MonoBehaviour
             ph.pb.ExplodeBall();
 
         CancelTicketsUsed(ph, unbid);
+
 
         if (updateQ)
             UpdateBiddingQ();
