@@ -374,7 +374,7 @@ public class BidHandler : MonoBehaviour
         UpdateBiddingQ();
     }
 
-    public void ClearFromQ(PlayerHandler ph, bool updateQ)
+    public void ClearFromQ(PlayerHandler ph, bool updateQ, bool unbid = false)
     {
         ph.ResetBid();
 
@@ -388,7 +388,8 @@ public class BidHandler : MonoBehaviour
         if (ph.pb != null)
             ph.pb.ExplodeBall();
 
-        CancelTicketsUsed(ph.pp.TwitchID);
+        CancelTicketsUsed(ph, unbid);
+
 
         if (updateQ)
             UpdateBiddingQ();
@@ -430,23 +431,22 @@ public class BidHandler : MonoBehaviour
         _TI_BidPool.ReturnObject(TI_Bid);
     }
 
-
-    public void BidRedemption(PlayerHandler ph, int bidAmount, BidType bidType, string redemptionID = null)
+    public void BidRedemption(PlayerHandler ph, int bidAmount, BidType bidType, string redemptionID = null, string rewardID = null)
     {
         SpawnTI_Bid(ph, target:ph, bidAmount, bidType);
 
         if (redemptionID == null)
             return;
-
-        string TwitchID = ph.pp.TwitchID;
+        if (rewardID == null)
+            return;
 
         List<string> redemptionsIds;
-        _redemptionsIds.TryGetValue(TwitchID, out redemptionsIds);
+        ph.redemptionsIds.TryGetValue(rewardID, out redemptionsIds);
         if (redemptionsIds == null)
             redemptionsIds = new List<string>();
 
         redemptionsIds.Add(redemptionID);
-        _redemptionsIds[TwitchID] = redemptionsIds;
+        ph.redemptionsIds[rewardID] = redemptionsIds;
     }
 
     public void TryAddToBiddingQ(PlayerHandler ph)
@@ -597,15 +597,18 @@ public class BidHandler : MonoBehaviour
         UpdateBiddingQ(); 
     }
 
-    private async void CancelTicketsUsed(string twitchID)
+    private async void CancelTicketsUsed(PlayerHandler ph, bool unbid = false)
     {
-        List<string> redemptionsIds;
+        if (unbid)
+        {
+            foreach (var rewardID in ph.redemptionsIds.Keys)
+            {
+                List<string> redemptionsIds = ph.redemptionsIds[rewardID];
+                await TwitchApi.RejectRewardRedemption(rewardID, redemptionsIds);
+            }
+        }
 
-        _redemptionsIds.TryGetValue(twitchID, out redemptionsIds);
-        if (redemptionsIds == null)
-            return;
-
-        await TwitchApi.RejectRewardRedemption(null, redemptionsIds);
+        ph.redemptionsIds.Clear();
     }
 
     public GameManager GetGameManager()
