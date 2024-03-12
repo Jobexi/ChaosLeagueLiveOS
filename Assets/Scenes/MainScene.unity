@@ -7369,8 +7369,8 @@ MonoBehaviour:
   _countdownAudioSource: {fileID: 788470488}
   _commonBasePrize: 100
   _rareBasePrize: 200
-  _epicBasePrize: 1000
-  _legendaryBasePrize: 4000
+  _epicBasePrize: 500
+  _legendaryBasePrize: 1000
   _mythicBasePrize: 2500
   _etherealBasePrize: 5000
   _cosmicBasePrize: 10000
@@ -62615,18 +62615,6 @@ MonoBehaviour:
   - {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   - {fileID: 7650660916348049875, guid: 9e0939458df50962e92fb6d93392bf7b, type: 3}
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
-  - {fileID: 647519542019892001, guid: d6cc949e9ad161140929b1773a18f24f, type: 3}
-  - {fileID: 647519542019892001, guid: 26b3f328391d70040bd60f82330c48af, type: 3}
-  - {fileID: 647519542019892001, guid: 251f1f712c2bae443a8fc841538cc5df, type: 3}
-  - {fileID: 647519542019892001, guid: ebc91c802175cb14b81ab35ed6fb0081, type: 3}
-  - {fileID: 647519542019892001, guid: 268cd934d63c0bd438fa968107105c49, type: 3}
-  - {fileID: 647519542019892001, guid: ef0c18d02f080aa46995b53c9dc1b172, type: 3}
-  CommonTiles:
-  - {fileID: 647519542019892001, guid: 21a79d2f89d1c1b4ab7f9780c760bf79, type: 3}
-  - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
-  - {fileID: 647519542019892001, guid: 0298f78e094f3014991dc262d74a57b5, type: 3}
-  - {fileID: 647519542019892001, guid: 28bfffdc5acedc9499c48892b8cac383, type: 3}
-  RareTiles:
   - {fileID: 3504160345019027322, guid: 43bfd3d81bc52eb42867e8c336c8665c, type: 3}
   - {fileID: 9018865158267012433, guid: 1664d906265e7214a846d2921b88bd68, type: 3}
   - {fileID: 1251292255789827514, guid: 92c64f292d249114189a7c3c7c7d89f3, type: 3}
@@ -62634,38 +62622,89 @@ MonoBehaviour:
   - {fileID: 5521807422773572966, guid: 8cb5b5eb8ce99754391feb9ac5e4e005, type: 3}
   - {fileID: 1653556322778236169, guid: 9f68f5d8330c1984891f2334f34985db, type: 3}
   - {fileID: 6717938719452614406, guid: 132c6e47c5033f0419c09a37b585cd98, type: 3}
-  - {fileID: 647519542019892001, guid: 4db6f99d47fd45844b489bb0b4c22b98, type: 3}
+  CommonTiles:
+  - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
+  - {fileID: 647519542019892001, guid: 0298f78e094f3014991dc262d74a57b5, type: 3}
+  - {fileID: 647519542019892001, guid: 28bfffdc5acedc9499c48892b8cac383, type: 3}
+  - {fileID: 647519542019892001, guid: d6cc949e9ad161140929b1773a18f24f, type: 3}
+  - {fileID: 647519542019892001, guid: 26b3f328391d70040bd60f82330c48af, type: 3}
+  - {fileID: 647519542019892001, guid: 251f1f712c2bae443a8fc841538cc5df, type: 3}
+  - {fileID: 647519542019892001, guid: ebc91c802175cb14b81ab35ed6fb0081, type: 3}
+  - {fileID: 647519542019892001, guid: 268cd934d63c0bd438fa968107105c49, type: 3}
+  - {fileID: 647519542019892001, guid: ef0c18d02f080aa46995b53c9dc1b172, type: 3}
+  - {fileID: 647519542019892001, guid: 21a79d2f89d1c1b4ab7f9780c760bf79, type: 3}
+  RareTiles:
   - {fileID: 647519542019892001, guid: ad134cdeac3dc39499cfa18a6d7e9d2b, type: 3}
   - {fileID: 647519542019892001, guid: ed629e11506970e4bb1943f0387bf312, type: 3}
   - {fileID: 647519542019892001, guid: 329dd07cfa070d14183c4c73f1e1e8ba, type: 3}
+  - {fileID: 647519542019892001, guid: e85bfd3624601964ebbedc69a600740d, type: 3}
+  - {fileID: 647519542019892001, guid: e33968b900565204c83f533979894827, type: 3}
+  - {fileID: 647519542019892001, guid: cfe1cff8c5298cd4db6eaeace1139eaf, type: 3}
+  - {fileID: 647519542019892001, guid: e830da25e4e8dde45bebd104281ddbe1, type: 3}
+  - {fileID: 647519542019892001, guid: c9b46c4f6e92da64d99e8597de85fdcc, type: 3}
+  - {fileID: 647519542019892001, guid: 24f067ed57ae03640b5565a2e17b74e4, type: 3}
+  - {fileID: 647519542019892001, guid: 4db6f99d47fd45844b489bb0b4c22b98, type: 3}
   EpicTiles:
   - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
   - {fileID: 576390978979572706, guid: 8a9450e89739c48479fdca34e663b374, type: 3}
   - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
   - {fileID: 461252091043616422, guid: 747736bcaed87dd40937a536609eef57, type: 3}
   - {fileID: 5156241915605114848, guid: 7adb0ced0a2c36d43887829a8d90d55c, type: 3}
-  - {fileID: 647519542019892001, guid: 539a15780f6eaf54b860871daa6cdb98, type: 3}
   - {fileID: 647519542019892001, guid: ac41b4d8ab2ffe647b0af095bdb6786b, type: 3}
   - {fileID: 647519542019892001, guid: 55f18e68fab746549b414aa44b937d54, type: 3}
   - {fileID: 647519542019892001, guid: 6e5cbba5837127e439a386e9f805b3dc, type: 3}
+  - {fileID: 647519542019892001, guid: aebaac6e53e65c84db831e1d90979fe7, type: 3}
+  - {fileID: 647519542019892001, guid: 5ebd9c64d31976e4595cf12f9b3794ce, type: 3}
+  - {fileID: 647519542019892001, guid: 7bdb358d11ff9234082824e24a79f81b, type: 3}
+  - {fileID: 647519542019892001, guid: a099b2be4e7e00e408ea134afd2a0cfc, type: 3}
+  - {fileID: 647519542019892001, guid: c0f429d5d6095714eac3fa24af6ae076, type: 3}
+  - {fileID: 647519542019892001, guid: 52d55fb3893da9243af6c4a7285d5e59, type: 3}
+  - {fileID: 647519542019892001, guid: 539a15780f6eaf54b860871daa6cdb98, type: 3}
   LegendaryTiles:
   - {fileID: 461252091043616422, guid: e0a2e9357f3dd904cadf16f00e6164fa, type: 3}
-  - {fileID: 647519542019892001, guid: e10d28c2cb4bb5143ae4dbb0f446eeb2, type: 3}
   - {fileID: 647519542019892001, guid: 26f7530080b10ed45bc1033ac5173f2d, type: 3}
   - {fileID: 647519542019892001, guid: 38203830a5c3f304b91e86221bdd1ad0, type: 3}
   - {fileID: 647519542019892001, guid: c7166028c5774cc4c8399d8ce3a4879f, type: 3}
+  - {fileID: 647519542019892001, guid: b693919569bbe094285ecf8d6999d014, type: 3}
+  - {fileID: 647519542019892001, guid: e5b30ff429c8d09419c616ee020b6462, type: 3}
+  - {fileID: 647519542019892001, guid: 49eff42bfa89f754c804a87f570cc1bf, type: 3}
+  - {fileID: 647519542019892001, guid: e53342a8d36ef704e92ccf4c6aaf0d4a, type: 3}
+  - {fileID: 647519542019892001, guid: 7a057e18aeeb0d846809d1665f89324e, type: 3}
+  - {fileID: 647519542019892001, guid: 61541299ad6609443914d672bff12260, type: 3}
+  - {fileID: 647519542019892001, guid: e10d28c2cb4bb5143ae4dbb0f446eeb2, type: 3}
   MythicTiles:
   - {fileID: 647519542019892001, guid: b3204019cbf704c4291b433d7c38b351, type: 3}
   - {fileID: 647519542019892001, guid: 0b56f0ece99f0c14eb964321f1ce0930, type: 3}
   - {fileID: 647519542019892001, guid: 54418fa1028415d40b7249e86ce971ba, type: 3}
+  - {fileID: 647519542019892001, guid: 7bddbf07af22d934984ffb1c492aec95, type: 3}
+  - {fileID: 647519542019892001, guid: 5f913878190e77447af4b4a5cf596967, type: 3}
+  - {fileID: 647519542019892001, guid: 98473b9e99c4aa048b21946aa376016a, type: 3}
+  - {fileID: 647519542019892001, guid: 7d69e8278160f1448850aa522f2582ad, type: 3}
+  - {fileID: 647519542019892001, guid: 9cb5d747390784e42991f082d7cb0d0a, type: 3}
+  - {fileID: 647519542019892001, guid: 5c4f3b6945ea80b409b1649bd8e586a1, type: 3}
+  - {fileID: 647519542019892001, guid: 15666656ede4bc540b728824a1e25b51, type: 3}
   EtherealTiles:
   - {fileID: 647519542019892001, guid: 8388dd09192376f429c1145df240d9f1, type: 3}
   - {fileID: 647519542019892001, guid: ea5f4112b0c3b0349bcd1477865cc9bc, type: 3}
   - {fileID: 647519542019892001, guid: 5dcda2b378466c541be665e980bc2f33, type: 3}
+  - {fileID: 647519542019892001, guid: 2ab06485933f1ac4c8b5fc07765a7bad, type: 3}
+  - {fileID: 647519542019892001, guid: 46fa8b2b800b41541914000e7de1a239, type: 3}
+  - {fileID: 647519542019892001, guid: 018c94217a2f1cc4289aeda84578277b, type: 3}
+  - {fileID: 647519542019892001, guid: 6e7298ebe8061f54183c84343995188a, type: 3}
+  - {fileID: 647519542019892001, guid: c320e2ba451652a468c81328b655df1c, type: 3}
+  - {fileID: 647519542019892001, guid: 715e32ac4434cb34ba17ebf19dff10ab, type: 3}
+  - {fileID: 647519542019892001, guid: 350d6c08a344ef44086060972b354637, type: 3}
   CosmicTiles:
   - {fileID: 647519542019892001, guid: 8ca145a0d27d6bd42825a5c22bbae41d, type: 3}
   - {fileID: 647519542019892001, guid: 8178ffa4035d3cc4d92b884051a3767e, type: 3}
   - {fileID: 647519542019892001, guid: 2b410c0e0611e4841941e788aea7cf15, type: 3}
+  - {fileID: 647519542019892001, guid: 6a8f218ec8fb01d45be7b59794013eff, type: 3}
+  - {fileID: 647519542019892001, guid: a79dd95d4e194f0449d6204b1b7289fe, type: 3}
+  - {fileID: 647519542019892001, guid: 58bcb3c4416834446b95c33bd8dc301e, type: 3}
+  - {fileID: 647519542019892001, guid: f16535f5862c70d4b9ee7833e520e149, type: 3}
+  - {fileID: 647519542019892001, guid: eac42c0ef061ea04fa4d31f04cfbd971, type: 3}
+  - {fileID: 647519542019892001, guid: 74a796219991e454bbd36efb62a27e87, type: 3}
+  - {fileID: 647519542019892001, guid: afba97c90c61d9a45a0e5c6e9a1b59c3, type: 3}
   HoldingPen: {fileID: 1236041840620280661}
   TilesRoot: {fileID: 6209824866414034768}
   LeftTileCenter: {fileID: 3708241436202060553}
@@ -62675,8 +62714,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 647519542019892001, guid: 5dcda2b378466c541be665e980bc2f33, type: 3}
-  _forceThisRarity: 5
+  ForceThisTileNext: {fileID: 647519542019892001, guid: ef0c18d02f080aa46995b53c9dc1b172, type: 3}
+  _forceThisRarity: 0
   _forceGolden: 0
   _rotationDurationS: 10
   _animeTileCountMin: 10
@@ -62750,7 +62789,7 @@ MonoBehaviour:
   _mythicStartColor: {r: 0.6792453, g: 0.080246486, b: 0, a: 1}
   _mythicEndColor: {r: 0.41509432, g: 0.0039854706, b: 0, a: 1}
   _mythicTrimColor: {r: 0.6745098, g: 0.17400819, b: 0, a: 1}
-  _etherealStartColor: {r: 1, g: 1, b: 1, a: 1}
+  _etherealStartColor: {r: 0.8867924, g: 0.70692414, b: 0.8748012, a: 1}
   _etherealEndColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
   _etherealTrimColor: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
   _cosmicStartColor: {r: 0.095530644, g: 0, b: 0.15100001, a: 1}
