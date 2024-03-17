@@ -44,6 +44,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private List<MeshRenderer> _logicColor;
     [SerializeField] private EffectorLogic _triggerLogic;
     [SerializeField] private float _logicValue = 1;
+    private float innerLogic = 1;
 
     [SerializeField] private MaterialPropertyBlock _logicPropBlock;
     private float RGB_t;
@@ -111,6 +112,8 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
 
         ResetHealth();
 
+        innerLogic = _logicValue;
+
         gameObject.SetActive(true); 
         
         UpdateVisuals();
@@ -156,8 +159,10 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
     }
     public void NthTriangleCurrValue()
     {
-        _logicValue++;
-        IncrementCurrValue(_logicValue); 
+        innerLogic++;
+        IncrementCurrValue(innerLogic);
+        //_logicValue++;
+        //IncrementCurrValue(_logicValue); 
     }
 
     public int GetZoneMultiplier()

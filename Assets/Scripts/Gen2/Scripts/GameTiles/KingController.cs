@@ -38,7 +38,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private bool _enableNewKingBlockade = false; 
 
     public int TollRate = 0;
-
+    public static PlayerHandler CKPH; 
 
     public void Awake()
     {
@@ -108,6 +108,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         //pointPopUpTimer = 0;
 
         currentKing = pb;
+        CKPH = pb.Ph;
         UpdateGoldText();
 
         yield return StartCoroutine(_cleaningBarController.RunCleaningBar());

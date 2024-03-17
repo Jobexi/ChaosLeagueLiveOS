@@ -75,7 +75,8 @@ public class AppConfig
     public static int LegendaryMult = 10; 
     public static int MythicMult = 25; 
     public static int EtherealMult = 50; 
-    public static int CosmicMult = 100; 
+    public static int CosmicMult = 100;
+    public static bool HappyHour = false;
 
     public static bool IsPublicBuild()
     {
@@ -95,14 +96,39 @@ public class AppConfig
      return inst.GetS("CLIENT_SECRET_PRIVATE");
     }
 
+    public static void CheckHappyHour()
+    {
+        if (HappyHour)
+        {
+            CommonMult = 2;
+            RareMult = 3;
+            EpicMult = 7;
+            LegendaryMult = 13;
+            MythicMult = 32;
+            EtherealMult = 63;
+            CosmicMult = 125;
+        }
+        else
+        {
+            CommonMult = 1;
+            RareMult = 2;
+            EpicMult = 5;
+            LegendaryMult = 10;
+            MythicMult = 25;
+            EtherealMult = 50;
+            CosmicMult = 100;
+        }
+    }
 
     public static int GetMult(RarityType rarity)
     {
+        CheckHappyHour();
+
         if (rarity == RarityType.Common)
             return CommonMult;
-        else if(rarity == RarityType.Rare)
+        else if (rarity == RarityType.Rare)
             return RareMult;
-        else if(rarity == RarityType.Epic)
+        else if (rarity == RarityType.Epic)
             return EpicMult;
         else if (rarity == RarityType.Legendary)
             return LegendaryMult;
@@ -112,6 +138,7 @@ public class AppConfig
             return EtherealMult;
         else
             return CosmicMult;
+
     }
 
     public static void LoadFromJson(string json)

@@ -32,6 +32,7 @@ public class TwitchClient : MonoBehaviour
     private Client _client;
     private Gradient _modGradient;
     private Gradient _vipGradient;
+    int desiredTollRate = 0;
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -129,6 +130,11 @@ public class TwitchClient : MonoBehaviour
             Debug.Log("isMod?");
             isMod = twitchUsername.ToLower() == "fifthepsilon";
         }
+        if (!isMod)
+        {
+            Debug.Log("isMod?");
+            isMod = twitchUsername.ToLower() == "virrexo";
+        }        
         if (!isVIP)
         {
             Debug.Log("isVIP?");
@@ -276,6 +282,28 @@ public class TwitchClient : MonoBehaviour
         {
             _tileController.GameplayTile?.ForceEndGameplay();
             return;
+        }
+
+        if (commandKey.StartsWith("!happyhour"))
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"This feature is not implemented yet. ");
+            return;
+
+            /*     if (AppConfig.HappyHour)
+                 {
+                     AppConfig.HappyHour = false;
+                     AppConfig.CheckHappyHour();
+                     Debug.Log("Happy Hour Off");
+                 }
+                 else
+                 {
+                     AppConfig.HappyHour = true;
+                     AppConfig.CheckHappyHour();
+                     Debug.Log("Happy Hour On");
+                 }
+                 return;
+
+                 */
         }
 
         if (commandKey.StartsWith("!modtrail"))
@@ -475,9 +503,10 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!toll"))
         {
+            
             if (!ph.IsKing())
             {
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You must hold the throne to change the toll. The current toll is {toll}");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You must hold the throne to change the toll. The current toll is {desiredTollRate}");
                 return;
             }
 
@@ -488,7 +517,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            int desiredTollRate;
+            
             if (!int.TryParse(parts[1], out desiredTollRate))
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse number. Correct format is: !toll [amount]");
@@ -798,8 +827,11 @@ public class TwitchClient : MonoBehaviour
     }
     private IEnumerator ProcessThrowTomato(string messageId, PlayerHandler ph, string msg)
     {
+        Debug.Log("InTomato");
+
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
         {
+            Debug.Log("Failed to find target username. Correct format is: !tomato [amount] @username");
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !tomato [amount] @username");
             yield break;
         }
@@ -807,6 +839,7 @@ public class TwitchClient : MonoBehaviour
         long desiredTomatoAmount;
         if (!MyUtil.GetFirstLongFromString(msg, out desiredTomatoAmount))
         {
+            Debug.Log("Failed to parse point amount. Correct format is: !tomato [amount] @username");
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !tomato [amount] @username");
             yield break;
         }
@@ -816,6 +849,7 @@ public class TwitchClient : MonoBehaviour
 
         if (ph.pp.SessionScore <= 0)
         {
+            Debug.Log("You have no points to spend on a tomato.");
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to spend on a tomato.");
             yield break;
         }
@@ -827,17 +861,36 @@ public class TwitchClient : MonoBehaviour
 
         if (targetPlayer == null)
         {
+            Debug.Log($"Failed to find player with username: {targetUsername}");
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
             yield break;
         }
 
         if(targetPlayer.pb == null)
         {
+            Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
+
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
             yield break;
         }
 
-        ph.ThrowTomato(desiredTomatoAmount, targetPlayer); 
+        if (ph.IsKing())
+        {
+            ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
+            Debug.Log($"ThrowFromKing");
+        }
+        else if (targetPlayer == KingController.CKPH)
+        {
+            ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
+            Debug.Log($"ThrowtoKing");
+        }
+        else
+        {
+            Debug.Log($"NeitherKingNorKing");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"As a temporary measure, the king must be involved in every tomato exchange. Please leave your feedback in our discord.");
+            yield break;
+        }    
+        
 
     }
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg)

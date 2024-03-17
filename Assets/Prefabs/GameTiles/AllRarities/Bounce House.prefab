@@ -2342,15 +2342,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284468422570302988, guid: 5e0155171d696f64ea28a1b5b64bba97, type: 3}
       propertyPath: m_text
-      value: 8
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6284468422570302988, guid: 5e0155171d696f64ea28a1b5b64bba97, type: 3}
       propertyPath: m_fontSize
-      value: 8.95
+      value: 8.25
       objectReference: {fileID: 0}
     - target: {fileID: 7245259303162098030, guid: 5e0155171d696f64ea28a1b5b64bba97, type: 3}
       propertyPath: _value
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7245259303162098030, guid: 5e0155171d696f64ea28a1b5b64bba97, type: 3}
       propertyPath: _logicValue
@@ -2479,11 +2479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697319851396788172, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_text
-      value: 8
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1697319851396788172, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_fontSize
-      value: 6.25
+      value: 5.05
       objectReference: {fileID: 0}
     - target: {fileID: 1697319851396788172, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_fontColor.b
@@ -2531,7 +2531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _value
-      value: 8
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _logicValue
