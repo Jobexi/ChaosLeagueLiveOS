@@ -305,6 +305,7 @@ public class TwitchClient : MonoBehaviour
 
                  */
         }
+                
 
         if (commandKey.StartsWith("!modtrail"))
         {
@@ -454,6 +455,12 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You can't attack while participating in a tile.");
                 return;
             }
+            if (RebellionController.RoyalCelebration)
+            {
+                Debug.Log("Attacking is not allowed during a Royal Celebration");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Attacking is not allowed during a Royal Celebration");
+                return;
+            }
 
             PlayerBall pb = ph.GetPlayerBall();
             ph.SetState(PlayerHandlerState.Gameplay); //Prevent bug where players could enter bidding Q while king if timed correctly
@@ -521,6 +528,12 @@ public class TwitchClient : MonoBehaviour
             if (!int.TryParse(parts[1], out desiredTollRate))
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse number. Correct format is: !toll [amount]");
+                return;
+            }
+
+            if (RebellionController.RoyalCelebration)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The Toll cannot be changed during a Royal Celebration.");
                 return;
             }
 

@@ -50,6 +50,7 @@ public class TileController : MonoBehaviour
     [SerializeField] private GameTile ForceThisTileNext;
     [SerializeField] private RarityType _forceThisRarity;
     [SerializeField] private bool _forceGolden; 
+    [SerializeField] private bool _forceRuby; 
 
     private Dictionary<int, ObjectPool<GameTile>> _tilePools = new Dictionary<int, ObjectPool<GameTile>>(); 
 
@@ -153,13 +154,13 @@ public class TileController : MonoBehaviour
 
 
         CurrentBiddingTile = SpawnOriginTile(LeftTileCenter.position, Side.Left, false);
-        CurrentBiddingTile.PreInitTile(this, _forceGolden);
+        CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby);
         CurrentBiddingTile.InitTileInPos(); 
 
         StartCoroutine(BidHandler.RunBiddingOn(CurrentBiddingTile)); 
         
         GameplayTile = SpawnOriginTile(RightTileCenter.position, Side.Right, false);
-        GameplayTile.PreInitTile(this, _forceGolden); 
+        GameplayTile.PreInitTile(this, _forceGolden, _forceRuby); 
         GameplayTile.InitTileInPos();
         StartCoroutine(GameplayTile.RunTile());
     }
@@ -249,14 +250,21 @@ public class TileController : MonoBehaviour
         {
             GameTile tile = animeTiles[i];
             bool isGolden = false;
+            bool isRuby = false;
             float random = Random.Range(0f, 100f);
             if (random <= AppConfig.inst.GetI("GoldenTilePercentChance"))
                 isGolden = true;
 
-            if (_forceGolden)
-                isGolden = true; 
+            if (random <= 0.01f)
+                isRuby = true;
 
-            tile.PreInitTile(this, isGolden);
+            if (_forceGolden)
+                isGolden = true;
+
+            if (_forceRuby)
+                isRuby = true;
+
+            tile.PreInitTile(this, isGolden, isRuby);
         }
 
         Vector3 finalTilePos = gt.transform.position;

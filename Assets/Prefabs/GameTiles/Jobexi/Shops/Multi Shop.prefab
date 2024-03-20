@@ -1093,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 2532240964184548847, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 03161c2750eba9f4abe92e4d4a0a45c4, type: 2}
+      objectReference: {fileID: 2100000, guid: e6eca9504b3e4114aae4579b419009bd, type: 2}
     - target: {fileID: 6965428202780938223, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_text
       value: Epic

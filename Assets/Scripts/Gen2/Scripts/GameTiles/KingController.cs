@@ -57,9 +57,15 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         if (rate == TollRate)
             return;
 
-        //MyTTS.inst.Announce($"{currentKing.Ph.pp.TwitchUsername} changed the toll rate to {rate}");
-        currentKing.Ph.SpeechBubble($"I decree a new toll rate: {rate}"); 
-
+        if (RebellionController.RoyalCelebration)
+        {
+            currentKing.Ph.SpeechBubble($"Citizens will be rewarded with Gold from The Treasury during our Royal Celebration");
+        }
+        else
+        {
+            //MyTTS.inst.Announce($"{currentKing.Ph.pp.TwitchUsername} changed the toll rate to {rate}");
+            currentKing.Ph.SpeechBubble($"I decree a new toll rate: {rate}");
+        }
         TollRate = rate;
         
         _tileController.GameplayTile?.EntrancePipe.SetTollCost(rate);

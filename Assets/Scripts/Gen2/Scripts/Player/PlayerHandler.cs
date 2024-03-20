@@ -492,7 +492,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             return;
 
         if (createTextPopup)
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+" + MyUtil.AbbreviateNum4Char(points), Color.yellow);
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+" + MyUtil.AbbreviateNum4Char(points), Color.white);
 
         int combo = AddCombo();
         float comboPitch = Mathf.Lerp(0.8f, 1.2f, Mathf.Clamp01((float)combo / 15f));

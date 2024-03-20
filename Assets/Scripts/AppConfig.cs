@@ -76,7 +76,7 @@ public class AppConfig
     public static int MythicMult = 25; 
     public static int EtherealMult = 50; 
     public static int CosmicMult = 100;
-    public static bool HappyHour = false;
+    public static bool HappyHour = false;    
 
     public static bool IsPublicBuild()
     {

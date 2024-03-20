@@ -31,6 +31,7 @@ public class GameTile : MonoBehaviour
     public RarityType RarityType;
     [SerializeField] public DurationTYpe DurationTYpe;
     [SerializeField] public bool IsGolden; //1% chance
+    [SerializeField] public bool IsRuby; //0.01% chance
     [SerializeField] public bool IsShop;
     [SerializeField] private CycleMode _cycleMode;
     [SerializeField] private bool _updateCycleModeButton;
@@ -174,7 +175,7 @@ public class GameTile : MonoBehaviour
         foreach (var oscillators in GetComponentsInChildren<OscillatorV2>())
             oscillators.ToggleOnOff(toggle); 
     }
-    public void PreInitTile(TileController tc, bool isGolden)
+    public void PreInitTile(TileController tc, bool isGolden, bool isRuby)
     {
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
@@ -186,6 +187,7 @@ public class GameTile : MonoBehaviour
         Effectors = GetComponentsInChildren<PBEffector>();
 
         IsGolden = isGolden;
+        IsRuby = isRuby;
         _timer = 0;
         UpdateTileTimer();
         ResetTicketBonus();
@@ -203,6 +205,9 @@ public class GameTile : MonoBehaviour
 
             if (isGolden)
                 effector.MultiplyCurrValue(AppConfig.inst.GetI("GoldenTileMultiplier"));
+
+           /* if (isRuby)
+                effector.MultiplyCurrValue(50); */
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -221,6 +226,12 @@ public class GameTile : MonoBehaviour
             _goldenVisuals.gameObject.SetActive(true);
         else
             _goldenVisuals.gameObject.SetActive(false);
+
+   /*     if (isRuby)
+            _goldenVisuals.GoldenTileParticle.BaseMap.SetColor(Color.red);
+        else
+            _goldenVisuals.GoldenTileParticle.BaseMap.SetColor(Color.yellow);
+*/
 
         _mpb.SetColor("_StartColor", _backgroundStartColor);
         _mpb.SetColor("_EndColor", _backgroundEndColor);

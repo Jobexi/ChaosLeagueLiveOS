@@ -6481,6 +6481,7 @@ MonoBehaviour:
   _holdingPen: {fileID: 427794634592160510}
   _superCapsulePrefab: {fileID: 3575028687520042297, guid: 670ee89f3bc770149a9f863ce105d231, type: 3}
   _superchatZonePrefab: {fileID: 6057039267552380422, guid: 62fb26f21f9c207459404e9ada43c2c8, type: 3}
+  _labelText: {fileID: 938154790}
   _capsuleSpawnPos: {fileID: 2015488423}
   defaultPfp: {fileID: 2800000, guid: 1c1bf00c48f47e348bc42a9558bcec3d, type: 3}
   _capsulesRoot: {fileID: 997244568}
@@ -6713,6 +6714,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _cleaningBarController: {fileID: 3822993963204697600}
+  _kingController: {fileID: 5092249410878743455}
   TISpeed: 0.1
 --- !u!43 &506218308
 Mesh:
@@ -7264,7 +7267,7 @@ MonoBehaviour:
   idIncrementor: 0
   testUserId: Jobexi
   testUsername: 
-  userInput: 
+  userInput: '!attack'
   nameColor: {r: 0.10588236, g: 0.5294118, b: 1, a: 1}
   randomizeNameColor: 1
   rewardCost: 1
@@ -62605,13 +62608,11 @@ MonoBehaviour:
   _etherealRarity: 0.003
   _cosmicRarity: 0.002
   AllRarities:
-  - {fileID: 647519542019892001, guid: e7d6d474eb53ee543a42fecfd320c642, type: 3}
   - {fileID: 2605624827304256445, guid: 63656aac225b90f41ab4bf38f06eacb0, type: 3}
   - {fileID: 1653556322778236169, guid: 6b729731cc466b647ac5945c3c033a3e, type: 3}
   - {fileID: 6665550754289912462, guid: a65e4a807a11884498a72a8dfac33fd4, type: 3}
   - {fileID: 1329646533652567722, guid: 35154bc0d6248ef40ab951759d9432cb, type: 3}
   - {fileID: 3534562126315921842, guid: 91912fc0c1e760e45858c1c661dde2e2, type: 3}
-  - {fileID: 5481711066216898309, guid: 2dde99fa00c41fb46b80c6734ec8060f, type: 3}
   - {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   - {fileID: 7650660916348049875, guid: 9e0939458df50962e92fb6d93392bf7b, type: 3}
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
@@ -62644,11 +62645,6 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 24f067ed57ae03640b5565a2e17b74e4, type: 3}
   - {fileID: 647519542019892001, guid: 4db6f99d47fd45844b489bb0b4c22b98, type: 3}
   EpicTiles:
-  - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
-  - {fileID: 576390978979572706, guid: 8a9450e89739c48479fdca34e663b374, type: 3}
-  - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
-  - {fileID: 461252091043616422, guid: 747736bcaed87dd40937a536609eef57, type: 3}
-  - {fileID: 5156241915605114848, guid: 7adb0ced0a2c36d43887829a8d90d55c, type: 3}
   - {fileID: 647519542019892001, guid: ac41b4d8ab2ffe647b0af095bdb6786b, type: 3}
   - {fileID: 647519542019892001, guid: 55f18e68fab746549b414aa44b937d54, type: 3}
   - {fileID: 647519542019892001, guid: 6e5cbba5837127e439a386e9f805b3dc, type: 3}
@@ -62660,7 +62656,11 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 52d55fb3893da9243af6c4a7285d5e59, type: 3}
   - {fileID: 647519542019892001, guid: 539a15780f6eaf54b860871daa6cdb98, type: 3}
   LegendaryTiles:
-  - {fileID: 461252091043616422, guid: e0a2e9357f3dd904cadf16f00e6164fa, type: 3}
+  - {fileID: 5156241915605114848, guid: 7adb0ced0a2c36d43887829a8d90d55c, type: 3}
+  - {fileID: 576390978979572706, guid: 8a9450e89739c48479fdca34e663b374, type: 3}
+  - {fileID: 461252091043616422, guid: 747736bcaed87dd40937a536609eef57, type: 3}
+  - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
+  - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
   - {fileID: 647519542019892001, guid: 26f7530080b10ed45bc1033ac5173f2d, type: 3}
   - {fileID: 647519542019892001, guid: 38203830a5c3f304b91e86221bdd1ad0, type: 3}
   - {fileID: 647519542019892001, guid: c7166028c5774cc4c8399d8ce3a4879f, type: 3}
@@ -62672,6 +62672,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 61541299ad6609443914d672bff12260, type: 3}
   - {fileID: 647519542019892001, guid: e10d28c2cb4bb5143ae4dbb0f446eeb2, type: 3}
   MythicTiles:
+  - {fileID: 461252091043616422, guid: e0a2e9357f3dd904cadf16f00e6164fa, type: 3}
   - {fileID: 647519542019892001, guid: b3204019cbf704c4291b433d7c38b351, type: 3}
   - {fileID: 647519542019892001, guid: 0b56f0ece99f0c14eb964321f1ce0930, type: 3}
   - {fileID: 647519542019892001, guid: 54418fa1028415d40b7249e86ce971ba, type: 3}
@@ -62716,6 +62717,7 @@ MonoBehaviour:
   ForceThisTileNext: {fileID: 647519542019892001, guid: 26b3f328391d70040bd60f82330c48af, type: 3}
   _forceThisRarity: 1
   _forceGolden: 0
+  _forceRuby: 0
   _rotationDurationS: 10
   _animeTileCountMin: 10
   _animeTileCountMax: 10
