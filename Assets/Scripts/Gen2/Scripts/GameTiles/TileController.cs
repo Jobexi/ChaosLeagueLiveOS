@@ -264,6 +264,12 @@ public class TileController : MonoBehaviour
             if (_forceRuby)
                 isRuby = true;
 
+            if (gt.IsShop)
+            {
+                isGolden = false;
+                isRuby = false;
+            }
+
             tile.PreInitTile(this, isGolden, isRuby);
         }
 

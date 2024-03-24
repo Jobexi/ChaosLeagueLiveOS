@@ -332,6 +332,12 @@ public class TwitchClient : MonoBehaviour
 
             StartCoroutine(RedactPointsCommand(messageId, ph, msg));
         }
+
+        if (commandKey.StartsWith("!rewardgold"))
+        {
+
+            StartCoroutine(RewardGoldCommand(messageId, ph, msg));
+        }
     }
 
     private Gradient GetVIPGradient(int numColors, int vip)
@@ -838,15 +844,56 @@ public class TwitchClient : MonoBehaviour
         TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredGoldToGive), desiredGoldToGive, ph, targetPlayer, 0.1f, MyColors.Gold, ph.PfpTexture, TI_Type.GiveGold);
         */
     }
+    private IEnumerator RewardGoldCommand(string messageId, PlayerHandler ph, string msg)
+    {
+       
+        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givegold [amount] @username");
+            yield break;
+        }
+
+        long desiredGoldToGive;
+        if (!MyUtil.GetFirstLongFromString(msg, out desiredGoldToGive))
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse Gold amount. Correct format is: !givegold [amount] @username");
+            yield break;
+        }
+
+        if (desiredGoldToGive <= 0)
+            yield break;
+
+        //Find if the player handler is cached and able to receive points
+        CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
+        yield return _gm.GetPlayerByUsername(targetUsername, coResult);
+        PlayerHandler targetPlayer = coResult.Result;
+
+        if (targetPlayer == null)
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+            yield break;
+        }
+
+        //Can't give points to yourself
+        if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't reward gold to yourself.");
+            yield break;
+        }
+
+
+        TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredGoldToGive), desiredGoldToGive, ph, targetPlayer, 0.1f, MyColors.Gold, ph.PfpTexture, TI_Type.GiveGold);
+        ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Congratulations {targetUsername}! You've won {desiredGoldToGive} Gold!");
+    }
     private IEnumerator ProcessThrowTomato(string messageId, PlayerHandler ph, string msg)
     {
         Debug.Log("InTomato");
 
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
         {
-            Debug.Log("Failed to find target username. Correct format is: !tomato [amount] @username");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !tomato [amount] @username");
-            yield break;
+            //Debug.Log("Failed to find target username. Correct format is: !tomato [amount] @username");
+            //ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !tomato [amount] @username");
+            //yield break;
         }
 
         long desiredTomatoAmount;
@@ -872,23 +919,25 @@ public class TwitchClient : MonoBehaviour
         yield return _gm.GetPlayerByUsername(targetUsername, coResult);
         PlayerHandler targetPlayer = coResult.Result;
 
-        if (targetPlayer == null)
-        {
-            Debug.Log($"Failed to find player with username: {targetUsername}");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
-            yield break;
-        }
-
-        if(targetPlayer.pb == null)
-        {
-            Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
-
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
-            yield break;
-        }
+        
 
         if (ph.IsKing())
         {
+            if (targetPlayer == null)
+            {
+                Debug.Log($"Failed to find player with username: {targetUsername}");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+                yield break;
+            }
+
+            if (targetPlayer.pb == null)
+            {
+                Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
+
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
+                yield break;
+            }
+
             ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
             Debug.Log($"ThrowFromKing");
         }
@@ -899,8 +948,9 @@ public class TwitchClient : MonoBehaviour
         }
         else
         {
+            ph.ThrowTomato(desiredTomatoAmount, KingController.CKPH);
             Debug.Log($"NeitherKingNorKing");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"As a temporary measure, the king must be involved in every tomato exchange. Please leave your feedback in our discord.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"If no player is specified, or any player other than the king is specified, Your tomato is thrown at the king.");
             yield break;
         }    
         

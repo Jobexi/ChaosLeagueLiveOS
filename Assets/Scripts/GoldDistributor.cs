@@ -144,8 +144,11 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     {
         int mult = AppConfig.GetMult(gt.RarityType);
         int totalGold = _baseGoldPerTile * mult;
-        if (gt.IsGolden)
-            totalGold *= AppConfig.inst.GetI("GoldenTileMultiplier");
+        
+        if (gt.IsRuby)
+            totalGold *= 50;
+        else if (gt.IsGolden)
+            totalGold *= 10;
 
         while (totalGold > 0)
         {

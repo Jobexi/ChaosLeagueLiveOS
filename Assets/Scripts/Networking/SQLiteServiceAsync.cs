@@ -89,6 +89,7 @@ public class SQLiteServiceAsync : MonoBehaviour
     {
         _ = ClearPropertyFromAllEntries(_tableName, "InvitedByID");
         _ = ClearPropertyFromAllEntries(_tableName, "InvitesJSON");
+        _ = ClearPropertyFromAllEntries(_tableName, "InviteCount");
 
     }
     private void OnDestroy()

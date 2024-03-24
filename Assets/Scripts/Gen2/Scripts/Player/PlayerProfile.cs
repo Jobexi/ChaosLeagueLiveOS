@@ -16,6 +16,7 @@ public class PlayerProfile
     public string TwitchUsername { get; set; }
     public string InvitedByID { get; set; }
     public string InvitesJSON { get; set; }
+    
 
     public bool IsSubscriber { get; set; }
 
@@ -43,6 +44,8 @@ public class PlayerProfile
     public long SessionScore { get; set; }
     public DateTime LastInteraction { get; set; }
 
+    public int InviteCount { get; set; }
+
     public string[] GetInviteIds() 
     {
         if(string.IsNullOrEmpty(InvitesJSON))
@@ -63,5 +66,6 @@ public class PlayerProfile
             return;
         currentInvites.Add(id);
         SetInviteIds(currentInvites.ToArray());
+        InviteCount++;
     }
 }

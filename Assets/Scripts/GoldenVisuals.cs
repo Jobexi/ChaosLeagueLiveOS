@@ -9,9 +9,11 @@ public class GoldenVisuals : MonoBehaviour
     [SerializeField] private List<ParticleSystem> _particleSystems;
     [SerializeField] private float _spinSpeed;
 
+    [SerializeField] Material _Golds;
+    [SerializeField] Material _Rubys;
 
     float totalLength = 0f;
-    float t = 0; 
+    float t = 0;
 
     private void Awake()
     {
@@ -19,11 +21,14 @@ public class GoldenVisuals : MonoBehaviour
         for (int i = 1; i < _borderPath.positionCount; i++)
         {
             totalLength += Vector3.Distance(_borderPath.GetPosition(i - 1), _borderPath.GetPosition(i));
+            
         }
+              
     }
 
     private void Update()
-    {
+    {             
+
         for(int i = 0; i < _particleSystems.Count; i++)
         {
             var ps = _particleSystems[i];
@@ -35,6 +40,11 @@ public class GoldenVisuals : MonoBehaviour
 
         }
 
+        if (GameTile.GoldenSpids == 2)
+            _borderPath.material = _Rubys;
+        if (GameTile.GoldenSpids == 1)
+            _borderPath.material = _Golds;
+
         t = (t + _spinSpeed) % 1;
     }
 
@@ -43,8 +53,8 @@ public class GoldenVisuals : MonoBehaviour
         if (t < 0)
             t = 0;
         else if (t > 1)
-            t = 1;
-
+            t = 1;        
+    
         float targetLength = t * totalLength;
         float currentLength = 0f;
 

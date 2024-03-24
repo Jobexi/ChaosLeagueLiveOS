@@ -62,7 +62,9 @@ public class GameTile : MonoBehaviour
     private float _tileGameplayTimeElapsed = 0; 
     private float _timer;
 
+    static public int GoldenSpids;
     //public bool TileActive;
+
 
     private MaterialPropertyBlock _mpb;
     private MaterialPropertyBlock _trimMpb;
@@ -87,8 +89,8 @@ public class GameTile : MonoBehaviour
     //private int _playersReleased = 0;
 
     private DateTime _tileStartTime;
-    private long _playerPointsSumStart; 
-
+    private long _playerPointsSumStart;
+       
     private void Awake()
     {
         _mpb = new MaterialPropertyBlock();
@@ -201,13 +203,13 @@ public class GameTile : MonoBehaviour
         {
             effector.ResetEffector();
 
-            effector.MultiplyCurrValue(AppConfig.GetMult(RarityType)); 
+            effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
             if (isGolden)
-                effector.MultiplyCurrValue(AppConfig.inst.GetI("GoldenTileMultiplier"));
+                effector.MultiplyCurrValue(10);
 
-           /* if (isRuby)
-                effector.MultiplyCurrValue(50); */
+            if (isRuby)
+                effector.MultiplyCurrValue(50);
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -220,18 +222,24 @@ public class GameTile : MonoBehaviour
         }
 
         if (_suddenDeath.gameObject.activeSelf)
-            _suddenDeath.OnTilePreInit(); 
+            _suddenDeath.OnTilePreInit();
 
-        if (isGolden)
+        if (isRuby)
+        {
             _goldenVisuals.gameObject.SetActive(true);
+            GoldenSpids = 2;
+        }
+        else if (isGolden)
+        {
+            _goldenVisuals.gameObject.SetActive(true);
+            GoldenSpids = 1;
+        }
         else
+        {
             _goldenVisuals.gameObject.SetActive(false);
+            GoldenSpids = 0;
+        }
 
-   /*     if (isRuby)
-            _goldenVisuals.GoldenTileParticle.BaseMap.SetColor(Color.red);
-        else
-            _goldenVisuals.GoldenTileParticle.BaseMap.SetColor(Color.yellow);
-*/
 
         _mpb.SetColor("_StartColor", _backgroundStartColor);
         _mpb.SetColor("_EndColor", _backgroundEndColor);

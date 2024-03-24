@@ -27,7 +27,7 @@ public class MyHttpServerV2 : MonoBehaviour
     [SerializeField] private SpotifyDJ _spotifyDJ;
 
     private HttpListener _listener;
-    
+
     public void Start()
     {
         StartListener();
@@ -316,24 +316,7 @@ public class MyHttpServerV2 : MonoBehaviour
 
         if (request.Url.LocalPath == "/ModOnlyRestart")
         {
-
-            Debug.Log($"inside receivebotauthcode. request RawUrl: {request.RawUrl}");
-
-            //How can I extract the access_token from the fragment in the request here?
-
-            string code = request.QueryString.Get("code");
-            string accessToken = request.QueryString.Get("access_token");
-            Debug.Log($"accessToken in receivebotauthcode [{accessToken}]");
-            //var tokenResponse = await _discordOauthHandler.TradeAuthCodeForTokenResponse(code);
-            if (string.IsNullOrEmpty(accessToken))
-                accessToken = await TwitchApi.TradeBOTAuthCodeForTokenResp(code);
-
-            await UnityMainThreadDispatcher.Instance().EnqueueAsync(async () => await _twitchApi.InitializeTwitchConnections(accessToken));
-
-            // If we made it all the way here, SUCCESS
-            return Encoding.UTF8.GetBytes(
-                        $"<h1>Retreived Access Token in Local Http Server. You can close this window.</h1>");
-
+            _twitchApi.AskForBotAuthorization();
         }
 
         if (request.Url.LocalPath == "/spotifyToken") // Receive NGROK signal /TODO: Change this path to specify [/updatePlayerFromDB]

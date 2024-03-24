@@ -5182,6 +5182,8 @@ MonoBehaviour:
   - {fileID: 6472079371889171386}
   - {fileID: 4751692509243509007}
   _spinSpeed: 0.01
+  _Golds: {fileID: 2100000, guid: 82367438ea97a6246887487aac237790, type: 2}
+  _Rubys: {fileID: 2100000, guid: 8fa8fe864b24827478c7d0567228c059, type: 2}
 --- !u!120 &5356786635198935080
 LineRenderer:
   serializedVersion: 2
@@ -5646,6 +5648,7 @@ MonoBehaviour:
   RarityType: 0
   DurationTYpe: 0
   IsGolden: 0
+  IsRuby: 0
   IsShop: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
@@ -11625,6 +11628,7 @@ MonoBehaviour:
   _deathBallSpawnPoint: {fileID: 2852405923097721674}
   _ringColor: {r: 1, g: 0.9751305, b: 0, a: 1}
   _deathBallWarningColor: {r: 0.8301887, g: 0.20898668, b: 0, a: 1}
+  NoMultiply: 0
   _deathballPattern: 00000100000100010001010101
 --- !u!1 &7483166950564947456
 GameObject:
