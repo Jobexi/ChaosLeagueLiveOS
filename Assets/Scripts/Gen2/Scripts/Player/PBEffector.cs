@@ -223,8 +223,10 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             }
             if (_effect.HasFlag(PBEffect.Divide))
             {
-                meshColor = MyColors.Orange;
-                _labelColor = Color.black;
+                if (GetZoneMultiplier() > 0)
+                    meshColor = Color.green;
+                else
+                    meshColor = MyColors.Orange;
             }
             if (_effect.HasFlag(PBEffect.Subtract))
             {
@@ -328,7 +330,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
                 pb.ExplodeBall();
             }
         }
-        if (effect.HasFlag(PBEffect.Divide))
+        if (effect.HasFlag(PBEffect.Divide) && GetZoneMultiplier() <= 0)
         {
             SendToKing(pb, pb.Ph.pp.SessionScore / (long)value / 2);
             pb.Ph.DividePoints(value, textPopup: true, textPopupDirection);

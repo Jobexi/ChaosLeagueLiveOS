@@ -14673,7 +14673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3272580564613781342, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3480812452627126860, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
@@ -14717,7 +14717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6513952693467918015, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6532685879796167447, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14984,7 +14984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524060876000160140, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4596019487136999015, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_IsActive
@@ -15010,13 +15010,17 @@ PrefabInstance:
       propertyPath: _effect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6337109222099405299, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6513952693467918015, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6532685879796167447, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7048420251274192736, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15151,7 +15155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8202413732556902, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 89289836227949916, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_Enabled
@@ -15171,7 +15175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 816720835561514289, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 955898351670774402, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: m_IsActive

@@ -132,6 +132,13 @@ public static class MyUtil
         }
         else if (effect.HasFlag(PBEffect.Multiply))
             label = "x" + value;
+        else if (effect.HasFlag(PBEffect.Divide))
+        {
+            if (_zoneMultiplier > 0)
+                label = "\U0001F607"; //Angel if in zone
+            else
+                label = "\U000000F7" + value; //Infinity if not in zone
+        }
         else if (effect.HasFlag(PBEffect.None))
             label = ""; 
 

@@ -60,12 +60,13 @@ public class PlayerProfile
 
     public void AddInvite(string id)
     {
+        InviteCount++;
         List<string> currentInvites = GetInviteIds().ToList();
         //Don't add if it's already in the list
         if (currentInvites.Contains(id))
             return;
         currentInvites.Add(id);
         SetInviteIds(currentInvites.ToArray());
-        InviteCount++;
+        
     }
 }

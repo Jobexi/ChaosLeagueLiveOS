@@ -327,7 +327,7 @@ public class GameManager : MonoBehaviour
 
         yield return invitedPh.SetInvitor(invitorPh, _twitchClient, _invitePromo);
 
-
+        invitedPh.pp.InviteCount++;
     }
 
     public KingController GetKingController()

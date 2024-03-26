@@ -887,7 +887,10 @@ public class TwitchClient : MonoBehaviour
     }
     private IEnumerator ProcessThrowTomato(string messageId, PlayerHandler ph, string msg)
     {
-        Debug.Log("InTomato");
+        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The !tomato command has been disabled due to abuse. I will reintroduce it if/when I feel an abuse-free solution has been proposed.");
+        yield break;
+
+       /* Debug.Log("InTomato");
 
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
         {
@@ -954,7 +957,7 @@ public class TwitchClient : MonoBehaviour
             yield break;
         }    
         
-
+        */
     }
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg)
     {
