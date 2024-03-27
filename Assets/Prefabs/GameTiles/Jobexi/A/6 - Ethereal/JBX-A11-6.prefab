@@ -398,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 6009503925109004146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.71, y: 3.02, z: 0.49}
+  m_LocalPosition: {x: -3.773, y: 3.347, z: 0.49}
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -25307,6 +25307,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -25323,6 +25327,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle9
@@ -25405,6 +25413,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -25421,6 +25433,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle8
@@ -25663,6 +25679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -25679,6 +25699,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle1
@@ -26211,6 +26235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -26227,6 +26255,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle6
@@ -26407,11 +26439,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3718462915744285473, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.687
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3718462915744285473, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.435
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718462915744285473, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3871752520633747056, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26475,6 +26511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -26491,6 +26531,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle12
@@ -26647,6 +26691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -26663,6 +26711,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle10
@@ -26753,6 +26805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -26769,6 +26825,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle5
@@ -26851,6 +26911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -26867,6 +26931,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle4
@@ -27407,6 +27475,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -27423,6 +27495,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle11
@@ -27505,6 +27581,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -27521,6 +27601,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle7
@@ -27677,6 +27761,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -27693,6 +27781,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle3
@@ -27775,6 +27867,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5992963199697759300}
     m_Modifications:
+    - target: {fileID: 2596786645417617726, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 3293402635274361562, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -27791,6 +27887,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4557415147874627764, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
     - target: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
       propertyPath: m_Name
       value: PlayerObsTriangle2

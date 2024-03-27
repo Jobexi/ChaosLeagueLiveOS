@@ -62979,7 +62979,7 @@ MonoBehaviour:
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
   ForceThisTileNext: {fileID: 2605624827304256445, guid: 76dc62e98326b4247961424ec779b712, type: 3}
-  _forceThisRarity: 0
+  _forceThisRarity: 4
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10
