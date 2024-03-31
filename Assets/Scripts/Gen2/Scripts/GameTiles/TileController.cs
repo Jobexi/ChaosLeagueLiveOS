@@ -255,7 +255,7 @@ public class TileController : MonoBehaviour
             if (random <= AppConfig.inst.GetI("GoldenTilePercentChance"))
                 isGolden = true;
 
-            if (random <= 0.01f)
+            if (random <= 0.1f)
                 isRuby = true;
 
             if (_forceGolden)

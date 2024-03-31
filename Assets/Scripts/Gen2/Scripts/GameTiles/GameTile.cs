@@ -205,11 +205,12 @@ public class GameTile : MonoBehaviour
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
-            if (isGolden)
-                effector.MultiplyCurrValue(10);
-
             if (isRuby)
                 effector.MultiplyCurrValue(50);
+            else if (isGolden)
+                effector.MultiplyCurrValue(10);
+
+            
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
