@@ -33,6 +33,7 @@ public class TwitchClient : MonoBehaviour
     private Gradient _modGradient;
     private Gradient _vipGradient;
     int desiredTollRate = 0;
+    int idcode = 0;
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -139,6 +140,16 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isVIP?");
             isVIP = twitchUsername.ToLower() == "lxtroach"; 
+        }
+        if (!isVIP)
+        {
+            Debug.Log("isVIP?");
+            isVIP = twitchUsername.ToLower() == "cookingsumep";
+        }
+        if (!isVIP)
+        {
+            Debug.Log("isVIP?");
+            isVIP = twitchUsername.ToLower() == "qoobsweet";
         }
         string sanitizedMsg = rawMsg.Replace("<", "").Replace(">", "");
 
@@ -351,7 +362,7 @@ public class TwitchClient : MonoBehaviour
         float startAlpha = 1f;
 
         GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
-        if (vip == 1)
+        if (vip == 1) //Roach
         {
             // Create alpha keys
 
@@ -363,6 +374,32 @@ public class TwitchClient : MonoBehaviour
             colorKeys[2].color = Color.HSVToRGB(0.069f, 0.73f, 0.60f); //4
             colorKeys[3].color = Color.HSVToRGB(0.102f, 0.53f, 0.73f); //2
             colorKeys[4].color = Color.HSVToRGB(0.119f, 0.35f, 1f); //5
+        }
+        else if (vip == 2) //CookingSumEP
+        {
+            // Create alpha keys
+
+            alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+            alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+            colorKeys[0].color = Color.HSVToRGB(0f, 0f, 1f); //1
+            colorKeys[1].color = Color.HSVToRGB(0.831f, 0.7176f, 1f); //2
+            colorKeys[2].color = Color.HSVToRGB(0f, 1f, 1f); //3
+            colorKeys[3].color = Color.HSVToRGB(0f, 0f, 0f); //4
+            colorKeys[4].color = Color.HSVToRGB(0.737f, 0.8588f, 1f); //5
+        }
+        else if (vip == 3) //Qoobsweet
+        {
+            // Create alpha keys
+
+            alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+            alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+            colorKeys[0].color = Color.HSVToRGB(0.602f, 0.7306f, 0.9608f); //1
+            colorKeys[1].color = Color.HSVToRGB(0.5f, 0.7702f, 0.9216f); //2
+            colorKeys[2].color = Color.HSVToRGB(0.594f, 1f, 0.7098f); //3
+            colorKeys[3].color = Color.HSVToRGB(0.752f, 0.9691f, 0.7608f); //4
+            colorKeys[4].color = Color.HSVToRGB(0.008f, 1f, 1f); //5
         }
 
         // Assign random colors at random positions for each color key
@@ -383,22 +420,42 @@ public class TwitchClient : MonoBehaviour
         string commandKey = msg.ToLower();
         if (commandKey.StartsWith("!viproach"))
         {
-            RoachTrail(ph);
+            VIPTrail(ph, 1);
         }
 
         if (commandKey.StartsWith("!thisismytrailtherearemanylikeitbutthisoneisroachs"))
         {
-            RoachTrail(ph);
+            VIPTrail(ph, 1);
+        }
+
+        if (commandKey.StartsWith("!vipcooking"))
+        {
+            VIPTrail(ph, 2);
+        }
+
+        if (commandKey.StartsWith("!thiscouldbeacustomcommandforaviptrailbutnoonewilleverreallyknow"))
+        {
+            VIPTrail(ph, 2);
+        }
+
+        if (commandKey.StartsWith("!vipqoob"))
+        {
+            VIPTrail(ph, 3);
+        }
+
+        if (commandKey.StartsWith("!qoobtrail"))
+        {
+            VIPTrail(ph, 3);
         }
     }
 
-    private void RoachTrail(PlayerHandler ph)
+    private void VIPTrail(PlayerHandler ph, int idcode)
     {
-        _vipGradient = GetVIPGradient(5, 1);
+        _vipGradient = GetVIPGradient(5, idcode);
         // Create color keys            
 
         string json = GradientSerializer.SerializeGradient(_vipGradient);
-        Debug.Log("Roach");
+        Debug.Log($"{idcode}");
         ph.pp.TrailGradientJSON = json;
 
         //Set the player handler customizations

@@ -250,7 +250,7 @@ public class RebellionController : MonoBehaviour
 
         if (RoyalCelebration)
         {
-            _zonesRoot.localScale = new Vector3(5.25f, 5.25f, 5.25f);
+            _zonesRoot.localScale = new Vector3(5.3f, 5.3f, 5.3f);
             Debug.Log("MakeBeeg");
             WasCelebration = true;
         }

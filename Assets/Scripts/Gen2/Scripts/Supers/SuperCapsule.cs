@@ -96,7 +96,12 @@ public class SuperCapsule : MonoBehaviour
 
         _pfpMeshRenderer.material.mainTexture = pfp;
 
-        Zone.IncrementMultiplier(2);
+        if (dollarEquivalent > 49)
+            Zone.IncrementMultiplier(5);
+        else if (dollarEquivalent > 24)
+            Zone.IncrementMultiplier(3);
+        else
+            Zone.IncrementMultiplier(2);
 
         UpdateLabel();
 
