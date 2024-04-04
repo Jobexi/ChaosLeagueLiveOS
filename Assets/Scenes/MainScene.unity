@@ -8985,6 +8985,7 @@ MonoBehaviour:
   _dynamicSpriteAsset: {fileID: 1567503193}
   _defaultDefenseV2: {fileID: 649893080944183708}
   _spotifyDJ: {fileID: 4983788102390571504}
+  hastomato: 0
 --- !u!4 &719420100
 Transform:
   m_ObjectHideFlags: 0
@@ -62908,6 +62909,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: d0ead61a68c6c5d4ba40eb0b6f195eae, type: 3}
   - {fileID: 2605624827304256445, guid: 87bcbf371dda4ae428ca05cc0772f660, type: 3}
   EpicTiles:
+  - {fileID: 5529546809039867891, guid: 77017198ec6b75d4b84c2659a5169331, type: 3}
   - {fileID: 647519542019892001, guid: ac41b4d8ab2ffe647b0af095bdb6786b, type: 3}
   - {fileID: 647519542019892001, guid: 55f18e68fab746549b414aa44b937d54, type: 3}
   - {fileID: 647519542019892001, guid: 6e5cbba5837127e439a386e9f805b3dc, type: 3}
@@ -62987,8 +62989,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 1653556322778236169, guid: a843b632d9766174d8ed83139378d222, type: 3}
-  _forceThisRarity: 0
+  ForceThisTileNext: {fileID: 5529546809039867891, guid: 77017198ec6b75d4b84c2659a5169331, type: 3}
+  _forceThisRarity: 2
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

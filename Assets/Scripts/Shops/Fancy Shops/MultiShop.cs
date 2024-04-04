@@ -9,7 +9,6 @@ public class MultiShop : Game
 {
     [SerializeField] private List<MultiShopEntry> _entries;
     [SerializeField] private int _buyTime = 45;
-    [SerializeField] private float _goldenDiscount = 0.25f;
 
     public override void OnTilePreInit()
     {

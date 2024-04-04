@@ -33,7 +33,7 @@ public class TwitchClient : MonoBehaviour
     private Gradient _modGradient;
     private Gradient _vipGradient;
     int desiredTollRate = 0;
-    int idcode = 0;
+    public bool hastomato = false;
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -944,16 +944,13 @@ public class TwitchClient : MonoBehaviour
     }
     private IEnumerator ProcessThrowTomato(string messageId, PlayerHandler ph, string msg)
     {
-        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The !tomato command has been disabled due to abuse. I will reintroduce it if/when I feel an abuse-free solution has been proposed.");
-        yield break;
-
-       /* Debug.Log("InTomato");
+        Debug.Log("InTomato");
 
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
         {
-            //Debug.Log("Failed to find target username. Correct format is: !tomato [amount] @username");
-            //ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !tomato [amount] @username");
-            //yield break;
+            Debug.Log("Failed to find target username. Correct format is: !tomato [amount] @username");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !tomato [amount] @username");
+            yield break;
         }
 
         long desiredTomatoAmount;
@@ -974,47 +971,72 @@ public class TwitchClient : MonoBehaviour
             yield break;
         }
 
+        if (ph.pp.TomatoCount == 0)
+        {
+            Debug.Log("You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
+            desiredTomatoAmount = 100;
+        }
+        
+        if (desiredTomatoAmount > 100)
+            hastomato = true;
 
         CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
         yield return _gm.GetPlayerByUsername(targetUsername, coResult);
         PlayerHandler targetPlayer = coResult.Result;
 
-        
 
-        if (ph.IsKing())
+        if (targetPlayer == null)
         {
-            if (targetPlayer == null)
-            {
-                Debug.Log($"Failed to find player with username: {targetUsername}");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
-                yield break;
-            }
-
-            if (targetPlayer.pb == null)
-            {
-                Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
-
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
-                yield break;
-            }
-
-            ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
-            Debug.Log($"ThrowFromKing");
-        }
-        else if (targetPlayer == KingController.CKPH)
-        {
-            ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
-            Debug.Log($"ThrowtoKing");
-        }
-        else
-        {
-            ph.ThrowTomato(desiredTomatoAmount, KingController.CKPH);
-            Debug.Log($"NeitherKingNorKing");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"If no player is specified, or any player other than the king is specified, Your tomato is thrown at the king.");
+            Debug.Log($"Failed to find player with username: {targetUsername}");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
             yield break;
-        }    
-        
-        */
+        }
+
+        if (targetPlayer.pb == null)
+        {
+            Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
+
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
+            yield break;
+        }
+
+        ph.ThrowTomato(desiredTomatoAmount, targetPlayer, hastomato);
+        hastomato = false;
+
+        /*      if (ph.IsKing())
+              {
+                  if (targetPlayer == null)
+                  {
+                      Debug.Log($"Failed to find player with username: {targetUsername}");
+                      ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+                      yield break;
+                  }
+
+                  if (targetPlayer.pb == null)
+                  {
+                      Debug.Log($"Can't throw tomatoes at a player who isn't spawned in.");
+
+                      ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Can't throw tomatos at a player who isn't spawned in.");
+                      yield break;
+                  }
+
+                  ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
+                  Debug.Log($"ThrowFromKing");
+              }
+              else if (targetPlayer == KingController.CKPH)
+              {
+                  ph.ThrowTomato(desiredTomatoAmount, targetPlayer);
+                  Debug.Log($"ThrowtoKing");
+              }
+              else
+              {
+                  ph.ThrowTomato(desiredTomatoAmount, KingController.CKPH);
+                  Debug.Log($"NeitherKingNorKing");
+                  ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"If no player is specified, or any player other than the king is specified, Your tomato is thrown at the king.");
+                  yield break;
+              }            
+              */
     }
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg)
     {
@@ -1037,7 +1059,7 @@ public class TwitchClient : MonoBehaviour
         }
 
         PlayerProfile pp = phToLookup.pp; 
-        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Gold: {pp.Gold:N0}] [Points: {pp.SessionScore:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
+        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Throne Captures: {pp.ShieldValue:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
 
         ReplyToPlayer(messageId, ph.pp.TwitchUsername, statString);
 

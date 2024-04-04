@@ -856,12 +856,17 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         return total;
     }
 
-    public void ThrowTomato(long desiredTomatoAmount, PlayerHandler targetPlayer)
+    public void ThrowTomato(long desiredTomatoAmount, PlayerHandler targetPlayer, bool hastomato)
     {
         //If the user tries to use more points than they have, just clamp it
         if (pp.SessionScore < desiredTomatoAmount)
             desiredTomatoAmount = pp.SessionScore;
 
+        if (hastomato == true) 
+        {
+            pp.TomatoCount--;
+            hastomato = false;
+        }
         //Apply kickback force to player proportional to the amount of points they threw compared to how many points they have
         if(pb != null && pb._rb2D.gameObject.activeSelf)
         {
@@ -877,6 +882,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         float t = EasingFunction.EaseOutExpo(0, 1, desiredTomatoAmount / 10_000f);
         Vector3 tomatoScale = Vector3.Lerp(new Vector3(0.3f, 0.3f, 0.3f), new Vector3(1.3f, 1.3f, 1.3f), t);
 
+        
         TextPopupMaster.Inst.CreateTravelingIndicator("🍅", desiredTomatoAmount, Get_TI_IO_Position(), targetPlayer, 0.2f, tomatoScale, Color.green, null, true, ti_type: TI_Type.Tomato);
 
 

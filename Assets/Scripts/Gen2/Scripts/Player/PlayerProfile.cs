@@ -45,6 +45,8 @@ public class PlayerProfile
     public DateTime LastInteraction { get; set; }
 
     public int InviteCount { get; set; }
+    public int TomatoCount { get; set; }
+    public int ShieldValue { get; set; }
 
     public string[] GetInviteIds() 
     {
