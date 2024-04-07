@@ -36,15 +36,18 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private GameObject _newKingBlockade;
     [SerializeField] private TextMeshPro _newKingBlockadeTimer;
     [SerializeField] private Material _throneTileTrim;
-    [SerializeField] private bool _enableNewKingBlockade = false; 
+    [SerializeField] private bool _enableNewKingBlockade = true; 
 
     public int TollRate = 0;
-    public static PlayerHandler CKPH; 
+    public static PlayerHandler CKPH;
+    public int timer = 0;
+    public int duration = 300;
 
     public void Awake()
     {
-        _newKingBlockade.SetActive(false);
-        _newKingBlockadeTimer.enabled = false;
+        _newKingBlockade.SetActive(true);
+        _newKingBlockadeTimer.enabled = true;
+        StartCoroutine(NewKingBlockade());
     }
 
     public void UpdateTollRate(int rate)
@@ -136,8 +139,8 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     {
         _newKingBlockade.SetActive(true);
         _newKingBlockadeTimer.enabled = true;
-        int timer = 0;
-        int duration = AppConfig.inst.GetI("NewKingBlockadeDuration");
+        timer = 0;
+        duration = 300;         
         while (timer < duration)
         {
             _newKingBlockadeTimer.SetText((duration - timer).ToString());

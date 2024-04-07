@@ -62044,8 +62044,10 @@ MonoBehaviour:
   _newKingBlockade: {fileID: 837646394}
   _newKingBlockadeTimer: {fileID: 1394734320}
   _throneTileTrim: {fileID: 2100000, guid: fab57b754b5eb904c9bdd6fe7e5a7e30, type: 2}
-  _enableNewKingBlockade: 0
+  _enableNewKingBlockade: 1
   TollRate: 0
+  timer: 0
+  duration: 300
 --- !u!1 &5106715927001185453
 GameObject:
   m_ObjectHideFlags: 0
@@ -63049,7 +63051,6 @@ MonoBehaviour:
   - {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   - {fileID: 7650660916348049875, guid: 9e0939458df50962e92fb6d93392bf7b, type: 3}
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
-  - {fileID: 3504160345019027322, guid: 43bfd3d81bc52eb42867e8c336c8665c, type: 3}
   - {fileID: 5521807422773572966, guid: 8cb5b5eb8ce99754391feb9ac5e4e005, type: 3}
   - {fileID: 1653556322778236169, guid: d332252cecf7e00459a0aa4309a3caa2, type: 3}
   - {fileID: 2605624827304256445, guid: ec5b3d710e59a6646ae4f64b95bcbd4c, type: 3}
@@ -63118,6 +63119,7 @@ MonoBehaviour:
   - {fileID: 2605624827304256445, guid: 6074c84fc22bd334b9b0d6ac0f6b2ecb, type: 3}
   MythicTiles:
   - {fileID: 461252091043616422, guid: e0a2e9357f3dd904cadf16f00e6164fa, type: 3}
+  - {fileID: 5529546809039867891, guid: a9c709089b95d68469aa98973227d44b, type: 3}
   - {fileID: 647519542019892001, guid: b3204019cbf704c4291b433d7c38b351, type: 3}
   - {fileID: 647519542019892001, guid: 0b56f0ece99f0c14eb964321f1ce0930, type: 3}
   - {fileID: 647519542019892001, guid: 54418fa1028415d40b7249e86ce971ba, type: 3}
@@ -63165,8 +63167,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
-  _forceThisRarity: 1
+  ForceThisTileNext: {fileID: 5529546809039867891, guid: a9c709089b95d68469aa98973227d44b, type: 3}
+  _forceThisRarity: 4
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

@@ -561,6 +561,11 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
+            if (pointsToDefend > 10000000)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Additional defenses are capped at 10 Million Points.");
+            }
+
             if (ph.pp.SessionScore <= 0)
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You don't have any points to defend with.");

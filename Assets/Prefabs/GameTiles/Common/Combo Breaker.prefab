@@ -8378,6 +8378,10 @@ PrefabInstance:
       propertyPath: _gt
       value: 
       objectReference: {fileID: 3504160345019027322}
+    - target: {fileID: 7987121580165005815, guid: ddf067700ccc872419b0c83eadac953c, type: 3}
+      propertyPath: _rightPipeTicketCost
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
