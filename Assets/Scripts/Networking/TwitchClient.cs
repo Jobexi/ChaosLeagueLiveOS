@@ -369,11 +369,17 @@ public class TwitchClient : MonoBehaviour
             alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
             alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
 
-            colorKeys[0].color = Color.HSVToRGB(0.061f, 0.64f, 0.26f); //3
-            colorKeys[1].color = Color.HSVToRGB(0.002f, 0.76f, 0.44f); //1
-            colorKeys[2].color = Color.HSVToRGB(0.069f, 0.73f, 0.60f); //4
-            colorKeys[3].color = Color.HSVToRGB(0.102f, 0.53f, 0.73f); //2
-            colorKeys[4].color = Color.HSVToRGB(0.119f, 0.35f, 1f); //5
+            //colorKeys[0].color = Color.HSVToRGB(0.061f, 0.64f, 0.26f); //3
+            //colorKeys[1].color = Color.HSVToRGB(0.002f, 0.76f, 0.44f); //1
+            //colorKeys[2].color = Color.HSVToRGB(0.069f, 0.73f, 0.60f); //4
+            //colorKeys[3].color = Color.HSVToRGB(0.102f, 0.53f, 0.73f); //2
+            //colorKeys[4].color = Color.HSVToRGB(0.119f, 0.35f, 1f); //5
+
+            colorKeys[0].color = Color.HSVToRGB(0.064f, 0.7f, 0.24f); //3
+            colorKeys[1].color = Color.HSVToRGB(0.005f, 0.8f, 0.42f); //1
+            colorKeys[2].color = Color.HSVToRGB(0.052f, 0.8f, 0.58f); //4
+            colorKeys[3].color = Color.HSVToRGB(0.103f, 0.6f, 0.71f); //2
+            colorKeys[4].color = Color.HSVToRGB(0.122f, 0.4f, 0.98f); //5
         }
         else if (vip == 2) //CookingSumEP
         {
@@ -628,6 +634,11 @@ public class TwitchClient : MonoBehaviour
         else if (commandKey.StartsWith("!cancelbid") || commandKey.StartsWith("!unbid"))
         {
             _bidHandler.ClearFromQ(ph, updateQ:true, unbid:true);
+        }
+
+        else if (commandKey.StartsWith("!cancelautobid"))
+        {
+            _bidHandler.ClearAutoBid(ph);
         }
 
         else if (commandKey.StartsWith("!song"))
@@ -970,17 +981,18 @@ public class TwitchClient : MonoBehaviour
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to spend on a tomato.");
             yield break;
         }
-
-        if (ph.pp.TomatoCount == 0)
+        if (desiredTomatoAmount > 100)
         {
-            Debug.Log("You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
-            desiredTomatoAmount = 100;
+            hastomato = true;
+            if (ph.pp.TomatoCount == 0)
+            {
+                Debug.Log("You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
+                desiredTomatoAmount = 100;
+                hastomato = false;
+            }
         }
         
-        if (desiredTomatoAmount > 100)
-            hastomato = true;
-
         CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
         yield return _gm.GetPlayerByUsername(targetUsername, coResult);
         PlayerHandler targetPlayer = coResult.Result;
@@ -1059,11 +1071,12 @@ public class TwitchClient : MonoBehaviour
         }
 
         PlayerProfile pp = phToLookup.pp; 
-        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Throne Captures: {pp.ShieldValue:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
+        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Rubies: {pp.Rubies:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ShieldValue:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
 
         ReplyToPlayer(messageId, ph.pp.TwitchUsername, statString);
 
     }
+        
     private void ProcessGameplayCommands(string messageId, PlayerHandler ph, string rawMsg, string rawEmotesRemoved)
     {
         if (_tileController.GameplayTile == null)

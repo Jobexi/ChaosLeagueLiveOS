@@ -131,7 +131,13 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
     public void ResetBid()
     {
-        pp.CurrentBid = 0; 
+        if (pp.AutoBidRemainder == 0)
+            pp.CurrentBid = 0;
+        else
+        {
+            pp.CurrentBid = 1;
+            pp.AutoBidRemainder -= 1;
+        }
         if(pb != null)
             pb.UpdateBidCountText();
     }
@@ -409,6 +415,18 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             pb.ExplodeBall();
 
     }
+    public void TomatoPoints(long amount, bool canKill, bool createTextPopup, bool contributeToROI = true)
+    {
+        if (pp.ShieldValue > Convert.ToInt32(amount))
+            pp.ShieldValue -= Convert.ToInt32(amount);
+        else
+        {
+            amount -= pp.ShieldValue;
+            pp.ShieldValue = 0;
+            SubtractPoints(amount, canKill, createTextPopup, Vector2.up, contributeToROI);
+        }                  
+        
+    }
     public void SubtractPoints(long amount, bool canKill, bool createTextPopup, bool contributeToROI = true)
     {
         SubtractPoints(amount, canKill, createTextPopup, Vector2.up, contributeToROI);
@@ -479,7 +497,17 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     }
     public void AddPoints(long points, bool createTextPopup, Vector3 textPopupDirection,  bool contributeToROI = true, bool doInviteBonus = true)
     {
-        pp.SessionScore += points;
+        if ((ulong)points > (ulong)5000000000000000000 - (ulong)pp.SessionScore)
+            points = (long)pp.SessionScore - (long)5000000000000000000;
+
+        pp.SessionScore += points;        
+
+        if (pp.SessionScore > 1000000000000000000)
+        {
+            pp.SessionScore -= 1000000000000000000;
+            pp.Rubies += 1;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+" + MyUtil.AbbreviateNum4Char(1), Color.red);
+        }
 
         if (doInviteBonus)
             StartCoroutine(CheckBonusToInviterPoints(points));
@@ -509,7 +537,11 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     public void MultiplyPoints(float multiplier, bool createTextPopup, Vector3 textPopupDirection, bool contributeToROI = true, bool doInviteBonus = true)
     {
         long prevScore = pp.SessionScore;
-        pp.SessionScore = (long)(pp.SessionScore * multiplier);
+
+        if ((ulong)prevScore * (ulong)multiplier > (ulong)5000000000000000000)
+            pp.SessionScore = (long)5000000000000000000;
+        else
+            pp.SessionScore = (long)(pp.SessionScore * multiplier);
 
         if (contributeToROI)
             TilePointsROI += (pp.SessionScore - prevScore);
@@ -862,7 +894,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         if (pp.SessionScore < desiredTomatoAmount)
             desiredTomatoAmount = pp.SessionScore;
 
-        if (hastomato == true) 
+        if (hastomato) 
         {
             pp.TomatoCount--;
             hastomato = false;
@@ -877,7 +909,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             Debug.Log($"KICKBACK f: {f} power: {power} direction: {direction}");
         }
 
-        SubtractPoints(desiredTomatoAmount, canKill: false, createTextPopup: true);
+        TomatoPoints(desiredTomatoAmount, canKill: false, createTextPopup: true);
 
         float t = EasingFunction.EaseOutExpo(0, 1, desiredTomatoAmount / 10_000f);
         Vector3 tomatoScale = Vector3.Lerp(new Vector3(0.3f, 0.3f, 0.3f), new Vector3(1.3f, 1.3f, 1.3f), t);

@@ -3696,6 +3696,10 @@ PrefabInstance:
       propertyPath: _gt
       value: 
       objectReference: {fileID: 6275913431883320091}
+    - target: {fileID: 7987121580165005815, guid: ddf067700ccc872419b0c83eadac953c, type: 3}
+      propertyPath: _rightPipeTicketCost
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8946363783635398442, guid: ddf067700ccc872419b0c83eadac953c, type: 3}
       propertyPath: m_VersionIndex
       value: 5178

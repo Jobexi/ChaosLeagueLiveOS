@@ -346,8 +346,9 @@ public class BidHandler : MonoBehaviour
 
             gt.ConveyorBelt.Add(ph);
             gt.Players.Add(ph);
-
+                       
             _biddingQ.Remove(ph);
+
             ph.SetState(PlayerHandlerState.Gameplay);
         }
 
@@ -393,9 +394,13 @@ public class BidHandler : MonoBehaviour
 
         CancelTicketsUsed(ph, unbid);
 
-
         if (updateQ)
             UpdateBiddingQ();
+    }
+
+    public void ClearAutoBid(PlayerHandler ph)
+    {
+        ph.pp.AutoBidRemainder = 0;
     }
 
     private TI_Bid TI_BidFactory()

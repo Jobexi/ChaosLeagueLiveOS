@@ -47,6 +47,8 @@ public class PlayerProfile
     public int InviteCount { get; set; }
     public int TomatoCount { get; set; }
     public int ShieldValue { get; set; }
+    public int AutoBidRemainder { get; set; }
+    public int Rubies { get; set; }
 
     public string[] GetInviteIds() 
     {
