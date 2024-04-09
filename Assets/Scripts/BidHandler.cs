@@ -343,6 +343,7 @@ public class BidHandler : MonoBehaviour
             ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.1f);
             ph.ReceivableTarget = gt.EntrancePipe;
             ph.ResetBid();
+            ph.CheckAuto();
 
             gt.ConveyorBelt.Add(ph);
             gt.Players.Add(ph);

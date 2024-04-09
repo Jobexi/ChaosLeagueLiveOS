@@ -128,16 +128,25 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             pb.UpdateBidCountText();
     }
 
-
-    public void ResetBid()
+    public void CheckAuto()
     {
         if (pp.AutoBidRemainder == 0)
             pp.CurrentBid = 0;
-        else
+        else if (!IsKing())
         {
             pp.CurrentBid = 1;
             pp.AutoBidRemainder -= 1;
         }
+
+        if (pb != null)
+            pb.UpdateBidCountText();
+    }
+
+
+    public void ResetBid()
+    {
+        pp.CurrentBid = 0;
+        
         if(pb != null)
             pb.UpdateBidCountText();
     }
@@ -644,7 +653,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             }
 
 
-            SubtractPoints(TI.value, false, true, contributeToROI:false);
+            TomatoPoints(TI.value, false, true, contributeToROI:false);
             return;
         }
 
@@ -909,7 +918,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             Debug.Log($"KICKBACK f: {f} power: {power} direction: {direction}");
         }
 
-        TomatoPoints(desiredTomatoAmount, canKill: false, createTextPopup: true);
+        SubtractPoints(desiredTomatoAmount, canKill: false, createTextPopup: true);
 
         float t = EasingFunction.EaseOutExpo(0, 1, desiredTomatoAmount / 10_000f);
         Vector3 tomatoScale = Vector3.Lerp(new Vector3(0.3f, 0.3f, 0.3f), new Vector3(1.3f, 1.3f, 1.3f), t);

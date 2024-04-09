@@ -63167,8 +63167,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 5529546809039867891, guid: a9c709089b95d68469aa98973227d44b, type: 3}
-  _forceThisRarity: 4
+  ForceThisTileNext: {fileID: 2605624827304256445, guid: c4d68b6aae2d1ab4982edcdfb4262f42, type: 3}
+  _forceThisRarity: 6
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

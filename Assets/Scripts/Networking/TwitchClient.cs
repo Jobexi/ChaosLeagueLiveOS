@@ -1076,7 +1076,7 @@ public class TwitchClient : MonoBehaviour
         }
 
         PlayerProfile pp = phToLookup.pp; 
-        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Rubies: {pp.Rubies:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ShieldValue:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
+        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Rubies: {pp.Rubies:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
 
         ReplyToPlayer(messageId, ph.pp.TwitchUsername, statString);
 

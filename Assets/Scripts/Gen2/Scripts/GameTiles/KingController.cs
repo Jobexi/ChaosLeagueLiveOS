@@ -67,7 +67,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         }
         else
         {
-            //MyTTS.inst.Announce($"{currentKing.Ph.pp.TwitchUsername} changed the toll rate to {rate}");
+            MyTTS.inst.Announce($"I decree a new toll rate: {rate}");
             currentKing.Ph.SpeechBubble($"I decree a new toll rate: {rate}");
         }
         TollRate = rate;
