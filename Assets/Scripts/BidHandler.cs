@@ -291,6 +291,7 @@ public class BidHandler : MonoBehaviour
             gt.Players.Add(ph);
 
             ph.ResetBid();
+            ph.CheckAuto();
 
             PlayerBall pb = ph.GetPlayerBall();
             pb.Reactivate();
@@ -614,14 +615,14 @@ public class BidHandler : MonoBehaviour
 
     private async void CancelTicketsUsed(PlayerHandler ph, bool unbid = false)
     {
-        if (unbid)
+      /*  if (unbid)
         {
             foreach (var rewardID in ph.redemptionsIds.Keys)
             {
                 List<string> redemptionsIds = ph.redemptionsIds[rewardID];
                 await TwitchApi.RejectRewardRedemption(rewardID, redemptionsIds);
             }
-        }
+        }*/
 
         ph.redemptionsIds.Clear();
     }

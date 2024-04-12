@@ -62804,8 +62804,6 @@ MonoBehaviour:
   LavaReleasePosition: {fileID: 9056221525467798789}
   testEnqueueFluidButton: 0
   testFluidType: 0
-  _lavaEffect: 12
-  _waterEffect: 0
   particlesPerLavaBucket: 150
   lavaGravity: -1
   lavaSpawnVelocity: {x: 0.1, y: 0, z: 0}
@@ -63056,6 +63054,7 @@ MonoBehaviour:
   - {fileID: 2605624827304256445, guid: ec5b3d710e59a6646ae4f64b95bcbd4c, type: 3}
   - {fileID: 1653556322778236169, guid: 3b864a5660e9ac04aa0fb89a5deef7f4, type: 3}
   - {fileID: 1653556322778236169, guid: a843b632d9766174d8ed83139378d222, type: 3}
+  - {fileID: 3534562126315921842, guid: 2743ed29e23802040be9b8ce632d2c04, type: 3}
   CommonTiles:
   - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
   - {fileID: 647519542019892001, guid: 0298f78e094f3014991dc262d74a57b5, type: 3}
@@ -63167,8 +63166,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 2605624827304256445, guid: c4d68b6aae2d1ab4982edcdfb4262f42, type: 3}
-  _forceThisRarity: 6
+  ForceThisTileNext: {fileID: 3534562126315921842, guid: 2743ed29e23802040be9b8ce632d2c04, type: 3}
+  _forceThisRarity: 0
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

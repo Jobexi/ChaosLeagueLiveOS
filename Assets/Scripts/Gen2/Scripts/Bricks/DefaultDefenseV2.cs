@@ -108,8 +108,8 @@ public class DefaultDefenseV2 : MonoBehaviour
     {
         Debug.Log("adding bonus defense");
         
-        if (totalAmount > (long)10000000000)
-            totalAmount = (long)10000000000;
+        if (totalAmount > (long)10000000)
+            totalAmount = (long)10000000;
 
         long pointsPerBrick = totalAmount / _columns;
 

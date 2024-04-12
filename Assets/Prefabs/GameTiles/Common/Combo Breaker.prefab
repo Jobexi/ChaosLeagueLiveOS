@@ -8452,6 +8452,42 @@ PrefabInstance:
       propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2372186942700455684}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2372186942700455684}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DetectedPB
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DetectedPB
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PBEffector, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PBEffector, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885592126255944054, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: OnPbDetected.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1395747899271862522, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_Material
       value: 

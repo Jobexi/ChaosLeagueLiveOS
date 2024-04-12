@@ -1297,7 +1297,7 @@ MonoBehaviour:
   _reverseObjNoPhys: {fileID: 0}
   _targetPos1: {fileID: 1776550925144258521}
   _targetPos2: {fileID: 4180459406418889273}
-  _intervalDuration: 1
+  _intervalDuration: 1.5
   _t_offset: 0.5
 --- !u!1 &1764121051100580339
 GameObject:
@@ -1633,7 +1633,7 @@ MonoBehaviour:
   _reverseObjNoPhys: {fileID: 0}
   _targetPos1: {fileID: 2299611531608726053}
   _targetPos2: {fileID: 401195947163674170}
-  _intervalDuration: 1
+  _intervalDuration: 1.5
   _t_offset: 0
 --- !u!1 &2068347384906088889
 GameObject:
