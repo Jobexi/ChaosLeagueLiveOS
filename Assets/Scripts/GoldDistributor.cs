@@ -150,6 +150,9 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         else if (gt.IsGolden)
             totalGold *= 10;
 
+        if (AppConfig.Friday)
+            totalGold *= 2;
+
         while (totalGold > 0)
         {
             int coinValue = Mathf.Min(totalGold, 10);

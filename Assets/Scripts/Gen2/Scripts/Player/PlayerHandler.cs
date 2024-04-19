@@ -90,9 +90,11 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     }
     public bool IsKing()
     {
+        _gm.ChangeHue();
+
         if (State == PlayerHandlerState.King)
             return true;
-        return false;
+        return false;        
     }
     public void SetRankScore(int score)
     {
@@ -117,6 +119,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         pp.CurrentBid += amount;
         if (pb != null)
             pb.UpdateBidCountText();
+
+        _gm.ChangeHue();
     }
 
     public void DecrementBid(int amount) 
@@ -126,6 +130,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             pp.CurrentBid = 0;
         if (pb != null)
             pb.UpdateBidCountText();
+
+        _gm.ChangeHue();
     }
 
     public void CheckAuto()
@@ -146,8 +152,10 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     public void ResetBid()
     {
         pp.CurrentBid = 0;
-        
-        if(pb != null)
+
+        _gm.ChangeHue();
+
+        if (pb != null)
             pb.UpdateBidCountText();
     }
 
@@ -407,6 +415,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     public void ZeroPoints(bool kill, bool createTextPopup, Vector3 textPopupDirection, bool contributeToROI = true)
     {
 
+        _gm.ChangeHue();
+
         if (createTextPopup)
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "-" + MyUtil.AbbreviateNum4Char(pp.SessionScore), Color.red);
 
@@ -459,6 +469,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             }
         }
 
+        _gm.ChangeHue();
+
         UpdateBallPointsText();
 
         if (pb == null && !pbh.gameObject.activeSelf)
@@ -469,6 +481,102 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "-" + MyUtil.AbbreviateNum4Char(amount), Color.red);
 
     }
+    public void AddCurrency(int amount, string currencyType)
+    {
+        Debug.Log($"{amount} {currencyType}");
+
+        if (currencyType == "Sapphire")
+        {
+            pp.SessionScore -= amount * 1000000000;
+            pp.Sapphires += amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);
+            Debug.Log($"Sapphires {amount}");
+        }
+        else if (currencyType == "Emerald")
+        {
+            pp.SessionScore -= amount * 1000000000000;
+            pp.Emeralds += amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
+            Debug.Log($"Emeralds {amount}");
+        }
+        else if (currencyType == "Diamond")
+        {
+            pp.SessionScore -= amount * 1000000000000000;
+            pp.Diamonds += amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
+            Debug.Log($"Diamonds {amount}");
+        }
+
+        if (State == PlayerHandlerState.King)
+            _gm.GetKingController().UpdateGoldText();
+
+        AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
+    }
+
+    public void SellCurrency(int amount, string currencyType)
+    {
+        Debug.Log($"{amount} {currencyType}");
+
+        if (currencyType == "Sapphire")
+        {
+            pp.SessionScore += amount * 970000000;
+            pp.Sapphires -= amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);
+            Debug.Log($"Sapphires {amount}");
+        }
+        else if (currencyType == "Emerald")
+        {
+            pp.SessionScore += amount * 970000000000;
+            pp.Emeralds -= amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
+            Debug.Log($"Emeralds {amount}");
+        }
+        else if (currencyType == "Diamond")
+        {
+            pp.SessionScore += amount * 970000000000000;
+            pp.Diamonds -= amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
+            Debug.Log($"Diamonds {amount}");
+        }
+
+        if (State == PlayerHandlerState.King)
+            _gm.GetKingController().UpdateGoldText();
+
+        AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
+    }
+
+    public void TradeUp()
+    {
+        while(pp.SessionScore >= 1000000000)
+        {
+            pp.SessionScore -= 1000000000;
+            pp.Sapphires += 1;
+        }
+
+        while (pp.Sapphires >= 1000)
+        {
+            pp.Sapphires -= 1000;
+            pp.Emeralds += 1;
+         }
+
+        while (pp.Emeralds >= 1000)
+        {
+            pp.Emeralds -= 1000;
+            pp.Diamonds += 1;
+        }
+
+        while (pp.Diamonds >= 1000)
+        {
+            pp.Diamonds -= 1000;
+            pp.Rubies += 1;
+        }       
+
+        if (State == PlayerHandlerState.King)
+            _gm.GetKingController().UpdateGoldText();
+
+        AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
+    }
+
     public void AddGold(int amount, bool createTextPopup, bool doInviteBonus)
     {
         pp.Gold += amount;
@@ -480,6 +588,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             _receiveGoldTimer = 1.5f;
         }
 
+        _gm.ChangeHue();
 
         if (State == PlayerHandlerState.King)
             _gm.GetKingController().UpdateGoldText();
@@ -509,7 +618,9 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         if ((ulong)points > (ulong)5000000000000000000 - (ulong)pp.SessionScore)
             points = (long)pp.SessionScore - (long)5000000000000000000;
 
-        pp.SessionScore += points;        
+        pp.SessionScore += points;
+
+        _gm.ChangeHue();
 
         if (pp.SessionScore > 1000000000000000000)
         {

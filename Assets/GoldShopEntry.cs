@@ -18,7 +18,6 @@ public class GoldShopEntry : ShopEntry
     public void InitEntry(int tier, bool isGolden, float goldenDiscount)
     {
 
-        Color color;
         int randomPrice; 
         if(tier == 1)
         {

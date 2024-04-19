@@ -76,7 +76,13 @@ public class AppConfig
     public static int MythicMult = 25; 
     public static int EtherealMult = 50; 
     public static int CosmicMult = 100;
-    public static bool HappyHour = false;    
+    public static bool Tuesday = false;    
+    public static bool Wednesday = false;    
+    public static bool Thursday = false;    
+    public static bool Friday = false;    
+    public static bool Saturday = false;
+    public static bool Sunday = false;
+    public static bool Monday = false;
 
     public static bool IsPublicBuild()
     {
@@ -98,7 +104,7 @@ public class AppConfig
 
     public static void CheckHappyHour()
     {
-        if (HappyHour)
+        if (Sunday)
         {
             CommonMult = 2;
             RareMult = 3;

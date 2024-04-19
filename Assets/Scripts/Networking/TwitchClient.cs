@@ -125,11 +125,13 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isMod?");
             isMod = twitchUsername.ToLower() == "guestvii";
+            isAdmin = twitchUsername.ToLower() == "guestvii";
         }
         if (!isMod)
         {
             Debug.Log("isMod?");
             isMod = twitchUsername.ToLower() == "fifthepsilon";
+            isAdmin = twitchUsername.ToLower() == "fifthepsilon";
         }
         if (!isMod)
         {
@@ -242,9 +244,27 @@ public class TwitchClient : MonoBehaviour
         _client.SendMessage(Secrets.CHANNEL_NAME, $"[BOT] @{twitchUsername} {message}");
     }
 
-    private void ProcessAdminCommands(string messageId, PlayerHandler ph, string msg, int bits)
+    private void ProcessAdminCommands(string messageId, PlayerHandler ph, string msg, long bits)
     {
- 
+        string commandKey = msg.ToLower();
+        MyUtil.ExtractQuotedSubstring(msg, out string txt);
+
+        if (commandKey.StartsWith("!monday"))
+            _gm.UpdateDay("Monday");
+        if (commandKey.StartsWith("!tuesday"))
+            _gm.UpdateDay("Tuesday");
+        if (commandKey.StartsWith("!wednesday"))
+            _gm.UpdateDay("Wednesday");
+        if (commandKey.StartsWith("!thursday"))
+            _gm.UpdateDay("Thursday");
+        if (commandKey.StartsWith("!friday"))
+            _gm.UpdateDay("Friday");
+        if (commandKey.StartsWith("!saturday"))
+            _gm.UpdateDay("Saturday");
+        if (commandKey.StartsWith("!sunday"))
+            _gm.UpdateDay("Sunday");
+        if (commandKey.StartsWith("!offday"))            
+            _gm.UpdateDay("Custom", txt);
     }
 
     private Gradient GetModGradient(int numColors)
@@ -629,6 +649,41 @@ public class TwitchClient : MonoBehaviour
         else if (commandKey.StartsWith("!tomato"))
         {
             StartCoroutine(ProcessThrowTomato(messageId, ph, msg));
+        }
+
+        else if (commandKey.StartsWith("!tradeup"))
+        {
+            ph.TradeUp();
+        }
+
+        else if (commandKey.StartsWith("!buysapphires"))
+        {
+            StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Sapphire"));
+        }
+
+        else if (commandKey.StartsWith("!buyemeralds"))
+        {
+            StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Emerald"));
+        }
+
+        else if (commandKey.StartsWith("!buydiamonds"))
+        {
+            StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Diamond"));
+        }
+
+        else if (commandKey.StartsWith("!sellsapphires"))
+        {
+            StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Sapphire"));
+        }
+
+        else if (commandKey.StartsWith("!sellemeralds"))
+        {
+            StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Emerald"));
+        }
+
+        else if (commandKey.StartsWith("!selldiamonds"))
+        {
+            StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Diamond"));
         }
 
         else if (commandKey.StartsWith("!stats") || commandKey.StartsWith("!mystats") || commandKey.StartsWith("!points"))
@@ -1055,6 +1110,110 @@ public class TwitchClient : MonoBehaviour
               }            
               */
     }
+
+    private IEnumerator ProcessBuyCurrency(string messageId, PlayerHandler ph, string msg, string type)
+    {
+        Debug.Log("InBuyCurrency");
+
+
+        long currencyPrice;
+        long desiredCurrencyAmount;
+        if (!MyUtil.GetFirstLongFromString(msg, out desiredCurrencyAmount))
+        {
+            Debug.Log("Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
+            yield break;
+        }
+
+        if (type == "Sapphire")
+        {
+            currencyPrice = 1000000000;
+            Debug.Log("Sapphire");
+        }
+        else if (type == "Emerald")
+        {
+            currencyPrice = 1000000000000;
+            Debug.Log("Emerald");
+        }
+        else if (type == "Diamond")
+        {
+            currencyPrice = 1000000000000000;
+            Debug.Log("Diamond");
+        }
+        else
+            currencyPrice = 0;
+
+        if (desiredCurrencyAmount <= 0)
+            yield break;
+
+        if (ph.pp.SessionScore <= 0)
+        {
+            Debug.Log("You have no points to spend.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to spend.");
+            yield break;
+        }
+
+        if (ph.pp.SessionScore < currencyPrice * desiredCurrencyAmount)
+        {
+            Debug.Log("You don't have enough points.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points, Each Emerald costs 1t Points, and each Diamond costs 1q Points.");
+            yield break;
+        }
+
+        ph.AddCurrency((int)desiredCurrencyAmount, type);
+    }
+
+    private IEnumerator ProcessSellCurrency(string messageId, PlayerHandler ph, string msg, string type)
+    {
+        Debug.Log("InSellCurrency");
+
+        long desiredCurrencyAmount;
+        if (!MyUtil.GetFirstLongFromString(msg, out desiredCurrencyAmount))
+        {
+            Debug.Log("Failed to parse currency amount. Correct format is: !Sell[Sapphires/Emeralds/Diamonds] [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
+            yield break;
+        }
+
+        if (type == "Sapphire")
+        {
+            if(ph.pp.Sapphires < desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough Sapphires");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Sapphires");
+                yield break;
+            }
+            Debug.Log("Sapphire");
+        }
+        else if (type == "Emerald")
+        {
+            if (ph.pp.Sapphires < desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough Emeralds");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Emeralds");
+                yield break;
+            }
+            Debug.Log("Sapphire");
+            Debug.Log("Emerald");
+        }
+        else if (type == "Diamond")
+        {
+            if (ph.pp.Sapphires < desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough Diamonds");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Diamonds");
+                yield break;
+            }
+            Debug.Log("Sapphire");
+            Debug.Log("Diamond");
+        }
+
+        if (desiredCurrencyAmount <= 0)
+            yield break;
+
+        ph.SellCurrency((int)desiredCurrencyAmount, type);
+    }
+
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg)
     {
         PlayerHandler phToLookup = ph;

@@ -49,6 +49,9 @@ public class PlayerProfile
     public int ShieldValue { get; set; }
     public int AutoBidRemainder { get; set; }
     public int Rubies { get; set; }
+    public int Sapphires { get; set; }
+    public int Diamonds { get; set; }
+    public int Emeralds { get; set; }
 
     public string[] GetInviteIds() 
     {

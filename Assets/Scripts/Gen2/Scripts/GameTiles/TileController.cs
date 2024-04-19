@@ -18,22 +18,22 @@ public class TileController : MonoBehaviour
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private GoldDistributor _goldDistributor;
 
-    [SerializeField] private float _commonRarity;
-    [SerializeField] private float _rareRarity;
-    [SerializeField] private float _epicRarity;
-    [SerializeField] private float _legendaryRarity;
-    [SerializeField] private float _mythicRarity;
-    [SerializeField] private float _etherealRarity;
-    [SerializeField] private float _cosmicRarity;
+    private static float _commonRarity;
+    private static float _rareRarity;
+    private static float _epicRarity;
+    private static float _legendaryRarity;
+    private static float _mythicRarity;
+    private static float _etherealRarity;
+    private static float _cosmicRarity;
 
     [SerializeField] private List<GameTile> AllRarities; //Adds one to each rarity 
-    [SerializeField] private List<GameTile> CommonTiles; //69%      // 50%
+    [SerializeField] private List<GameTile> CommonTiles; //69%      // 45%
     [SerializeField] private List<GameTile> RareTiles; // 25%       // 30%
-    [SerializeField] private List<GameTile> EpicTiles; // 5%        // 17%
-    [SerializeField] private List<GameTile> LegendaryTiles; // 1%   // 2.7%
-    [SerializeField] private List<GameTile> MythicTiles; // X       // 0.27%
-    [SerializeField] private List<GameTile> EtherealTiles; // X     // 0.027%
-    [SerializeField] private List<GameTile> CosmicTiles; // X       // 0.003%
+    [SerializeField] private List<GameTile> EpicTiles; // 5%        // 18%
+    [SerializeField] private List<GameTile> LegendaryTiles; // 1%   // 0.05%
+    [SerializeField] private List<GameTile> MythicTiles; // X       // 0.015%
+    [SerializeField] private List<GameTile> EtherealTiles; // X     // 0.003%
+    [SerializeField] private List<GameTile> CosmicTiles; // X       // 0.002%
 
     public Transform HoldingPen;
     public Transform TilesRoot;
@@ -346,6 +346,7 @@ public class TileController : MonoBehaviour
     {
         GameTile tile;
         RarityType rarity;
+        CheckRarityEvent();
         do
         {
             //Select the tile
@@ -395,6 +396,31 @@ public class TileController : MonoBehaviour
         } while (blacklistedTiles != null && blacklistedTiles.Any(t => t == tile.TileIDNum));
 
         return (tile.TileIDNum, rarity);
+    }
+
+    public static void CheckRarityEvent()
+    {
+
+        if (AppConfig.Monday)
+        {
+            _commonRarity = .1f;
+            _rareRarity = .15f;
+            _epicRarity = .15f;
+            _legendaryRarity = .15f;
+            _mythicRarity = .15f;
+            _etherealRarity = .15f;
+            _cosmicRarity = .15f;
+        }
+        else
+        {
+            _commonRarity = .45f;
+            _rareRarity = .3f;
+            _epicRarity = .18f;
+            _legendaryRarity = .05f;
+            _mythicRarity = .015f;
+            _etherealRarity = .003f;
+            _cosmicRarity = .002f;
+        }
     }
 
     public GameTile GetRandomTile(List<int> blacklistedTiles, Side side)

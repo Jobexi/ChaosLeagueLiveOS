@@ -12,6 +12,7 @@ using TwitchLib.Client.Models;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +31,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SQLiteServiceAsync _sqliteServiceAsync; 
 
     [SerializeField] public Texture DefaultPFP;
-    [SerializeField] private GameObject _pbHologramPrefab; 
+    [SerializeField] private GameObject _pbHologramPrefab;
+
+    [SerializeField] private TextMeshPro _event1Text;
+
+    private byte redhue = 150;
+    private byte bluehue = 150;
+    private byte greenhue = 150;
+    private int huehuehue = 0;
 
     public Dictionary<string, PlayerHandler> PlayerHandlers = new Dictionary<string, PlayerHandler>();
 
@@ -91,6 +99,7 @@ public class GameManager : MonoBehaviour
         PlayerHandlers.Add(twitchId, ph);
         yield return ph.CInitPlayerHandler(this, twitchId);
 
+
     }
 
     public IEnumerator GetPlayerHandler(string twitchID, CoroutineResult<PlayerHandler> phResult)
@@ -126,11 +135,15 @@ public class GameManager : MonoBehaviour
         ph.SetCustomizationsFromPP();
 
         phResult.Complete(ph);
+
+
     }
 
 
     public IEnumerator GetPlayerByUsername(string twitchUsername, CoroutineResult<PlayerHandler> coResult)
     {
+
+
         if (string.IsNullOrEmpty(twitchUsername))
         {
             Debug.Log($"Failed to get player by username: {twitchUsername}");
@@ -181,12 +194,15 @@ public class GameManager : MonoBehaviour
 
         PlayerBallsPool.ReturnObject(pb);
 
+ 
+
         //After they're eliminated, if they bid while in gameplay, automatically enter the bidding Q for the next tile
         if (ph.GetBid() > 0)
         {
             _tileController.BidHandler.TryAddToBiddingQ(ph);
             return;
         }
+
     }
 
     private void LoadAppConfig()
@@ -242,16 +258,20 @@ public class GameManager : MonoBehaviour
         if (pb._pointsText != null)
             pb._pointsText.transform.position = HoldingPen.GetReceivePosition();
 
+ 
+
         return pb; 
     }
 
     private void TurnOnPlayerHandler(PlayerHandler ph)
     {
         ph.gameObject.SetActive(true);
+
     }
     private void TurnOffPlayerHandler(PlayerHandler ph)
     {
         ph.gameObject.SetActive(false);
+
     }
 
     private PlayerHandler PlayerHandlerFactory()
@@ -263,6 +283,8 @@ public class GameManager : MonoBehaviour
         ph.DisableHologram();
         ph.pbh.transform.position = HoldingPen.transform.position; //Have to do this here because the ph isn't instantiated yet so it can't find the holding pen 
 
+
+
         return ph;
     }
 
@@ -270,12 +292,14 @@ public class GameManager : MonoBehaviour
     {
         pb.gameObject.SetActive(true);
         pb._rb2D.transform.position = HoldingPen.Get_TI_IO_Position();
+
     }
 
     private void TurnOffPlayerBall(PlayerBall pb)
     {
         pb.gameObject.SetActive(false);
         pb._rb2D.transform.position = HoldingPen.Get_TI_IO_Position();
+
     }
 
     private PlayerBall PlayerBallFactory()
@@ -286,6 +310,54 @@ public class GameManager : MonoBehaviour
 
         return pb;
     }
+
+    public void ChangeHue()
+    {
+        if (huehuehue == 0)
+        {
+            redhue += 1;
+            if (redhue == 255)
+                huehuehue = 1;
+        }
+        else if (huehuehue == 1)
+        {
+            greenhue += 1;
+            if (greenhue == 255)
+                huehuehue = 2;
+        }
+        else if (huehuehue == 2)
+        {
+            redhue -= 1;
+            if (redhue == 25)
+                huehuehue = 3;
+        }
+        else if (huehuehue == 3)
+        {
+            bluehue += 1;
+            if (bluehue == 255)
+                huehuehue = 4;
+        }
+        else if (huehuehue == 4)
+        {
+            greenhue -= 1;
+            if (greenhue == 25)
+                huehuehue = 5;
+        }
+        else if (huehuehue == 5)
+        {
+            redhue += 1;
+            if (redhue == 255)
+                huehuehue = 6;
+        }
+        else if (huehuehue == 6)
+        {
+            bluehue -= 1;
+            if (bluehue == 25)
+                huehuehue = 1;
+        }
+
+        _event1Text.color = new Color32(redhue, greenhue, bluehue, 255);
+            }
 
     public void SaveAndQuitButtonClick()
     {
@@ -431,5 +503,71 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateDay(string day, string customday = "Hoopty!")
+    {
+        Debug.Log($"{day}");
+        
+        if (day == "Tuesday")
+        {
+            AppConfig.Monday = false;
+            AppConfig.Tuesday = true;
+            TileController.CheckRarityEvent();
+            _event1Text.SetText("New Build Tuesday");
+        }
+        else if (day == "Wednesday")
+        {
+            AppConfig.Tuesday = false;
+            AppConfig.Wednesday = true;
+            _event1Text.SetText("Wildcard Wednesday");
+
+        }
+        else if (day == "Thursday")
+        {
+            AppConfig.Wednesday = false;
+            AppConfig.Thursday = true;
+            _event1Text.SetText("Throwback Thursday");
+
+        }
+        else if (day == "Friday")
+        {
+            AppConfig.Thursday = false;
+            AppConfig.Friday = true;
+            Debug.Log($"Friday = {AppConfig.Friday}");
+            _event1Text.SetText("Friday Riches");
+
+        }
+        else if (day == "Saturday")
+        {
+            AppConfig.Friday = false;
+            AppConfig.Saturday = true;
+            Debug.Log($"Friday = {AppConfig.Friday}");
+            _event1Text.SetText("Standard Saturday");
+
+        }
+        else if (day == "Sunday")
+        {
+            _event1Text.SetText("Super Sunday");
+
+            AppConfig.Saturday = false;
+            AppConfig.Sunday = true;
+            AppConfig.CheckHappyHour();
+            Debug.Log($"Sunday = {AppConfig.Sunday}");
+        }
+        else if (day == "Monday")
+        {
+            _event1Text.SetText("Monday Mania");
+
+            AppConfig.Sunday = false;
+            AppConfig.Monday = true;
+            AppConfig.CheckHappyHour();
+            TileController.CheckRarityEvent();
+            Debug.Log($"Sunday = {AppConfig.Sunday}");
+            Debug.Log($"Monday = {AppConfig.Monday}");
+        }
+        else if (day == "Custom")
+        {
+            _event1Text.SetText(customday);
+        }
+    }
 
 }

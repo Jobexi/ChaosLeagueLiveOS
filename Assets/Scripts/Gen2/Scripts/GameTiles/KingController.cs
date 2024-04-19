@@ -26,6 +26,9 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
     [SerializeField] private TextMeshPro _kingPointsText;
     [SerializeField] private TextMeshPro _kingGoldText;
+    [SerializeField] private TextMeshPro _kingSapphireText;
+    [SerializeField] private TextMeshPro _kingEmeraldText;    
+    [SerializeField] private TextMeshPro _kingDiamondText;
     [SerializeField] private TextMeshPro _kingRubyText;
 
     [SerializeField] private DefaultDefenseV2 _defaultDefenseV2;
@@ -176,10 +179,14 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         }
     }
-
+    
     public void UpdateGoldText()
     {
+        _kingPointsText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.SessionScore)} Points");
         _kingGoldText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Gold)} Gold");
+        _kingEmeraldText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Emeralds)} Emeralds");
+        _kingSapphireText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Sapphires)} Sapphires");
+        _kingDiamondText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Diamonds)} Diamonds");
         _kingRubyText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Rubies)} Rubies");
     }
 
