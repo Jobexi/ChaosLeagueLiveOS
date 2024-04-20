@@ -768,6 +768,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &3732441997233280142
 Rigidbody2D:
   serializedVersion: 4
@@ -849,18 +855,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 499702084633641400}
   _textLabel: {fileID: 7825656074457479650}
-  _pbDetector: {fileID: 2888136922282583467}
   _effect: 1
   _value: 25
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &4998348080660436580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1336,6 +1381,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &6848266369922216
 Rigidbody2D:
   serializedVersion: 4
@@ -2174,18 +2225,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 4417286947251186545}
   _textLabel: {fileID: 4777257063319641787}
-  _pbDetector: {fileID: 1670406973095882813}
   _effect: 20
   _value: 10
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 0
   _textPopupDirection: {x: 0, y: 0, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &375743531610705240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2312,18 +2402,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 351026518510370569}
   _textLabel: {fileID: 4505622136948500906}
-  _pbDetector: {fileID: 4466350974641439902}
   _effect: 1
   _value: 35
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &7223090644651063720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2847,6 +2976,9 @@ MonoBehaviour:
   TargetNum: 0
   overrideColorCycle: 0
   overrideColor: {r: 0, g: 0, b: 0, a: 0}
+  _enableToll: 0
+  _tollText: {fileID: 0}
+  _tollBackground: {fileID: 0}
   IsLocked: 1
 --- !u!61 &4355115620970586332
 BoxCollider2D:
@@ -3296,18 +3428,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 5616676763888385742}
   _textLabel: {fileID: 8609061327739262503}
-  _pbDetector: {fileID: 7224357112003992386}
   _effect: 1
   _value: 35
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &4555707669365358830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3607,18 +3778,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 8354448575238240490}
   _textLabel: {fileID: 3018367795244902105}
-  _pbDetector: {fileID: 5251214400461356786}
   _effect: 20
   _value: 10
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 0
   _textPopupDirection: {x: 0, y: 0, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &5775447901450497695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3956,6 +4166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 0
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!199 &855766296994480033
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9145,6 +9361,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &2651738582755980439
 Rigidbody2D:
   serializedVersion: 4
@@ -9226,18 +9448,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 8203190125519013987}
   _textLabel: {fileID: 4055742133174192106}
-  _pbDetector: {fileID: 4682854701227412906}
   _effect: 1
   _value: 35
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &5688793331819090508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9991,18 +10252,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 9173945354660555262}
   _textLabel: {fileID: 7293879811992638392}
-  _pbDetector: {fileID: 3669698251576938599}
   _effect: 20
   _value: 10
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 0
   _textPopupDirection: {x: 0, y: 0, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &6558154063634826266
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10603,6 +10903,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &8465382777291133138
 Rigidbody2D:
   serializedVersion: 4
@@ -11378,6 +11684,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &8498846906947051876
 Rigidbody2D:
   serializedVersion: 4
@@ -12816,18 +13128,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 4705379078389882898}
   _textLabel: {fileID: 8706484398887747675}
-  _pbDetector: {fileID: 762176416501678425}
   _effect: 20
   _value: 10
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 0
   _textPopupDirection: {x: 0, y: 0, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &14420845816156788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13380,18 +13731,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 7546523714639010180}
   _textLabel: {fileID: 2997291765983810340}
-  _pbDetector: {fileID: 8348769811889169993}
   _effect: 1
   _value: 40
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &7096166858598845252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14055,18 +14445,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 1484915245681310274}
   _textLabel: {fileID: 7113965617476748046}
-  _pbDetector: {fileID: 6259560213971576424}
   _effect: 1
   _value: 25
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &2500162047484628767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14924,18 +15353,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 7681747385991842175}
   _textLabel: {fileID: 7207960725572899296}
-  _pbDetector: {fileID: 3242989672567349543}
   _effect: 1
   _value: 40
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &830486947142977589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15154,6 +15622,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 0
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!199 &3597091853564629498
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -20223,6 +20697,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &542011933784636171
 Rigidbody2D:
   serializedVersion: 4
@@ -20395,6 +20875,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &3220040925982975566
 Rigidbody2D:
   serializedVersion: 4
@@ -21067,6 +21553,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 0
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!199 &2456304568926434850
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -26035,18 +26527,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 8387820077618734668}
   _textLabel: {fileID: 8784108298090592534}
-  _pbDetector: {fileID: 2312250145702776049}
   _effect: 1
   _value: 35
   _infiniteDurability: 1
   _maxHP: 0
+  _zeroPlayerBallVelOnDetection: 0
+  CurrentHP: 0
   _colorByValue: 1
   _colorMap: {fileID: 11400000, guid: 59dde40bb6c6c144baf78def4d027088, type: 2}
   _overridePopupDirection: 1
   _textPopupDirection: {x: 0, y: 1, z: 0}
   _manualReset: 0
   OverrideExplodeAudio: {fileID: 0}
+  _logicColor: []
+  _triggerLogic: 0
+  _logicValue: 1
+  RGB_speed: 0.01
+  _RGB_Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   OverlappingZones: []
+  _simulateTriggerLogic: 0
+  OnTIDetected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &5920505438383434766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26437,6 +26968,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 1
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!50 &7972979987830592756
 Rigidbody2D:
   serializedVersion: 4
@@ -26610,6 +27147,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
   _trigger2DDetection: 0
+  _collisionStayDetection: 0
+  OnPbDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  _statesToIgnore: 
+  _ignoreKinematicPlayers: 0
 --- !u!199 &3392047885804320893
 ParticleSystemRenderer:
   serializedVersion: 6

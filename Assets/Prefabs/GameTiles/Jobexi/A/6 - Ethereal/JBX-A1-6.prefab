@@ -198,7 +198,7 @@ MonoBehaviour:
   IsGameStarted: 0
   DoneWithGameplay: 0
   _obsSpawnRegion: {fileID: 306345613642228992}
-  _obstaclePrefab: {fileID: 4654690557049523066, guid: 42d01dd0df1b6ca429fee6fb313e2a2b, type: 3}
+  _obstacle1Prefab: {fileID: 4654690557049523066, guid: 42d01dd0df1b6ca429fee6fb313e2a2b, type: 3}
   _deathBallPrefab: {fileID: 5588028993874766271, guid: 4b296575176a7d142bf0a61e9b6d2d6e, type: 3}
   _invalidOverlapLayers:
     serializedVersion: 2

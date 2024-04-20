@@ -34,6 +34,7 @@ public class TwitchClient : MonoBehaviour
     private Gradient _vipGradient;
     int desiredTollRate = 0;
     public bool hastomato = false;
+    
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -686,9 +687,19 @@ public class TwitchClient : MonoBehaviour
             StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Diamond"));
         }
 
-        else if (commandKey.StartsWith("!stats") || commandKey.StartsWith("!mystats") || commandKey.StartsWith("!points"))
+        else if (commandKey.StartsWith("!stats") || commandKey.StartsWith("!mystats"))
         {
-            StartCoroutine(ProcessStatsCommand(messageId, ph, msg));
+            StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "stats"));
+        }
+
+        else if (commandKey.StartsWith("!points") || commandKey.StartsWith("!money") || commandKey.StartsWith("!currency") || commandKey.StartsWith("!riches") || commandKey.StartsWith("!loot"))
+        {
+            StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "riches"));
+        }
+
+        else if (commandKey.StartsWith("!items") || commandKey.StartsWith("!stuff"))
+        {
+            StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "items"));
         }
 
         else if (commandKey.StartsWith("!cancelbid") || commandKey.StartsWith("!unbid"))
@@ -1214,10 +1225,10 @@ public class TwitchClient : MonoBehaviour
         ph.SellCurrency((int)desiredCurrencyAmount, type);
     }
 
-    private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg)
+    private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg, string type)
     {
         PlayerHandler phToLookup = ph;
-
+     
         int indxOfAtSymbol = msg.IndexOf('@');
         if (indxOfAtSymbol != -1 && msg.Length > indxOfAtSymbol + 1)
         {
@@ -1234,11 +1245,17 @@ public class TwitchClient : MonoBehaviour
             yield break;
         }
 
-        PlayerProfile pp = phToLookup.pp; 
-        string statString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Rubies: {pp.Rubies:N0}] [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
+        PlayerProfile pp = phToLookup.pp;
+        string statsString = $"(@{phToLookup.pp.TwitchUsername}) [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
+        string pointString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Sapphires: {pp.Sapphires:N0}] [Emeralds: {pp.Emeralds:N0}] [Diamonds: {pp.Diamonds:N0}] [Rubies: {pp.Rubies:N0}]";
+        string itemsString = $"(@{phToLookup.pp.TwitchUsername}) [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}]";
 
-        ReplyToPlayer(messageId, ph.pp.TwitchUsername, statString);
-
+        if (type == "stats")
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, statsString);
+        else if (type == "riches")
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, pointString);
+        else if (type == "items")
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, itemsString);
     }
         
     private void ProcessGameplayCommands(string messageId, PlayerHandler ph, string rawMsg, string rawEmotesRemoved)
