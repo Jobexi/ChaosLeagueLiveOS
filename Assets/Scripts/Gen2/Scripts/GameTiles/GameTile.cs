@@ -33,6 +33,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsGolden; //1% chance
     [SerializeField] public bool IsRuby; //0.01% chance
     [SerializeField] public bool IsShop;
+    [SerializeField] public bool IsRisk;
     [SerializeField] private CycleMode _cycleMode;
     [SerializeField] private bool _updateCycleModeButton;
     [SerializeField] private ContactWarp _contactWarp; 

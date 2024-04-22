@@ -30,6 +30,7 @@ public class BidHandler : MonoBehaviour
     [SerializeField] private Transform _drawingIndicatorsRoot;
     [SerializeField] private PrizeDisplay _winnerPrizeText;
     [SerializeField] public BidQueueOrigin BidQueueOrigin;
+    
 
     [SerializeField] private Transform MirrorFromRaffleOrigin;
 
@@ -86,7 +87,7 @@ public class BidHandler : MonoBehaviour
 
     public IEnumerator RunBiddingOn(GameTile gt) //GameTile tile
     {
-        _tileController.CurrentBiddingTile = gt;
+        _tileController.CurrentBiddingTile = gt;        
         _tileController.NextBiddingTile = null;
 
         _winnerPrizeText.ResetWinnerPrize(); 
@@ -291,7 +292,7 @@ public class BidHandler : MonoBehaviour
             gt.Players.Add(ph);
 
             ph.ResetBid();
-            ph.CheckAuto();
+            ph.CheckAuto(ph.pp.AutoBidRemainder, ph.pp.RiskSkips);
 
             PlayerBall pb = ph.GetPlayerBall();
             pb.Reactivate();
@@ -344,11 +345,11 @@ public class BidHandler : MonoBehaviour
             ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.1f);
             ph.ReceivableTarget = gt.EntrancePipe;
             ph.ResetBid();
-            ph.CheckAuto();
+            ph.CheckAuto(ph.pp.AutoBidRemainder, ph.pp.RiskSkips);
 
             gt.ConveyorBelt.Add(ph);
             gt.Players.Add(ph);
-                       
+
             _biddingQ.Remove(ph);
 
             ph.SetState(PlayerHandlerState.Gameplay);
@@ -363,11 +364,11 @@ public class BidHandler : MonoBehaviour
 
         //Clear bidding Q
         int totalBidsLeftover = 0;
-        for(int i = _biddingQ.Count - 1; i >= 0; i--)
+        for (int i = _biddingQ.Count - 1; i >= 0; i--)
         {
-            PlayerHandler ph = _biddingQ[i]; 
+            PlayerHandler ph = _biddingQ[i];
             totalBidsLeftover += ph.pp.CurrentBid;
-            ClearFromQ(ph, false); 
+            ClearFromQ(ph, false);
         }
 
         //Send the leftover tickets as points to the king
@@ -376,8 +377,9 @@ public class BidHandler : MonoBehaviour
 
         _redemptionsIds.Clear();
         _biddingQ.Clear();
-        UpdateRaffleDrawIndicatorsCount(0); 
+        UpdateRaffleDrawIndicatorsCount(0);
         UpdateBiddingQ();
+        _gm.RebidChecker();
     }
 
     public void ClearFromQ(PlayerHandler ph, bool updateQ, bool unbid = false)

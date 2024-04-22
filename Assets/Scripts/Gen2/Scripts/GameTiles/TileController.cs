@@ -92,7 +92,9 @@ public class TileController : MonoBehaviour
     [SerializeField] private Color _cosmicTrimColor;
 
     private int _tileCounter = 0; 
-    private int _promptIndex = 0; 
+    private int _promptIndex = 0;
+
+    public bool IsRisky;
 
     private void Start()
     {
@@ -155,7 +157,7 @@ public class TileController : MonoBehaviour
 
         CurrentBiddingTile = SpawnOriginTile(LeftTileCenter.position, Side.Left, false);
         CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby);
-        CurrentBiddingTile.InitTileInPos(); 
+        CurrentBiddingTile.InitTileInPos();
 
         StartCoroutine(BidHandler.RunBiddingOn(CurrentBiddingTile)); 
         
@@ -428,6 +430,8 @@ public class TileController : MonoBehaviour
         (int TileIDNum, RarityType rarity) = GetRandomIDandRarity(blacklistedTiles);
 
         GameTile tile = GetTileByTileID(TileIDNum, rarity, side);
+
+        IsRisky = tile.IsRisk;
 
         return tile;
     }

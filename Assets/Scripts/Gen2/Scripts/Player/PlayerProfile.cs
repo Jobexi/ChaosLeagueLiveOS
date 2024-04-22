@@ -36,8 +36,7 @@ public class PlayerProfile
     public int TotalTicketsSpent { get; set; }
 
     public int CurrentBid { get; set; }
-   
-    
+       
     public int LifeTimeScore { get; set; }
     public int Gold { get; set; }
     public int SeasonScore { get; set; }
@@ -52,6 +51,8 @@ public class PlayerProfile
     public int Sapphires { get; set; }
     public int Diamonds { get; set; }
     public int Emeralds { get; set; }
+
+    public int RiskSkips { get; set; }
 
     public string[] GetInviteIds() 
     {

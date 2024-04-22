@@ -96,6 +96,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             return true;
         return false;        
     }
+    
     public void SetRankScore(int score)
     {
         RankScore = score;
@@ -134,11 +135,11 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         _gm.ChangeHue();
     }
 
-    public void CheckAuto()
+    public void CheckAuto(int bids, int skips)
     {
-        if (pp.AutoBidRemainder == 0)
+        if (bids == 0)
             pp.CurrentBid = 0;
-        else if (!IsKing())
+        else if (!IsKing() && skips == 0)
         {
             pp.CurrentBid = 1;
             pp.AutoBidRemainder -= 1;
@@ -146,7 +147,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if (pb != null)
             pb.UpdateBidCountText();
-    }
+    } 
 
 
     public void ResetBid()
@@ -500,6 +501,38 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             Debug.Log($"Emeralds {amount}");
         }
         else if (currencyType == "Diamond")
+        {
+            pp.SessionScore -= amount * 1000000000000000;
+            pp.Diamonds += amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
+            Debug.Log($"Diamonds {amount}");
+        }
+
+        if (State == PlayerHandlerState.King)
+            _gm.GetKingController().UpdateGoldText();
+
+        AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
+    }
+
+    public void AddItems(int amount, string itemType)
+    {
+        Debug.Log($"{amount} {itemType}");
+
+        if (itemType == "Shield")
+        {
+            pp.Gold -= amount * 1000;
+            pp.ShieldValue += amount * 100000;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
+            Debug.Log($"Shields {amount}");
+        }
+        else if (itemType == "RiskSkip")
+        {
+            pp.Gold -= amount * 100;
+            pp.RiskSkips += amount;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.black);
+            Debug.Log($"RiskSkips {amount}");
+        }
+        else if (itemType == "Diamond")
         {
             pp.SessionScore -= amount * 1000000000000000;
             pp.Diamonds += amount;

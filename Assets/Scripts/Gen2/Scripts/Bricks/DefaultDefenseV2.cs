@@ -35,7 +35,7 @@ public class DefaultDefenseV2 : MonoBehaviour
     {
         _defaultDefenseBricks = new DefenseBrick[_columns, _rows];
         CreateGrid();
-        ResetDefense(_mode);
+        ResetDefense(_mode, _columns, _rows);
 
         //Hide the corner markers during gameplay
         _bottomLeftCorner.GetComponent<MeshRenderer>().enabled = false;
@@ -76,7 +76,7 @@ public class DefaultDefenseV2 : MonoBehaviour
         return _defaultDefenseBricks[randXIndex, randYIndex];
     }
 
-    public void ResetDefense(DefaultDefenseMode mode)
+    public void ResetDefense(DefaultDefenseMode mode, int Columns, int Rows)
     {
         List<int> oreTypes = new List<int>();
         for (int i = 0; i < _columns; i++)

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private StringBuilder _sb = new StringBuilder();
 
-    [HideInInspector] public Sprite CommunityPointSprite; 
+    [HideInInspector] public Sprite CommunityPointSprite;
 
     void Awake()
     {
@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
 
         PlayerHandlersPool = new ObjectPool<PlayerHandler>(PlayerHandlerFactory, TurnOnPlayerHandler, TurnOffPlayerHandler);
         PlayerBallsPool = new ObjectPool<PlayerBall>(PlayerBallFactory, TurnOnPlayerBall, TurnOffPlayerBall);
-
     }
 
 
@@ -136,9 +135,37 @@ public class GameManager : MonoBehaviour
 
         phResult.Complete(ph);
 
-
     }
 
+    public IEnumerator GetSneakyPlayerHandler(PlayerHandler ph, string twitchID)
+    {
+        
+        //If we were going to unload it this frame, cancel it
+        if (ph != null)
+            ph.LastAccess = DateTime.Now;
+
+        //This ensures we don't create a duplicate player handler if it isn't done with the first one yet
+        while (ph != null && ph.Initializing)
+            yield return null;
+
+        //If the ph doesn't exist yet, create one
+        if (ph == null)
+        {
+            yield return CreateNewPlayerHandler(twitchID);
+            PlayerHandlers.TryGetValue(twitchID, out ph);
+        }
+
+        //Assert that we suceeded in creating a player handler
+        if (ph == null)
+        {
+            Debug.LogError($"Failed to get player handler with id: {twitchID}");
+            yield break;
+        }
+
+        ph.LastAccess = DateTime.Now;
+        ph.SetCustomizationsFromPP();
+
+    }
 
     public IEnumerator GetPlayerByUsername(string twitchUsername, CoroutineResult<PlayerHandler> coResult)
     {
@@ -465,6 +492,28 @@ public class GameManager : MonoBehaviour
         _sqliteServiceAsync.ClearInvitesData(); 
     }
 
+    public void RebidChecker()
+    {
+        string[] keys = PlayerHandlers.Keys.ToArray();
+        foreach (string key in keys)
+        {
+            if (PlayerHandlers[key].pp.AutoBidRemainder > 0 && PlayerHandlers[key].pp.RiskSkips > 0  && PlayerHandlers[key].pp.CurrentBid == 0)
+            {
+                if (_tileController.CurrentBiddingTile.IsRisk)
+                    PlayerHandlers[key].pp.RiskSkips -= 1;
+                
+                if (!_tileController.NextBiddingTile.IsRisk)
+                {
+                    GetSneakyPlayerHandler(PlayerHandlers[key], PlayerHandlers[key].pp.TwitchID);
+                    _tileController.BidHandler.BidRedemption((PlayerHandlers[key]), 1, BidType.ChannelPoints, "1", "1");
+                }
+            }
+            
+        }
+
+    }
+
+
     private void SavePreviousLog()
     {
         // Get the path to the Player.log file
@@ -533,7 +582,7 @@ public class GameManager : MonoBehaviour
             AppConfig.Thursday = false;
             AppConfig.Friday = true;
             Debug.Log($"Friday = {AppConfig.Friday}");
-            _event1Text.SetText("Friday Riches");
+            _event1Text.SetText("Friday Fortune");
 
         }
         else if (day == "Saturday")

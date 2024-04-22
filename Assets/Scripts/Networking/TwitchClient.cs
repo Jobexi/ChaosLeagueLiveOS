@@ -93,7 +93,7 @@ public class TwitchClient : MonoBehaviour
         bool isSubscriber = e.ChatMessage.IsSubscriber;
         bool isFirstMessage = e.ChatMessage.IsFirstMessage;
         int bits = e.ChatMessage.Bits;
-        bool isAdmin = (twitchId == Secrets.CHANNEL_ID); //e.chatmessage.isMe doesn't work for some reason
+        bool isAdmin = (twitchId == "realjobexi"); //e.chatmessage.isMe doesn't work for some reason
         bool isMod = false;
         bool isVIP = false;
 
@@ -117,6 +117,11 @@ public class TwitchClient : MonoBehaviour
         //Debug.LogError($"Handling message from: API_MODE: {AppConfig.inst.GetS("API_MODE")} ClientID: {AppConfig.GetClientID()} ClientSecret: {AppConfig.GetClientSecret()}");
 
         bool isMe = twitchId == Secrets.CHANNEL_ID;
+        if (!isMod)
+        {
+            Debug.Log("isMod?");
+            isMod = twitchUsername.ToLower() == "realjobexi";
+        }
         if (!isMod)
         {     
             Debug.Log("isMod?");
@@ -247,25 +252,7 @@ public class TwitchClient : MonoBehaviour
 
     private void ProcessAdminCommands(string messageId, PlayerHandler ph, string msg, long bits)
     {
-        string commandKey = msg.ToLower();
-        MyUtil.ExtractQuotedSubstring(msg, out string txt);
-
-        if (commandKey.StartsWith("!monday"))
-            _gm.UpdateDay("Monday");
-        if (commandKey.StartsWith("!tuesday"))
-            _gm.UpdateDay("Tuesday");
-        if (commandKey.StartsWith("!wednesday"))
-            _gm.UpdateDay("Wednesday");
-        if (commandKey.StartsWith("!thursday"))
-            _gm.UpdateDay("Thursday");
-        if (commandKey.StartsWith("!friday"))
-            _gm.UpdateDay("Friday");
-        if (commandKey.StartsWith("!saturday"))
-            _gm.UpdateDay("Saturday");
-        if (commandKey.StartsWith("!sunday"))
-            _gm.UpdateDay("Sunday");
-        if (commandKey.StartsWith("!offday"))            
-            _gm.UpdateDay("Custom", txt);
+        
     }
 
     private Gradient GetModGradient(int numColors)
@@ -303,7 +290,29 @@ public class TwitchClient : MonoBehaviour
 
     private void ProcessModCommands(string messageId, PlayerHandler ph, string msg, int bits)
     {
+        
         string commandKey = msg.ToLower();
+        
+        if (commandKey.StartsWith("!monday"))
+            _gm.UpdateDay("Monday");
+        if (commandKey.StartsWith("!tuesday"))
+            _gm.UpdateDay("Tuesday");
+        if (commandKey.StartsWith("!wednesday"))
+            _gm.UpdateDay("Wednesday");
+        if (commandKey.StartsWith("!thursday"))
+            _gm.UpdateDay("Thursday");
+        if (commandKey.StartsWith("!friday"))
+            _gm.UpdateDay("Friday");
+        if (commandKey.StartsWith("!saturday"))
+            _gm.UpdateDay("Saturday");
+        if (commandKey.StartsWith("!sunday"))
+            _gm.UpdateDay("Sunday");
+        if (commandKey.StartsWith("!offday"))
+        {
+            MyUtil.ExtractQuotedSubstring(msg, out string txt);
+            _gm.UpdateDay("Custom", txt);
+        }
+
         if (commandKey.StartsWith("!adminbits"))
         {
             StartCoroutine(ProcessAdminGiveBits(messageId, ph, msg));
@@ -493,7 +502,7 @@ public class TwitchClient : MonoBehaviour
     {
         string commandKey = msg.ToLower();
 
-        if(commandKey.StartsWith("!commands") || commandKey.StartsWith("!help"))
+        if (commandKey.StartsWith("!commands") || commandKey.StartsWith("!help"))
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"More info and a list of all commands are located below on my stream page panels.");
             return;
@@ -516,7 +525,7 @@ public class TwitchClient : MonoBehaviour
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
-        {           
+        {
             string url = $"{Secrets.CHAOS_LEAGUE_DOMAIN}/@{ph.pp.TwitchUsername}";
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Share to start your pyramid scheme. Every player that joins the stream with your invite link earns you 50% of the points, and 25% of the gold they earn (The gold compounds)! \n{url}");
             return;
@@ -555,7 +564,7 @@ public class TwitchClient : MonoBehaviour
             PlayerBall pb = ph.GetPlayerBall();
             ph.SetState(PlayerHandlerState.Gameplay); //Prevent bug where players could enter bidding Q while king if timed correctly
             ph.ReceivableTarget = null; //Prevent bug where players would move to raffle after attacking and get stuck
-            _attackPipe.ReceivePlayer(pb); 
+            _attackPipe.ReceivePlayer(pb);
         }
 
         else if (commandKey.StartsWith("!defend"))
@@ -605,7 +614,7 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!toll"))
         {
-            
+
             if (!ph.IsKing())
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You must hold the throne to change the toll. The current toll is {desiredTollRate}");
@@ -619,7 +628,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            
+
             if (!int.TryParse(parts[1], out desiredTollRate))
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse number. Correct format is: !toll [amount]");
@@ -637,14 +646,19 @@ public class TwitchClient : MonoBehaviour
             _kingController.UpdateTollRate(desiredTollRate);
         }
 
-/*        else if (commandKey.StartsWith("!givepoints"))
-        {
-            StartCoroutine(ProcessGivePointsCommand(messageId, ph, msg));
-        }*/
+        /*        else if (commandKey.StartsWith("!givepoints"))
+                {
+                    StartCoroutine(ProcessGivePointsCommand(messageId, ph, msg));
+                }*/
 
         else if (commandKey.StartsWith("!givegold"))
         {
-            StartCoroutine(ProcessGiveGoldCommand(messageId, ph, msg)); 
+            StartCoroutine(ProcessGiveGoldCommand(messageId, ph, msg));
+        }
+
+        else if (commandKey.StartsWith("!buyriskskips"))
+        {
+            StartCoroutine(ProcessBuyRiskSkips(messageId, ph, msg));
         }
 
         else if (commandKey.StartsWith("!tomato"))
@@ -704,7 +718,7 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!cancelbid") || commandKey.StartsWith("!unbid"))
         {
-            _bidHandler.ClearFromQ(ph, updateQ:true, unbid:true);
+            _bidHandler.ClearFromQ(ph, updateQ: true, unbid: true);
         }
 
         else if (commandKey.StartsWith("!cancelautobid"))
@@ -732,24 +746,24 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!playlist"))
         {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Music Options: {AppConfig.inst.GetS("SpotifySafePlaylistURL")}"); 
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Music Options: {AppConfig.inst.GetS("SpotifySafePlaylistURL")}");
         }
 
         else if (ph.IsKing() && (commandKey.StartsWith("!skipsong") || commandKey.StartsWith("!skip song") || commandKey.StartsWith("!nextsong") || commandKey.StartsWith("!next song")))
         {
             _ = _spotifyDJ.SkipSong();
         }
-        
+
         else if (commandKey.StartsWith("!lava"))
         {
-            if(bits <= 0)
+            if (bits <= 0)
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You must include cheer bits in your message to load the lava bucket. Ex: '!lava [bit cheer]'");
                 return;
             }
             //Handled in pub sub
         }
-        
+
         else if (commandKey.StartsWith("!water"))
         {
             if (bits <= 0)
@@ -1122,6 +1136,77 @@ public class TwitchClient : MonoBehaviour
               */
     }
 
+    private IEnumerator ProcessBuyShields(string messageId, PlayerHandler ph, string msg)
+    {
+        Debug.Log("InBuyShields");
+
+        long desiredShieldsAmount;
+        if (!MyUtil.GetFirstLongFromString(msg, out desiredShieldsAmount))
+        {
+            Debug.Log("Failed to parse currency amount. Correct format is: !BuyShields [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !BuyShields [amount]");
+            yield break;
+        }
+
+        if (desiredShieldsAmount <= 0)
+            yield break;
+
+        if (ph.pp.Gold <= 0)
+        {
+            Debug.Log("You have no gold to spend.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+            yield break;
+        }
+
+        if (ph.pp.Gold < 1000 * desiredShieldsAmount)
+        {
+            Debug.Log("You don't have enough points.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. 1 Shield (Provides 100,000 shield value) costs 1,000 Gold.");
+            yield break;
+        }
+
+        if (ph.pp.ShieldValue + (desiredShieldsAmount * 100000) > 5000000000000000000)
+        {
+            Debug.Log("You can't purchase that manys shields.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You can't purchase that many shields. Maximum Shield Value is 5Q.");
+            yield break;
+        }
+
+        ph.AddItems((int)desiredShieldsAmount, "Shield");
+    }
+
+    private IEnumerator ProcessBuyRiskSkips(string messageId, PlayerHandler ph, string msg)
+    {
+        Debug.Log("InBuyRiskSkips");
+
+        long desiredRiskSkipsAmount;
+        if (!MyUtil.GetFirstLongFromString(msg, out desiredRiskSkipsAmount))
+        {
+            Debug.Log("Failed to parse currency amount. Correct format is: !BuyRiskSkips [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !BuyRiskSkips [amount]");
+            yield break;
+        }
+
+        if (desiredRiskSkipsAmount <= 0)
+            yield break;
+
+        if (ph.pp.Gold <= 0)
+        {
+            Debug.Log("You have no gold to spend.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+            yield break;
+        }
+
+        if (ph.pp.Gold < 100 * desiredRiskSkipsAmount)
+        {
+            Debug.Log("You don't have enough points.");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. 1 Shield (Provides 100,000 shield value) costs 1,000 Gold.");
+            yield break;
+        }
+
+        ph.AddItems((int)desiredRiskSkipsAmount, "RiskSkip");
+    }
+
     private IEnumerator ProcessBuyCurrency(string messageId, PlayerHandler ph, string msg, string type)
     {
         Debug.Log("InBuyCurrency");
@@ -1248,7 +1333,7 @@ public class TwitchClient : MonoBehaviour
         PlayerProfile pp = phToLookup.pp;
         string statsString = $"(@{phToLookup.pp.TwitchUsername}) [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
         string pointString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Sapphires: {pp.Sapphires:N0}] [Emeralds: {pp.Emeralds:N0}] [Diamonds: {pp.Diamonds:N0}] [Rubies: {pp.Rubies:N0}]";
-        string itemsString = $"(@{phToLookup.pp.TwitchUsername}) [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}]";
+        string itemsString = $"(@{phToLookup.pp.TwitchUsername}) [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [RiskSkips Remaining: {pp.RiskSkips:N0}]";
 
         if (type == "stats")
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, statsString);

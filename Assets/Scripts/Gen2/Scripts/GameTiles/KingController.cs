@@ -128,7 +128,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         UpdateCurrExponentScale();
 
-        _defaultDefenseV2.ResetDefense(DefaultDefenseMode.Random); 
+        _defaultDefenseV2.ResetDefense(DefaultDefenseMode.Random, 10, 5); 
 
         //Force spending half of points on defense
         long halfOfPoints = pb.Ph.pp.SessionScore / 2;
