@@ -499,10 +499,13 @@ public class GameManager : MonoBehaviour
         {
             if (PlayerHandlers[key].pp.AutoBidRemainder > 0 && PlayerHandlers[key].pp.RiskSkips > 0  && PlayerHandlers[key].pp.CurrentBid == 0)
             {
+                PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+
                 if (_tileController.CurrentBiddingTile.IsRisk)
                     PlayerHandlers[key].pp.RiskSkips -= 1;
+                    PlayerHandlers[key].pp.AutoBidRemainder -= 1;
                 
-                if (!_tileController.NextBiddingTile.IsRisk)
+                if (!_tileController.NextBiddingTile.IsRisk && PlayerHandlers[key].pp.RiskSkips > 0)
                 {
                     GetSneakyPlayerHandler(PlayerHandlers[key], PlayerHandlers[key].pp.TwitchID);
                     _tileController.BidHandler.BidRedemption((PlayerHandlers[key]), 1, BidType.ChannelPoints, "1", "1");

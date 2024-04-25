@@ -372,9 +372,6 @@ MonoBehaviour:
   DoneWithGameplay: 0
   _obsSpawnRegion: {fileID: 306345613642228992}
   _obstacle1Prefab: {fileID: 4654690557049523066, guid: 42d01dd0df1b6ca429fee6fb313e2a2b, type: 3}
-  _obstacle2Prefab: {fileID: 5002039395499501763, guid: 7e0105707dddb6e4daa6527e654aa4f7, type: 3}
-  _obstacle3Prefab: {fileID: 5002039395499501763, guid: 25bbaf20fbd1a2f45ba71c98d2d90e79, type: 3}
-  _obstacle4Prefab: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
   _deathBallPrefab: {fileID: 5588028993874766271, guid: 4b296575176a7d142bf0a61e9b6d2d6e, type: 3}
   _invalidOverlapLayers:
     serializedVersion: 2
@@ -1696,7 +1693,7 @@ PrefabInstance:
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _tileNameText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 580226887383693054}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _tileDurationS
       value: 117

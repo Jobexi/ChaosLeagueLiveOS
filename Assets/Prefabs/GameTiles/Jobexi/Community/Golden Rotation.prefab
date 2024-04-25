@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
-  spinAxis: {x: 0, y: 0, z: 2}
+  spinAxis: {x: 0, y: 0, z: 1}
   tile: {fileID: 0}
 --- !u!114 &429951560408871015
 MonoBehaviour:
@@ -2591,8 +2591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbb5fd3beaa8e74db4ad236079a2f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
-  spinAxis: {x: 0, y: 0, z: -2}
+  rotationSpeed: -1
+  spinAxis: {x: 0, y: 0, z: 1}
   tile: {fileID: 0}
 --- !u!114 &4997290681228344784
 MonoBehaviour:
