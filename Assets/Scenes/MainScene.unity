@@ -63770,6 +63770,8 @@ MonoBehaviour:
   - {fileID: 1653556322778236169, guid: a17a9af6b88843946871a5fa4bffb783, type: 3}
   - {fileID: 647519542019892001, guid: 1d9bf6103a3dd0f41851d3a9c0949420, type: 3}
   - {fileID: 1653556322778236169, guid: 88a8d162f277b834284de989e0f759cd, type: 3}
+  - {fileID: 2605624827304256445, guid: 63656aac225b90f41ab4bf38f06eacb0, type: 3}
+  - {fileID: 5481711066216898309, guid: 2dde99fa00c41fb46b80c6734ec8060f, type: 3}
   CommonTiles:
   - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
   - {fileID: 647519542019892001, guid: 0298f78e094f3014991dc262d74a57b5, type: 3}
@@ -63881,8 +63883,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 1653556322778236169, guid: a17a9af6b88843946871a5fa4bffb783, type: 3}
-  _forceThisRarity: 0
+  ForceThisTileNext: {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
+  _forceThisRarity: 2
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

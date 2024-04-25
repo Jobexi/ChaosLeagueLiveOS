@@ -188,6 +188,61 @@ public class TileController : MonoBehaviour
             tile.ProcessPBMsg(ph, se);*/
     }
 
+    public string getGameplayTile()
+    {
+        if (GameplayTile == null)
+            return "Okay";
+        else
+            return "NotOkay";
+    }
+
+    public string getNextForcedTile()
+    {
+        if (ForceThisTileNext == null)
+            return "Okay";
+        else
+            return "NotOkay";
+    }
+
+    public void doRepeatTile()
+    {
+        if (GameplayTile == null)
+        {
+            ForceThisTileNext = CurrentBiddingTile;
+            _forceThisRarity = CurrentBiddingTile.GetRarity();
+        }
+        else
+        {
+            ForceThisTileNext = GameplayTile;
+            _forceThisRarity = GameplayTile.GetRarity();
+        }
+    }
+
+    public void doUpgradeTile()
+    {
+        RarityType rarity = RarityType.Common;
+
+        if (GameplayTile != null)
+            rarity = GameplayTile.GetRarity();
+        else
+            rarity = CurrentBiddingTile.GetRarity();
+
+        if (rarity == RarityType.Common)
+            rarity = RarityType.Rare;
+        else if (rarity == RarityType.Rare)
+            rarity = RarityType.Epic;
+        else if (rarity == RarityType.Epic)
+            rarity = RarityType.Legendary;
+        else if (rarity == RarityType.Legendary)
+            rarity = RarityType.Mythic;
+        else if (rarity == RarityType.Mythic)
+            rarity = RarityType.Ethereal;
+        else if (rarity == RarityType.Ethereal)
+            rarity = RarityType.Cosmic;
+
+        _forceThisRarity = rarity;
+    }
+
     public GameTile SpawnOriginTile(Vector3 pos, Side side, bool spinNew) 
     {
         GameTile gt; 

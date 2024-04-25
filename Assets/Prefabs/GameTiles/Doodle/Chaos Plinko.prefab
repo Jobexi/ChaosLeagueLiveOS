@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5643343794444816032}
-  - component: {fileID: 1152223724177588140}
+  - component: {fileID: 3856526540867325297}
   m_Layer: 0
   m_Name: ChaosAdderScript
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   - {fileID: 651704791587803345}
   m_Father: {fileID: 7533649370118159940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1152223724177588140
+--- !u!114 &3856526540867325297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2341448535399339917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8252c14ba68c46240aaf2e78439d7d87, type: 3}
+  m_Script: {fileID: 11500000, guid: 31bec11d5a233d749a5a8ed564493ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gt: {fileID: 647519542019892001}
@@ -2325,7 +2325,7 @@ PrefabInstance:
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _game
       value: 
-      objectReference: {fileID: 1152223724177588140}
+      objectReference: {fileID: 3856526540867325297}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _cycleMode
       value: 0

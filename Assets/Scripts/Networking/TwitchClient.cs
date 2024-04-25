@@ -34,7 +34,7 @@ public class TwitchClient : MonoBehaviour
     private Gradient _vipGradient;
     int desiredTollRate = 0;
     public bool hastomato = false;
-    
+
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -123,9 +123,9 @@ public class TwitchClient : MonoBehaviour
             isMod = twitchUsername.ToLower() == "realjobexi";
         }
         if (!isMod)
-        {     
+        {
             Debug.Log("isMod?");
-         isMod = twitchUsername.ToLower() == "demoralize94"; 
+            isMod = twitchUsername.ToLower() == "demoralize94";
         }
         if (!isMod)
         {
@@ -143,11 +143,11 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isMod?");
             isMod = twitchUsername.ToLower() == "virrexo";
-        }        
+        }
         if (!isVIP)
         {
             Debug.Log("isVIP?");
-            isVIP = twitchUsername.ToLower() == "lxtroach"; 
+            isVIP = twitchUsername.ToLower() == "lxtroach";
         }
         if (!isVIP)
         {
@@ -252,7 +252,7 @@ public class TwitchClient : MonoBehaviour
 
     private void ProcessAdminCommands(string messageId, PlayerHandler ph, string msg, long bits)
     {
-        
+
     }
 
     private Gradient GetModGradient(int numColors)
@@ -290,9 +290,9 @@ public class TwitchClient : MonoBehaviour
 
     private void ProcessModCommands(string messageId, PlayerHandler ph, string msg, int bits)
     {
-        
+
         string commandKey = msg.ToLower();
-        
+
         if (commandKey.StartsWith("!monday"))
             _gm.UpdateDay("Monday");
         if (commandKey.StartsWith("!tuesday"))
@@ -346,7 +346,7 @@ public class TwitchClient : MonoBehaviour
 
                  */
         }
-                
+
 
         if (commandKey.StartsWith("!modtrail"))
         {
@@ -522,6 +522,82 @@ public class TwitchClient : MonoBehaviour
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Join the discord to chat with other players and share your thoughts on the game: https://discord.gg/A3bpgW9YfE");
             return;
+        }
+
+        else if (commandKey.StartsWith("!tilerepeat") || commandKey.StartsWith("!repeattile"))
+        {
+            Debug.Log("inRepeatTile");
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 5000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Repeating this tile costs 5k Gold.");
+                return;
+            }
+
+            if (_tileController.getNextForcedTile() == "NotOkay")
+            {
+                Debug.Log("You or another player have already repeated or upgraded this or the previous tile. Please wait until the reel spins to try again.");
+       //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
+                return;
+            }
+
+            ph.pp.Gold -= 5000;
+            _tileController.doRepeatTile();
+        }
+
+        else if (commandKey.StartsWith("!tileupgrade") || commandKey.StartsWith("!upgradetile"))
+        {
+            Debug.Log("inUpgradeTile");
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 25000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Upgrading this tile costs 25k Gold.");
+                return;
+            }
+
+            if (_tileController.getNextForcedTile() == "NotOkay")
+            {
+                Debug.Log("You or another player have already repeated or upgraded this or the previous tile. Please wait until the reel spins to try again.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
+                return;
+            }
+            if (_tileController.GameplayTile != null)
+            {
+                if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
+                {
+                    Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    //           ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    return;
+                }
+            }
+            else
+                    if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
+            {
+                Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                //           ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                return;
+            }
+        
+        
+            ph.pp.Gold -= 25000;
+            _tileController.doRepeatTile();
+            _tileController.doUpgradeTile();
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
@@ -774,9 +850,8 @@ public class TwitchClient : MonoBehaviour
             //Handled in pub sub
         }
     }
-
-
-    private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, string msg)
+    
+private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, string msg)
     {
         //Get a user from the message
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
