@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] private TwitchApi _twitchAPI;
     [SerializeField] private TwitchPubSub _twitchPubSub;
-    [SerializeField] private GoldDistributor _liveViewCount;
+    [SerializeField] private GoldDistributor _goldDistributor;
     [SerializeField] private InvitePromo _invitePromo;
 
     [SerializeField] private GameObject _playerBallPrefab;
@@ -29,11 +29,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private KingController _kingController;
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private SQLiteServiceAsync _sqliteServiceAsync; 
+    [SerializeField] private UnitTesting _unitTesting; 
 
     [SerializeField] public Texture DefaultPFP;
     [SerializeField] private GameObject _pbHologramPrefab;
 
     [SerializeField] private TextMeshPro _event1Text;
+
+    public int EventCountdown = 5;
+    public int NPC = 1;
 
     private byte redhue = 150;
     private byte bluehue = 150;
@@ -512,6 +516,139 @@ public class GameManager : MonoBehaviour
                 }
             }
             
+        }
+
+    }
+
+    public void CheckCountdown()
+    {
+        CheckNPCs();
+        InitializeNPCs(NPC);
+        NPC = 0;
+    }
+
+    public void InitializeNPCs(int ID)
+    {        
+        if (ID == 1)
+        {
+            _unitTesting.incrementUserId = false;
+            _unitTesting.testUserId = "TinyDefender";
+            _unitTesting.nameColor = Color.white;
+            _unitTesting.randomizeNameColor = false;
+            _unitTesting.rewardCost = 1;
+            _unitTesting.rewardTitle = "bid";
+            _unitTesting.RedeemReward();
+            _unitTesting.testUserId = "RealJobexi";
+            _unitTesting.userInput = $"!refundpoints @TinyDefender 1";
+            _unitTesting.RegularMessage();
+
+            StartCoroutine(UpdateWaiter(ID));
+            
+        }
+    }
+
+    IEnumerator UpdateWaiter(int ID)
+    {
+        yield return new WaitForSeconds(1);
+
+        UpdatePlayerHandler(ID);
+    }
+
+    public void UpdatePlayerHandler(int ID)
+    {        
+        string[] keys = PlayerHandlers.Keys.ToArray();
+        foreach (string key in keys)
+        {
+            if (ID == 1)
+            {
+                if (PlayerHandlers[key].pp.TwitchID == "TinyDefender")
+                {
+                    PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    PlayerHandlers[key].pp.IsNPC = true;
+                    PlayerHandlers[key].pp.ModeNPC = 0;
+                    PlayerHandlers[key].pp.StateNPC = 0;
+
+                }
+            }
+        }
+    }
+
+    public void CheckNPCs()
+    {
+        
+
+        string[] keys = PlayerHandlers.Keys.ToArray();
+        foreach (string key in keys)
+        {            
+            if (PlayerHandlers[key].pp.IsNPC == true)
+            {
+                if (PlayerHandlers[key].pp.ModeNPC == 0)
+                {
+                    Debug.Log($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
+                    if (PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        PlayerHandlers[key].pp.StateNPC = 1;
+                        _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                        _unitTesting.userInput = "!attack";
+                        _unitTesting.RegularMessage();
+                    }
+                    else if (PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (PlayerHandlers[key].IsKing())
+                        {
+                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            PlayerHandlers[key].pp.StateNPC = 2;
+                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.userInput = "Haha! Come and get me!";
+                            _unitTesting.RegularMessage();
+                        }
+                        else
+                        {
+                            PlayerHandlers[key].pp.StateNPC = 0;
+                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.rewardCost = 1;
+                            _unitTesting.rewardTitle = "bid"; 
+                            _unitTesting.RedeemReward();
+                        }
+
+                    }
+                    else if (PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (!PlayerHandlers[key].IsKing())
+                        {
+                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            PlayerHandlers[key].pp.StateNPC = 3;
+                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.rewardCost = 1;
+                            _unitTesting.rewardTitle = "bid";
+                            _unitTesting.RedeemReward();
+                            _unitTesting.userInput = "Oh No, My Gold!";
+                            _unitTesting.RegularMessage();
+                            _goldDistributor.SpawnGoldFromEvent(PlayerHandlers[key].pp.Gold);
+                            PlayerHandlers[key].pp.Gold = 0;
+                        }
+                    }
+                }
+            }
+            
+            
+
+            /*
+            Tiny
+            Small
+            Little
+            Minor
+            Moderate
+            Average
+            Medium
+            Large
+            Major
+            Huge
+            Massive
+            Gigantic
+            Enormous
+             */
         }
 
     }

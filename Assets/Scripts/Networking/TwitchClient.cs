@@ -545,7 +545,7 @@ public class TwitchClient : MonoBehaviour
             if (_tileController.getNextForcedTile() == "NotOkay")
             {
                 Debug.Log("You or another player have already repeated or upgraded this or the previous tile. Please wait until the reel spins to try again.");
-       //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
                 return;
             }
 
@@ -574,7 +574,7 @@ public class TwitchClient : MonoBehaviour
             if (_tileController.getNextForcedTile() == "NotOkay")
             {
                 Debug.Log("You or another player have already repeated or upgraded this or the previous tile. Please wait until the reel spins to try again.");
-        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
                 return;
             }
             if (_tileController.GameplayTile != null)
@@ -582,7 +582,7 @@ public class TwitchClient : MonoBehaviour
                 if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
                 {
                     Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                    //           ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
                     return;
                 }
             }
@@ -590,7 +590,7 @@ public class TwitchClient : MonoBehaviour
                     if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
             {
                 Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                //           ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
                 return;
             }
         
@@ -598,6 +598,65 @@ public class TwitchClient : MonoBehaviour
             ph.pp.Gold -= 25000;
             _tileController.doRepeatTile();
             _tileController.doUpgradeTile();
+        }
+
+        else if (commandKey.StartsWith("!goldentile") || commandKey.StartsWith("!goldtile"))
+        {
+            Debug.Log("inGoldenTile");
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 35000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 35k Gold.");
+                return;
+            }
+
+            if (_tileController._forceGolden == true || _tileController._forceRuby == true)
+            {
+                Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+                //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                return;
+            }
+
+            ph.pp.Gold -= 35000;
+            _tileController._forceGolden = true;
+        }
+
+        else if (commandKey.StartsWith("!rubytile"))
+        {
+            Debug.Log("inRubyTile");
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 75000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 75k Gold.");
+                return;
+            }
+
+            if (_tileController._forceRuby == true)
+            {
+                Debug.Log("The upcoming tile is already Ruby. Please wait until the reel spins to try again.");
+                //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                return;
+            }
+
+            ph.pp.Gold -= 75000;
+            _tileController._forceGolden = false;
+            _tileController._forceRuby = true;
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
@@ -1111,7 +1170,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
 
 
         TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredGoldToGive), desiredGoldToGive, ph, targetPlayer, 0.1f, MyColors.Gold, ph.PfpTexture, TI_Type.GiveGold);
-        ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Congratulations {targetUsername}! You've won {desiredGoldToGive} Gold!");
+        //ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Congratulations {targetUsername}! You've won {desiredGoldToGive} Gold!");
     }
     private IEnumerator ProcessThrowTomato(string messageId, PlayerHandler ph, string msg)
     {
@@ -1247,6 +1306,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
             yield break;
         }
 
+        ph.pp.Gold -= 1000 * (int)desiredShieldsAmount;
         ph.AddItems((int)desiredShieldsAmount, "Shield");
     }
 
@@ -1279,6 +1339,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
             yield break;
         }
 
+        ph.pp.Gold -= 100 * (int)desiredRiskSkipsAmount;
         ph.AddItems((int)desiredRiskSkipsAmount, "RiskSkip");
     }
 
@@ -1331,6 +1392,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
             yield break;
         }
 
+        ph.pp.SessionScore -= currencyPrice * desiredCurrencyAmount;
         ph.AddCurrency((int)desiredCurrencyAmount, type);
     }
 

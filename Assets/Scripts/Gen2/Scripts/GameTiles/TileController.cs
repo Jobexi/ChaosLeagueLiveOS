@@ -49,8 +49,8 @@ public class TileController : MonoBehaviour
     [SerializeField] public GameTile NextBiddingTile;
     [SerializeField] private GameTile ForceThisTileNext;
     [SerializeField] private RarityType _forceThisRarity;
-    [SerializeField] private bool _forceGolden; 
-    [SerializeField] private bool _forceRuby; 
+    [SerializeField] public bool _forceGolden; 
+    [SerializeField] public bool _forceRuby; 
 
     private Dictionary<int, ObjectPool<GameTile>> _tilePools = new Dictionary<int, ObjectPool<GameTile>>(); 
 
@@ -361,6 +361,7 @@ public class TileController : MonoBehaviour
             _tilePools[tile.TileIDNum].ReturnObject(tile);
         }
 
+        _gm.CheckCountdown();
     }
 
     public IEnumerator SpinAnimation(List<GameTile> animeTiles, Vector3 rotatePoint, Vector3 finalTilePos)

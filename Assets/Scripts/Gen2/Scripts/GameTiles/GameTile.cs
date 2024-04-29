@@ -272,12 +272,13 @@ public class GameTile : MonoBehaviour
 
         if (_game != null)
             _game.OnTileInitInPos();
-        
+
+        _tc._forceGolden = false;
+        _tc._forceRuby = false;
 
         TogglePhysics(true);
 
         UpdateTileTimer();
-
     }
 
     public void OnPipeReleasePlayer(PlayerBall pb)

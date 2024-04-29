@@ -361,7 +361,7 @@ public class TwitchApi : MonoBehaviour
         {
             Title = $"AutoBid A - 10 Tiles",
             Cost = 15,
-            Prompt = $"Auto-Bids 2 tickets on each of the next 10 tiles!",
+            Prompt = $"Auto-Bids 1 ticket on each of the next 10 tiles!",
             IsEnabled = true,
             BackgroundColor = MyUtil.ColorToHexString(_waterRewardBackgroundColor),
             IsUserInputRequired = false,
@@ -383,7 +383,7 @@ public class TwitchApi : MonoBehaviour
         {
             Title = $"AutoBid B - 100 Tiles",
             Cost = 175,
-            Prompt = $"Auto-Bids 2 tickets on each of the next 100 tiles!",
+            Prompt = $"Auto-Bids 1 ticket on each of the next 100 tiles!",
             IsEnabled = true,
             BackgroundColor = MyUtil.ColorToHexString(_waterRewardBackgroundColor),
             IsUserInputRequired = false,
@@ -405,7 +405,7 @@ public class TwitchApi : MonoBehaviour
         {
             Title = $"AutoBid C - 1000 Tiles",
             Cost = 2000,
-            Prompt = $"Auto-Bids 2 tickets on each of the next 1000 tiles!",
+            Prompt = $"Auto-Bids 1 ticket on each of the next 1000 tiles!",
             IsEnabled = true,
             BackgroundColor = MyUtil.ColorToHexString(_waterRewardBackgroundColor),
             IsUserInputRequired = false,

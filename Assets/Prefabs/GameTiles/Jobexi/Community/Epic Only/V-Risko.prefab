@@ -3737,6 +3737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinningPegLayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6891425745409393222, guid: dd9729d651b6be941a4c10875b47514e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 53737051278765724, guid: dd9729d651b6be941a4c10875b47514e, type: 3}

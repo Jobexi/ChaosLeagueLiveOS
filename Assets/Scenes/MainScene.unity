@@ -22985,7 +22985,7 @@ MonoBehaviour:
   _twitchClient: {fileID: 719420099}
   _twitchAPI: {fileID: 1081751822}
   _twitchPubSub: {fileID: 943938167}
-  _liveViewCount: {fileID: 2040148666}
+  _goldDistributor: {fileID: 2040148666}
   _invitePromo: {fileID: 1040556305}
   _playerBallPrefab: {fileID: 7816137016321036248, guid: e3ed780457cc5ea4eb89736b83cf6623, type: 3}
   _clDebug: {fileID: 1428205194}
@@ -22994,9 +22994,12 @@ MonoBehaviour:
   _kingController: {fileID: 5092249410878743455}
   _rebellionController: {fileID: 481457712}
   _sqliteServiceAsync: {fileID: 6727299273675977357}
+  _unitTesting: {fileID: 550380675}
   DefaultPFP: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
   _pbHologramPrefab: {fileID: 550971265783947472, guid: f6becf710035fcb4194cd38797bec6ab, type: 3}
   _event1Text: {fileID: 1250069598}
+  EventCountdown: 5
+  NPC: 1
   HoldingPen: {fileID: 427794634592160510}
   PlayerHandlersRoot: {fileID: 5832311653500343382}
   PlayerHandlersPoolRoot: {fileID: 1954524784447714002}
@@ -63883,7 +63886,7 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
+  ForceThisTileNext: {fileID: 0}
   _forceThisRarity: 2
   _forceGolden: 0
   _forceRuby: 0

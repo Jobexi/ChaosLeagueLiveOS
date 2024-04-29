@@ -54,6 +54,10 @@ public class PlayerProfile
 
     public int RiskSkips { get; set; }
 
+    public bool IsNPC { get; set; }
+    public int ModeNPC { get; set; }
+    public int StateNPC { get; set; }
+
     public string[] GetInviteIds() 
     {
         if(string.IsNullOrEmpty(InvitesJSON))

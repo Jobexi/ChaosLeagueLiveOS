@@ -170,6 +170,25 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         }
     }
 
+    public void SpawnGoldFromEvent(int totalGold)
+    {
+        while (totalGold > 0)
+        {
+            int coinValue = Mathf.Min(totalGold, 10);
+            if (totalGold > 10000)
+                coinValue = 100;
+
+            float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
+            float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;
+
+            Vector2 spawnVel = new Vector2(randomX, randomY);
+
+            SpawnCoin(_kingController._tileController.CurrentBiddingTile.GetGoldSpawnPos(), spawnVel, this, coinValue);
+            //newCoin.InitializeCoin(this, gt.GetGoldSpawnPos(), spawnVel, this, coinValue, coinColor);
+            totalGold -= coinValue;
+        }
+    }
+
     public void SpawnGoldFromDefenseBrick(Vector3 brickPos, int totalGold, TravelingIndicatorIO target)
     {
         while (totalGold > 0)

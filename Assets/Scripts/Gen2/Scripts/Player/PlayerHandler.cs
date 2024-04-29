@@ -488,21 +488,18 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if (currencyType == "Sapphire")
         {
-            pp.SessionScore -= amount * 1000000000;
             pp.Sapphires += amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);
             Debug.Log($"Sapphires {amount}");
         }
         else if (currencyType == "Emerald")
         {
-            pp.SessionScore -= amount * 1000000000000;
             pp.Emeralds += amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
             Debug.Log($"Emeralds {amount}");
         }
         else if (currencyType == "Diamond")
         {
-            pp.SessionScore -= amount * 1000000000000000;
             pp.Diamonds += amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
             Debug.Log($"Diamonds {amount}");
@@ -520,21 +517,18 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if (itemType == "Shield")
         {
-            pp.Gold -= amount * 1000;
             pp.ShieldValue += amount * 100000;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
             Debug.Log($"Shields {amount}");
         }
         else if (itemType == "RiskSkip")
         {
-            pp.Gold -= amount * 100;
             pp.RiskSkips += amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.black);
             Debug.Log($"RiskSkips {amount}");
         }
         else if (itemType == "Diamond")
         {
-            pp.SessionScore -= amount * 1000000000000000;
             pp.Diamonds += amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
             Debug.Log($"Diamonds {amount}");
@@ -554,7 +548,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         {
             pp.SessionScore += amount * 970000000;
             pp.Sapphires -= amount;
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);            
             Debug.Log($"Sapphires {amount}");
         }
         else if (currencyType == "Emerald")

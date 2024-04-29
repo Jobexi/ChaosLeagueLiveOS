@@ -11,7 +11,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     public PlayerBall currentKing = null;
 
     [SerializeField] private GameManager _gm;
-    [SerializeField] private TileController _tileController;
+    [SerializeField] public TileController _tileController;
     [SerializeField] private MeshRenderer kingInitialPlaceholder;
     [SerializeField] private Transform kingTransform;
     [SerializeField] private PBDetector _pbCollisionDetector;

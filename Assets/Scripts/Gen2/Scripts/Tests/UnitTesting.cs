@@ -18,41 +18,41 @@ public class UnitTesting : MonoBehaviour
     [SerializeField] private TwitchPubSub _twitchPubSub;
     [SerializeField] private TileController _tileController;
 
-    [SerializeField] private bool incrementUserId;
-    [SerializeField] private int idIncrementor = 0;
-    [SerializeField] private string testUserId;
-    [SerializeField] private string testUsername;
-    [SerializeField] private string userInput;
-    [SerializeField] private Color nameColor;
-    [SerializeField] private bool randomizeNameColor = true; 
-    [SerializeField] private int rewardCost;
-    [SerializeField] private string rewardTitle; 
-    [SerializeField] private int bits;
-    [SerializeField] private bool isAdmin = true; 
-    [SerializeField] private bool isMod = true; 
-    [SerializeField] private bool isVIP = true; 
+    [SerializeField] public bool incrementUserId;
+    [SerializeField] public int idIncrementor = 0;
+    [SerializeField] public string testUserId;
+    [SerializeField] public string testUsername;
+    [SerializeField] public string userInput;
+    [SerializeField] public Color nameColor;
+    [SerializeField] public bool randomizeNameColor = true; 
+    [SerializeField] public int rewardCost;
+    [SerializeField] public string rewardTitle; 
+    [SerializeField] public int bits;
+    [SerializeField] public bool isAdmin = true; 
+    [SerializeField] public bool isMod = true; 
+    [SerializeField] public bool isVIP = true; 
 
-    [SerializeField] private bool RegularMessageButton;
-    [SerializeField] private bool RedeemRewardButton;
-    [SerializeField] private bool SendBitsButton;
-    [SerializeField] private bool SendSubButton;
-    [SerializeField] private bool SendGiftedSubButton;
-    [SerializeField] private string SubGiftRecipientId;
-    [SerializeField] private string SubGiftRecipientUsername;
-    [SerializeField] private int MultiMonthDuration = 1;
-    [SerializeField] private TwitchLib.PubSub.Enums.SubscriptionPlan SubPlan;
+    [SerializeField] public bool RegularMessageButton;
+    [SerializeField] public bool RedeemRewardButton;
+    [SerializeField] public bool SendBitsButton;
+    [SerializeField] public bool SendSubButton;
+    [SerializeField] public bool SendGiftedSubButton;
+    [SerializeField] public string SubGiftRecipientId;
+    [SerializeField] public string SubGiftRecipientUsername;
+    [SerializeField] public int MultiMonthDuration = 1;
+    [SerializeField] public TwitchLib.PubSub.Enums.SubscriptionPlan SubPlan;
 
-    [SerializeField] private PredictionObj testPredObj;
-    [SerializeField] private bool testPrediction;
-    [SerializeField] private bool isSubscriber;
-    [SerializeField] private bool isFirstMessage;
+    [SerializeField] public PredictionObj testPredObj;
+    [SerializeField] public bool testPrediction;
+    [SerializeField] public bool isSubscriber;
+    [SerializeField] public bool isFirstMessage;
 
-    [SerializeField] private bool autoTest;
-    [SerializeField] private int autoTestSecInterval;
+    [SerializeField] public bool autoTest;
+    [SerializeField] public int autoTestSecInterval;
 
-    [SerializeField] private bool testRandomTiles;
+    [SerializeField] public bool testRandomTiles;
 
-    [SerializeField] private bool JobexiTest;
+    [SerializeField] public bool JobexiTest;
 
 
     private float autoTestTimer = 0;
@@ -91,6 +91,8 @@ public class UnitTesting : MonoBehaviour
                 StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes:null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
             }
         }
+
+        
     }
     private void OnValidate()
     {
@@ -100,16 +102,16 @@ public class UnitTesting : MonoBehaviour
             CurrentTest();
         }
 
+        if (RedeemRewardButton)
+        {
+            RedeemRewardButton = false;
+            RedeemReward();
+        }
+
         if (RegularMessageButton)
         {
             RegularMessageButton = false;
             RegularMessage();
-        }
-
-        if (RedeemRewardButton)
-        {
-            RedeemRewardButton = false;
-            RedeemReward(); 
         }
 
         if (SendBitsButton)
@@ -156,13 +158,13 @@ public class UnitTesting : MonoBehaviour
         StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
     }
 
-    private void RegularMessage()
+    public void RegularMessage()
     {
         string userID = GetUserId();
         string username = testUsername + userID;
         StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
     }
-    private void RedeemReward()
+    public void RedeemReward()
     {
         string userID = GetUserId();
         string username = testUsername + userID;
