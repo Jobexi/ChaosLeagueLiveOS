@@ -535,7 +535,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 5000)
+            if (ph.pp.Gold < 20000)
             {
                 Debug.Log("You don't have enough gold.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Repeating this tile costs 5k Gold.");
@@ -549,7 +549,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            ph.pp.Gold -= 5000;
+            ph.pp.Gold -= 20000;
             _tileController.doRepeatTile();
         }
 
@@ -564,7 +564,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 25000)
+            if (ph.pp.Gold < 50000)
             {
                 Debug.Log("You don't have enough gold.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Upgrading this tile costs 25k Gold.");
@@ -595,7 +595,7 @@ public class TwitchClient : MonoBehaviour
             }
         
         
-            ph.pp.Gold -= 25000;
+            ph.pp.Gold -= 50000;
             _tileController.doRepeatTile();
             _tileController.doUpgradeTile();
         }
@@ -611,10 +611,10 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 35000)
+            if (ph.pp.Gold < 200000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 35k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 75k Gold.");
                 return;
             }
 
@@ -625,7 +625,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            ph.pp.Gold -= 35000;
+            ph.pp.Gold -= 200000;
             _tileController._forceGolden = true;
         }
 
@@ -640,10 +640,10 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 75000)
+            if (ph.pp.Gold < 1000000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 75k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 150k Gold.");
                 return;
             }
 
@@ -654,7 +654,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            ph.pp.Gold -= 75000;
+            ph.pp.Gold -= 1000000;
             _tileController._forceGolden = false;
             _tileController._forceRuby = true;
         }

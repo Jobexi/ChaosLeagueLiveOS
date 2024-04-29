@@ -36,8 +36,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshPro _event1Text;
 
-    public int EventCountdown = 5;
-    public int NPC = 1;
+    public int EventCountdown = 35;
+    public int NPC = 0;
+    public bool firstNPC = true;
 
     private byte redhue = 150;
     private byte bluehue = 150;
@@ -521,15 +522,42 @@ public class GameManager : MonoBehaviour
     }
 
     public void CheckCountdown()
-    {
+    {        
         CheckNPCs();
-        InitializeNPCs(NPC);
-        NPC = 0;
+        if (firstNPC == true)
+        {
+            InitializeNPCs(0);
+            firstNPC = false;
+        }
+
+        if (EventCountdown < 1)
+        { 
+            RandomizeCountdown();
+        }
+
+        Debug.LogWarning($"{EventCountdown}");
+        EventCountdown -= 1;
+    }
+
+    public void RandomizeCountdown()
+    {
+            EventCountdown = 50;
     }
 
     public void InitializeNPCs(int ID)
-    {        
-        if (ID == 1)
+    {
+        if (ID == 0)
+        {
+            _unitTesting.incrementUserId = false;
+            _unitTesting.testUserId = "GameMaster";
+            _unitTesting.randomizeNameColor = true;
+            _unitTesting.rewardCost = 1;
+            _unitTesting.rewardTitle = "bid";
+            _unitTesting.RedeemReward();
+
+            StartCoroutine(UpdateWaiter(ID));
+        }
+        else if (ID == 1)
         {
             _unitTesting.incrementUserId = false;
             _unitTesting.testUserId = "TinyDefender";
@@ -538,13 +566,14 @@ public class GameManager : MonoBehaviour
             _unitTesting.rewardCost = 1;
             _unitTesting.rewardTitle = "bid";
             _unitTesting.RedeemReward();
-            _unitTesting.testUserId = "RealJobexi";
+            _unitTesting.testUserId = "GameMaster";
             _unitTesting.userInput = $"!refundpoints @TinyDefender 1";
             _unitTesting.RegularMessage();
 
-            StartCoroutine(UpdateWaiter(ID));
-            
+            StartCoroutine(UpdateWaiter(ID));            
         }
+
+        _unitTesting.randomizeNameColor = false;
     }
 
     IEnumerator UpdateWaiter(int ID)
@@ -554,36 +583,57 @@ public class GameManager : MonoBehaviour
         UpdatePlayerHandler(ID);
     }
 
+    IEnumerator GeneralWaiter(int duration)
+    {
+        yield return new WaitForSeconds(duration);
+    }
+
     public void UpdatePlayerHandler(int ID)
     {        
         string[] keys = PlayerHandlers.Keys.ToArray();
         foreach (string key in keys)
         {
-            if (ID == 1)
+            if (ID == 0)
             {
-                if (PlayerHandlers[key].pp.TwitchID == "TinyDefender")
-                {
-                    PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                    PlayerHandlers[key].pp.IsNPC = true;
-                    PlayerHandlers[key].pp.ModeNPC = 0;
-                    PlayerHandlers[key].pp.StateNPC = 0;
-
-                }
+                PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                PlayerHandlers[key].pp.IsNPC = true;
+                PlayerHandlers[key].pp.ModeNPC = 0;
+                PlayerHandlers[key].pp.StateNPC = 0;
+            }
+            else if (ID == 1)
+            {
+                PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                PlayerHandlers[key].pp.IsNPC = true;
+                PlayerHandlers[key].pp.ModeNPC = 1;
+                PlayerHandlers[key].pp.StateNPC = 0;
             }
         }
     }
 
     public void CheckNPCs()
-    {
-        
-
+    {  
         string[] keys = PlayerHandlers.Keys.ToArray();
         foreach (string key in keys)
-        {            
+        {
+            _unitTesting.testUserId = "";
+            _unitTesting.userInput = "";
+            _unitTesting.rewardTitle = "";
             if (PlayerHandlers[key].pp.IsNPC == true)
             {
                 if (PlayerHandlers[key].pp.ModeNPC == 0)
                 {
+                    Debug.LogWarning($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
+                    if (PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                        _unitTesting.rewardCost = 1;
+                        _unitTesting.rewardTitle = "bid";
+                        _unitTesting.RedeemReward();                        
+                    }                    
+                }
+                else if (PlayerHandlers[key].pp.ModeNPC == 1)
+                {                    
                     Debug.Log($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
                     if (PlayerHandlers[key].pp.StateNPC == 0)
                     {
@@ -605,10 +655,11 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
+                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             PlayerHandlers[key].pp.StateNPC = 0;
                             _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
                             _unitTesting.rewardCost = 1;
-                            _unitTesting.rewardTitle = "bid"; 
+                            _unitTesting.rewardTitle = "bid";                            
                             _unitTesting.RedeemReward();
                         }
 
@@ -631,7 +682,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            
+
             
 
             /*

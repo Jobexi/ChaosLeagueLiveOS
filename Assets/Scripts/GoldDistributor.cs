@@ -40,7 +40,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
     private ObjectPool<GoldCoin> _goldCoinPool;
 
-    [SerializeField] private int _baseGoldPerTile = 100; 
+    [SerializeField] private int _baseGoldPerTile = 100;
 
     private int _storedGold; 
     //private int _liveViewCount;
@@ -132,6 +132,13 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         while (_storedGold > 0)
         {
             int coinValue = Mathf.Min(_storedGold, 10);
+            if (_storedGold > 10000)
+                coinValue = 100;
+            if (_storedGold > 50000)
+                coinValue = 1000;
+            if (_storedGold > 100000)
+                coinValue = 10000;
+            
             Vector3 spawnVel = new Vector2(Random.Range(_spawnVelMin.x, _spawnVelMax.x), Random.Range(_spawnVelMin.y, _spawnVelMax.y));
             SpawnCoin(Get_TI_IO_Position(), spawnVel, _kingController.currentKing.Ph, coinValue);
             _storedGold -= coinValue;
@@ -144,20 +151,25 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     {
         int mult = AppConfig.GetMult(gt.RarityType);
         int totalGold = _baseGoldPerTile * mult;
-        
+
+
         if (gt.IsRuby)
-            totalGold *= 50;
+            totalGold *= 25;
         else if (gt.IsGolden)
-            totalGold *= 10;
+            totalGold *= 5;
 
         if (AppConfig.Friday)
-            totalGold *= 2;
+            totalGold *= 5;
 
         while (totalGold > 0)
         {
             int coinValue = Mathf.Min(totalGold, 10);
             if (totalGold > 10000)
                 coinValue = 100;
+            if (totalGold > 50000)
+                coinValue = 1000;
+            if (totalGold > 100000)
+                coinValue = 10000;
 
             float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
             float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;
@@ -177,6 +189,10 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
             int coinValue = Mathf.Min(totalGold, 10);
             if (totalGold > 10000)
                 coinValue = 100;
+            if (totalGold > 100000)
+                coinValue = 1000;
+            if (totalGold > 1000000)
+                coinValue = 10000;
 
             float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
             float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;
@@ -196,6 +212,10 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
             int coinValue = Mathf.Min(totalGold, 10);
             if (totalGold > 10000)
                 coinValue = 100;
+            if (totalGold > 100000)
+                coinValue = 1000;
+            if (totalGold > 1000000)
+                coinValue = 10000;
 
             Vector2 spawnVel = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
 
