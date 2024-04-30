@@ -158,6 +158,27 @@ public class UnitTesting : MonoBehaviour
         StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
     }
 
+    public void NPCMessage()
+    {
+        string userID = GetUserId();
+        string username = testUsername;
+        StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
+    }
+    public void NPCReward()
+    {
+        string userID = GetUserId();
+        string username = testUsername;
+        StartCoroutine(_twitchPubSub.HandleOnChannelPointsRedeemed(userID, username, rewardTitle, userInput, rewardCost, null, null, true)); //Pubsub activate both
+        StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
+    }
+    private void NPCBits()
+    {
+        string userID = GetUserId();
+        string username = testUsername;
+        StartCoroutine(_twitchPubSub.HandleOnBitsReceived(userID, username, userInput, bits)); //Pubsub activate both
+        StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
+    }
+
     public void RegularMessage()
     {
         string userID = GetUserId();

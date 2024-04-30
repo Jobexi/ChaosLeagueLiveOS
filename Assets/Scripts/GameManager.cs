@@ -523,20 +523,29 @@ public class GameManager : MonoBehaviour
 
     public void CheckCountdown()
     {        
-        CheckNPCs();
+   /*     CheckNPCs();
         if (firstNPC == true)
         {
-            InitializeNPCs(0);
+            _unitTesting.incrementUserId = false;
+            _unitTesting.randomizeNameColor = false;
+            _unitTesting.testUsername = "";
+            _unitTesting.testUserId = "";
+            _unitTesting.rewardTitle = "";
+            _unitTesting.userInput = "";
+            _unitTesting.rewardCost = 1;
+
+    //        InitializeNPCs(0);
+            EventCountdown = 1;
             firstNPC = false;
         }
 
         if (EventCountdown < 1)
-        { 
+        {
             RandomizeCountdown();
         }
 
-        Debug.LogWarning($"{EventCountdown}");
-        EventCountdown -= 1;
+        Debug.Log($"{EventCountdown}");
+        EventCountdown -= 1;*/
     }
 
     public void RandomizeCountdown()
@@ -549,26 +558,26 @@ public class GameManager : MonoBehaviour
         if (ID == 0)
         {
             _unitTesting.incrementUserId = false;
-            _unitTesting.testUserId = "GameMaster";
+            _unitTesting.testUsername = "GameMaster";
             _unitTesting.randomizeNameColor = true;
             _unitTesting.rewardCost = 1;
             _unitTesting.rewardTitle = "bid";
-            _unitTesting.RedeemReward();
+            _unitTesting.NPCReward();
 
             StartCoroutine(UpdateWaiter(ID));
         }
         else if (ID == 1)
         {
             _unitTesting.incrementUserId = false;
-            _unitTesting.testUserId = "TinyDefender";
+            _unitTesting.testUsername = "TinyDefender";
             _unitTesting.nameColor = Color.white;
             _unitTesting.randomizeNameColor = false;
             _unitTesting.rewardCost = 1;
             _unitTesting.rewardTitle = "bid";
-            _unitTesting.RedeemReward();
-            _unitTesting.testUserId = "GameMaster";
+            _unitTesting.NPCReward();
+            _unitTesting.testUsername = "GameMaster";
             _unitTesting.userInput = $"!refundpoints @TinyDefender 1";
-            _unitTesting.RegularMessage();
+            _unitTesting.NPCMessage();
 
             StartCoroutine(UpdateWaiter(ID));            
         }
@@ -579,7 +588,7 @@ public class GameManager : MonoBehaviour
     IEnumerator UpdateWaiter(int ID)
     {
         yield return new WaitForSeconds(1);
-
+        
         UpdatePlayerHandler(ID);
     }
 
@@ -593,55 +602,52 @@ public class GameManager : MonoBehaviour
         string[] keys = PlayerHandlers.Keys.ToArray();
         foreach (string key in keys)
         {
-            if (ID == 0)
+            if (ID == 1)
             {
                 PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                PlayerHandlers[key].pp.IsNPC = true;
-                PlayerHandlers[key].pp.ModeNPC = 0;
+                PlayerHandlers[key].pp.IsNPC = 1;
+                PlayerHandlers[key].pp.ModeNPC = 1;
                 PlayerHandlers[key].pp.StateNPC = 0;
             }
-            else if (ID == 1)
+            else if (ID == 0)
             {
                 PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                PlayerHandlers[key].pp.IsNPC = true;
-                PlayerHandlers[key].pp.ModeNPC = 1;
+                PlayerHandlers[key].pp.IsNPC = 1;
+                PlayerHandlers[key].pp.ModeNPC = 2;
                 PlayerHandlers[key].pp.StateNPC = 0;
             }
         }
     }
 
     public void CheckNPCs()
-    {  
+    {
         string[] keys = PlayerHandlers.Keys.ToArray();
         foreach (string key in keys)
         {
-            _unitTesting.testUserId = "";
-            _unitTesting.userInput = "";
-            _unitTesting.rewardTitle = "";
-            if (PlayerHandlers[key].pp.IsNPC == true)
+            if (PlayerHandlers[key].pp.IsNPC == 1)
             {
-                if (PlayerHandlers[key].pp.ModeNPC == 0)
+                if (PlayerHandlers[key].pp.ModeNPC == 1)
                 {
-                    Debug.LogWarning($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
+                    Debug.Log($"{PlayerHandlers[key].pp.TwitchUsername} {PlayerHandlers[key].pp.StateNPC}");
                     if (PlayerHandlers[key].pp.StateNPC == 0)
                     {
                         PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                        _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                        _unitTesting.testUsername = PlayerHandlers[key].pp.TwitchUsername;
                         _unitTesting.rewardCost = 1;
                         _unitTesting.rewardTitle = "bid";
-                        _unitTesting.RedeemReward();                        
-                    }                    
+                        _unitTesting.RedeemReward();
+                    }
                 }
-                else if (PlayerHandlers[key].pp.ModeNPC == 1)
-                {                    
-                    Debug.Log($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
+                else if (PlayerHandlers[key].pp.ModeNPC == 2)
+                {
+                    Debug.Log($"{PlayerHandlers[key].pp.TwitchUsername} {PlayerHandlers[key].pp.StateNPC}");
                     if (PlayerHandlers[key].pp.StateNPC == 0)
                     {
                         PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                         PlayerHandlers[key].pp.StateNPC = 1;
-                        _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                        _unitTesting.testUsername = PlayerHandlers[key].pp.TwitchUsername;
                         _unitTesting.userInput = "!attack";
-                        _unitTesting.RegularMessage();
+                        _unitTesting.NPCMessage();
                     }
                     else if (PlayerHandlers[key].pp.StateNPC == 1)
                     {
@@ -649,18 +655,18 @@ public class GameManager : MonoBehaviour
                         {
                             PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             PlayerHandlers[key].pp.StateNPC = 2;
-                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.testUsername = PlayerHandlers[key].pp.TwitchUsername;
                             _unitTesting.userInput = "Haha! Come and get me!";
-                            _unitTesting.RegularMessage();
+                            _unitTesting.NPCMessage();
                         }
                         else
                         {
                             PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             PlayerHandlers[key].pp.StateNPC = 0;
-                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.testUsername = PlayerHandlers[key].pp.TwitchUsername;
                             _unitTesting.rewardCost = 1;
-                            _unitTesting.rewardTitle = "bid";                            
-                            _unitTesting.RedeemReward();
+                            _unitTesting.rewardTitle = "bid";
+                            _unitTesting.NPCReward();
                         }
 
                     }
@@ -670,12 +676,12 @@ public class GameManager : MonoBehaviour
                         {
                             PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             PlayerHandlers[key].pp.StateNPC = 3;
-                            _unitTesting.testUserId = PlayerHandlers[key].pp.TwitchID;
+                            _unitTesting.testUsername = PlayerHandlers[key].pp.TwitchUsername;
                             _unitTesting.rewardCost = 1;
                             _unitTesting.rewardTitle = "bid";
-                            _unitTesting.RedeemReward();
+                            _unitTesting.NPCReward();
                             _unitTesting.userInput = "Oh No, My Gold!";
-                            _unitTesting.RegularMessage();
+                            _unitTesting.NPCMessage();
                             _goldDistributor.SpawnGoldFromEvent(PlayerHandlers[key].pp.Gold);
                             PlayerHandlers[key].pp.Gold = 0;
                         }
@@ -683,7 +689,8 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            
+
+
 
             /*
             Tiny

@@ -54,7 +54,7 @@ public class PlayerProfile
 
     public int RiskSkips { get; set; }
 
-    public bool IsNPC { get; set; }
+    public int IsNPC { get; set; }
     public int ModeNPC { get; set; }
     public int StateNPC { get; set; }
 
