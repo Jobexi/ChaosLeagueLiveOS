@@ -9332,6 +9332,7 @@ MonoBehaviour:
   _defaultDefenseV2: {fileID: 649893080944183708}
   _spotifyDJ: {fileID: 4983788102390571504}
   hastomato: 0
+  NoReply: 0
 --- !u!4 &719420100
 Transform:
   m_ObjectHideFlags: 0
@@ -23000,6 +23001,7 @@ MonoBehaviour:
   _event1Text: {fileID: 1250069598}
   EventCountdown: 5
   NPC: 1
+  firstNPC: 1
   HoldingPen: {fileID: 427794634592160510}
   PlayerHandlersRoot: {fileID: 5832311653500343382}
   PlayerHandlersPoolRoot: {fileID: 1954524784447714002}
@@ -63886,8 +63888,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
-  _forceThisRarity: 2
+  ForceThisTileNext: {fileID: 1653556322778236169, guid: a17a9af6b88843946871a5fa4bffb783, type: 3}
+  _forceThisRarity: 6
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10

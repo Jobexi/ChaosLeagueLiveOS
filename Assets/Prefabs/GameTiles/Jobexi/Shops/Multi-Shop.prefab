@@ -309,7 +309,6 @@ MonoBehaviour:
   - {fileID: 6827696446324386242}
   - {fileID: 3167511419692612182}
   _buyTime: 45
-  _goldenDiscount: 0.25
 --- !u!1 &4705376843409729782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2491348552388521466, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Name
-      value: Multi Shop
+      value: Multi-Shop
       objectReference: {fileID: 0}
     - target: {fileID: 2491348552388521466, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_IsActive
@@ -1137,7 +1136,7 @@ PrefabInstance:
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _tileNameText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3214350739709561098}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: MaxAuctionSlots
       value: 8
@@ -1198,6 +1197,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 746487210997908662, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
   m_PrefabInstance: {fileID: 3288257909413938739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3214350739709561098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 88268596640976697, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+  m_PrefabInstance: {fileID: 3288257909413938739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5156241915605114848 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}

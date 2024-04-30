@@ -93,7 +93,7 @@ public class TwitchPubSub : MonoBehaviour
         ph.pp.LastInteraction = DateTime.Now;
         ph.pp.TwitchUsername = twitchUsername;
         ph.pp.TotalTicketsSpent += cost;
-        if (IsNPC = false)
+        if (IsNPC == false)
             ph.pp.IsNPC = 0;
 
         if (rewardTitle.StartsWith("Activate Lava"))

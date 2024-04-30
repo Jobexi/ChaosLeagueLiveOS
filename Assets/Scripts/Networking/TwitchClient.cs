@@ -24,7 +24,7 @@ public class TwitchClient : MonoBehaviour
     [SerializeField] private TileController _tileController;
     [SerializeField] private KingController _kingController;
     [SerializeField] private BidHandler _bidHandler;
-    [SerializeField] private PipeReleaser _attackPipe;
+    [SerializeField] public PipeReleaser _attackPipe;
     [SerializeField] private DynamicSpriteAsset _dynamicSpriteAsset;
     [SerializeField] private DefaultDefenseV2 _defaultDefenseV2;
     [SerializeField] private SpotifyDJ _spotifyDJ;
@@ -34,7 +34,7 @@ public class TwitchClient : MonoBehaviour
     private Gradient _vipGradient;
     int desiredTollRate = 0;
     public bool hastomato = false;
-
+    public bool NoReply = false;
 
     public void Init(string channelName, string botAccessToken)
     {
@@ -238,6 +238,7 @@ public class TwitchClient : MonoBehaviour
 
     public void ReplyToPlayer(string messageId, string username, string message)
     {
+        
         if (string.IsNullOrEmpty(messageId))
         {
             PingReplyPlayer(username, message);
