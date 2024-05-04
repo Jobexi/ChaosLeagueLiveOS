@@ -673,6 +673,9 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         float comboPitch = Mathf.Lerp(0.8f, 1.2f, Mathf.Clamp01((float)combo / 15f));
         AudioController.inst.PlaySound(AudioController.inst.AddPoints, comboPitch, comboPitch);
 
+        if (pp.SessionScore < 0)
+            pp.SessionScore = 0;
+
     }
 
     private int AddCombo()

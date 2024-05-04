@@ -165,6 +165,7 @@ MonoBehaviour:
   IsGolden: 0
   IsRuby: 0
   IsShop: 1
+  IsRisk: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
   _contactWarp: {fileID: 9203212186113610731}
@@ -6399,6 +6400,8 @@ MonoBehaviour:
   - {fileID: 6679917625849291240}
   - {fileID: 7606322774641375258}
   _spinSpeed: 0.01
+  _Golds: {fileID: 0}
+  _Rubys: {fileID: 0}
 --- !u!120 &2805503991266676028
 LineRenderer:
   serializedVersion: 2
@@ -12330,6 +12333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &3627540912003587500 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2902437262138013243, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
+  m_PrefabInstance: {fileID: 1878030123769031575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5186075612472919725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6766867589588036922, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
@@ -12353,7 +12361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entryBackground: {fileID: 2439896754489860517}
-  DisplayBackground: {fileID: 8211169259492255721}
+  DisplayBackground: {fileID: 3627540912003587500}
   _buyCommandText: {fileID: 1469042125514018170}
   _goldCostText: {fileID: 6187254384561468636}
   GoldCost: 100000
@@ -12832,7 +12840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entryBackground: {fileID: 2439896754489860517}
-  DisplayBackground: {fileID: 8211169259492255721}
+  DisplayBackground: {fileID: 6431170447210634766}
   _buyCommandText: {fileID: 9184124180713983704}
   _goldCostText: {fileID: 4524443460292507518}
   GoldCost: 500000
@@ -12861,6 +12869,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &6431170447210634766 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2902437262138013243, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
+  m_PrefabInstance: {fileID: 8144650238060996661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7922438717192288255 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2086772140310339530, guid: aafc374824bbbee4189b26c178f63c67, type: 3}

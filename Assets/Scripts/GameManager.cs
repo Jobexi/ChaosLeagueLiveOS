@@ -17,7 +17,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TwitchClient _twitchClient;
-    [SerializeField] private TwitchApi _twitchAPI;
+    [SerializeField] public TwitchApi _twitchAPI;
     [SerializeField] private TwitchPubSub _twitchPubSub;
     [SerializeField] private GoldDistributor _goldDistributor;
     [SerializeField] private InvitePromo _invitePromo;
@@ -295,18 +295,18 @@ public class GameManager : MonoBehaviour
         return pb; 
     }
 
-    private void TurnOnPlayerHandler(PlayerHandler ph)
+    public void TurnOnPlayerHandler(PlayerHandler ph)
     {
         ph.gameObject.SetActive(true);
 
     }
-    private void TurnOffPlayerHandler(PlayerHandler ph)
+    public void TurnOffPlayerHandler(PlayerHandler ph)
     {
         ph.gameObject.SetActive(false);
 
     }
 
-    private PlayerHandler PlayerHandlerFactory()
+    public PlayerHandler PlayerHandlerFactory()
     {
         GameObject playerHandler = new GameObject();
         PlayerHandler ph = playerHandler.AddComponent<PlayerHandler>();
@@ -518,272 +518,6 @@ public class GameManager : MonoBehaviour
             }
             
         }
-
-    }
-
-    public void CheckCountdown()
-    {        
-        CheckNPCs();
-        if (firstNPC == true)
-        {
-            InitializeNPCs(0);
-            EventCountdown = 1;
-            firstNPC = false;
-        }
-
-        if (EventCountdown < 1)
-        {
-            RandomizeCountdown();            
-            InitializeNPCs(GetRandomNPC());
-        }
-
-        Debug.Log($"{EventCountdown}");
-        EventCountdown -= 1;
-    }
-
-    public int GetRandomNPC()
-    {
-        NPC += 1;
-        if (NPC > 13)
-            NPC = 1;
-        return NPC;
-    }
-
-    public void RandomizeCountdown()
-    {
-        EventCountdown = 1;
-    }
-
-    public void InitializeNPCs(int ID)
-    {
-        switch (ID)
-        {
-            case 0:
-                _unitTesting.NPCReward("GameMaster", "GameMaster", "bid", 1);
-                break;
-            case 1:
-                _unitTesting.NPCReward("TinyDefender", "TinyDefender", "bid", 1);
-                break;
-            case 2:
-                _unitTesting.NPCReward("SmallDefender", "SmallDefender", "bid", 1);
-                break;
-            case 3:
-                _unitTesting.NPCReward("LittleDefender", "LittleDefender", "bid", 1);
-                break;
-            case 4:
-                _unitTesting.NPCReward("MinorDefender", "MinorDefender", "bid", 1);
-                break;
-            case 5:
-                _unitTesting.NPCReward("ModerateDefender", "ModerateDefender", "bid", 1);
-                break;
-            case 6:
-                _unitTesting.NPCReward("AverageDefender", "AverageDefender", "bid", 1);
-                break;
-            case 7:
-                _unitTesting.NPCReward("Defender", "Defender", "bid", 1);
-                break;
-            case 8:
-                _unitTesting.NPCReward("LargeDefender", "LargeDefender", "bid", 1);
-                break;
-            case 9:
-                _unitTesting.NPCReward("MajorDefender", "MajorDefender", "bid", 1);
-                break;
-            case 10:
-                _unitTesting.NPCReward("HugeDefender", "HugeDefender", "bid", 1);
-                break;
-            case 11:
-                _unitTesting.NPCReward("MassiveDefender", "MassiveDefender", "bid", 1);
-                break;
-            case 12:
-                _unitTesting.NPCReward("GiganticDefender", "GiganticDefender", "bid", 1);
-                break;
-            case 13:
-                _unitTesting.NPCReward("EnormousDefender", "EnormousDefender", "bid", 1);
-                break;
-        }
-            StartCoroutine(UpdateWaiter(ID));      
-    }
-
-    IEnumerator UpdateWaiter(int ID)
-    {
-        yield return new WaitForSeconds(1);
-        
-        InitializePlayerHandler(ID);
-    }
-
-    public void InitializePlayerHandler(int ID)
-    {
-        string[] keys = PlayerHandlers.Keys.ToArray();
-        foreach (string key in keys)
-        {
-            if (ID == 0)
-            {
-                PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                PlayerHandlers[key].pp.IsNPC = 1;
-                PlayerHandlers[key].pp.ModeNPC = 0;
-                PlayerHandlers[key].pp.StateNPC = 0;
-            }
-            if (ID >= 1 && ID <= 13)
-            {
-                PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                PlayerHandlers[key].pp.IsNPC = 1;
-                PlayerHandlers[key].pp.ModeNPC = 1;
-                PlayerHandlers[key].pp.StateNPC = 0;
-                switch (ID)
-                {
-                    case 1:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 1);
-                        break;
-                    case 2:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 10);
-                        break;
-                    case 3:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 100);
-                        break;
-                    case 4:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 1000);
-                        break;
-                    case 5:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 10000);
-                        break;
-                    case 6:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 100000);
-                        break;
-                    case 7:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 1000000);
-                        break;
-                    case 8:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 10000000);
-                        break;
-                    case 9:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 100000000);
-                        break;
-                    case 10:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 1000000000);
-                        break;
-                    case 11:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 10000000000);
-                        break;
-                    case 12:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 100000000000);
-                        break;
-                    case 13:
-                        NPCGivePoints(PlayerHandlers[key].pp.TwitchUsername, 1000000000000);
-                        break;
-                }
-            }
-        }
-    }
-
-
-    public void CheckNPCs()
-    {
-        string[] keys = PlayerHandlers.Keys.ToArray();
-        foreach (string key in keys)
-        {
-            if (PlayerHandlers[key].pp.IsNPC == 1)
-            {
-                if (PlayerHandlers[key].pp.ModeNPC == 0)
-                {
-                    PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                    _unitTesting.NPCReward(PlayerHandlers[key].pp.TwitchID, PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
-                }
-                else if (PlayerHandlers[key].pp.ModeNPC == 1)
-                {
-                    Debug.LogWarning($"{PlayerHandlers[key].pp.TwitchID} {PlayerHandlers[key].pp.StateNPC}");
-                    if (PlayerHandlers[key].pp.StateNPC == 0)
-                    {
-                        NPCAttack(PlayerHandlers[key]);
-                        PlayerHandlers[key].pp.StateNPC = 1;
-                    }
-                    else if (PlayerHandlers[key].pp.StateNPC == 1)
-                    {
-                        if (PlayerHandlers[key].IsKing())
-                        {
-                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            PlayerHandlers[key].pp.StateNPC = 2;
-                            NPCMessage(PlayerHandlers[key], "Haha! Come and get me!");
-                        }
-                        else
-                        {
-                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            PlayerHandlers[key].pp.StateNPC = 0;
-                            _unitTesting.NPCReward(PlayerHandlers[key].pp.TwitchID, PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
-                        }
-
-                    }
-                    else if (PlayerHandlers[key].pp.StateNPC == 2)
-                    {
-                        if (!PlayerHandlers[key].IsKing())
-                        {
-                            PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            PlayerHandlers[key].pp.StateNPC = 3;
-                            _unitTesting.NPCReward(PlayerHandlers[key].pp.TwitchID, PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
-                            NPCMessage(PlayerHandlers[key], "Oh No, My Gold!");
-                            _goldDistributor.SpawnGoldFromEvent(PlayerHandlers[key].pp.Gold);
-                            PlayerHandlers[key].pp.Gold = 0;
-                        }
-                    }
-                } 
-            }
-        }
-
-    }
-
-    public void NPCMessage(PlayerHandler ph, string msg)
-    {
-        ph.SpeechBubble(msg);
-        if (ph.IsKing())
-        {
-            MyTTS.inst.PlayerSpeech(msg, Amazon.Polly.VoiceId.Joey);
-        }
-    }
-
-    public IEnumerator NPCGivePoints(string targetUsername, long desiredPointsToGive)
-    {
-        if (desiredPointsToGive <= 0)
-            yield break;
-
-        //Find if the player handler is cached and able to receive points
-        CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
-        yield return GetPlayerByUsername(targetUsername, coResult);
-        CoroutineResult<PlayerHandler> coResult2 = new CoroutineResult<PlayerHandler>();
-        yield return GetPlayerByUsername("GameMaster", coResult2);
-        PlayerHandler targetPlayer = coResult.Result;
-        PlayerHandler ph = coResult2.Result;
-
-        if (targetPlayer == null)
-        {
-            yield break;
-        }
-
-        TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.white, ph.PfpTexture, TI_Type.GivePoints);
-
-    }
-
-    public void NPCAttack(PlayerHandler ph)
-    {
-        if (ph.pb != null)
-        {
-            return;
-        }
-        if (ph.GetState() == PlayerHandlerState.BiddingQ)
-        {
-            return;
-        }
-        if (ph.GetState() == PlayerHandlerState.Gameplay)
-        {
-            return;
-        }
-        if (RebellionController.RoyalCelebration)
-        {
-            return;
-        }
-
-        PlayerBall pb = ph.GetPlayerBall();
-        ph.SetState(PlayerHandlerState.Gameplay); //Prevent bug where players could enter bidding Q while king if timed correctly
-        ph.ReceivableTarget = null; //Prevent bug where players would move to raffle after attacking and get stuck
-        _twitchClient._attackPipe.ReceivePlayer(pb);
 
     }
 

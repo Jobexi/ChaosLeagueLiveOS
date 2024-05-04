@@ -154,12 +154,12 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
 
         if (gt.IsRuby)
-            totalGold *= 25;
+            totalGold *= 35;
         else if (gt.IsGolden)
-            totalGold *= 5;
+            totalGold *= 7;
 
         if (AppConfig.Friday)
-            totalGold *= 5;
+            totalGold *= 3;
 
         while (totalGold > 0)
         {

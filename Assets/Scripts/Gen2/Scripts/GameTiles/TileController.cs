@@ -17,8 +17,9 @@ public class TileController : MonoBehaviour
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private GoldDistributor _goldDistributor;
+    [SerializeField] private NPCHandler _npcHandler;
 
-    private static float _commonRarity;
+ //   private static float _commonRarity;
     private static float _rareRarity;
     private static float _epicRarity;
     private static float _legendaryRarity;
@@ -361,7 +362,7 @@ public class TileController : MonoBehaviour
             _tilePools[tile.TileIDNum].ReturnObject(tile);
         }
 
-        _gm.CheckCountdown();
+        _npcHandler.CheckCountdown();
     }
 
     public IEnumerator SpinAnimation(List<GameTile> animeTiles, Vector3 rotatePoint, Vector3 finalTilePos)
@@ -461,7 +462,7 @@ public class TileController : MonoBehaviour
 
         if (AppConfig.Monday)
         {
-            _commonRarity = .1f;
+        //    _commonRarity = .1f;
             _rareRarity = .15f;
             _epicRarity = .15f;
             _legendaryRarity = .15f;
@@ -471,7 +472,7 @@ public class TileController : MonoBehaviour
         }
         else
         {
-            _commonRarity = .45f;
+      //      _commonRarity = .45f;
             _rareRarity = .3f;
             _epicRarity = .18f;
             _legendaryRarity = .05f;

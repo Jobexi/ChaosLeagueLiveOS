@@ -233,13 +233,13 @@ public class MyTTS : MonoBehaviour
 
     private void SpeechLocal(string textToSpeak, VoiceId voiceId, AudioPitch pitch, bool addToQ)
     {
-        float pitchVal = 1;
+    /*    float pitchVal = 1;
         if (pitch == AudioPitch.Low)
             pitchVal = 0.5f;
         else if (pitch == AudioPitch.Reg)
             pitchVal = 1f;
         else if (pitch == AudioPitch.High)
-            pitchVal = 1.5f;
+            pitchVal = 1.5f; */
 
         //Speaker.Instance.Speak(textToSpeak, pitch: pitchVal); //TODO, need open source local TTS
         Debug.Log("TODO: Need local open source TTS");

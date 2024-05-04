@@ -77,7 +77,7 @@ public class TwitchPubSub : MonoBehaviour
 
         StartCoroutine(HandleOnChannelPointsRedeemed(user.Id, user.Login, rewardTitle, redemption.UserInput, redemption.Reward.Cost, redemptionID, rewardID));
     }
-    public IEnumerator HandleOnChannelPointsRedeemed(string twitchId, string twitchUsername, string rewardTitle, string msg, int cost, string redemptionID = null, string rewardID = null, bool IsNPC = false)
+    public IEnumerator HandleOnChannelPointsRedeemed(string twitchId, string twitchUsername, string rewardTitle, string msg, int cost, string redemptionID = null, string rewardID = null)
     {
         //Get the player handler of the player redeeming tickets
         CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
@@ -93,8 +93,6 @@ public class TwitchPubSub : MonoBehaviour
         ph.pp.LastInteraction = DateTime.Now;
         ph.pp.TwitchUsername = twitchUsername;
         ph.pp.TotalTicketsSpent += cost;
-        if (IsNPC == false)
-            ph.pp.IsNPC = 0;
 
         if (rewardTitle.StartsWith("Activate Lava"))
             _lavaBitTrigger.AddBits(twitchUsername, AppConfig.inst.GetI("ThroneLavaCost"));

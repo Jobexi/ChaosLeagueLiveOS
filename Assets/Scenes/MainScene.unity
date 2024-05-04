@@ -22958,6 +22958,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 550380674}
+  - {fileID: 1999007587}
   - {fileID: 465324812}
   - {fileID: 943938166}
   - {fileID: 1081751821}
@@ -38330,6 +38331,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994709233}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1999007586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999007587}
+  - component: {fileID: 1999007588}
+  m_Layer: 0
+  m_Name: NPCHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999007587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999007586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1428205192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999007588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999007586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a9305046de8434e8d4d40a816d3a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gm: {fileID: 1428205193}
+  _twitchClient: {fileID: 719420099}
+  _twitchAPI: {fileID: 1081751822}
+  _twitchPubSub: {fileID: 943938167}
+  _goldDistributor: {fileID: 2040148666}
+  _invitePromo: {fileID: 1040556305}
+  _tileController: {fileID: 5393775865149022912}
+  _myHttpClient: {fileID: 4495485317354644231}
+  _kingController: {fileID: 5092249410878743455}
+  _rebellionController: {fileID: 481457712}
+  _sqliteServiceAsync: {fileID: 6727299273675977357}
+  _unitTesting: {fileID: 550380675}
+  DefaultPFP: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  EventCountdown: 35
+  RefreshCountdown: 250
+  NPC: 0
+  firstNPC: 1
 --- !u!1 &2015488422
 GameObject:
   m_ObjectHideFlags: 0
@@ -63758,6 +63820,7 @@ MonoBehaviour:
   _twitchClient: {fileID: 719420099}
   _rebellionController: {fileID: 481457712}
   _goldDistributor: {fileID: 2040148666}
+  _npcHandler: {fileID: 1999007588}
   AllRarities:
   - {fileID: 1653556322778236169, guid: 6b729731cc466b647ac5945c3c033a3e, type: 3}
   - {fileID: 6665550754289912462, guid: a65e4a807a11884498a72a8dfac33fd4, type: 3}
@@ -63805,9 +63868,9 @@ MonoBehaviour:
   - {fileID: 2605624827304256445, guid: 87bcbf371dda4ae428ca05cc0772f660, type: 3}
   EpicTiles:
   - {fileID: 5529546809039867891, guid: 77017198ec6b75d4b84c2659a5169331, type: 3}
-  - {fileID: 647519542019892001, guid: 1e969b7de980d3e4296f5f8fcb89c99e, type: 3}
-  - {fileID: 1653556322778236169, guid: 8deee83b2cb2f1a439a95d1295a1dd46, type: 3}
-  - {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
+  - {fileID: 5529546809039867891, guid: cde927a3113020f40928c78977d605c5, type: 3}
+  - {fileID: 5156241915605114848, guid: 514d42ebac68f9c44a76e2fb7568b7aa, type: 3}
+  - {fileID: 576390978979572706, guid: a308e1d0f0e731d4eb1a1c007d4de1a6, type: 3}
   - {fileID: 647519542019892001, guid: ac41b4d8ab2ffe647b0af095bdb6786b, type: 3}
   - {fileID: 647519542019892001, guid: 55f18e68fab746549b414aa44b937d54, type: 3}
   - {fileID: 647519542019892001, guid: 6e5cbba5837127e439a386e9f805b3dc, type: 3}
@@ -63826,6 +63889,9 @@ MonoBehaviour:
   - {fileID: 461252091043616422, guid: 747736bcaed87dd40937a536609eef57, type: 3}
   - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
   - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
+  - {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
+  - {fileID: 647519542019892001, guid: 1e969b7de980d3e4296f5f8fcb89c99e, type: 3}
+  - {fileID: 1653556322778236169, guid: 8deee83b2cb2f1a439a95d1295a1dd46, type: 3}
   - {fileID: 647519542019892001, guid: 26f7530080b10ed45bc1033ac5173f2d, type: 3}
   - {fileID: 647519542019892001, guid: 38203830a5c3f304b91e86221bdd1ad0, type: 3}
   - {fileID: 647519542019892001, guid: c7166028c5774cc4c8399d8ce3a4879f, type: 3}
@@ -63888,8 +63954,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 1653556322778236169, guid: a17a9af6b88843946871a5fa4bffb783, type: 3}
-  _forceThisRarity: 6
+  ForceThisTileNext: {fileID: 0}
+  _forceThisRarity: 3
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10
