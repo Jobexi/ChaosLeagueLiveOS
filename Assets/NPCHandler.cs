@@ -444,7 +444,7 @@ public class NPCHandler : MonoBehaviour
             {
                 if (_gm.PlayerHandlers[key].pp.ModeNPC == 0) //Defenders
                 {
-                    NPCTradeUp(_gm.PlayerHandlers[key].pp.TwitchID);
+                    NPCTradeUp(_gm.PlayerHandlers[key]);
                     _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                 }
@@ -462,7 +462,7 @@ public class NPCHandler : MonoBehaviour
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
                             NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
                         }
                         else
                         {
@@ -480,7 +480,7 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key].pp.TwitchID);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }
@@ -500,7 +500,7 @@ public class NPCHandler : MonoBehaviour
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
                             NPCMessage(_gm.PlayerHandlers[key], "Fear Not. I have Rescued you all.");
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
                         }
                         else
                         {                            
@@ -518,7 +518,7 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Time to Give Back to the community.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            _unitTesting.NPCCommand(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "!tradeup");
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }
@@ -527,14 +527,13 @@ public class NPCHandler : MonoBehaviour
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
                         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
                         _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid B", 175);
-                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid B", 175);
-                        NPCTradeUp(_gm.PlayerHandlers[key].pp.TwitchID);
+                        NPCTradeUp(_gm.PlayerHandlers[key]);
                         _gm.PlayerHandlers[key].pp.StateNPC = 1;
                     }
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
@@ -570,7 +569,7 @@ public class NPCHandler : MonoBehaviour
                                     _unitTesting.NPCBits(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, 5000);
                                     break;
                             }
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 10);
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
                         }
                         else
                         {
@@ -588,7 +587,7 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "I hope you enjoyed the celebration!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key].pp.TwitchID);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }

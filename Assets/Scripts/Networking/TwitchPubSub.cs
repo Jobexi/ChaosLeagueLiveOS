@@ -100,17 +100,17 @@ public class TwitchPubSub : MonoBehaviour
             _waterBitTrigger.AddBits(twitchUsername, AppConfig.inst.GetI("ThroneWaterCost"));
         else if (rewardTitle.StartsWith("AutoBid A"))
         {
-            ph.pp.AutoBidRemainder += 10;
+            ph.pp.AutoBidRemainder += 15;
             _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
         }
         else if (rewardTitle.StartsWith("AutoBid B"))
         {
-            ph.pp.AutoBidRemainder += 100;
+            ph.pp.AutoBidRemainder += 175;
             _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
         }
         else if (rewardTitle.StartsWith("AutoBid C"))
         {
-            ph.pp.AutoBidRemainder += 1000;
+            ph.pp.AutoBidRemainder += 2000;
             _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
         }
         else
