@@ -1,4 +1,4 @@
-using Amazon.Runtime.Internal.Transform;
+﻿using Amazon.Runtime.Internal.Transform;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -211,11 +211,13 @@ public class TileController : MonoBehaviour
         {
             ForceThisTileNext = CurrentBiddingTile;
             _forceThisRarity = CurrentBiddingTile.GetRarity();
+            CurrentBiddingTile._indicator2.SetText("🔁");
         }
         else
         {
             ForceThisTileNext = GameplayTile;
             _forceThisRarity = GameplayTile.GetRarity();
+            GameplayTile._indicator2.SetText("🔁");
         }
     }
 
@@ -223,10 +225,16 @@ public class TileController : MonoBehaviour
     {
         RarityType rarity = RarityType.Common;
 
-        if (GameplayTile != null)
-            rarity = GameplayTile.GetRarity();
-        else
+        if (GameplayTile == null)
+        {
             rarity = CurrentBiddingTile.GetRarity();
+            CurrentBiddingTile._indicator2.SetText("↑↑");            
+        }
+        else
+        {
+            rarity = GameplayTile.GetRarity();
+            GameplayTile._indicator2.SetText("↑↑");
+        }
 
         if (rarity == RarityType.Common)
             rarity = RarityType.Rare;
@@ -242,6 +250,7 @@ public class TileController : MonoBehaviour
             rarity = RarityType.Cosmic;
 
         _forceThisRarity = rarity;
+
     }
 
     public GameTile SpawnOriginTile(Vector3 pos, Side side, bool spinNew) 

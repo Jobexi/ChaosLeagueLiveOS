@@ -750,8 +750,13 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            ph.pp.Gold -= 200000;
+            ph.pp.Gold -= 200000;    
             _tileController._forceGolden = true;
+
+            if (_tileController.GameplayTile == null)
+                _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+            else
+                _tileController.GameplayTile._indicator1.SetText("💛");
         }
 
         else if (commandKey.StartsWith("!rubytile"))
@@ -782,6 +787,11 @@ public class TwitchClient : MonoBehaviour
             ph.pp.Gold -= 1000000;
             _tileController._forceGolden = false;
             _tileController._forceRuby = true;
+
+            if (_tileController.GameplayTile == null)
+                _tileController.CurrentBiddingTile._indicator1.SetText("🔴");
+            else
+                _tileController.GameplayTile._indicator1.SetText("🔴");
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))

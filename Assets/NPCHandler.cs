@@ -35,7 +35,9 @@ public class NPCHandler : MonoBehaviour
     public int EventCountdown = 5;
     public int RefreshCountdown = 250;
     public int NPC = 0;
-    public bool firstNPC = true;    
+    public bool firstNPC = true;
+    public int RepeaterCount1 = 0;
+    public int RepeaterCount2 = 0;
 
     void Awake()
     {
@@ -49,7 +51,7 @@ public class NPCHandler : MonoBehaviour
 
     public void CheckCountdown()
     {
-        int maxNPC = 39;
+        int maxNPC = 51;
         
         CheckNPCs();
         if (firstNPC == true)
@@ -247,7 +249,54 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("MassiveCelebrant", "MassiveCelebrant", "bid", 1);
                 StartCoroutine(UpdateWaiter("MassiveCelebrant"));
                 break;
-            
+            case 40:
+                _unitTesting.NPCReward("MomentaryRepeater", "MomentaryRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryRepeater"));
+                break;
+            case 41:
+                _unitTesting.NPCReward("BriefRepeater", "BriefRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefRepeater"));
+                break;
+            case 42:
+                _unitTesting.NPCReward("ShortRepeater", "ShortRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortRepeater"));
+                break;
+            case 43:
+                _unitTesting.NPCReward("TemporaryRepeater", "TemporaryRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryRepeater"));
+                break;
+            case 44:
+                _unitTesting.NPCReward("PassingRepeater", "PassingRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingRepeater"));
+                break;
+            case 45:
+                _unitTesting.NPCReward("InterimRepeater", "InterimRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimRepeater"));
+                break;
+            case 46:
+                _unitTesting.NPCReward("Repeater", "Repeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("Repeater"));
+                break;
+            case 47:
+                _unitTesting.NPCReward("ExtendedRepeater", "ExtendedRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedRepeater"));
+                break;
+            case 48:
+                _unitTesting.NPCReward("ProlongedRepeater", "ProlongedRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedRepeater"));
+                break;
+            case 49:
+                _unitTesting.NPCReward("LongLastingRepeater", "LongLastingRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("LongLastingRepeater"));
+                break;
+            case 50:
+                _unitTesting.NPCReward("PermanentRepeater", "PermanentRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentRepeater"));
+                break;
+            case 51:
+                _unitTesting.NPCReward("EternalRepeater", "EternalRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalRepeater"));
+                break;
         }
                 
     }
@@ -423,6 +472,59 @@ public class NPCHandler : MonoBehaviour
                 SetNPCMode(4, ID);
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
+            case "MomentaryRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 1;
+                break;
+            case "BriefRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 2;
+                break;
+            case "ShortRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 3;
+                break;
+            case "TemporaryRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 5;
+                break;
+            case "PassingRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 7;
+                break;
+            case "InterimRepeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 10;
+                break;
+            case "Repeater":
+                SetNPCMode(5, ID);
+                RepeaterCount1 = 17;
+                break;            
+            case "ExtendedRepeater":
+                SetNPCMode(6, ID);
+                RepeaterCount1 = 3;
+                RepeaterCount2 = 5;
+                break;
+            case "ProlongedRepeater":
+                SetNPCMode(6, ID);
+                RepeaterCount1 = 5;
+                RepeaterCount2 = 7;
+                break;
+            case "LongLastingRepeater":
+                SetNPCMode(6, ID);
+                RepeaterCount1 = 7;
+                RepeaterCount2 = 11;
+                break;
+            case "PermanentRepeater":
+                SetNPCMode(6, ID);
+                RepeaterCount1 = 11;
+                RepeaterCount2 = 13;
+                break;
+            case "EternalRepeater":
+                SetNPCMode(6, ID);
+                RepeaterCount1 = 13;
+                RepeaterCount2 = 17;
+                break;
         }
     
     }
@@ -440,15 +542,15 @@ public class NPCHandler : MonoBehaviour
         string[] keys = _gm.PlayerHandlers.Keys.ToArray();
         foreach (string key in keys)
         {
-            if (_gm.PlayerHandlers[key].pp.IsNPC == 1) 
+            if (_gm.PlayerHandlers[key].pp.IsNPC == 1)
             {
-                if (_gm.PlayerHandlers[key].pp.ModeNPC == 0) //Defenders
+                if (_gm.PlayerHandlers[key].pp.ModeNPC == 0) //GameMaster
                 {
                     NPCTradeUp(_gm.PlayerHandlers[key]);
                     _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                 }
-                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 1)
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 1) //Defenders
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
@@ -469,7 +571,7 @@ public class NPCHandler : MonoBehaviour
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                         }
-                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;                        
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
                     {
@@ -503,7 +605,7 @@ public class NPCHandler : MonoBehaviour
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
                         }
                         else
-                        {                            
+                        {
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             NPCAttack(_gm.PlayerHandlers[key]);
                         }
@@ -512,7 +614,7 @@ public class NPCHandler : MonoBehaviour
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
                     {
                         if (!_gm.PlayerHandlers[key].IsKing())
-                        {                            
+                        {
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 3;
                             NPCMessage(_gm.PlayerHandlers[key], "Time to Give Back to the community.");
@@ -556,8 +658,8 @@ public class NPCHandler : MonoBehaviour
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
-                           
-                            switch(key)
+
+                            switch (key)
                             {
                                 case "Celebrant":
                                     _unitTesting.NPCBits(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, 500);
@@ -591,9 +693,80 @@ public class NPCHandler : MonoBehaviour
                         }
                     }
                 }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 5) //Single Repeaters
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (!_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                        }
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 6) //Double Repeaters
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (!_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                        }
+                    }                
+                }
             }
         }
-
     }
 
     public void NPCMessage(PlayerHandler ph, string msg)

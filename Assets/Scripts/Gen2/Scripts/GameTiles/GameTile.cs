@@ -22,9 +22,11 @@ public class GameTile : MonoBehaviour
     [SerializeField] private CleaningBarController _cleaningBarController;
     [SerializeField] private Transform _releaseBar;
     [SerializeField] private TextMeshPro _tileNameText;
-    [SerializeField] private TextMeshPro _rarityText;
+    [SerializeField] public TextMeshPro _rarityText;
     [SerializeField] private TextMeshPro _timerText;
-    [SerializeField] private TextMeshPro _ticketBonusAmountText;
+    [SerializeField] public TextMeshPro _ticketBonusAmountText;
+    [SerializeField] public TextMeshPro _indicator1;
+    [SerializeField] public TextMeshPro _indicator2;
     public int TicketBonusAmount;
 
     public TileState TileState = TileState.Inactive;

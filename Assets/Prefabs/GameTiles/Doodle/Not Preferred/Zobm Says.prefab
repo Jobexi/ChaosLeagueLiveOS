@@ -742,9 +742,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zobm Says
       objectReference: {fileID: 0}
+    - target: {fileID: 2935831787970909092, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.772
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935831787970909092, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.3000007
+      objectReference: {fileID: 0}
     - target: {fileID: 6965428202780938223, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_text
       value: Epic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098412158018616053, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.812
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098412158018616053, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _game
