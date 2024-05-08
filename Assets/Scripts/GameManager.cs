@@ -93,6 +93,14 @@ public class GameManager : MonoBehaviour
             _resourceUnloadTimer = 0;
             Resources.UnloadUnusedAssets();
         }
+        if (_tileController.GameplayTile != null)
+        {
+            if (_tileController.GameplayTile.BuyingActive)
+            {
+                _tileController.GameplayTile.BuyingActive = false;
+                _tileController._npcHandler.PerformShopPurchases();
+            }
+        }
     }
 
     public IEnumerator CreateNewPlayerHandler(string twitchId)

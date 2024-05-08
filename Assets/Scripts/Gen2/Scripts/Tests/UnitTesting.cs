@@ -17,6 +17,7 @@ public class UnitTesting : MonoBehaviour
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] private TwitchPubSub _twitchPubSub;
     [SerializeField] private TileController _tileController;
+    [SerializeField] private NPCHandler _npcHandler;
 
     [SerializeField] public bool incrementUserId;
     [SerializeField] public int idIncrementor = 0;
@@ -52,7 +53,7 @@ public class UnitTesting : MonoBehaviour
 
     [SerializeField] public bool testRandomTiles;
 
-    [SerializeField] public bool JobexiTest;
+    [SerializeField] public bool TestNPC;
 
 
     private float autoTestTimer = 0;
@@ -96,9 +97,9 @@ public class UnitTesting : MonoBehaviour
     }
     private void OnValidate()
     {
-        if (JobexiTest)
+        if (TestNPC)
         {
-            JobexiTest = false;
+            TestNPC = false;
             CurrentTest();
         }
 
@@ -152,15 +153,13 @@ public class UnitTesting : MonoBehaviour
     
     private void CurrentTest()
     {
-        string userID = GetUserId();
-        string username = testUsername + userID;
-        StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
+        _npcHandler.TestNPCs();
     }
 
-    public void NPCReward(string userID, string username, string rewardTitle, int rewardCost, string userInput = "")
+    public void NPCReward(string userID, string username, string rewardTitle, int rewardCost)
     {
         StartCoroutine(_twitchPubSub.HandleOnChannelPointsRedeemed(userID, username, rewardTitle, userInput, rewardCost)); //Pubsub activate both
-            }
+    }
     public void NPCCommand(string userID, string username, string userInput = "")
     {
         StartCoroutine(_twitchClient.HandleMessage(null, userID, username, GetNameColor(), userInput, emotes: null, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));

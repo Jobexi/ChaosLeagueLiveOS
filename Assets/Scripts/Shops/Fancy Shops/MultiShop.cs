@@ -79,6 +79,8 @@ public class MultiShop : Game
 
         foreach (var entry in _entries)
             entry.ShowCommandText();
+
+        _gt.BuyingActive = true;
     }
 
     public IEnumerator KillAllAfterDelay(int secDelay)

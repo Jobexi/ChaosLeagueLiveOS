@@ -574,11 +574,24 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
     public void TradeUp()
     {
-        while(pp.SessionScore >= 1000000000)
+
+        while (pp.SessionScore >= 1000000000000000)
+        {
+            pp.SessionScore -= 1000000000000000;
+            pp.Diamonds += 1;
+        }
+
+        while (pp.SessionScore >= 1000000000000)
+        {
+            pp.SessionScore -= 1000000000000;
+            pp.Emeralds += 1;
+        }
+
+        while (pp.SessionScore >= 1000000000)
         {
             pp.SessionScore -= 1000000000;
             pp.Sapphires += 1;
-        }
+        }       
 
         while (pp.Sapphires >= 1000)
         {

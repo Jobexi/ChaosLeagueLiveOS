@@ -10,8 +10,7 @@ public class TrailShop : Game
     [SerializeField] private List<TrailShopEntry> _entries;
 
 
-    [SerializeField] private int _buyTime = 45; 
-
+    [SerializeField] private int _buyTime = 45;
 
     public override void OnTilePreInit()
     {
@@ -67,6 +66,8 @@ public class TrailShop : Game
 
         foreach (var entry in _entries)
             entry.ShowCommandText();
+
+        _gt.BuyingActive = true;
     }
 
     public IEnumerator KillAllAfterDelay(int secDelay)

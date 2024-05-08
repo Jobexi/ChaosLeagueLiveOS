@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 8213046084822445268}
   - component: {fileID: 7384455731302932529}
   m_Layer: 0
-  m_Name: TextColorShopScript
+  m_Name: TomatoShopScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

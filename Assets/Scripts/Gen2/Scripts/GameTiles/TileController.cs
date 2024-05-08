@@ -17,7 +17,7 @@ public class TileController : MonoBehaviour
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private GoldDistributor _goldDistributor;
-    [SerializeField] private NPCHandler _npcHandler;
+    [SerializeField] public NPCHandler _npcHandler;
 
  //   private static float _commonRarity;
     private static float _rareRarity;

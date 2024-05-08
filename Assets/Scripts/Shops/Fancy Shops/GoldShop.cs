@@ -11,6 +11,8 @@ public class GoldShop : Game
 
     [SerializeField] private float _goldenDiscount = 0.25f;
 
+    private NPCHandler _npcHandler;
+
     public override void OnTilePreInit()
     {
 
@@ -32,6 +34,8 @@ public class GoldShop : Game
 
         foreach (var entry in _entries)
             entry.ShowCommandText();
+
+        _gt.BuyingActive = true;
     }
 
     public IEnumerator KillAllAfterDelay(int secDelay)

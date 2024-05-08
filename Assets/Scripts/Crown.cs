@@ -9,11 +9,12 @@ using Random = UnityEngine.Random;
 
 public class Crown : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer _crownMeshRenderer;
+    [SerializeField] public MeshRenderer _crownMeshRenderer;
     [SerializeField] private MeshRenderer _gemsMeshRenderer; 
     [SerializeField] private MeshRenderer _fourthMeshRenderer; 
     [SerializeField] private MeshRenderer _fifthMeshRenderer; 
-    [SerializeField] private MeshRenderer _sixthMeshRenderer; 
+    [SerializeField] private MeshRenderer _sixthMeshRenderer;
+    [SerializeField] public List<Material> EnhancedMaterials;
 
     [SerializeField] private Color _defaultCrownBase;
 
@@ -24,6 +25,11 @@ public class Crown : MonoBehaviour
     private MaterialPropertyBlock _basePropBlock;
     private MaterialPropertyBlock _trimPropBlock;
     private MaterialPropertyBlock _gemsPropBlock;
+
+    private int TotalTextures = 125;
+
+    public int Texture1 = 0;
+    public int Texture2 = 0;
 
     private void Awake()
     {
@@ -165,6 +171,41 @@ public class Crown : MonoBehaviour
 
         _gemsMeshRenderer.SetPropertyBlock(_gemsPropBlock);
     }
+
+    public void AdvancedCustomizations(int tier)
+    {
+        _gemsMeshRenderer.gameObject.SetActive(false);
+        _fourthMeshRenderer.gameObject.SetActive(false);
+        _fifthMeshRenderer.gameObject.SetActive(false);
+        _sixthMeshRenderer.gameObject.SetActive(false);
+
+        int Txtr1 = UnityEngine.Random.Range(0, TotalTextures);
+
+        //If T1
+        if (tier == 1)
+        {
+            Debug.LogWarning("Made it to 7 Colors");
+            var BaseMaterials = _crownMeshRenderer.materials;
+            var DesiredMaterials = EnhancedMaterials;
+            BaseMaterials[0] = DesiredMaterials[Txtr1];
+            BaseMaterials[1] = DesiredMaterials[Txtr1];
+            _crownMeshRenderer.materials = BaseMaterials;
+            Texture1 = Txtr1;
+            Texture2 = Txtr1;
+            return;
+        }
+        //If T1
+        else if (tier == 2)
+        {
+            return;
+        }
+        //If 9 Colors Set
+        else if (tier >= 3)
+        {
+            return;
+        }
+    }
+
 }
 
 
@@ -193,6 +234,7 @@ public static class CrownSerializer
 
         return JsonConvert.SerializeObject(serializeableColorList);
     }
+
 }
 
 [Serializable]

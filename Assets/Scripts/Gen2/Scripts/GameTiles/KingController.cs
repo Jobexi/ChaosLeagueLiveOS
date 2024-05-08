@@ -95,7 +95,16 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         CleanupCurrentKing();
 
-        _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON)); 
+        _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+
+        var Txtr1 = pb.Ph.pp.CrownTexture1;
+        var Txtr2 = pb.Ph.pp.CrownTexture2;
+
+        var BaseMaterials = _crown._crownMeshRenderer.materials;
+        var DesiredMaterials = _crown.EnhancedMaterials;
+        BaseMaterials[0] = DesiredMaterials[Txtr1];
+        BaseMaterials[1] = DesiredMaterials[Txtr2];
+        _crown._crownMeshRenderer.materials = BaseMaterials;
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1; 

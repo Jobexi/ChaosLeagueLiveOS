@@ -7436,6 +7436,7 @@ MonoBehaviour:
   _twitchClient: {fileID: 719420099}
   _twitchPubSub: {fileID: 943938167}
   _tileController: {fileID: 5393775865149022912}
+  _npcHandler: {fileID: 1999007588}
   incrementUserId: 1
   idIncrementor: 0
   testUserId: Jobexi
@@ -7465,7 +7466,7 @@ MonoBehaviour:
   autoTest: 0
   autoTestSecInterval: 10
   testRandomTiles: 0
-  JobexiTest: 0
+  TestNPC: 0
 --- !u!1 &558830486
 GameObject:
   m_ObjectHideFlags: 0
@@ -22997,7 +22998,7 @@ MonoBehaviour:
   _rebellionController: {fileID: 481457712}
   _sqliteServiceAsync: {fileID: 6727299273675977357}
   _unitTesting: {fileID: 550380675}
-  DefaultPFP: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  DefaultPFP: {fileID: 2800000, guid: 646246f311b4e3e449161d4d616695fd, type: 3}
   _pbHologramPrefab: {fileID: 550971265783947472, guid: f6becf710035fcb4194cd38797bec6ab, type: 3}
   _event1Text: {fileID: 1250069598}
   EventCountdown: 5
@@ -38394,6 +38395,12 @@ MonoBehaviour:
   firstNPC: 1
   RepeaterCount1: 0
   RepeaterCount2: 0
+  UpgraderCount1: 0
+  UpgraderCount2: 0
+  GoldCount1: 0
+  GoldCount2: 0
+  RubyCount1: 0
+  RubyCount2: 0
 --- !u!1 &2015488422
 GameObject:
   m_ObjectHideFlags: 0
@@ -45704,6 +45711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
+  _meshRenderer2: {fileID: 0}
   _textLabel: {fileID: 0}
   _effect: 4
   _value: 0
@@ -63837,7 +63845,6 @@ MonoBehaviour:
   - {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   - {fileID: 7650660916348049875, guid: 9e0939458df50962e92fb6d93392bf7b, type: 3}
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
-  - {fileID: 5521807422773572966, guid: 8cb5b5eb8ce99754391feb9ac5e4e005, type: 3}
   - {fileID: 1653556322778236169, guid: d332252cecf7e00459a0aa4309a3caa2, type: 3}
   - {fileID: 2605624827304256445, guid: ec5b3d710e59a6646ae4f64b95bcbd4c, type: 3}
   - {fileID: 1653556322778236169, guid: 3b864a5660e9ac04aa0fb89a5deef7f4, type: 3}
@@ -63848,6 +63855,7 @@ MonoBehaviour:
   - {fileID: 1653556322778236169, guid: 88a8d162f277b834284de989e0f759cd, type: 3}
   - {fileID: 2605624827304256445, guid: 63656aac225b90f41ab4bf38f06eacb0, type: 3}
   - {fileID: 5481711066216898309, guid: 2dde99fa00c41fb46b80c6734ec8060f, type: 3}
+  - {fileID: 1653556322778236169, guid: c4c9db7c0dd220a46a6fe024d3fae9eb, type: 3}
   CommonTiles:
   - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
   - {fileID: 2605624827304256445, guid: 76dc62e98326b4247961424ec779b712, type: 3}
@@ -63855,6 +63863,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 28bfffdc5acedc9499c48892b8cac383, type: 3}
   - {fileID: 647519542019892001, guid: d6cc949e9ad161140929b1773a18f24f, type: 3}
   - {fileID: 647519542019892001, guid: 26b3f328391d70040bd60f82330c48af, type: 3}
+  - {fileID: 647519542019892001, guid: 13ef8e1cbe6ec8a4380176ae2fdabd4c, type: 3}
   - {fileID: 647519542019892001, guid: 251f1f712c2bae443a8fc841538cc5df, type: 3}
   - {fileID: 647519542019892001, guid: ebc91c802175cb14b81ab35ed6fb0081, type: 3}
   - {fileID: 647519542019892001, guid: 268cd934d63c0bd438fa968107105c49, type: 3}
@@ -63868,6 +63877,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 329dd07cfa070d14183c4c73f1e1e8ba, type: 3}
   - {fileID: 647519542019892001, guid: e85bfd3624601964ebbedc69a600740d, type: 3}
   - {fileID: 647519542019892001, guid: e33968b900565204c83f533979894827, type: 3}
+  - {fileID: 647519542019892001, guid: 0345f4dcbd4a8e240b99e01839f2ea5a, type: 3}
   - {fileID: 647519542019892001, guid: cfe1cff8c5298cd4db6eaeace1139eaf, type: 3}
   - {fileID: 647519542019892001, guid: e830da25e4e8dde45bebd104281ddbe1, type: 3}
   - {fileID: 647519542019892001, guid: c9b46c4f6e92da64d99e8597de85fdcc, type: 3}
@@ -63885,6 +63895,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 6e5cbba5837127e439a386e9f805b3dc, type: 3}
   - {fileID: 647519542019892001, guid: aebaac6e53e65c84db831e1d90979fe7, type: 3}
   - {fileID: 647519542019892001, guid: 5ebd9c64d31976e4595cf12f9b3794ce, type: 3}
+  - {fileID: 647519542019892001, guid: eb71056564e16e04da18ba2fbfda7c26, type: 3}
   - {fileID: 647519542019892001, guid: 7bdb358d11ff9234082824e24a79f81b, type: 3}
   - {fileID: 647519542019892001, guid: a099b2be4e7e00e408ea134afd2a0cfc, type: 3}
   - {fileID: 647519542019892001, guid: c0f429d5d6095714eac3fa24af6ae076, type: 3}
@@ -63906,6 +63917,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: c7166028c5774cc4c8399d8ce3a4879f, type: 3}
   - {fileID: 647519542019892001, guid: b693919569bbe094285ecf8d6999d014, type: 3}
   - {fileID: 647519542019892001, guid: e5b30ff429c8d09419c616ee020b6462, type: 3}
+  - {fileID: 647519542019892001, guid: 2bb644095a98a7a46ae55ec04d0847e3, type: 3}
   - {fileID: 647519542019892001, guid: 49eff42bfa89f754c804a87f570cc1bf, type: 3}
   - {fileID: 647519542019892001, guid: e53342a8d36ef704e92ccf4c6aaf0d4a, type: 3}
   - {fileID: 647519542019892001, guid: 7a057e18aeeb0d846809d1665f89324e, type: 3}
@@ -63921,6 +63933,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 54418fa1028415d40b7249e86ce971ba, type: 3}
   - {fileID: 647519542019892001, guid: 7bddbf07af22d934984ffb1c492aec95, type: 3}
   - {fileID: 647519542019892001, guid: 5f913878190e77447af4b4a5cf596967, type: 3}
+  - {fileID: 647519542019892001, guid: c21b50a0ddb623c4a81008a7a6191a20, type: 3}
   - {fileID: 647519542019892001, guid: 98473b9e99c4aa048b21946aa376016a, type: 3}
   - {fileID: 647519542019892001, guid: 7d69e8278160f1448850aa522f2582ad, type: 3}
   - {fileID: 647519542019892001, guid: 9cb5d747390784e42991f082d7cb0d0a, type: 3}
@@ -63928,12 +63941,14 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 15666656ede4bc540b728824a1e25b51, type: 3}
   - {fileID: 647519542019892001, guid: 86256262cc4ff554f82ccd8194423ea9, type: 3}
   EtherealTiles:
+  - {fileID: 461252091043616422, guid: 86b2b65c6a11743448dd2245132bc28f, type: 3}
   - {fileID: 647519542019892001, guid: 8388dd09192376f429c1145df240d9f1, type: 3}
   - {fileID: 2605624827304256445, guid: 8db201589a1780f4cb8566bb27b055e5, type: 3}
   - {fileID: 647519542019892001, guid: ea5f4112b0c3b0349bcd1477865cc9bc, type: 3}
   - {fileID: 647519542019892001, guid: 5dcda2b378466c541be665e980bc2f33, type: 3}
   - {fileID: 647519542019892001, guid: 2ab06485933f1ac4c8b5fc07765a7bad, type: 3}
   - {fileID: 647519542019892001, guid: 46fa8b2b800b41541914000e7de1a239, type: 3}
+  - {fileID: 647519542019892001, guid: 6dd2c0f887ff35e469d686444c9edc95, type: 3}
   - {fileID: 647519542019892001, guid: 018c94217a2f1cc4289aeda84578277b, type: 3}
   - {fileID: 647519542019892001, guid: 6e7298ebe8061f54183c84343995188a, type: 3}
   - {fileID: 647519542019892001, guid: c320e2ba451652a468c81328b655df1c, type: 3}
@@ -63947,6 +63962,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 2b410c0e0611e4841941e788aea7cf15, type: 3}
   - {fileID: 647519542019892001, guid: 6a8f218ec8fb01d45be7b59794013eff, type: 3}
   - {fileID: 647519542019892001, guid: a79dd95d4e194f0449d6204b1b7289fe, type: 3}
+  - {fileID: 647519542019892001, guid: 0057ba71f4db7a845b661c6a8f05f736, type: 3}
   - {fileID: 647519542019892001, guid: 58bcb3c4416834446b95c33bd8dc301e, type: 3}
   - {fileID: 647519542019892001, guid: f16535f5862c70d4b9ee7833e520e149, type: 3}
   - {fileID: 647519542019892001, guid: eac42c0ef061ea04fa4d31f04cfbd971, type: 3}
@@ -63962,8 +63978,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
-  _forceThisRarity: 3
+  ForceThisTileNext: {fileID: 461252091043616422, guid: 86b2b65c6a11743448dd2245132bc28f, type: 3}
+  _forceThisRarity: 5
   _forceGolden: 0
   _forceRuby: 0
   _rotationDurationS: 10
@@ -65376,6 +65392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
+  _meshRenderer2: {fileID: 0}
   _textLabel: {fileID: 0}
   _effect: 4
   _value: 0
@@ -67756,6 +67773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
+  _meshRenderer2: {fileID: 0}
   _textLabel: {fileID: 0}
   _effect: 4
   _value: 0
@@ -68960,6 +68978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
+  _meshRenderer2: {fileID: 0}
   _textLabel: {fileID: 0}
   _effect: 4
   _value: 0

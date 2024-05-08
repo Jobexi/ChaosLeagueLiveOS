@@ -555,7 +555,7 @@ public class TwitchClient : MonoBehaviour
 
         if (commandKey.StartsWith("!roachbubble"))
         {
-            VIPTrail(ph, 1);
+            VIPTextbox(ph, 1);
         }
 
         if (commandKey.StartsWith("!vipcooking"))
@@ -638,9 +638,14 @@ public class TwitchClient : MonoBehaviour
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"https://chaosleaguewiki.github.io");
             return;
         }
-        else if (commandKey.StartsWith("!patreon"))
+        else if (commandKey.StartsWith("!play"))
         {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"https://www.patreon.com/doodlechaos");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"This game uses tickets (channel points) to play. Please redeem a 'Bid Spawn Ticket' reward to join in the fun!");
+            return;
+        }
+        else if (commandKey.StartsWith("!autobid"))
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Autobids are always active, there is no need to use this command. Please redeem an 'Autobid' channel reward to begin autobidding");
             return;
         }
         else if (commandKey.StartsWith("!discord"))
@@ -660,10 +665,10 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 20000)
+            if (ph.pp.Gold < 50000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Repeating this tile costs 5k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Repeating this tile costs 50k Gold.");
                 return;
             }
 
@@ -674,7 +679,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            ph.pp.Gold -= 20000;
+            ph.pp.Gold -= 50000;
             _tileController.doRepeatTile();
         }
 
@@ -689,10 +694,10 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 50000)
+            if (ph.pp.Gold < 75000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Upgrading this tile costs 25k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Upgrading this tile costs 75k Gold.");
                 return;
             }
 
@@ -720,7 +725,7 @@ public class TwitchClient : MonoBehaviour
             }
         
         
-            ph.pp.Gold -= 50000;
+            ph.pp.Gold -= 75000;
             _tileController.doRepeatTile();
             _tileController.doUpgradeTile();
         }
@@ -746,17 +751,35 @@ public class TwitchClient : MonoBehaviour
             if (_tileController._forceGolden == true || _tileController._forceRuby == true)
             {
                 Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
-                //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
                 return;
             }
 
-            ph.pp.Gold -= 200000;    
-            _tileController._forceGolden = true;
+            
 
             if (_tileController.GameplayTile == null)
-                _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+            {
+                if (_tileController.CurrentBiddingTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+            }
             else
-                _tileController.GameplayTile._indicator1.SetText("💛");
+            {
+                if (_tileController.GameplayTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.GameplayTile._indicator1.SetText("💛");
+            }
+
+            ph.pp.Gold -= 200000;
+            _tileController._forceGolden = true;
         }
 
         else if (commandKey.StartsWith("!rubytile"))
@@ -780,18 +803,34 @@ public class TwitchClient : MonoBehaviour
             if (_tileController._forceRuby == true)
             {
                 Debug.Log("The upcoming tile is already Ruby. Please wait until the reel spins to try again.");
-                //         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
                 return;
+            }                      
+
+            if (_tileController.GameplayTile == null)
+            {
+                if (_tileController.CurrentBiddingTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.CurrentBiddingTile._indicator1.SetText("🔴");
+            }
+            else
+            {
+                if (_tileController.GameplayTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.GameplayTile._indicator1.SetText("🔴");
             }
 
             ph.pp.Gold -= 1000000;
             _tileController._forceGolden = false;
             _tileController._forceRuby = true;
-
-            if (_tileController.GameplayTile == null)
-                _tileController.CurrentBiddingTile._indicator1.SetText("🔴");
-            else
-                _tileController.GameplayTile._indicator1.SetText("🔴");
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
@@ -1567,24 +1606,22 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
         }
         else if (type == "Emerald")
         {
-            if (ph.pp.Sapphires < desiredCurrencyAmount)
+            if (ph.pp.Emeralds < desiredCurrencyAmount)
             {
                 Debug.Log("You don't have enough Emeralds");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Emeralds");
                 yield break;
             }
-            Debug.Log("Sapphire");
             Debug.Log("Emerald");
         }
         else if (type == "Diamond")
         {
-            if (ph.pp.Sapphires < desiredCurrencyAmount)
+            if (ph.pp.Diamonds < desiredCurrencyAmount)
             {
                 Debug.Log("You don't have enough Diamonds");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Diamonds");
                 yield break;
             }
-            Debug.Log("Sapphire");
             Debug.Log("Diamond");
         }
 

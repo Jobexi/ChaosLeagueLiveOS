@@ -38,6 +38,12 @@ public class NPCHandler : MonoBehaviour
     public bool firstNPC = true;
     public int RepeaterCount1 = 0;
     public int RepeaterCount2 = 0;
+    public int UpgraderCount1 = 0;
+    public int UpgraderCount2 = 0;
+    public int GoldCount1 = 0;
+    public int GoldCount2 = 0;
+    public int RubyCount1 = 0;
+    public int RubyCount2 = 0;
 
     void Awake()
     {
@@ -49,9 +55,31 @@ public class NPCHandler : MonoBehaviour
 
     }
 
+    public void TestNPCs()
+    {
+        int maxNPC = 87;
+
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+    }
+
     public void CheckCountdown()
     {
-        int maxNPC = 51;
+        int maxNPC = 87;
         
         CheckNPCs();
         if (firstNPC == true)
@@ -286,8 +314,8 @@ public class NPCHandler : MonoBehaviour
                 StartCoroutine(UpdateWaiter("ProlongedRepeater"));
                 break;
             case 49:
-                _unitTesting.NPCReward("LongLastingRepeater", "LongLastingRepeater", "bid", 1);
-                StartCoroutine(UpdateWaiter("LongLastingRepeater"));
+                _unitTesting.NPCReward("LastingRepeater", "LastingRepeater", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingRepeater"));
                 break;
             case 50:
                 _unitTesting.NPCReward("PermanentRepeater", "PermanentRepeater", "bid", 1);
@@ -296,6 +324,150 @@ public class NPCHandler : MonoBehaviour
             case 51:
                 _unitTesting.NPCReward("EternalRepeater", "EternalRepeater", "bid", 1);
                 StartCoroutine(UpdateWaiter("EternalRepeater"));
+                break;
+            case 52:
+                _unitTesting.NPCReward("MomentaryUpgrader", "MomentaryUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryUpgrader"));
+                break;
+            case 53:
+                _unitTesting.NPCReward("BriefUpgrader", "BriefUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefUpgrader"));
+                break;
+            case 54:
+                _unitTesting.NPCReward("ShortUpgrader", "ShortUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortUpgrader"));
+                break;
+            case 55:
+                _unitTesting.NPCReward("TemporaryUpgrader", "TemporaryUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryUpgrader"));
+                break;
+            case 56:
+                _unitTesting.NPCReward("PassingUpgrader", "PassingUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingUpgrader"));
+                break;
+            case 57:
+                _unitTesting.NPCReward("InterimUpgrader", "InterimUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimUpgrader"));
+                break;
+            case 58:
+                _unitTesting.NPCReward("Upgrader", "Upgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("Upgrader"));
+                break;
+            case 59:
+                _unitTesting.NPCReward("ExtendedUpgrader", "ExtendedUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedUpgrader"));
+                break;
+            case 60:
+                _unitTesting.NPCReward("ProlongedUpgrader", "ProlongedUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedUpgrader"));
+                break;
+            case 61:
+                _unitTesting.NPCReward("LastingUpgrader", "LastingUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingUpgrader"));
+                break;
+            case 62:
+                _unitTesting.NPCReward("PermanentUpgrader", "PermanentUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentUpgrader"));
+                break;
+            case 63:
+                _unitTesting.NPCReward("EternalUpgrader", "EternalUpgrader", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalUpgrader"));
+                break;
+            case 64:
+                _unitTesting.NPCReward("MomentaryGold", "MomentaryGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryGold"));
+                break;
+            case 65:
+                _unitTesting.NPCReward("BriefGold", "BriefGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefGold"));
+                break;
+            case 66:
+                _unitTesting.NPCReward("ShortGold", "ShortGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortGold"));
+                break;
+            case 67:
+                _unitTesting.NPCReward("TemporaryGold", "TemporaryGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryGold"));
+                break;
+            case 68:
+                _unitTesting.NPCReward("PassingGold", "PassingGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingGold"));
+                break;
+            case 69:
+                _unitTesting.NPCReward("InterimGold", "InterimGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimGold"));
+                break;
+            case 70:
+                _unitTesting.NPCReward("Gold", "Gold", "bid", 1);
+                StartCoroutine(UpdateWaiter("Gold"));
+                break;
+            case 71:
+                _unitTesting.NPCReward("ExtendedGold", "ExtendedGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedGold"));
+                break;
+            case 72:
+                _unitTesting.NPCReward("ProlongedGold", "ProlongedGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedGold"));
+                break;
+            case 73:
+                _unitTesting.NPCReward("LastingGold", "LastingGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingGold"));
+                break;
+            case 74:
+                _unitTesting.NPCReward("PermanentGold", "PermanentGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentGold"));
+                break;
+            case 75:
+                _unitTesting.NPCReward("EternalGold", "EternalGold", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalGold"));
+                break;
+            case 76:
+                _unitTesting.NPCReward("MomentaryRuby", "MomentaryRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryRuby"));
+                break;
+            case 77:
+                _unitTesting.NPCReward("BriefRuby", "BriefRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefRuby"));
+                break;
+            case 78:
+                _unitTesting.NPCReward("ShortRuby", "ShortRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortRuby"));
+                break;
+            case 79:
+                _unitTesting.NPCReward("TemporaryRuby", "TemporaryRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryRuby"));
+                break;
+            case 80:
+                _unitTesting.NPCReward("PassingRuby", "PassingRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingRuby"));
+                break;
+            case 81:
+                _unitTesting.NPCReward("InterimRuby", "InterimRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimRuby"));
+                break;
+            case 82:
+                _unitTesting.NPCReward("Ruby", "Ruby", "bid", 1);
+                StartCoroutine(UpdateWaiter("Ruby"));
+                break;
+            case 83:
+                _unitTesting.NPCReward("ExtendedRuby", "ExtendedRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedRuby"));
+                break;
+            case 84:
+                _unitTesting.NPCReward("ProlongedRuby", "ProlongedRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedRuby"));
+                break;
+            case 85:
+                _unitTesting.NPCReward("LastingRuby", "LastingRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingRuby"));
+                break;
+            case 86:
+                _unitTesting.NPCReward("PermanentRuby", "PermanentRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentRuby"));
+                break;
+            case 87:
+                _unitTesting.NPCReward("EternalRuby", "EternalRuby", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalRuby"));
                 break;
         }
                 
@@ -474,57 +646,217 @@ public class NPCHandler : MonoBehaviour
                 break;
             case "MomentaryRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 1;
+                RepeaterCount1 += 1;
                 break;
             case "BriefRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 2;
+                RepeaterCount1 += 2;
                 break;
             case "ShortRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 3;
+                RepeaterCount1 += 3;
                 break;
             case "TemporaryRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 5;
+                RepeaterCount1 += 5;
                 break;
             case "PassingRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 7;
+                RepeaterCount1 += 7;
                 break;
             case "InterimRepeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 10;
+                RepeaterCount1 += 10;
                 break;
             case "Repeater":
                 SetNPCMode(5, ID);
-                RepeaterCount1 = 17;
+                RepeaterCount1 += 17;
                 break;            
             case "ExtendedRepeater":
                 SetNPCMode(6, ID);
-                RepeaterCount1 = 3;
-                RepeaterCount2 = 5;
+                RepeaterCount1 += 3;
+                RepeaterCount2 += 5;
                 break;
             case "ProlongedRepeater":
                 SetNPCMode(6, ID);
-                RepeaterCount1 = 5;
-                RepeaterCount2 = 7;
+                RepeaterCount1 += 5;
+                RepeaterCount2 += 7;
                 break;
-            case "LongLastingRepeater":
+            case "LastingRepeater":
                 SetNPCMode(6, ID);
-                RepeaterCount1 = 7;
-                RepeaterCount2 = 11;
+                RepeaterCount1 += 7;
+                RepeaterCount2 += 11;
                 break;
             case "PermanentRepeater":
                 SetNPCMode(6, ID);
-                RepeaterCount1 = 11;
-                RepeaterCount2 = 13;
+                RepeaterCount1 += 11;
+                RepeaterCount2 += 13;
                 break;
             case "EternalRepeater":
                 SetNPCMode(6, ID);
-                RepeaterCount1 = 13;
-                RepeaterCount2 = 17;
+                RepeaterCount1 += 13;
+                RepeaterCount2 += 17;
                 break;
+            case "MomentaryUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 1;
+                break;
+            case "BriefUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 2;
+                break;
+            case "ShortUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 3;
+                break;
+            case "TemporaryUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 5;
+                break;
+            case "PassingUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 7;
+                break;
+            case "InterimUpgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 10;
+                break;
+            case "Upgrader":
+                SetNPCMode(7, ID);
+                UpgraderCount1 += 17;
+                break;
+            case "ExtendedUpgrader":
+                SetNPCMode(8, ID);
+                UpgraderCount1 += 3;
+                UpgraderCount2 += 5;
+                break;
+            case "ProlongedUpgrader":
+                SetNPCMode(8, ID);
+                UpgraderCount1 += 5;
+                UpgraderCount2 += 7;
+                break;
+            case "LastingUpgrader":
+                SetNPCMode(8, ID);
+                UpgraderCount1 += 7;
+                UpgraderCount2 += 11;
+                break;
+            case "PermanentUpgrader":
+                SetNPCMode(8, ID);
+                UpgraderCount1 += 11;
+                UpgraderCount2 += 13;
+                break;
+            case "EternalUpgrader":
+                SetNPCMode(8, ID);
+                UpgraderCount1 += 13;
+                UpgraderCount2 += 17;
+                break;
+            case "MomentaryGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 1;
+                break;
+            case "BriefGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 2;
+                break;
+            case "ShortGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 3;
+                break;
+            case "TemporaryGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 5;
+                break;
+            case "PassingGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 7;
+                break;
+            case "InterimGold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 10;
+                break;
+            case "Gold":
+                SetNPCMode(9, ID);
+                GoldCount1 += 17;
+                break;
+            case "ExtendedGold":
+                SetNPCMode(10, ID);
+                GoldCount1 += 3;
+                GoldCount2 += 5;
+                break;
+            case "ProlongedGold":
+                SetNPCMode(10, ID);
+                GoldCount1 += 5;
+                GoldCount2 += 7;
+                break;
+            case "LastingGold":
+                SetNPCMode(10, ID);
+                GoldCount1 += 7;
+                GoldCount2 += 11;
+                break;
+            case "PermanentGold":
+                SetNPCMode(10, ID);
+                GoldCount1 += 11;
+                GoldCount2 += 13;
+                break;
+            case "EternalGold":
+                SetNPCMode(10, ID);
+                GoldCount1 += 13;
+                GoldCount2 += 17;
+                break;
+            case "MomentaryRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 1;
+                break;
+            case "BriefRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 2;
+                break;
+            case "ShortRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 3;
+                break;
+            case "TemporaryRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 5;
+                break;
+            case "PassingRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 7;
+                break;
+            case "InterimRuby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 10;
+                break;
+            case "Ruby":
+                SetNPCMode(11, ID);
+                RubyCount1 += 17;
+                break;
+            case "ExtendedRuby":
+                SetNPCMode(12, ID);
+                RubyCount1 += 3;
+                RubyCount2 += 5;
+                break;
+            case "ProlongedRuby":
+                SetNPCMode(12, ID);
+                RubyCount1 += 5;
+                RubyCount2 += 7;
+                break;
+            case "LastingRuby":
+                SetNPCMode(12, ID);
+                RubyCount1 += 7;
+                RubyCount2 += 11;
+                break;
+            case "PermanentRuby":
+                SetNPCMode(12, ID);
+                RubyCount1 += 11;
+                RubyCount2 += 13;
+                break;
+            case "EternalRuby":
+                SetNPCMode(12, ID);
+                RubyCount1 += 13;
+                RubyCount2 += 17;
+                break;
+
         }
     
     }
@@ -706,8 +1038,7 @@ public class NPCHandler : MonoBehaviour
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
-                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's repeat some Tiles!");
                         }
                         else
                         {
@@ -718,15 +1049,33 @@ public class NPCHandler : MonoBehaviour
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
                     {
-                        if (!_gm.PlayerHandlers[key].IsKing())
+                        if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
-                            NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
+                            if (RepeaterCount1 > 0)
+                            {
+                                NPCRepeatTile();
+                                RepeaterCount1 -= 1; 
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "I'm all out of repeats! Feel free to take the throne.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
                     }
                 }
                 else if (_gm.PlayerHandlers[key].pp.ModeNPC == 6) //Double Repeaters
@@ -742,8 +1091,7 @@ public class NPCHandler : MonoBehaviour
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
-                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "AutoBid A", 15);
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's repeat some Tiles!");
                         }
                         else
                         {
@@ -754,16 +1102,383 @@ public class NPCHandler : MonoBehaviour
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
                     {
-                        if (!_gm.PlayerHandlers[key].IsKing())
+                        if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
-                            NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
+                            if (RepeaterCount2 > 0)
+                            {
+                                NPCRepeatTile();
+                                RepeaterCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Halfway through my repeats!");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 5;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 5;
                         }
-                    }                
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 7) //Single Upgraders
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Upgrade some Tiles!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (UpgraderCount1 > 0)
+                            {
+                                NPCUpgradeTile();
+                                UpgraderCount1 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "I'm all out of Upgrades! Feel free to take the throne.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 8) //Double Upgraders
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Upgrade some Tiles!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (UpgraderCount2 > 0)
+                            {
+                                NPCUpgradeTile();
+                                UpgraderCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Halfway through my Upgrades!");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 9) //Single Golds
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's gild some Tiles!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (GoldCount1 > 0)
+                            {
+                                NPCRepeatTile();
+                                GoldCount1 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "I'm all out of GoldeN Tiles! Feel free to take the throne.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Stay Golden, Folks");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 10) //Double Golds
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Gild some Tiles!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (GoldCount2 > 0)
+                            {
+                                NPCRepeatTile();
+                                GoldCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Halfway through my Golden Tiles!");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 9;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Stay Golden, Folks!.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 9;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 11) //Single Rubies
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Time for the Ruby Treatment.");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (RubyCount1 > 0)
+                            {
+                                NPCRubyTile();
+                                RubyCount1 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "I'm all out of Ruby Tiles! Feel free to take the throne.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Stay Clever, Darlings.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 12) //Double Rubyrs
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        NPCAttack(_gm.PlayerHandlers[key]);
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Time for the Ruby Treatment.");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (RubyCount2 > 0)
+                            {
+                                NPCRubyTile();
+                                RubyCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Stay Clever, Darlings.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+            }
+        }
+    }
+
+    public void PerformShopPurchases()
+    {
+        string[] keys = _gm.PlayerHandlers.Keys.ToArray();
+        foreach (string key in keys)
+        {
+            if (_gm.PlayerHandlers[key].pp.IsNPC == 1)
+            {
+                switch (UnityEngine.Random.Range(1, 4))
+                {
+                    case 1:
+                        _unitTesting.NPCCommand(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "!buy1");
+                        break;
+                    case 2:
+                        _unitTesting.NPCCommand(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "!buy2");
+                        break;
+                    case 3:
+                        _unitTesting.NPCCommand(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "!buy3");
+                        break;
                 }
             }
         }
@@ -781,6 +1496,91 @@ public class NPCHandler : MonoBehaviour
     public void NPCTradeUp(PlayerHandler ph)
     {
         ph.TradeUp();
+    }
+
+    public void NPCRepeatTile()
+    {
+        if (_tileController.getNextForcedTile() == "NotOkay")
+        {
+            return;
+        }
+
+        _tileController.doRepeatTile();
+    }
+
+    public void NPCUpgradeTile()
+    {
+        if (_tileController.getNextForcedTile() == "NotOkay")
+        {
+            return;
+        }
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
+                return;
+        }
+        else
+        {
+            if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
+                return;
+        }
+
+        _tileController.doRepeatTile();
+        _tileController.doUpgradeTile();
+    }
+    
+    public void NPCGoldenTile()
+    {
+        if (_tileController._forceGolden == true || _tileController._forceRuby == true)
+        {
+            Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+            return;
+        }
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.IsShop == true)
+                return;
+            else
+                _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+        }
+        else
+        {
+            if (_tileController.GameplayTile.IsShop == true)
+                return;
+            else
+                _tileController.GameplayTile._indicator1.SetText("💛");
+        }
+
+        _tileController._forceGolden = true;
+    }
+
+    public void NPCRubyTile()
+    {
+        if (_tileController._forceRuby == true)
+        {
+            Debug.Log("The upcoming tile is already Ruby. Please wait until the reel spins to try again.");
+            return;
+        }        
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.IsShop == true)
+                return;
+            else
+                _tileController.CurrentBiddingTile._indicator1.SetText("🔴");
+        }
+        else
+        {
+            if (_tileController.GameplayTile.IsShop == true)
+                return;
+            else
+                _tileController.GameplayTile._indicator1.SetText("🔴");
+        }
+
+        _tileController._forceGolden = false;
+        _tileController._forceRuby = true;
     }
 
     public void NPCGivePoints(string targetUsername, long desiredPointsToGive)

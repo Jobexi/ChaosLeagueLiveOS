@@ -355,7 +355,7 @@ MonoBehaviour:
   IsGameStarted: 0
   DoneWithGameplay: 0
   _obsSpawnRegion: {fileID: 0}
-  _obstaclePrefab: {fileID: 4654690557049523066, guid: 42d01dd0df1b6ca429fee6fb313e2a2b, type: 3}
+  _obstacle1Prefab: {fileID: 0}
   _deathBallPrefab: {fileID: 5588028993874766271, guid: 4b296575176a7d142bf0a61e9b6d2d6e, type: 3}
   _invalidOverlapLayers:
     serializedVersion: 2
@@ -3046,7 +3046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2491348552388521466, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Name
-      value: JBX-A3-3
+      value: A13E
       objectReference: {fileID: 0}
     - target: {fileID: 2532240964184548847, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3059,6 +3059,10 @@ PrefabInstance:
     - target: {fileID: 2647251505547869332, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935831787970909092, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3654137372104001923, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_IsActive
@@ -3091,6 +3095,10 @@ PrefabInstance:
     - target: {fileID: 7078481759589445153, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098412158018616053, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7325491386596941882, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: NoMultiply

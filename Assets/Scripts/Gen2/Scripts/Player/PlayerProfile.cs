@@ -58,6 +58,13 @@ public class PlayerProfile
     public int ModeNPC { get; set; }
     public int StateNPC { get; set; }
 
+    public int CrownTexture1 { get; set; }
+    public int CrownTexture2 { get; set; }
+    public int CrownTexture3 { get; set; }
+    public int CrownTexture4 { get; set; }
+    public int CrownTexture5 { get; set; }
+    public int CrownTexture6 { get; set; }
+
     public string[] GetInviteIds() 
     {
         if(string.IsNullOrEmpty(InvitesJSON))

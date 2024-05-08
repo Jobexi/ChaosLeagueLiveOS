@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gt: {fileID: 576390978979572706}
+  _npc: {fileID: 0}
   IsGameStarted: 0
   DoneWithGameplay: 0
   _entries:

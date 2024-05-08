@@ -27167,7 +27167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2491348552388521466, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Name
-      value: JBX-A11-2
+      value: A41R
       objectReference: {fileID: 0}
     - target: {fileID: 2532240964184548847, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -27180,6 +27180,10 @@ PrefabInstance:
     - target: {fileID: 2647251505547869332, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935831787970909092, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3654137372104001923, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_IsActive
@@ -27212,6 +27216,10 @@ PrefabInstance:
     - target: {fileID: 7078481759589445153, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098412158018616053, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7325491386596941882, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: NoMultiply

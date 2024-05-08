@@ -21,6 +21,7 @@ public enum PBEffect
 public class PBEffector : MonoBehaviour, TravelingIndicatorIO
 {
     [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer _meshRenderer2;
     [SerializeField] private TextMeshPro _textLabel;
     //[SerializeField] private PBDetector _pbDetector;
     [SerializeField] private PBEffect _effect;
@@ -86,7 +87,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
 
     public void Init(PBEffect effect, int value, int maxHp = -1)
     {
-        gameObject.SetActive(true); 
+        gameObject.SetActive(true);
 
         SetEffect(effect, false); 
         SetCurrValue(value, false);
@@ -205,7 +206,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
         (Color meshColor, Color _labelColor) = _colorMap.GetColors((long)GetZoneMultiplyAppliedValue(), _effect);
         if (_colorByValue)
         {
-            if (_effect.HasFlag(PBEffect.Explode) && ! _effect.HasFlag(PBEffect.Add))
+            if (_effect.HasFlag(PBEffect.Explode) && !_effect.HasFlag(PBEffect.Add))
             {
                 meshColor = Color.grey;
             }
@@ -241,6 +242,9 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             //Debug.Log($"Setting matPropBlock to {meshColor.ColorToHexString()} in {this.name}"); 
             _materialPropertyBlock.SetColor("_MyBaseColor", meshColor);
             _meshRenderer.SetPropertyBlock(_materialPropertyBlock);
+
+            if (_meshRenderer2 != null)
+                _meshRenderer2.SetPropertyBlock(_materialPropertyBlock);
             _textLabel.color = _labelColor;
         }
 
@@ -260,7 +264,8 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             return;
 
         _materialPropertyBlock.SetColor("_MyBaseColor", meshColor.WithAlpha(CurrentHP / (float)_maxHP));
-        _meshRenderer.SetPropertyBlock(_materialPropertyBlock);
+        if (_meshRenderer2 != null)
+            _meshRenderer2.SetPropertyBlock(_materialPropertyBlock);
     }
 
     public Color GetMeshColor()

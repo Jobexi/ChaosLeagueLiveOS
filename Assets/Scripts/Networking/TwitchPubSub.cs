@@ -161,8 +161,10 @@ public class TwitchPubSub : MonoBehaviour
             if (bitsInMessage >= 500)
                 StartCoroutine(_rebellionController.CreateRoyalCelebration(ph, bitsInMessage, rawMsg));
             else
+            {
                 Debug.Log("A Royal Celebration requires minimum of 500 bits.");
-            _twitchClient.PingReplyPlayer(twitchUsername, "A Royal Celebration requires minimum of 500 bits. Each 100 bits in message increases celebration duration by 1 tile.");
+                _twitchClient.PingReplyPlayer(twitchUsername, "A Royal Celebration requires minimum of 500 bits. Each 100 bits in message increases celebration duration by 1 tile.");
+            }
 
         }
         else
@@ -170,8 +172,10 @@ public class TwitchPubSub : MonoBehaviour
             if (bitsInMessage >= 200)
                 StartCoroutine(_rebellionController.CreateRebellion(ph, bitsInMessage, rawMsg));
             else
+            {
                 Debug.Log("Rebellion requires minimum of 200 bits. Each 100 bits in message increases multiplier by 1.");
-            _twitchClient.PingReplyPlayer(twitchUsername, "Rebellion requires minimum of 200 bits. Each 100 bits in message increases multiplier by 1.");
+                _twitchClient.PingReplyPlayer(twitchUsername, "Rebellion requires minimum of 200 bits. Each 100 bits in message increases multiplier by 1.");
+            }
         }                
 
         _ticketHandler.BidRedemption(ph, bitsInMessage, BidType.Bits);
