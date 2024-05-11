@@ -437,8 +437,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     }
     public void TomatoPoints(long amount, bool canKill, bool createTextPopup, bool contributeToROI = true)
     {
-        if (pp.ShieldValue > Convert.ToInt32(amount))
-            pp.ShieldValue -= Convert.ToInt32(amount);
+        if (pp.ShieldValue > (int)amount)
+            pp.ShieldValue -= (int)amount;
         else
         {
             amount -= pp.ShieldValue;
@@ -540,28 +540,28 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
     }
 
-    public void SellCurrency(int amount, string currencyType)
+    public void SellCurrency(long amount, string currencyType)
     {
         Debug.Log($"{amount} {currencyType}");
 
         if (currencyType == "Sapphire")
         {
-            pp.SessionScore += amount * 970000000;
-            pp.Sapphires -= amount;
+            pp.SessionScore += (amount * 970000000);
+            pp.Sapphires -= (int)amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.blue);            
             Debug.Log($"Sapphires {amount}");
         }
         else if (currencyType == "Emerald")
         {
-            pp.SessionScore += amount * 970000000000;
-            pp.Emeralds -= amount;
+            pp.SessionScore += (amount * 970000000000);
+            pp.Emeralds -= (int)amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
             Debug.Log($"Emeralds {amount}");
         }
         else if (currencyType == "Diamond")
         {
-            pp.SessionScore += amount * 970000000000000;
-            pp.Diamonds -= amount;
+            pp.SessionScore += (amount * 970000000000000);
+            pp.Diamonds -= (int)amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
             Debug.Log($"Diamonds {amount}");
         }
@@ -574,42 +574,61 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
     public void TradeUp()
     {
+        long score = pp.SessionScore;
+        int sapphires = pp.Sapphires;
+        int emeralds = pp.Emeralds;
+        int diamonds = pp.Diamonds;
+        int rubies = pp.Rubies;
 
-        while (pp.SessionScore >= 1000000000000000)
+        while (score >= 1000000000000000000)
         {
-            pp.SessionScore -= 1000000000000000;
-            pp.Diamonds += 1;
+            score -= 1000000000000000000;
+            rubies += 1;
         }
 
-        while (pp.SessionScore >= 1000000000000)
+        while (score >= 1000000000000000)
         {
-            pp.SessionScore -= 1000000000000;
-            pp.Emeralds += 1;
+            score -= 1000000000000000;
+            diamonds += 1;
         }
 
-        while (pp.SessionScore >= 1000000000)
+        while (score >= 1000000000000)
         {
-            pp.SessionScore -= 1000000000;
-            pp.Sapphires += 1;
+            score -= 1000000000000;
+            emeralds += 1;
+        }
+
+        while (score >= 1000000000)
+        {
+            score -= 1000000000;
+            sapphires += 1;
         }       
 
-        while (pp.Sapphires >= 1000)
+        while (sapphires >= 1000)
         {
-            pp.Sapphires -= 1000;
-            pp.Emeralds += 1;
+            sapphires -= 1000;
+            emeralds += 1;
          }
 
         while (pp.Emeralds >= 1000)
         {
-            pp.Emeralds -= 1000;
-            pp.Diamonds += 1;
+            emeralds -= 1000;
+            diamonds += 1;
         }
 
-        while (pp.Diamonds >= 1000)
+        while (diamonds >= 1000)
         {
-            pp.Diamonds -= 1000;
-            pp.Rubies += 1;
-        }       
+            diamonds -= 1000;
+            rubies += 1;
+        }
+
+        pp.SessionScore = score;
+        pp.Sapphires = sapphires;
+        pp.Emeralds = emeralds;
+        pp.Diamonds = diamonds;
+        pp.Rubies = rubies;
+
+        UpdateBallPointsText();
 
         if (State == PlayerHandlerState.King)
             _gm.GetKingController().UpdateGoldText();
@@ -655,8 +674,13 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     }
     public void AddPoints(long points, bool createTextPopup, Vector3 textPopupDirection,  bool contributeToROI = true, bool doInviteBonus = true)
     {
+        if (points > (long)5000000000000000000)
+        {
+            points = (long)5000000000000000000;
+        }            
+        
         if ((ulong)points > (ulong)5000000000000000000 - (ulong)pp.SessionScore)
-            points = (long)pp.SessionScore - (long)5000000000000000000;
+            TradeUp();
 
         pp.SessionScore += points;
 
@@ -666,7 +690,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         {
             pp.SessionScore -= 1000000000000000000;
             pp.Rubies += 1;
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+" + MyUtil.AbbreviateNum4Char(1), Color.red);
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+1 Ruby", Color.red);
         }
 
         if (doInviteBonus)
@@ -702,7 +726,12 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         long prevScore = pp.SessionScore;
 
         if ((ulong)prevScore * (ulong)multiplier > (ulong)5000000000000000000)
-            pp.SessionScore = (long)5000000000000000000;
+        {
+            TradeUp();
+            pp.SessionScore = 0;
+            pp.Rubies += 5;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+5 Rubies", Color.red);
+        }
         else
             pp.SessionScore = (long)(pp.SessionScore * multiplier);
 

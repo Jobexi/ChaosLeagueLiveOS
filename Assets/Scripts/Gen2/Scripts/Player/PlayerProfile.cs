@@ -54,7 +54,7 @@ public class PlayerProfile
 
     public int RiskSkips { get; set; }
 
-    public int IsNPC { get; set; }
+    public bool IsNPC { get; set; }
     public int ModeNPC { get; set; }
     public int StateNPC { get; set; }
 
@@ -64,6 +64,7 @@ public class PlayerProfile
     public int CrownTexture4 { get; set; }
     public int CrownTexture5 { get; set; }
     public int CrownTexture6 { get; set; }
+    public bool EnhancedCrown { get; set; }
 
     public string[] GetInviteIds() 
     {

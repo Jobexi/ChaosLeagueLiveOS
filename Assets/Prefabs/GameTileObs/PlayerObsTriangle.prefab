@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
-  _trigger2DDetection: 1
+  _trigger2DDetection: 0
   _collisionStayDetection: 0
   OnPbDetected:
     m_PersistentCalls:
@@ -427,7 +427,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 8118918442580219897}
   _textLabel: {fileID: 6008714561230248109}
   _effect: 1
-  _value: 5
+  _value: 500
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0

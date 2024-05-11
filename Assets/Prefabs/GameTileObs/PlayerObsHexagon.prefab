@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 1716081079746492076}
+  _meshRenderer2: {fileID: 0}
   _textLabel: {fileID: 6008714561230248109}
   _effect: 1
   _value: 5
@@ -466,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collision2DDetection: 1
-  _trigger2DDetection: 1
+  _trigger2DDetection: 0
   _collisionStayDetection: 0
   OnPbDetected:
     m_PersistentCalls:

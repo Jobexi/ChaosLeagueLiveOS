@@ -35,9 +35,10 @@ public class MythicCrownShopEntry : ShopEntry
         string json = CrownSerializer.GetJSONFromColorList(colors); 
         Debug.Log($"Setting {pb.Ph.pp.TwitchUsername} player JSON: {json}");
         pb.Ph.pp.CrownJSON = json;
-
+        
         pb.Ph.pp.CrownTexture1 = _crown.Texture1;
         pb.Ph.pp.CrownTexture2 = _crown.Texture2;
+        pb.Ph.pp.EnhancedCrown = _crown.Enhanced;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture3;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture4;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture5;

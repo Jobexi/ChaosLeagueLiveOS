@@ -5828,6 +5828,7 @@ MonoBehaviour:
   IsRuby: 0
   IsShop: 0
   IsRisk: 0
+  BuyingActive: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
   _contactWarp: {fileID: 2221752522102408061}

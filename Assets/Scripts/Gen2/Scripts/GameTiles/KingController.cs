@@ -93,18 +93,25 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         //_myCameraController.KingFocusCameraMove(); 
 
-        CleanupCurrentKing();
-
-        _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+        CleanupCurrentKing();        
 
         var Txtr1 = pb.Ph.pp.CrownTexture1;
         var Txtr2 = pb.Ph.pp.CrownTexture2;
 
         var BaseMaterials = _crown._crownMeshRenderer.materials;
         var DesiredMaterials = _crown.EnhancedMaterials;
+
+        if (pb.Ph.pp.EnhancedCrown == false)
+        {
+            Txtr1 = 0;
+            Txtr2 = 1;
+        }
+
         BaseMaterials[0] = DesiredMaterials[Txtr1];
         BaseMaterials[1] = DesiredMaterials[Txtr2];
         _crown._crownMeshRenderer.materials = BaseMaterials;
+
+        _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1; 

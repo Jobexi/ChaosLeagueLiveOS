@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GOLD
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f7b18bed852c4042bb823446392e20a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -318,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2f7b18bed852c4042bb823446392e20a, type: 3}
       propertyPath: m_Name
       value: Still More Gems
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f7b18bed852c4042bb823446392e20a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -457,6 +465,8 @@ MonoBehaviour:
   _fifthMeshRenderer: {fileID: 1313577556977282876}
   _sixthMeshRenderer: {fileID: 1395116713318148642}
   EnhancedMaterials:
+  - {fileID: 2100000, guid: 3de04e75388f21f4b81cd84b6eb7a328, type: 2}
+  - {fileID: 2100000, guid: b14029de141b6dd4bae3db5b93eb26a9, type: 2}
   - {fileID: 2100000, guid: e1ebe977ab1c6304588f610a44ee0973, type: 2}
   - {fileID: -876546973899608171, guid: 7d4325b87a4d0cb428b7a516dff2e378, type: 3}
   - {fileID: 2100000, guid: 3f5acc635c55f874fa03802569f162d8, type: 2}
@@ -584,10 +594,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0bfaecb307fda7140b197dd1f6faae58, type: 2}
   _defaultCrownBase: {r: 1, g: 0.8454077, b: 0, a: 1}
   _TestRandomColors: 0
-  _testColorCount: 0
-  _t3Intensity: 0
+  _testColorCount: 3
+  _t3Intensity: 5
   Texture1: 0
   Texture2: 0
+  Enhanced: 0
 --- !u!4 &1744499002876333638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 39f3caa976c72f947b15a6166242e4d8, type: 3}
@@ -689,6 +700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crownGems
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebf07c0d52ce3114c80c52f2fb45afec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2438656852951536746, guid: ebf07c0d52ce3114c80c52f2fb45afec, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
@@ -783,6 +798,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2f7b18bed852c4042bb823446392e20a, type: 3}
       propertyPath: m_Name
       value: More Gems
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f7b18bed852c4042bb823446392e20a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

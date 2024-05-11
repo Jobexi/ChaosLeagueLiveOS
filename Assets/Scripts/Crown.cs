@@ -26,10 +26,11 @@ public class Crown : MonoBehaviour
     private MaterialPropertyBlock _trimPropBlock;
     private MaterialPropertyBlock _gemsPropBlock;
 
-    private int TotalTextures = 125;
+    private int TotalTextures = 127;
 
     public int Texture1 = 0;
     public int Texture2 = 0;
+    public bool Enhanced = false;
 
     private void Awake()
     {
@@ -82,6 +83,7 @@ public class Crown : MonoBehaviour
         {
             SetBaseColor(_defaultCrownBase, 0);
             SetTrimColor(_defaultCrownBase, 0);
+            return;
         }
         //If 1 colors set, set the trim the same
         else if (colors.Count == 1)
@@ -89,13 +91,10 @@ public class Crown : MonoBehaviour
             SetBaseColor(colors.First(), 0);
             SetTrimColor(colors.First(), 0);
             return;
-
-
         }
         //If 2 colors set, set the trim different
         else if (colors.Count == 2)
         {
-
             SetBaseColor(colors[0], 0);
             SetTrimColor(colors[1], 0);
             return;
@@ -179,7 +178,7 @@ public class Crown : MonoBehaviour
         _fifthMeshRenderer.gameObject.SetActive(false);
         _sixthMeshRenderer.gameObject.SetActive(false);
 
-        int Txtr1 = UnityEngine.Random.Range(0, TotalTextures);
+        int Txtr1 = UnityEngine.Random.Range(2, TotalTextures);
 
         //If T1
         if (tier == 1)
@@ -192,6 +191,7 @@ public class Crown : MonoBehaviour
             _crownMeshRenderer.materials = BaseMaterials;
             Texture1 = Txtr1;
             Texture2 = Txtr1;
+            Enhanced = true;
             return;
         }
         //If T1

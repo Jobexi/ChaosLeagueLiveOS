@@ -469,7 +469,7 @@ public class TileController : MonoBehaviour
     public static void CheckRarityEvent()
     {
 
-        if (AppConfig.Monday)
+        if (AppConfig.Wednesday)
         {
         //    _commonRarity = .1f;
             _rareRarity = .15f;

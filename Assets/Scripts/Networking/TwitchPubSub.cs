@@ -113,6 +113,11 @@ public class TwitchPubSub : MonoBehaviour
             ph.pp.AutoBidRemainder += 2000;
             _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
         }
+        else if (rewardTitle.StartsWith("AutoBid D"))
+        {
+            ph.pp.AutoBidRemainder += 25;
+            _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
+        }
         else
             _ticketHandler.BidRedemption(ph, cost, BidType.ChannelPoints, redemptionID, rewardID);
 

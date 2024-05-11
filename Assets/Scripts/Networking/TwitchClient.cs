@@ -715,13 +715,26 @@ public class TwitchClient : MonoBehaviour
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
                     return;
                 }
+                if (_tileController.GameplayTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");
+                    return;
+                }
             }
             else
-                    if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
             {
-                Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
-                return;
+                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
+                {
+                    Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    return;
+                }
+                if (_tileController.CurrentBiddingTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");
+                    return;
+                }
+
             }
         
         
@@ -744,7 +757,7 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.Gold < 200000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 75k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 200k Gold.");
                 return;
             }
 
@@ -796,7 +809,7 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.Gold < 1000000)
             {
                 Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Golden costs 150k Gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Ugrading this tile to Ruby costs 1M Gold.");
                 return;
             }
 

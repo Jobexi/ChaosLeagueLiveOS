@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileIDNum: 11
-  _game: {fileID: 4698549648271465149}
+  _game: {fileID: 6859263830871854724}
   _suddenDeath: {fileID: 5730016290015712890}
   _cleaningBarController: {fileID: 1019565598144807268}
   _releaseBar: {fileID: 0}
@@ -158,6 +158,8 @@ MonoBehaviour:
   _rarityText: {fileID: 8254749140686983649}
   _timerText: {fileID: 5539784245564679627}
   _ticketBonusAmountText: {fileID: 8487335979771451490}
+  _indicator1: {fileID: 0}
+  _indicator2: {fileID: 0}
   TicketBonusAmount: 0
   TileState: 0
   RarityType: 3
@@ -165,6 +167,8 @@ MonoBehaviour:
   IsGolden: 0
   IsRuby: 0
   IsShop: 1
+  IsRisk: 0
+  BuyingActive: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
   _contactWarp: {fileID: 9203212186113610731}
@@ -6399,6 +6403,8 @@ MonoBehaviour:
   - {fileID: 6679917625849291240}
   - {fileID: 7606322774641375258}
   _spinSpeed: 0.01
+  _Golds: {fileID: 0}
+  _Rubys: {fileID: 0}
 --- !u!120 &2805503991266676028
 LineRenderer:
   serializedVersion: 2
@@ -12192,7 +12198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4932921228893366918}
-  - component: {fileID: 4698549648271465149}
+  - component: {fileID: 6859263830871854724}
   m_Layer: 0
   m_Name: CrownShopScript
   m_TagString: Untagged
@@ -12215,7 +12221,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2439596301055337880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4698549648271465149
+--- !u!114 &6859263830871854724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12224,7 +12230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8801980834195699149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23cad964ff60f241be703244764a7a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 65b56020880b22e4a9f1eead83cc0f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gt: {fileID: 461252091043616422}
@@ -12354,14 +12360,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5364883651450901770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f40e673661fef4584963d60d139c3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 598140b07e881cd4c897036349aa1cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entryBackground: {fileID: 679960765597308994}
-  DisplayBackground: {fileID: 6431170447210634766}
+  _entryBackground: {fileID: 5389620611593953799}
+  DisplayBackground: {fileID: 3627540912003587500}
   _buyCommandText: {fileID: 1469042125514018170}
   _goldCostText: {fileID: 6187254384561468636}
-  GoldCost: 0
+  GoldCost: 2500000
   _crown: {fileID: 496994949881754717}
   BuyCommands:
   - '!buy1'
@@ -12706,14 +12712,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 709201024581578575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f40e673661fef4584963d60d139c3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 598140b07e881cd4c897036349aa1cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entryBackground: {fileID: 2439896754489860517}
+  _entryBackground: {fileID: 679960765597308994}
   DisplayBackground: {fileID: 8211169259492255721}
   _buyCommandText: {fileID: 6325136167601059647}
   _goldCostText: {fileID: 1619599072254791321}
-  GoldCost: 0
+  GoldCost: 10000000
   _crown: {fileID: 4990513492652084760}
   BuyCommands:
   - '!buy3'
@@ -12843,14 +12849,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2406157014680557224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f40e673661fef4584963d60d139c3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 598140b07e881cd4c897036349aa1cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entryBackground: {fileID: 5389620611593953799}
-  DisplayBackground: {fileID: 3627540912003587500}
+  _entryBackground: {fileID: 2439896754489860517}
+  DisplayBackground: {fileID: 6431170447210634766}
   _buyCommandText: {fileID: 9184124180713983704}
   _goldCostText: {fileID: 4524443460292507518}
-  GoldCost: 0
+  GoldCost: 5000000
   _crown: {fileID: 7922438717192288255}
   BuyCommands:
   - '!buy2'

@@ -570,27 +570,26 @@ public class GameManager : MonoBehaviour
     public void UpdateDay(string day, string customday = "Hoopty!")
     {
         Debug.Log($"{day}");
-        
+
         if (day == "Tuesday")
         {
             AppConfig.Monday = false;
-            AppConfig.Tuesday = true;
-            TileController.CheckRarityEvent();
+            AppConfig.Tuesday = true;            
             _event1Text.SetText("New Build Tuesday");
         }
         else if (day == "Wednesday")
         {
             AppConfig.Tuesday = false;
             AppConfig.Wednesday = true;
-            _event1Text.SetText("Wildcard Wednesday");
-
+            TileController.CheckRarityEvent();
+            _event1Text.SetText("Wild Wednesday");
         }
         else if (day == "Thursday")
         {
             AppConfig.Wednesday = false;
             AppConfig.Thursday = true;
-            _event1Text.SetText("Throwback Thursday");
-
+            TileController.CheckRarityEvent();
+            _event1Text.SetText("Thursday");
         }
         else if (day == "Friday")
         {
@@ -604,8 +603,7 @@ public class GameManager : MonoBehaviour
         {
             AppConfig.Friday = false;
             AppConfig.Saturday = true;
-            Debug.Log($"Friday = {AppConfig.Friday}");
-            _event1Text.SetText("Standard Saturday");
+            _event1Text.SetText("Saturday");
 
         }
         else if (day == "Sunday")
@@ -615,18 +613,14 @@ public class GameManager : MonoBehaviour
             AppConfig.Saturday = false;
             AppConfig.Sunday = true;
             AppConfig.CheckHappyHour();
-            Debug.Log($"Sunday = {AppConfig.Sunday}");
         }
         else if (day == "Monday")
         {
-            _event1Text.SetText("Monday Mania");
+            _event1Text.SetText("Machine Monday");
 
             AppConfig.Sunday = false;
             AppConfig.Monday = true;
             AppConfig.CheckHappyHour();
-            TileController.CheckRarityEvent();
-            Debug.Log($"Sunday = {AppConfig.Sunday}");
-            Debug.Log($"Monday = {AppConfig.Monday}");
         }
         else if (day == "Custom")
         {

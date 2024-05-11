@@ -21,7 +21,6 @@ public enum PBEffect
 public class PBEffector : MonoBehaviour, TravelingIndicatorIO
 {
     [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private MeshRenderer _meshRenderer2;
     [SerializeField] private TextMeshPro _textLabel;
     //[SerializeField] private PBDetector _pbDetector;
     [SerializeField] private PBEffect _effect;
@@ -242,9 +241,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             //Debug.Log($"Setting matPropBlock to {meshColor.ColorToHexString()} in {this.name}"); 
             _materialPropertyBlock.SetColor("_MyBaseColor", meshColor);
             _meshRenderer.SetPropertyBlock(_materialPropertyBlock);
-
-            if (_meshRenderer2 != null)
-                _meshRenderer2.SetPropertyBlock(_materialPropertyBlock);
+                        
             _textLabel.color = _labelColor;
         }
 
@@ -264,8 +261,6 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             return;
 
         _materialPropertyBlock.SetColor("_MyBaseColor", meshColor.WithAlpha(CurrentHP / (float)_maxHP));
-        if (_meshRenderer2 != null)
-            _meshRenderer2.SetPropertyBlock(_materialPropertyBlock);
     }
 
     public Color GetMeshColor()
