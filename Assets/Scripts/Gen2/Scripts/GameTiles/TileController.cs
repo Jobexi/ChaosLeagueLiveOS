@@ -248,6 +248,20 @@ public class TileController : MonoBehaviour
             rarity = RarityType.Ethereal;
         else if (rarity == RarityType.Ethereal)
             rarity = RarityType.Cosmic;
+        else if (rarity == RarityType.Cosmic)
+            rarity = RarityType.Common3d;
+        else if(rarity == RarityType.Common3d)
+            rarity = RarityType.Rare3d;
+        else if (rarity == RarityType.Rare3d)
+            rarity = RarityType.Epic3d;
+        else if (rarity == RarityType.Epic3d)
+            rarity = RarityType.Legendary3d;
+        else if (rarity == RarityType.Legendary3d)
+            rarity = RarityType.Mythic3d;
+        else if (rarity == RarityType.Mythic3d)
+            rarity = RarityType.Ethereal3d;
+        else if (rarity == RarityType.Ethereal3d)
+            rarity = RarityType.Cosmic3d;
 
         _forceThisRarity = rarity;
 
@@ -527,8 +541,23 @@ public class TileController : MonoBehaviour
             tile.SetRarity(RarityType.Mythic, _mythicStartColor, _mythicEndColor, _mythicTrimColor);
         else if (rarity == RarityType.Ethereal)
             tile.SetRarity(RarityType.Ethereal, _etherealStartColor, _etherealEndColor, _etherealTrimColor);
-        else
+        else if (rarity == RarityType.Cosmic)
             tile.SetRarity(RarityType.Cosmic, _cosmicStartColor, _cosmicEndColor, _cosmicTrimColor);
+        else if (rarity == RarityType.Common3d)
+            tile.SetRarity(RarityType.Common3d, _commonStartColor, _commonEndColor, _commonTrimColor);
+        else if (rarity == RarityType.Rare3d)
+            tile.SetRarity(RarityType.Rare3d, _rareStartColor, _rareEndColor, _rareTrimColor);
+        else if (rarity == RarityType.Epic3d)
+            tile.SetRarity(RarityType.Epic3d, _epicStartColor, _epicEndColor, _epicTrimColor);
+        else if (rarity == RarityType.Legendary3d)
+            tile.SetRarity(RarityType.Legendary3d, _legendaryStartColor, _legendaryEndColor, _legendaryTrimColor);
+        else if (rarity == RarityType.Mythic3d)
+            tile.SetRarity(RarityType.Mythic3d, _mythicStartColor, _mythicEndColor, _mythicTrimColor);
+        else if (rarity == RarityType.Ethereal3d)
+            tile.SetRarity(RarityType.Ethereal3d, _etherealStartColor, _etherealEndColor, _etherealTrimColor);
+        else if (rarity == RarityType.Cosmic3d)
+            tile.SetRarity(RarityType.Cosmic3d, _cosmicStartColor, _cosmicEndColor, _cosmicTrimColor);
+
         return tile;
     }
 

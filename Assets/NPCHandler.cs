@@ -1591,11 +1591,15 @@ public class NPCHandler : MonoBehaviour
 
         if (_tileController.GameplayTile == null)
         {
+            if (_tileController.CurrentBiddingTile.IsShop == true)
+                return;
             if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
                 return;
         }
         else
         {
+            if (_tileController.GameplayTile.IsShop == true)
+                return;
             if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
                 return;
         }

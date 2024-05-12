@@ -679,6 +679,37 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
+            if (_tileController.GameplayTile != null)
+            {
+                if (_tileController.CurrentBiddingTile.IsRuby)
+                {
+                    Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
+                    return;
+                }
+                else if (_tileController.CurrentBiddingTile.IsGolden)
+                {
+                    Debug.Log("Golden Tiles cannot be Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Golden Tiles cannot be Repeated.");
+                    return;
+                }
+            }
+            else
+            {
+                if (_tileController.GameplayTile.IsRuby)
+                {
+                    Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
+                    return;
+                }
+                else if (_tileController.GameplayTile.IsGolden)
+                {
+                    Debug.Log("Golden Tiles cannot be Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Golden Tiles cannot be Repeated.");
+                    return;
+                }
+            }
+
             ph.pp.Gold -= 50000;
             _tileController.doRepeatTile();
         }
@@ -707,13 +738,28 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You or another player have already repeated or upgraded this tile. Please wait until it rolls around again.");
                 return;
             }
+
             if (_tileController.GameplayTile != null)
             {
                 if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
                 {
-                    Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    if (_tileController.GameplayTile.HasBackground == false)
+                    {
+                        Debug.Log("Tiles without backgrounds cannot be upgraded beyond Cosmic at this time. Please use !repeatTile to see it come around again. :)");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background. Tiles without backgrounds cannot be upgraded beyond Cosmic at this time. Please use !repeatTile to see it come around again. :)");
+                        return;
+                    }
+                }
+                else if (_tileController.GameplayTile.IsRuby)
+                {
+                    Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
+                }
+                else if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic3d)
+                {
+                    Debug.Log("This tile is already Cosmic3d and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic3d and cannot be upgraded. Please use !repeatTile to see it come around again.");
                 }
                 if (_tileController.GameplayTile.IsShop == true)
                 {
@@ -725,19 +771,31 @@ public class TwitchClient : MonoBehaviour
             {
                 if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
                 {
-                    Debug.Log("This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
+
+                    if (_tileController.CurrentBiddingTile.HasBackground == false)
+                    {
+                        Debug.Log("Tiles without backgrounds cannot be upgraded beyond Cosmic at this time. Please use !repeatTile to see it come around again. :)");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background. Tiles without backgrounds cannot be upgraded beyond Cosmic at this time. Please use !repeatTile to see it come around again. :)");
+                        return;
+                    }
+                }
+                else if (_tileController.GameplayTile.IsRuby)
+                {
+                    Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
+                }
+                else if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic3d)
+                {
+                    Debug.Log("This tile is already Cosmic3d and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already Cosmic3d and cannot be upgraded. Please use !repeatTile to see it come around again.");
                 }
                 if (_tileController.CurrentBiddingTile.IsShop == true)
                 {
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");
                     return;
                 }
-
             }
-        
-        
             ph.pp.Gold -= 75000;
             _tileController.doRepeatTile();
             _tileController.doUpgradeTile();
@@ -768,7 +826,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            
+
 
             if (_tileController.GameplayTile == null)
             {
@@ -818,7 +876,7 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("The upcoming tile is already Ruby. Please wait until the reel spins to try again.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
                 return;
-            }                      
+            }
 
             if (_tileController.GameplayTile == null)
             {

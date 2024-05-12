@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic }
+public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, Common3d, Rare3d, Epic3d, Legendary3d, Mythic3d, Ethereal3d, Cosmic3d }
 public enum DurationTYpe { Timer, Manual }
 public enum Side { Left, Center, Right}
 public enum TileState { Inactive, LockedInPos, Bidding, Gameplay}
@@ -18,7 +18,7 @@ public class GameTile : MonoBehaviour
     private TileController _tc;
     public int TileIDNum;
     [SerializeField] private Game _game;
-    [SerializeField] private SuddenDeath _suddenDeath; 
+    [SerializeField] private SuddenDeath _suddenDeath;
     [SerializeField] private CleaningBarController _cleaningBarController;
     [SerializeField] private Transform _releaseBar;
     [SerializeField] private TextMeshPro _tileNameText;
@@ -36,14 +36,17 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsRuby; //0.01% chance
     [SerializeField] public bool IsShop;
     [SerializeField] public bool IsRisk;
+    [SerializeField] public bool HasBackground;
     [SerializeField] public bool BuyingActive;
     [SerializeField] private CycleMode _cycleMode;
     [SerializeField] private bool _updateCycleModeButton;
-    [SerializeField] private ContactWarp _contactWarp; 
+    [SerializeField] private ContactWarp _contactWarp;
 
     [SerializeField] private Transform _resetablesRoot;
 
     [SerializeField] private MeshRenderer _background;
+    [SerializeField] private List<Material> _bgOptions;
+    [SerializeField] private List<Material> _bgOptions3d;
 
     [SerializeField] private int _tileDurationS;
 
@@ -53,17 +56,17 @@ public class GameTile : MonoBehaviour
     [SerializeField] public int MaxAuctionSlots;
     [Range(0, 8)]
     [SerializeField] public int RaffleSlots;
-    [SerializeField] public int AuctionDuration = 60; 
+    [SerializeField] public int AuctionDuration = 60;
 
     [SerializeField] private bool finishTileButton;
     [SerializeField] public PipeReleaser EntrancePipe;
     [SerializeField] private GoldenVisuals _goldenVisuals;
-    [SerializeField] private List<MeshRenderer> _colorTrimsByRarity; 
+    [SerializeField] private List<MeshRenderer> _colorTrimsByRarity;
 
     public List<PlayerHandler> ConveyorBelt = new List<PlayerHandler>();
 
-    private bool _forceEndGameplay = false; 
-    private float _tileGameplayTimeElapsed = 0; 
+    private bool _forceEndGameplay = false;
+    private float _tileGameplayTimeElapsed = 0;
     private float _timer;
 
     static public int GoldenSpids;
@@ -75,7 +78,7 @@ public class GameTile : MonoBehaviour
 
     [SerializeField] [HideInInspector] private Color _backgroundStartColor;
     [SerializeField] [HideInInspector] private Color _backgroundEndColor;
-    [SerializeField][HideInInspector] private Color _trimColor;
+    [SerializeField] [HideInInspector] private Color _trimColor;
 
     public PBEffector[] Effectors;
 
@@ -88,13 +91,13 @@ public class GameTile : MonoBehaviour
 
     [Header("Wait for All Players Released Before Starting Game")]
     [SerializeField] private bool _waitForAll = true;
-    [SerializeField] private bool _waitForAllDead = false; 
+    [SerializeField] private bool _waitForAllDead = false;
 
     //private int _playersReleased = 0;
 
     private DateTime _tileStartTime;
     private long _playerPointsSumStart;
-       
+
     private void Awake()
     {
         _mpb = new MaterialPropertyBlock();
@@ -111,12 +114,14 @@ public class GameTile : MonoBehaviour
         foreach (var meshRenderer in _colorTrimsByRarity)
             meshRenderer.SetPropertyBlock(_trimMpb);
 
-/*        foreach (var resetable in _resetablesRoot.GetComponentsInChildren<IResetable>())
-            resetable.MyReset();*/
+        SetBackground();
+
+        /*        foreach (var resetable in _resetablesRoot.GetComponentsInChildren<IResetable>())
+                    resetable.MyReset();*/
 
         Effectors = GetComponentsInChildren<PBEffector>();
 
-        _tileNameText.SetText(gameObject.name.Replace("(Clone)",""));
+        _tileNameText.SetText(gameObject.name.Replace("(Clone)", ""));
     }
 
     public void SetRarity(RarityType rarityType, Color backgroundStartColor, Color backgroundEndColor, Color trimColor)
@@ -129,6 +134,61 @@ public class GameTile : MonoBehaviour
         _backgroundEndColor = backgroundEndColor;
         _trimColor = trimColor;
 
+    }
+
+    public void SetBackground()
+    {
+        var BaseMaterials = _background.materials;
+        var DesiredMaterials = _bgOptions;
+        var Materials3d = _bgOptions3d;
+
+        switch (GetRarity())
+        {
+            case RarityType.Common:
+                BaseMaterials[0] = DesiredMaterials[0];
+                break;
+            case RarityType.Rare:
+                BaseMaterials[0] = DesiredMaterials[1];
+                break;
+            case RarityType.Epic:
+                BaseMaterials[0] = DesiredMaterials[2];
+                break;
+            case RarityType.Legendary:
+                BaseMaterials[0] = DesiredMaterials[3];
+                break;
+            case RarityType.Mythic:
+                BaseMaterials[0] = DesiredMaterials[4];
+                break;
+            case RarityType.Ethereal:
+                BaseMaterials[0] = DesiredMaterials[5];
+                break;
+            case RarityType.Cosmic:
+                BaseMaterials[0] = DesiredMaterials[6];
+                break;
+            case RarityType.Common3d:
+                BaseMaterials[0] = Materials3d[0];
+                break;
+            case RarityType.Rare3d:
+                BaseMaterials[0] = Materials3d[1];
+                break;
+            case RarityType.Epic3d:
+                BaseMaterials[0] = Materials3d[2];
+                break;
+            case RarityType.Legendary3d:
+                BaseMaterials[0] = Materials3d[3];
+                break;
+            case RarityType.Mythic3d:
+                BaseMaterials[0] = Materials3d[4];
+                break;
+            case RarityType.Ethereal3d:
+                BaseMaterials[0] = Materials3d[5];
+                break;
+            case RarityType.Cosmic3d:
+                BaseMaterials[0] = Materials3d[6];
+                break;
+        }
+
+        _background.materials = BaseMaterials;
     }
 
     public RarityType GetRarity()
@@ -254,6 +314,7 @@ public class GameTile : MonoBehaviour
         foreach (var meshRenderer in _colorTrimsByRarity)
             meshRenderer.SetPropertyBlock(_trimMpb);
 
+        SetBackground();
         //SetBackgroundShader(0);
         UpdateTileTimer();
 

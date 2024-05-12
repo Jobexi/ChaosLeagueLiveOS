@@ -193,6 +193,10 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
                 coinValue = 1000;
             if (totalGold > 1000000)
                 coinValue = 10000;
+            if (totalGold > 10000000)
+                coinValue = 100000;
+            if (totalGold > 100000000)
+                coinValue = 1000000;
 
             float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
             float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;

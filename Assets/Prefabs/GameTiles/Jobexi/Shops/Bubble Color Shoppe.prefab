@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gt: {fileID: 576390978979572706}
-  _npc: {fileID: 0}
   IsGameStarted: 0
   DoneWithGameplay: 0
   _entries:
@@ -441,6 +440,34 @@ PrefabInstance:
       propertyPath: _backgroundStartColor.r
       value: 0.3764706
       objectReference: {fileID: 0}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a2f6f3d3fa251da42ab4e2a3705b1c8e, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed6b23f410374694bbf05483d348691c, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d90a099ef2770d4eb2f0ece6da91575, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: efa2dbb19e4c215448cfe02bd39c30a5, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: df6f22cde0c07ab429b4213a5b29dc1d, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8e3492d6b23b2748beeecf990baf26c, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: df3258acb22babd4880d416318956d30, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

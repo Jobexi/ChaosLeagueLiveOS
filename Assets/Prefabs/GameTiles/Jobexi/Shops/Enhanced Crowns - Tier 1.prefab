@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b7c66d710db348a5f4d4667500ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileIDNum: 11
+  TileIDNum: 55
   _game: {fileID: 4698549648271465149}
   _suddenDeath: {fileID: 5730016290015712890}
   _cleaningBarController: {fileID: 1019565598144807268}
@@ -163,18 +163,35 @@ MonoBehaviour:
   _indicator2: {fileID: 0}
   TicketBonusAmount: 0
   TileState: 0
-  RarityType: 3
+  RarityType: 5
   DurationTYpe: 0
   IsGolden: 0
   IsRuby: 0
   IsShop: 1
   IsRisk: 0
+  HasBackground: 0
   BuyingActive: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
   _contactWarp: {fileID: 9203212186113610731}
   _resetablesRoot: {fileID: 3956586213594514903}
   _background: {fileID: 8591036132935157243}
+  _bgOptions:
+  - {fileID: 2100000, guid: a2f6f3d3fa251da42ab4e2a3705b1c8e, type: 2}
+  - {fileID: 2100000, guid: ed6b23f410374694bbf05483d348691c, type: 2}
+  - {fileID: 2100000, guid: 3d90a099ef2770d4eb2f0ece6da91575, type: 2}
+  - {fileID: 2100000, guid: efa2dbb19e4c215448cfe02bd39c30a5, type: 2}
+  - {fileID: 2100000, guid: df6f22cde0c07ab429b4213a5b29dc1d, type: 2}
+  - {fileID: 2100000, guid: a8e3492d6b23b2748beeecf990baf26c, type: 2}
+  - {fileID: 2100000, guid: df3258acb22babd4880d416318956d30, type: 2}
+  _bgOptionsFoil:
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
   _tileDurationS: 60
   MinAuctionSlots: 0
   MaxAuctionSlots: 8
@@ -190,9 +207,9 @@ MonoBehaviour:
   - {fileID: 2334364312118532981}
   - {fileID: 4684351898090072942}
   ConveyorBelt: []
-  _backgroundStartColor: {r: 0.3764706, g: 0, b: 0.59607846, a: 1}
-  _backgroundEndColor: {r: 0.30588236, g: 0, b: 0.42352942, a: 1}
-  _trimColor: {r: 0.61099476, g: 0, b: 0.8113208, a: 1}
+  _backgroundStartColor: {r: 0.8867924, g: 0.70692414, b: 0.8748012, a: 1}
+  _backgroundEndColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+  _trimColor: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
   Effectors: []
   CurrentSide: 2
   Players: []
@@ -5362,7 +5379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Epic
+  m_text: Ethereal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

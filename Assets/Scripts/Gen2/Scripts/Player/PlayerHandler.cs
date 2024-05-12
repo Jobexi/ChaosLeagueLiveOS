@@ -987,17 +987,18 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         int goldenMultiplier = 0; 
 
         TileController tc = _gm.GetTileController();
-        //If the player is in the bidding Q, and the bidding Q is bidding on a golden tile, then multiply the ticket redemption
-        if (this.State != PlayerHandlerState.Gameplay && tc.CurrentBiddingTile.IsGolden)
-            goldenMultiplier += 10;
-        //Or if the player is in gameplay on a golden tile, and they receive a bid, multiply it by 10
-        else if (this.State == PlayerHandlerState.Gameplay && tc.GameplayTile != null && tc.GameplayTile.IsGolden)
-            goldenMultiplier += 10;
-        else if (this.State != PlayerHandlerState.Gameplay && tc.CurrentBiddingTile.IsRuby)
+        if (this.State != PlayerHandlerState.Gameplay && tc.CurrentBiddingTile.IsRuby)
             goldenMultiplier += 50;
         //Or if the player is in gameplay on a ruby tile, and they receive a bid, multiply it by 50
         else if (this.State == PlayerHandlerState.Gameplay && tc.GameplayTile != null && tc.GameplayTile.IsRuby)
             goldenMultiplier += 50;
+        //If the player is in the bidding Q, and the bidding Q is bidding on a golden tile, then multiply the ticket redemption
+        else if (this.State != PlayerHandlerState.Gameplay && tc.CurrentBiddingTile.IsGolden)
+            goldenMultiplier += 10;
+        //Or if the player is in gameplay on a golden tile, and they receive a bid, multiply it by 10
+        else if (this.State == PlayerHandlerState.Gameplay && tc.GameplayTile != null && tc.GameplayTile.IsGolden)
+            goldenMultiplier += 10;
+        
 
         int zoneMultiplier = GetZoneMultiplierTotal();
 

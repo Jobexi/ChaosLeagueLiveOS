@@ -5828,12 +5828,29 @@ MonoBehaviour:
   IsRuby: 0
   IsShop: 0
   IsRisk: 0
+  HasBackground: 0
   BuyingActive: 0
   _cycleMode: 2
   _updateCycleModeButton: 0
   _contactWarp: {fileID: 2221752522102408061}
   _resetablesRoot: {fileID: 2702872153647452578}
   _background: {fileID: 2532240964184548847}
+  _bgOptions:
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  _bgOptions3d:
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
   _tileDurationS: 60
   MinAuctionSlots: 2
   MaxAuctionSlots: 5

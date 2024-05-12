@@ -76,6 +76,13 @@ public class AppConfig
     public static int MythicMult = 25; 
     public static int EtherealMult = 50; 
     public static int CosmicMult = 100;
+    public static int Common3dMult = 1;
+    public static int Rare3dMult = 2;
+    public static int Epic3dMult = 5;
+    public static int Legendary3dMult = 10;
+    public static int Mythic3dMult = 25;
+    public static int Ethereal3dMult = 50;
+    public static int Cosmic3dMult = 100;
     public static bool Tuesday = false;    
     public static bool Wednesday = false;    
     public static bool Thursday = false;    
@@ -113,6 +120,13 @@ public class AppConfig
             MythicMult = 32;
             EtherealMult = 63;
             CosmicMult = 125;
+            Common3dMult = 3;
+            Rare3dMult = 4;
+            Epic3dMult = 9;
+            Legendary3dMult = 17;
+            Mythic3dMult = 40;
+            Ethereal3dMult = 79;
+            Cosmic3dMult = 157;
         }
         else
         {
@@ -123,6 +137,13 @@ public class AppConfig
             MythicMult = 25;
             EtherealMult = 50;
             CosmicMult = 100;
+            Common3dMult = 2;
+            Rare3dMult = 3;
+            Epic3dMult = 7;
+            Legendary3dMult = 13;
+            Mythic3dMult = 32;
+            Ethereal3dMult = 63;
+            Cosmic3dMult = 125;
         }
     }
 
@@ -142,8 +163,22 @@ public class AppConfig
             return MythicMult;
         else if (rarity == RarityType.Ethereal)
             return EtherealMult;
-        else
+        else if (rarity == RarityType.Cosmic)
             return CosmicMult;
+        else if (rarity == RarityType.Common3d)
+            return Common3dMult;
+        else if (rarity == RarityType.Rare3d)
+            return Rare3dMult;
+        else if (rarity == RarityType.Epic3d)
+            return Epic3dMult;
+        else if (rarity == RarityType.Legendary3d)
+            return Legendary3dMult;
+        else if (rarity == RarityType.Mythic3d)
+            return Mythic3dMult;
+        else if (rarity == RarityType.Ethereal3d)
+            return Ethereal3dMult;
+        else
+            return Cosmic3dMult;
 
     }
 

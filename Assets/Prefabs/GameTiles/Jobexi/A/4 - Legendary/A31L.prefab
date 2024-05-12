@@ -6820,7 +6820,7 @@ PrefabInstance:
     - target: {fileID: 2532240964184548847, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 243e8b0307595964dacde9c198079971, type: 2}
+      objectReference: {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
     - target: {fileID: 2647251505547869332, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6989,6 +6989,34 @@ PrefabInstance:
       propertyPath: _updateCycleModeButton
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e0e703c05600064aa3c68cccd7bf2bf, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: deaf1b6c490e63143bd20c31d651af4d, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b5a44692607f5349bcf083071ed56db, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 243e8b0307595964dacde9c198079971, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84907fe887ce6cf4e9cf89d147f02fe9, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0bfaecb307fda7140b197dd1f6faae58, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptions.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8dde79ee89378ab44892034ec2ebd1c8, type: 2}
     - target: {fileID: 8530902368550358140, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.809524
