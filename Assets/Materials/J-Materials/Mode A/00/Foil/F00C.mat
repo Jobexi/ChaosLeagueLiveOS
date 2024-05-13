@@ -38,8 +38,8 @@ Material:
   - _SUNDISK_SIMPLE
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2000
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -146,6 +146,10 @@ Material:
         m_Texture: {fileID: 8900000, guid: fa41734a337674542975482c8fe96ea1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Tex_Blend:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UpTex:
         m_Texture: {fileID: 2800000, guid: 9212d09b429cfe340a76df442c86525a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -186,6 +190,9 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorMask: 15
+    - _CubemapPosition: 0
+    - _CubemapTransition: 0
+    - _Cubemapp: 1
     - _Cull: 2
     - _CullMode: 0
     - _Cutoff: 0.5
@@ -203,8 +210,10 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EmissionEnabled: 0
+    - _EnableFog: 0
     - _EnableProbeRelfections: 1
     - _EnableRealtimeReflections: 1
+    - _EnableRotation: 0
     - _EnvironmentReflections: 1
     - _Exposure: 1
     - _FaceDilate: 0
@@ -220,6 +229,13 @@ Material:
     - _FoamSpeed: 0.1
     - _FoamTiling: 0
     - _FoamVisibility: 0
+    - _FogFill: 0.5
+    - _FogHeight: 1
+    - _FogIntensity: 1
+    - _FogMessage: 0
+    - _FogPosition: 0
+    - _FogSmoothness: 0.01
+    - _Fogg: 1
     - _Gloss: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -231,7 +247,7 @@ Material:
     - _GradientScale: 5
     - _ImageType: 0
     - _InnerRing: 0.76
-    - _Layout: 0
+    - _Layout: 2
     - _LightAngle: 3.1416
     - _LightWrapping: 0
     - _LightingEnabled: 1
@@ -260,6 +276,8 @@ Material:
     - _Refraction: 0.1
     - _Rotation: 0
     - _RotationOffset: 0
+    - _RotationSpeed: 1
+    - _Rotationn: 1
     - _ScaleRatioA: 1
     - _ScaleRatioB: 1
     - _ScaleRatioC: 1
@@ -267,6 +285,7 @@ Material:
     - _ScaleY: 1
     - _ShaderFlags: 0
     - _Sharpness: 0
+    - _SkyboxExtended: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
@@ -330,5 +349,6 @@ Material:
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _StartColor: {r: 1, g: 0.108384065, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_BuildTextureStacks: []
