@@ -3011,6 +3011,10 @@ PrefabInstance:
       value: 0.6792453
       objectReference: {fileID: 0}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: HasBackground
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: _tileNameText
       value: 
       objectReference: {fileID: 8550397666511650924}
@@ -3094,6 +3098,34 @@ PrefabInstance:
       propertyPath: _bgOptions.Array.data[6]
       value: 
       objectReference: {fileID: 2100000, guid: 0b595eb6e677e99438afe7f12a3a8716, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e55ecc5898104c44bb255c8b4dac2825, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 155d733099c69bc43bf8a032826c0aa1, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0b34748df8c9578428be94a8b7d913f5, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba0d46db0f563d04787f13971a36d15c, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39d2723b76a7e2f4a82be9b4fe588d99, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba79900f57a655b4396aeca71f4d8852, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa22d60fa20eb9f4d93ae5f0ade6f599, type: 2}
     - target: {fileID: 8530902368550358140, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.809524

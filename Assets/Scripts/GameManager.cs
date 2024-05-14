@@ -130,11 +130,11 @@ public class GameManager : MonoBehaviour
 
 
                         if (PlusUp)
-                            PlusAnimation += 0.001f;
+                            PlusAnimation += 0.0005f;
                         else
-                            PlusAnimation -= 0.001f;
+                            PlusAnimation -= 0.0005f;
 
-                        if (PlusAnimation > 1.999f)
+                        if (PlusAnimation > 1.499f)
                             PlusUp = false;
 
                         if (PlusAnimation < 0.0001f)
@@ -172,11 +172,11 @@ public class GameManager : MonoBehaviour
 
 
                         if (PlusUp)
-                            PlusAnimation += 0.001f;
+                            PlusAnimation += 0.0005f;
                         else
-                            PlusAnimation -= 0.001f;
+                            PlusAnimation -= 0.0005f;
 
-                        if (PlusAnimation > 1.999f)
+                        if (PlusAnimation > 1.499f)
                             PlusUp = false;
 
                         if (PlusAnimation < 0.0001f)
@@ -214,11 +214,11 @@ public class GameManager : MonoBehaviour
 
 
                         if (PlusUp)
-                            PlusAnimation += 0.001f;
+                            PlusAnimation += 0.0005f;
                         else
-                            PlusAnimation -= 0.001f;
+                            PlusAnimation -= 0.0005f;
 
-                        if (PlusAnimation > 1.999f)
+                        if (PlusAnimation > 1.499f)
                             PlusUp = false;
 
                         if (PlusAnimation < 0.0001f)

@@ -63847,7 +63847,7 @@ MonoBehaviour:
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
   - {fileID: 5521807422773572966, guid: 8cb5b5eb8ce99754391feb9ac5e4e005, type: 3}
   - {fileID: 3504160345019027322, guid: 43bfd3d81bc52eb42867e8c336c8665c, type: 3}
-  - {fileID: 7650660916348049875, guid: 9e0939458df50962e92fb6d93392bf7b, type: 3}
+  - {fileID: 1653556322778236169, guid: ef4293e56c5516b4194511978eca9d8c, type: 3}
   - {fileID: 1653556322778236169, guid: d332252cecf7e00459a0aa4309a3caa2, type: 3}
   - {fileID: 2605624827304256445, guid: ec5b3d710e59a6646ae4f64b95bcbd4c, type: 3}
   - {fileID: 1653556322778236169, guid: 3b864a5660e9ac04aa0fb89a5deef7f4, type: 3}
@@ -63886,7 +63886,7 @@ MonoBehaviour:
   LegendaryTiles:
   - {fileID: 5156241915605114848, guid: 7adb0ced0a2c36d43887829a8d90d55c, type: 3}
   - {fileID: 576390978979572706, guid: 8a9450e89739c48479fdca34e663b374, type: 3}
-  - {fileID: 461252091043616422, guid: 747736bcaed87dd40937a536609eef57, type: 3}
+  - {fileID: 5529546809039867891, guid: 1fc1061f30d97fb4bb071149edc6495c, type: 3}
   - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
   - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
   - {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
@@ -63895,12 +63895,12 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: e10d28c2cb4bb5143ae4dbb0f446eeb2, type: 3}
   - {fileID: 647519542019892001, guid: 9ab68d2aba6843246a26f9536974f222, type: 3}
   MythicTiles:
-  - {fileID: 461252091043616422, guid: e0a2e9357f3dd904cadf16f00e6164fa, type: 3}
+  - {fileID: 5529546809039867891, guid: 2eb821362920e984e9eb79df58671ec5, type: 3}
   - {fileID: 5529546809039867891, guid: a9c709089b95d68469aa98973227d44b, type: 3}
   - {fileID: 647519542019892001, guid: 15666656ede4bc540b728824a1e25b51, type: 3}
   - {fileID: 647519542019892001, guid: 86256262cc4ff554f82ccd8194423ea9, type: 3}
   EtherealTiles:
-  - {fileID: 461252091043616422, guid: 86b2b65c6a11743448dd2245132bc28f, type: 3}
+  - {fileID: 5156241915605114848, guid: 78b97f6ea88249349921c9210a866eb6, type: 3}
   - {fileID: 6717938719452614406, guid: 132c6e47c5033f0419c09a37b585cd98, type: 3}
   - {fileID: 9018865158267012433, guid: 1664d906265e7214a846d2921b88bd68, type: 3}
   - {fileID: 593247144054054691, guid: 10096080d6afebf4e8ce7b548a8aa7cd, type: 3}
@@ -63908,6 +63908,7 @@ MonoBehaviour:
   - {fileID: 647519542019892001, guid: 350d6c08a344ef44086060972b354637, type: 3}
   - {fileID: 647519542019892001, guid: 9c776dad9d5212a45afb32f8b676cea4, type: 3}
   CosmicTiles:
+  - {fileID: 647519542019892001, guid: e7d6d474eb53ee543a42fecfd320c642, type: 3}
   - {fileID: 647519542019892001, guid: afba97c90c61d9a45a0e5c6e9a1b59c3, type: 3}
   - {fileID: 647519542019892001, guid: 917687d4c5576dc45b0655d2e598d2ff, type: 3}
   HoldingPen: {fileID: 1236041840620280661}
@@ -63919,8 +63920,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 647519542019892001, guid: 13ef8e1cbe6ec8a4380176ae2fdabd4c, type: 3}
-  _forceThisRarity: 6
+  ForceThisTileNext: {fileID: 0}
+  _forceThisRarity: 0
   _forceGolden: 0
   _forceRuby: 0
   _SpinningNow: 0

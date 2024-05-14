@@ -3094,6 +3094,34 @@ PrefabInstance:
       propertyPath: _bgOptions.Array.data[6]
       value: 
       objectReference: {fileID: 2100000, guid: e452a45dd6b2fee4e8b452c38f461b63, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ecba71c124fb6a4187272f2a51bc4d4, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1afe7e6d0d33979469047f22c5a738f4, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed7dc160351bf404296ab2aa96911cbb, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f2376f131169a348b88f6b14d130581, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8bcc98659608da5448a113d69e6b5423, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e70b169d46612045ad8b93765b81407, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsPlus.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: d774966642746fc49bfe5edba21a8c8d, type: 2}
     - target: {fileID: 8530902368550358140, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.809524
