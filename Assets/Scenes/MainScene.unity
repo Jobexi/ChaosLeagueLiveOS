@@ -7437,11 +7437,11 @@ MonoBehaviour:
   _twitchPubSub: {fileID: 943938167}
   _tileController: {fileID: 5393775865149022912}
   _npcHandler: {fileID: 1999007588}
-  incrementUserId: 1
+  incrementUserId: 0
   idIncrementor: 0
-  testUserId: Jobexi
+  testUserId: GameMaster
   testUsername: 
-  userInput: 
+  userInput: '!tradeup'
   nameColor: {r: 0.10588236, g: 0.5294118, b: 1, a: 1}
   randomizeNameColor: 1
   rewardCost: 1
@@ -63920,7 +63920,7 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
+  ForceThisTileNext: {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   _forceThisRarity: 0
   _forceGolden: 0
   _forceRuby: 0

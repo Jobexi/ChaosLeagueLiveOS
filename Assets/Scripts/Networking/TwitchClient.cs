@@ -336,29 +336,6 @@ public class TwitchClient : MonoBehaviour
             return;
         }
 
-        if (commandKey.StartsWith("!happyhour"))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"This feature is not implemented yet. ");
-            return;
-
-            /*     if (AppConfig.HappyHour)
-                 {
-                     AppConfig.HappyHour = false;
-                     AppConfig.CheckHappyHour();
-                     Debug.Log("Happy Hour Off");
-                 }
-                 else
-                 {
-                     AppConfig.HappyHour = true;
-                     AppConfig.CheckHappyHour();
-                     Debug.Log("Happy Hour On");
-                 }
-                 return;
-
-                 */
-        }
-
-
         if (commandKey.StartsWith("!modtrail"))
         {
 
@@ -688,13 +665,13 @@ public class TwitchClient : MonoBehaviour
 
             if (_tileController.GameplayTile != null)
             {
-                if (_tileController.CurrentBiddingTile.IsRuby)
+                if (_tileController.GameplayTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                else if (_tileController.CurrentBiddingTile.IsGolden)
+                else if (_tileController.GameplayTile.IsGolden)
                 {
                     Debug.Log("Golden Tiles cannot be Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Golden Tiles cannot be Repeated.");
@@ -703,13 +680,13 @@ public class TwitchClient : MonoBehaviour
             }
             else
             {
-                if (_tileController.GameplayTile.IsRuby)
+                if (_tileController.CurrentBiddingTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                else if (_tileController.GameplayTile.IsGolden)
+                else if (_tileController.CurrentBiddingTile.IsGolden)
                 {
                     Debug.Log("Golden Tiles cannot be Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Golden Tiles cannot be Repeated.");
@@ -793,7 +770,7 @@ public class TwitchClient : MonoBehaviour
                         return;
                     }
                 }
-                else if (_tileController.GameplayTile.IsRuby)
+                else if (_tileController.CurrentBiddingTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");

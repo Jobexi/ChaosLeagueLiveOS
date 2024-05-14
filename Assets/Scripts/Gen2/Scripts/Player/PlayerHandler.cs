@@ -575,10 +575,10 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
     public void TradeUp()
     {
         long score = pp.SessionScore;
-        int sapphires = pp.Sapphires;
-        int emeralds = pp.Emeralds;
-        int diamonds = pp.Diamonds;
-        int rubies = pp.Rubies;
+        long sapphires = pp.Sapphires;
+        long emeralds = pp.Emeralds;
+        long diamonds = pp.Diamonds;
+        long rubies = pp.Rubies;
 
         while (score >= 1000000000000000000)
         {
@@ -592,34 +592,52 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             diamonds += 1;
         }
 
+        while (diamonds >= 1000)
+        {
+            diamonds -= 1000;
+            rubies += 1;
+        }
+
         while (score >= 1000000000000)
         {
             score -= 1000000000000;
             emeralds += 1;
         }
 
+        while (emeralds >= 1000)
+        {
+            emeralds -= 1000;
+            diamonds += 1;
+        }
+
         while (score >= 1000000000)
         {
             score -= 1000000000;
             sapphires += 1;
-        }       
+        }
 
         while (sapphires >= 1000)
         {
             sapphires -= 1000;
             emeralds += 1;
-         }
-
-        while (pp.Emeralds >= 1000)
-        {
-            emeralds -= 1000;
-            diamonds += 1;
         }
 
         while (diamonds >= 1000)
         {
             diamonds -= 1000;
             rubies += 1;
+        }
+
+        while (emeralds >= 1000)
+        {
+            emeralds -= 1000;
+            diamonds += 1;
+        }
+
+        while (sapphires >= 1000)
+        {
+            sapphires -= 1000;
+            emeralds += 1;
         }
 
         pp.SessionScore = score;

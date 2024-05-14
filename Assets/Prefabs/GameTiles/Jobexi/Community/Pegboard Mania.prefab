@@ -11689,7 +11689,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 6472445580659567820}
   _textLabel: {fileID: 8209381804446400602}
   _effect: 20
-  _value: 1000
+  _value: 500
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0
@@ -15005,7 +15005,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 4306099934054936147}
   _textLabel: {fileID: 8241860579536286984}
   _effect: 20
-  _value: 1000
+  _value: 500
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0

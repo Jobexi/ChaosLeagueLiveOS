@@ -47,10 +47,10 @@ public class PlayerProfile
     public int TomatoCount { get; set; }
     public int ShieldValue { get; set; }
     public int AutoBidRemainder { get; set; }
-    public int Rubies { get; set; }
-    public int Sapphires { get; set; }
-    public int Diamonds { get; set; }
-    public int Emeralds { get; set; }
+    public long Rubies { get; set; }
+    public long Sapphires { get; set; }
+    public long Diamonds { get; set; }
+    public long Emeralds { get; set; }
 
     public int RiskSkips { get; set; }
 

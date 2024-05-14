@@ -46,6 +46,8 @@ public class NPCHandler : MonoBehaviour
     public int RubyCount1 = 0;
     public int RubyCount2 = 0;
 
+    private int maxNPC = 87;
+
     void Awake()
     {
         
@@ -57,8 +59,7 @@ public class NPCHandler : MonoBehaviour
     }
 
     public void TestNPCs()
-    {
-        int maxNPC = 87;
+    {      
 
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
@@ -80,7 +81,6 @@ public class NPCHandler : MonoBehaviour
 
     public void CheckCountdown()
     {
-        int maxNPC = 87;
         
         CheckNPCs();
         if (firstNPC == true)
@@ -469,6 +469,58 @@ public class NPCHandler : MonoBehaviour
             case 87:
                 _unitTesting.NPCReward("EternalRuby", "EternalRuby", "bid", 1);
                 StartCoroutine(UpdateWaiter("EternalRuby"));
+                break;
+            case 88:
+                _unitTesting.NPCReward("ReverseToll", "ReverseToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("ReverseToll"));
+                break;
+            case 89:
+                _unitTesting.NPCReward("NoToll", "NoToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("NoToll"));
+                break;
+            case 90:
+                _unitTesting.NPCReward("TinyToll", "TinyToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("TinyToll"));
+                break;
+            case 91:
+                _unitTesting.NPCReward("SmallToll", "SmallToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("SmallToll"));
+                break;
+            case 92:
+                _unitTesting.NPCReward("LittleToll", "LittleToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("LittleToll"));
+                break;
+            case 93:
+                _unitTesting.NPCReward("ModerateToll", "ModerateToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("ModerateToll"));
+                break;
+            case 94:
+                _unitTesting.NPCReward("AverageToll", "AverageToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("AverageToll"));
+                break;
+            case 95:
+                _unitTesting.NPCReward("Toll", "Toll", "bid", 1);
+                StartCoroutine(UpdateWaiter("Toll"));
+                break;
+            case 96:
+                _unitTesting.NPCReward("LargeToll", "LargeToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("LargeToll"));
+                break;
+            case 97:
+                _unitTesting.NPCReward("HugeToll", "HugeToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("HugeToll"));
+                break;
+            case 98:
+                _unitTesting.NPCReward("MassiveToll", "MassiveToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("MassiveToll"));
+                break;
+            case 99:
+                _unitTesting.NPCReward("EnormousToll", "EnormousToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("EnormousToll"));
+                break;
+            case 100:
+                _unitTesting.NPCReward("ObsceneToll", "ObsceneToll", "bid", 1);
+                StartCoroutine(UpdateWaiter("ObsceneToll"));
                 break;
         }
                 
@@ -1329,7 +1381,7 @@ public class NPCHandler : MonoBehaviour
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             if (GoldCount1 > 0)
                             {
-                                NPCRepeatTile();
+                                NPCGoldenTile();
                                 GoldCount1 -= 1;
                                 _gm.PlayerHandlers[key].pp.StateNPC = 3;
                             }
@@ -1387,7 +1439,7 @@ public class NPCHandler : MonoBehaviour
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             if (GoldCount2 > 0)
                             {
-                                NPCRepeatTile();
+                                NPCGoldenTile();
                                 GoldCount2 -= 1;
                                 _gm.PlayerHandlers[key].pp.StateNPC = 3;
                             }

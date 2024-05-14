@@ -101,9 +101,6 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         var BaseMaterials = _crown._crownMeshRenderer.materials;
         var DesiredMaterials = _crown.EnhancedMaterials;
 
-        if (pb.Ph.pp.EnhancedCrown == null)
-            pb.Ph.pp.EnhancedCrown = false;
-
         if (pb.Ph.pp.EnhancedCrown == false)
         {
             Txtr1 = 0;
