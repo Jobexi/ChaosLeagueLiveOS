@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     private byte greenhue = 150;
     private int huehuehue = 0;
 
+    public float PlusAnimation = 1;
+    private bool PlusUp = false;
+
     public Dictionary<string, PlayerHandler> PlayerHandlers = new Dictionary<string, PlayerHandler>();
 
     public HoldingPen HoldingPen;
@@ -99,6 +102,132 @@ public class GameManager : MonoBehaviour
             {
                 _tileController.GameplayTile.BuyingActive = false;
                 _tileController._npcHandler.PerformShopPurchases();
+            }
+        }
+        if (_tileController.GameplayTile != null)
+        {
+            if (_tileController.GameplayTile.HasBackground)
+            {
+                var BaseMaterials = _tileController.GameplayTile._background.materials;
+
+                switch (_tileController.GameplayTile.GetRarity())
+                {                    
+                    case RarityType.CommonPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.RarePlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EpicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.LegendaryPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.MythicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EtherealPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.CosmicPlus:
+
+                        BaseMaterials[0].SetFloat("Vector1_4200F1D7", PlusAnimation);
+
+
+                        if (PlusUp)
+                            PlusAnimation += 0.001f;
+                        else
+                            PlusAnimation -= 0.001f;
+
+                        if (PlusAnimation > 1.999f)
+                            PlusUp = false;
+
+                        if (PlusAnimation < 0.0001f)
+                            PlusUp = true;
+
+                        _tileController.GameplayTile._background.materials = BaseMaterials;
+
+                        break;
+                }
+            }
+        }
+        if (_tileController.CurrentBiddingTile != null)
+        {
+            if (_tileController.CurrentBiddingTile.HasBackground)
+            {
+                var BaseMaterials = _tileController.CurrentBiddingTile._background.materials;
+
+                switch (_tileController.CurrentBiddingTile.GetRarity())
+                {
+                    case RarityType.CommonPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.RarePlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EpicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.LegendaryPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.MythicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EtherealPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.CosmicPlus:
+
+                        BaseMaterials[0].SetFloat("Vector1_4200F1D7", PlusAnimation);
+
+
+                        if (PlusUp)
+                            PlusAnimation += 0.001f;
+                        else
+                            PlusAnimation -= 0.001f;
+
+                        if (PlusAnimation > 1.999f)
+                            PlusUp = false;
+
+                        if (PlusAnimation < 0.0001f)
+                            PlusUp = true;
+
+                        _tileController.CurrentBiddingTile._background.materials = BaseMaterials;
+
+                        break;
+                }
+            }
+        }
+        if (_tileController.NextBiddingTile != null)
+        {
+            if (_tileController.NextBiddingTile.HasBackground)
+            {
+                var BaseMaterials = _tileController.NextBiddingTile._background.materials;
+
+                switch (_tileController.NextBiddingTile.GetRarity())
+                {
+                    case RarityType.CommonPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.RarePlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EpicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.LegendaryPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.MythicPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.EtherealPlus:
+                        goto case RarityType.CosmicPlus;
+                    case RarityType.CosmicPlus:
+
+                        BaseMaterials[0].SetFloat("Vector1_4200F1D7", PlusAnimation);
+
+
+                        if (PlusUp)
+                            PlusAnimation += 0.001f;
+                        else
+                            PlusAnimation -= 0.001f;
+
+                        if (PlusAnimation > 1.999f)
+                            PlusUp = false;
+
+                        if (PlusAnimation < 0.0001f)
+                            PlusUp = true;
+
+                        _tileController.NextBiddingTile._background.materials = BaseMaterials;
+
+                        break;
+                }
             }
         }
     }

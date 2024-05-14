@@ -26,6 +26,13 @@ public class TileController : MonoBehaviour
     private static float _mythicRarity;
     private static float _etherealRarity;
     private static float _cosmicRarity;
+    private static float _commonPlusRarity;
+    private static float _rarePlusRarity;
+    private static float _epicPlusRarity;
+    private static float _legendaryPlusRarity;
+    private static float _mythicPlusRarity;
+    private static float _etherealPlusRarity;
+    private static float _cosmicPlusRarity;
 
     [SerializeField] private List<GameTile> AllRarities; //Adds one to each rarity 
     [SerializeField] private List<GameTile> CommonTiles; //69%      // 45%
@@ -52,6 +59,7 @@ public class TileController : MonoBehaviour
     [SerializeField] private RarityType _forceThisRarity;
     [SerializeField] public bool _forceGolden; 
     [SerializeField] public bool _forceRuby; 
+    [SerializeField] public bool _SpinningNow; 
 
     private Dictionary<int, ObjectPool<GameTile>> _tilePools = new Dictionary<int, ObjectPool<GameTile>>(); 
 
@@ -228,7 +236,7 @@ public class TileController : MonoBehaviour
         if (GameplayTile == null)
         {
             rarity = CurrentBiddingTile.GetRarity();
-            CurrentBiddingTile._indicator2.SetText("↑↑");            
+            CurrentBiddingTile._indicator2.SetText("↑↑");
         }
         else
         {
@@ -248,20 +256,20 @@ public class TileController : MonoBehaviour
             rarity = RarityType.Ethereal;
         else if (rarity == RarityType.Ethereal)
             rarity = RarityType.Cosmic;
-        else if (rarity == RarityType.Cosmic)
-            rarity = RarityType.Common3d;
-        else if(rarity == RarityType.Common3d)
-            rarity = RarityType.Rare3d;
-        else if (rarity == RarityType.Rare3d)
-            rarity = RarityType.Epic3d;
-        else if (rarity == RarityType.Epic3d)
-            rarity = RarityType.Legendary3d;
-        else if (rarity == RarityType.Legendary3d)
-            rarity = RarityType.Mythic3d;
-        else if (rarity == RarityType.Mythic3d)
-            rarity = RarityType.Ethereal3d;
-        else if (rarity == RarityType.Ethereal3d)
-            rarity = RarityType.Cosmic3d;
+        //else if (rarity == RarityType.Cosmic)
+        //    rarity = RarityType.CommonPlus;
+        //else if(rarity == RarityType.CommonPlus)
+        //    rarity = RarityType.RarePlus;
+        //else if (rarity == RarityType.RarePlus)
+        //    rarity = RarityType.EpicPlus;
+        //else if (rarity == RarityType.EpicPlus)
+        //    rarity = RarityType.LegendaryPlus;
+        //else if (rarity == RarityType.LegendaryPlus)
+        //    rarity = RarityType.MythicPlus;
+        //else if (rarity == RarityType.MythicPlus)
+        //    rarity = RarityType.EtherealPlus;
+        //else if (rarity == RarityType.EtherealPlus)
+        //    rarity = RarityType.CosmicPlus;
 
         _forceThisRarity = rarity;
 
@@ -295,7 +303,11 @@ public class TileController : MonoBehaviour
                 CurrentBiddingTile.TileIDNum
             };
         if (GameplayTile != null)
+        {
             blacklistedTiles.Add(GameplayTile.TileIDNum);
+            GameplayTile._indicator1.SetText("");
+            GameplayTile._indicator2.SetText("");
+        }
 
         GameTile nextTile;
         if(ForceThisTileNext != null)
@@ -308,6 +320,8 @@ public class TileController : MonoBehaviour
         NextBiddingTile = nextTile;
         GameplayTile = null; 
         StartCoroutine(CSpinNewTile(gt, nextTile));
+
+        _SpinningNow = true;
 
         return nextTile; 
     }
@@ -385,7 +399,9 @@ public class TileController : MonoBehaviour
             _tilePools[tile.TileIDNum].ReturnObject(tile);
         }
 
+        _SpinningNow = false;
         _npcHandler.CheckCountdown();
+       // _gm.PlusAnimation = 1;
     }
 
     public IEnumerator SpinAnimation(List<GameTile> animeTiles, Vector3 rotatePoint, Vector3 finalTilePos)
@@ -433,37 +449,79 @@ public class TileController : MonoBehaviour
         {
             //Select the tile
             float t = Random.Range(0f, 1f);
-            if (t <= _cosmicRarity)
+            //if (t <= _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.CosmicPlus;
+            //}
+            //else if (t <= _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.EtherealPlus;
+            //}
+            //else if (t <= _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.MythicPlus;
+            //}
+            //else if (t <= _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.LegendaryPlus;
+            //}
+            //else if (t <= _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.EpicPlus;
+            //}
+            //else if (t <= _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.RarePlus;
+            //}
+            //else if (t <= _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
+            //{
+            //    int index = Random.Range(0, AllRarities.Count);
+            //    tile = AllRarities[index];
+            //    rarity = RarityType.CommonPlus;
+            //} should be else if below
+            if (t <= _cosmicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, CosmicTiles.Count + AllRarities.Count);
                 tile = (index < CosmicTiles.Count) ? CosmicTiles[index] : AllRarities[index - CosmicTiles.Count];
                 rarity = RarityType.Cosmic;
             }
-            else if (t <= _cosmicRarity + _etherealRarity)
+            else if (t <= _cosmicRarity + _etherealRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, EtherealTiles.Count + AllRarities.Count);
                 tile = (index < EtherealTiles.Count) ? EtherealTiles[index] : AllRarities[index - EtherealTiles.Count];
                 rarity = RarityType.Ethereal;
             }
-            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity)
+            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, MythicTiles.Count + AllRarities.Count);
                 tile = (index < MythicTiles.Count) ? MythicTiles[index] : AllRarities[index - MythicTiles.Count];
                 rarity = RarityType.Mythic;
             }
-            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity)
+            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, LegendaryTiles.Count + AllRarities.Count);
                 tile = (index < LegendaryTiles.Count) ? LegendaryTiles[index] : AllRarities[index - LegendaryTiles.Count];
                 rarity = RarityType.Legendary;
             }
-            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity)
+            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, EpicTiles.Count + AllRarities.Count);
                 tile = (index < EpicTiles.Count) ? EpicTiles[index] : AllRarities[index - EpicTiles.Count];
                 rarity = RarityType.Epic;
             }
-            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity + _rareRarity)
+            else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity + _rareRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
                 int index = Random.Range(0, RareTiles.Count + AllRarities.Count);
                 tile = (index < RareTiles.Count) ? RareTiles[index] : AllRarities[index - RareTiles.Count];
@@ -485,23 +543,37 @@ public class TileController : MonoBehaviour
 
         if (AppConfig.Wednesday)
         {
-        //    _commonRarity = .1f;
+        //    _commonRarity = .09f;
             _rareRarity = .15f;
             _epicRarity = .15f;
             _legendaryRarity = .15f;
             _mythicRarity = .15f;
             _etherealRarity = .15f;
             _cosmicRarity = .15f;
+            _commonPlusRarity = .003f;
+            _rarePlusRarity = .002f;
+            _epicPlusRarity = .001f;
+            _legendaryPlusRarity = .001f;
+            _mythicPlusRarity = .001f;
+            _etherealPlusRarity = .001f;
+            _cosmicPlusRarity = .001f;
         }
         else
         {
-      //      _commonRarity = .45f;
+      //      _commonRarity = .449f;
             _rareRarity = .3f;
             _epicRarity = .18f;
             _legendaryRarity = .05f;
             _mythicRarity = .015f;
             _etherealRarity = .003f;
             _cosmicRarity = .002f;
+            _commonPlusRarity = .0003f;
+            _rarePlusRarity = .0002f;
+            _epicPlusRarity = .0001f;
+            _legendaryPlusRarity = .0001f;
+            _mythicPlusRarity = .0001f;
+            _etherealPlusRarity = .0001f;
+            _cosmicPlusRarity = .0001f;
         }
     }
 
@@ -543,20 +615,20 @@ public class TileController : MonoBehaviour
             tile.SetRarity(RarityType.Ethereal, _etherealStartColor, _etherealEndColor, _etherealTrimColor);
         else if (rarity == RarityType.Cosmic)
             tile.SetRarity(RarityType.Cosmic, _cosmicStartColor, _cosmicEndColor, _cosmicTrimColor);
-        else if (rarity == RarityType.Common3d)
-            tile.SetRarity(RarityType.Common3d, _commonStartColor, _commonEndColor, _commonTrimColor);
-        else if (rarity == RarityType.Rare3d)
-            tile.SetRarity(RarityType.Rare3d, _rareStartColor, _rareEndColor, _rareTrimColor);
-        else if (rarity == RarityType.Epic3d)
-            tile.SetRarity(RarityType.Epic3d, _epicStartColor, _epicEndColor, _epicTrimColor);
-        else if (rarity == RarityType.Legendary3d)
-            tile.SetRarity(RarityType.Legendary3d, _legendaryStartColor, _legendaryEndColor, _legendaryTrimColor);
-        else if (rarity == RarityType.Mythic3d)
-            tile.SetRarity(RarityType.Mythic3d, _mythicStartColor, _mythicEndColor, _mythicTrimColor);
-        else if (rarity == RarityType.Ethereal3d)
-            tile.SetRarity(RarityType.Ethereal3d, _etherealStartColor, _etherealEndColor, _etherealTrimColor);
-        else if (rarity == RarityType.Cosmic3d)
-            tile.SetRarity(RarityType.Cosmic3d, _cosmicStartColor, _cosmicEndColor, _cosmicTrimColor);
+        else if (rarity == RarityType.CommonPlus)
+            tile.SetRarity(RarityType.CommonPlus, _commonStartColor, _commonEndColor, _commonTrimColor);
+        else if (rarity == RarityType.RarePlus)
+            tile.SetRarity(RarityType.RarePlus, _rareStartColor, _rareEndColor, _rareTrimColor);
+        else if (rarity == RarityType.EpicPlus)
+            tile.SetRarity(RarityType.EpicPlus, _epicStartColor, _epicEndColor, _epicTrimColor);
+        else if (rarity == RarityType.LegendaryPlus)
+            tile.SetRarity(RarityType.LegendaryPlus, _legendaryStartColor, _legendaryEndColor, _legendaryTrimColor);
+        else if (rarity == RarityType.MythicPlus)
+            tile.SetRarity(RarityType.MythicPlus, _mythicStartColor, _mythicEndColor, _mythicTrimColor);
+        else if (rarity == RarityType.EtherealPlus)
+            tile.SetRarity(RarityType.EtherealPlus, _etherealStartColor, _etherealEndColor, _etherealTrimColor);
+        else if (rarity == RarityType.CosmicPlus)
+            tile.SetRarity(RarityType.CosmicPlus, _cosmicStartColor, _cosmicEndColor, _cosmicTrimColor);
 
         return tile;
     }

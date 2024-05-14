@@ -1593,14 +1593,14 @@ public class NPCHandler : MonoBehaviour
         {
             if (_tileController.CurrentBiddingTile.IsShop == true)
                 return;
-            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
+            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
                 return;
         }
         else
         {
             if (_tileController.GameplayTile.IsShop == true)
                 return;
-            if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
+            if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
                 return;
         }
 

@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, Common3d, Rare3d, Epic3d, Legendary3d, Mythic3d, Ethereal3d, Cosmic3d }
+public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, CommonPlus, RarePlus, EpicPlus, LegendaryPlus, MythicPlus, EtherealPlus, CosmicPlus }
 public enum DurationTYpe { Timer, Manual }
 public enum Side { Left, Center, Right}
 public enum TileState { Inactive, LockedInPos, Bidding, Gameplay}
@@ -44,9 +44,9 @@ public class GameTile : MonoBehaviour
 
     [SerializeField] private Transform _resetablesRoot;
 
-    [SerializeField] private MeshRenderer _background;
+    [SerializeField] public MeshRenderer _background;
     [SerializeField] private List<Material> _bgOptions;
-    [SerializeField] private List<Material> _bgOptions3d;
+    [SerializeField] private List<Material> _bgOptionsPlus;
 
     [SerializeField] private int _tileDurationS;
 
@@ -140,7 +140,7 @@ public class GameTile : MonoBehaviour
     {
         var BaseMaterials = _background.materials;
         var DesiredMaterials = _bgOptions;
-        var Materials3d = _bgOptions3d;
+        var MaterialsPlus = _bgOptionsPlus;
 
         switch (GetRarity())
         {
@@ -165,26 +165,26 @@ public class GameTile : MonoBehaviour
             case RarityType.Cosmic:
                 BaseMaterials[0] = DesiredMaterials[6];
                 break;
-            case RarityType.Common3d:
-                BaseMaterials[0] = Materials3d[0];
+            case RarityType.CommonPlus:
+                BaseMaterials[0] = MaterialsPlus[0];
                 break;
-            case RarityType.Rare3d:
-                BaseMaterials[0] = Materials3d[1];
+            case RarityType.RarePlus:
+                BaseMaterials[0] = MaterialsPlus[1];
                 break;
-            case RarityType.Epic3d:
-                BaseMaterials[0] = Materials3d[2];
+            case RarityType.EpicPlus:
+                BaseMaterials[0] = MaterialsPlus[2];
                 break;
-            case RarityType.Legendary3d:
-                BaseMaterials[0] = Materials3d[3];
+            case RarityType.LegendaryPlus:
+                BaseMaterials[0] = MaterialsPlus[3];
                 break;
-            case RarityType.Mythic3d:
-                BaseMaterials[0] = Materials3d[4];
+            case RarityType.MythicPlus:
+                BaseMaterials[0] = MaterialsPlus[4];
                 break;
-            case RarityType.Ethereal3d:
-                BaseMaterials[0] = Materials3d[5];
+            case RarityType.EtherealPlus:
+                BaseMaterials[0] = MaterialsPlus[5];
                 break;
-            case RarityType.Cosmic3d:
-                BaseMaterials[0] = Materials3d[6];
+            case RarityType.CosmicPlus:
+                BaseMaterials[0] = MaterialsPlus[6];
                 break;
         }
 
