@@ -22,6 +22,7 @@ public class NPCHandler : MonoBehaviour
     [SerializeField] private TwitchPubSub _twitchPubSub;
     [SerializeField] private GoldDistributor _goldDistributor;
     [SerializeField] private InvitePromo _invitePromo;
+    [SerializeField] private BidHandler _bidHandler;
 
     [SerializeField] private TileController _tileController;
     [SerializeField] private MyHttpClient _myHttpClient;
@@ -526,11 +527,18 @@ public class NPCHandler : MonoBehaviour
                 
     }
 
-    IEnumerator UpdateWaiter(string ID)
+    private IEnumerator UpdateWaiter(string ID)
     {
         yield return new WaitForSeconds(1);
         
         InitializePlayerHandler(ID);
+    }
+
+    public IEnumerator CheckWaiter()
+    {
+        yield return new WaitForSeconds(1);
+
+        CheckCountdown();
     }
 
     public void InitializePlayerHandler(string ID)
@@ -934,6 +942,7 @@ public class NPCHandler : MonoBehaviour
     public void SetNPCMode(int mode, string key)
     {
         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+        _gm.PlayerHandlers[key].pp.NameColorHex = "#FFFFFF";
         _gm.PlayerHandlers[key].pp.IsNPC = true;
         _gm.PlayerHandlers[key].pp.ModeNPC = mode;
         _gm.PlayerHandlers[key].pp.StateNPC = 0;

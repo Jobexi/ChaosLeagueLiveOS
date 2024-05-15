@@ -329,7 +329,7 @@ public class TileController : MonoBehaviour
 
     //Can pass in null for the forceThisTileNext if you don't want to 
     private IEnumerator CSpinNewTile(GameTile gt, GameTile nextTile)
-    {
+    {        
         _rebellionController.OnNewTileSpin(); 
         //Choose amount of random tiles and put them in a list
         List<GameTile> animeTiles = new List<GameTile>{ gt };//Add the current tile to the animatino
@@ -398,9 +398,8 @@ public class TileController : MonoBehaviour
             }
             _tilePools[tile.TileIDNum].ReturnObject(tile);
         }
-
-        _SpinningNow = false;
-        _npcHandler.CheckCountdown();
+        _SpinningNow = false;        
+        _npcHandler.CheckWaiter();
     }
 
     public IEnumerator SpinAnimation(List<GameTile> animeTiles, Vector3 rotatePoint, Vector3 finalTilePos)

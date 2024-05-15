@@ -121,12 +121,12 @@ public class AppConfig
             EtherealMult = 63;
             CosmicMult = 125;
             CommonPlusMult = 3;
-            RarePlusMult = 4;
-            EpicPlusMult = 9;
-            LegendaryPlusMult = 17;
-            MythicPlusMult = 40;
-            EtherealPlusMult = 79;
-            CosmicPlusMult = 157;
+            RarePlusMult = 7;
+            EpicPlusMult = 13;
+            LegendaryPlusMult = 32;
+            MythicPlusMult = 63;
+            EtherealPlusMult = 125;
+            CosmicPlusMult = 313;
         }
         else
         {
@@ -138,12 +138,12 @@ public class AppConfig
             EtherealMult = 50;
             CosmicMult = 100;
             CommonPlusMult = 2;
-            RarePlusMult = 3;
-            EpicPlusMult = 7;
-            LegendaryPlusMult = 13;
-            MythicPlusMult = 32;
-            EtherealPlusMult = 63;
-            CosmicPlusMult = 125;
+            RarePlusMult = 5;
+            EpicPlusMult = 10;
+            LegendaryPlusMult = 25;
+            MythicPlusMult = 50;
+            EtherealPlusMult = 100;
+            CosmicPlusMult = 250;
         }
     }
 

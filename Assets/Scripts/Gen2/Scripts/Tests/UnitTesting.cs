@@ -51,7 +51,7 @@ public class UnitTesting : MonoBehaviour
     [SerializeField] public bool autoTest;
     [SerializeField] public int autoTestSecInterval;
 
-    [SerializeField] public bool testRandomTiles;
+    [SerializeField] [HideInInspector] public bool testRandomTiles;
 
     [SerializeField] public bool TestNPC;
 

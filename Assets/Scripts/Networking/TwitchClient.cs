@@ -732,7 +732,7 @@ public class TwitchClient : MonoBehaviour
 
             if (_tileController.GameplayTile != null)
             {
-                if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
+                if (_tileController.GameplayTile.GetRarity() == RarityType.Cosmic)
                 {
                     if (_tileController.GameplayTile.HasBackground == false)
                     {
@@ -741,17 +741,20 @@ public class TwitchClient : MonoBehaviour
                         return;
                     }
                 }
-                else if (_tileController.GameplayTile.IsRuby)
+                
+                if (_tileController.GameplayTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                else if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
+                
+                if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
                 {
                     Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
                 }
+                
                 if (_tileController.GameplayTile.IsShop == true)
                 {
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");
@@ -760,9 +763,8 @@ public class TwitchClient : MonoBehaviour
             }
             else
             {
-                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
+                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.Cosmic)
                 {
-
                     if (_tileController.CurrentBiddingTile.HasBackground == false)
                     {
                         Debug.Log("Tiles without backgrounds cannot be upgraded beyond Cosmic at this time. Please use !repeatTile to see it come around again. :)");
@@ -770,17 +772,20 @@ public class TwitchClient : MonoBehaviour
                         return;
                     }
                 }
-                else if (_tileController.CurrentBiddingTile.IsRuby)
+                
+                if (_tileController.CurrentBiddingTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                else if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
+                
+                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
                 {
                     Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
                 }
+
                 if (_tileController.CurrentBiddingTile.IsShop == true)
                 {
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");

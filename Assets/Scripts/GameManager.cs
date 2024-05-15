@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CLDebug _clDebug;
     [SerializeField] private TileController _tileController;
     [SerializeField] private MyHttpClient _myHttpClient;
+    [SerializeField] private BidHandler _bidHandler;
     [SerializeField] private KingController _kingController;
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private SQLiteServiceAsync _sqliteServiceAsync; 
@@ -634,6 +635,13 @@ public class GameManager : MonoBehaviour
         _sqliteServiceAsync.ClearInvitesData(); 
     }
 
+    public IEnumerator RebidWaiter()
+    {
+        yield return new WaitForSeconds(1);
+
+        RebidChecker();
+    }
+
     public void RebidChecker()
     {
         string[] keys = PlayerHandlers.Keys.ToArray();
@@ -652,10 +660,8 @@ public class GameManager : MonoBehaviour
                     GetSneakyPlayerHandler(PlayerHandlers[key], PlayerHandlers[key].pp.TwitchID);
                     _tileController.BidHandler.BidRedemption((PlayerHandlers[key]), 1, BidType.ChannelPoints, "1", "1");
                 }
-            }
-            
+            }            
         }
-
     }
 
     private void SavePreviousLog()

@@ -335,6 +335,7 @@ public class BidHandler : MonoBehaviour
     }
     public void ReleasePlayersIntoTile(GameTile gt, Vector3 beltWayPointPos)
     {
+        
         _tileController.GameplayTile = gt;
 
         //Select and move the players on the auction slots
@@ -375,11 +376,12 @@ public class BidHandler : MonoBehaviour
         if (_kingController.currentKing != null)
             TextPopupMaster.Inst.CreateTravelingIndicator(totalBidsLeftover.ToString(), totalBidsLeftover, RaffleBox, _kingController.currentKing.Ph, 0.08f, Color.white, null);
 
+        
         _redemptionsIds.Clear();
         _biddingQ.Clear();
         UpdateRaffleDrawIndicatorsCount(0);
-        UpdateBiddingQ();
-        _gm.RebidChecker();
+        UpdateBiddingQ(); 
+        _gm.RebidWaiter();
     }
 
     public void ClearFromQ(PlayerHandler ph, bool updateQ, bool unbid = false)

@@ -7437,11 +7437,11 @@ MonoBehaviour:
   _twitchPubSub: {fileID: 943938167}
   _tileController: {fileID: 5393775865149022912}
   _npcHandler: {fileID: 1999007588}
-  incrementUserId: 0
+  incrementUserId: 1
   idIncrementor: 0
-  testUserId: GameMaster
+  testUserId: Jobexi
   testUsername: 
-  userInput: '!tradeup'
+  userInput: 
   nameColor: {r: 0.10588236, g: 0.5294118, b: 1, a: 1}
   randomizeNameColor: 1
   rewardCost: 1
@@ -7464,7 +7464,7 @@ MonoBehaviour:
   isSubscriber: 0
   isFirstMessage: 0
   autoTest: 0
-  autoTestSecInterval: 10
+  autoTestSecInterval: 0
   testRandomTiles: 0
   TestNPC: 0
 --- !u!1 &558830486
@@ -22994,6 +22994,7 @@ MonoBehaviour:
   _clDebug: {fileID: 1428205194}
   _tileController: {fileID: 5393775865149022912}
   _myHttpClient: {fileID: 4495485317354644231}
+  _bidHandler: {fileID: 0}
   _kingController: {fileID: 5092249410878743455}
   _rebellionController: {fileID: 481457712}
   _sqliteServiceAsync: {fileID: 6727299273675977357}
@@ -38383,6 +38384,7 @@ MonoBehaviour:
   _twitchPubSub: {fileID: 943938167}
   _goldDistributor: {fileID: 2040148666}
   _invitePromo: {fileID: 1040556305}
+  _bidHandler: {fileID: 558830488}
   _tileController: {fileID: 5393775865149022912}
   _myHttpClient: {fileID: 4495485317354644231}
   _kingController: {fileID: 5092249410878743455}
@@ -63920,8 +63922,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
-  _forceThisRarity: 0
+  ForceThisTileNext: {fileID: 0}
+  _forceThisRarity: 13
   _forceGolden: 0
   _forceRuby: 0
   _SpinningNow: 0
