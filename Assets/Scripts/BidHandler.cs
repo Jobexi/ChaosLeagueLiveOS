@@ -163,7 +163,7 @@ public class BidHandler : MonoBehaviour
                     AudioController.inst.PlaySound(AudioController.inst.RaffleSpotOpen, pitch, pitch);
                 }
 
-            }
+            }            
 
             yield return new WaitForSeconds(0.2f);
             i++;
@@ -241,7 +241,7 @@ public class BidHandler : MonoBehaviour
     }
 
     public IEnumerator ReleasePlayersWhenReady(GameTile gt)
-    {
+    {        
         _auctionTimerText.SetText("");
 
         //Wait for gameplay on other tile to finish
@@ -331,7 +331,6 @@ public class BidHandler : MonoBehaviour
         _raffleWinners.Clear();
 
         _auctionTimerText.SetText(MyUtil.GetMinuteSecString(0));
-
     }
     public void ReleasePlayersIntoTile(GameTile gt, Vector3 beltWayPointPos)
     {
@@ -380,8 +379,8 @@ public class BidHandler : MonoBehaviour
         _redemptionsIds.Clear();
         _biddingQ.Clear();
         UpdateRaffleDrawIndicatorsCount(0);
-        UpdateBiddingQ(); 
-        _gm.RebidWaiter();
+        UpdateBiddingQ();
+        StartCoroutine(_gm.RebidWaiter());
     }
 
     public void ClearFromQ(PlayerHandler ph, bool updateQ, bool unbid = false)

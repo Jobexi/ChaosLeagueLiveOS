@@ -77,8 +77,10 @@ public class TwitchPubSub : MonoBehaviour
 
         StartCoroutine(HandleOnChannelPointsRedeemed(user.Id, user.Login, rewardTitle, redemption.UserInput, redemption.Reward.Cost, redemptionID, rewardID));
     }
+
     public IEnumerator HandleOnChannelPointsRedeemed(string twitchId, string twitchUsername, string rewardTitle, string msg, int cost, string redemptionID = null, string rewardID = null)
     {
+
         //Get the player handler of the player redeeming tickets
         CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
         yield return _gm.GetPlayerHandler(twitchId, coResult);
@@ -89,6 +91,9 @@ public class TwitchPubSub : MonoBehaviour
             Debug.LogError("Failed to find player handler");
             yield break;
         }
+
+        while (_gm.PauseForEffect)
+            yield return new WaitForSeconds(0.1f);
 
         ph.pp.LastInteraction = DateTime.Now;
         ph.pp.TwitchUsername = twitchUsername;

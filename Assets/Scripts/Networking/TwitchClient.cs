@@ -955,6 +955,27 @@ public class TwitchClient : MonoBehaviour
             _attackPipe.ReceivePlayer(pb);
         }
 
+        else if (commandKey.StartsWith("!defendMax"))
+        {
+
+            long pointsToDefend = 10000000;
+        
+            if (ph.pp.SessionScore <= 0)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You don't have any points to defend with.");
+                return;
+            }
+
+            //If the user tries to use more points than they have, just clamp it
+            if (ph.pp.SessionScore < pointsToDefend)
+                pointsToDefend = ph.pp.SessionScore;
+
+            if (_defaultDefenseV2 == null)
+                return;
+
+            _defaultDefenseV2.AddBonusDefense(pointsToDefend, ph);
+        }
+
         else if (commandKey.StartsWith("!defend"))
         {
 

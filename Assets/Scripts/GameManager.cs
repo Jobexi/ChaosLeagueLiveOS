@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     private byte greenhue = 150;
     private int huehuehue = 0;
 
+    public bool PauseForEffect = false;
+
     public float PlusAnimation = 1;
     private bool PlusUp = false;
 
@@ -632,19 +634,18 @@ public class GameManager : MonoBehaviour
             PlayerHandlers[key].pp.InvitesJSON = "";
         }
 
-        _sqliteServiceAsync.ClearInvitesData(); 
+        _sqliteServiceAsync.ClearInvitesData();
     }
 
     public IEnumerator RebidWaiter()
     {
         yield return new WaitForSeconds(1);
-
         RebidChecker();
     }
 
     public void RebidChecker()
     {
-        string[] keys = PlayerHandlers.Keys.ToArray();
+        string[] keys = PlayerHandlers.Keys.ToArray(); 
         foreach (string key in keys)
         {
             if (PlayerHandlers[key].pp.AutoBidRemainder > 0 && PlayerHandlers[key].pp.RiskSkips > 0  && PlayerHandlers[key].pp.CurrentBid == 0)
@@ -655,7 +656,7 @@ public class GameManager : MonoBehaviour
                     PlayerHandlers[key].pp.RiskSkips -= 1;
                     PlayerHandlers[key].pp.AutoBidRemainder -= 1;
                 
-                if (!_tileController.NextBiddingTile.IsRisk && PlayerHandlers[key].pp.RiskSkips > 0)
+                if (!_tileController.CurrentBiddingTile.IsRisk && PlayerHandlers[key].pp.RiskSkips > 0)
                 {
                     GetSneakyPlayerHandler(PlayerHandlers[key], PlayerHandlers[key].pp.TwitchID);
                     _tileController.BidHandler.BidRedemption((PlayerHandlers[key]), 1, BidType.ChannelPoints, "1", "1");

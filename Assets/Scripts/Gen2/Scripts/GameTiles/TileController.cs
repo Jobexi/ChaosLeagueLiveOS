@@ -374,10 +374,10 @@ public class TileController : MonoBehaviour
         Vector3 rotatePoint = finalTilePos + Vector3.forward * 50;
 
         //Play the spin animation
-        yield return SpinAnimation(animeTiles, rotatePoint, finalTilePos);
+        yield return SpinAnimation(animeTiles, rotatePoint, finalTilePos);        
 
         //Move all the random animation tiles back to the holding pen, and init the selected one
-        for(int i = 0; i < animeTiles.Count; i++)
+        for (int i = 0; i < animeTiles.Count; i++)
         {
             GameTile tile = animeTiles[i];
 
@@ -398,8 +398,9 @@ public class TileController : MonoBehaviour
             }
             _tilePools[tile.TileIDNum].ReturnObject(tile);
         }
+
         _SpinningNow = false;        
-        _npcHandler.CheckWaiter();
+        StartCoroutine(_npcHandler.CheckWaiter());
     }
 
     public IEnumerator SpinAnimation(List<GameTile> animeTiles, Vector3 rotatePoint, Vector3 finalTilePos)

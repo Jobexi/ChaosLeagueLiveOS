@@ -22994,7 +22994,7 @@ MonoBehaviour:
   _clDebug: {fileID: 1428205194}
   _tileController: {fileID: 5393775865149022912}
   _myHttpClient: {fileID: 4495485317354644231}
-  _bidHandler: {fileID: 0}
+  _bidHandler: {fileID: 558830488}
   _kingController: {fileID: 5092249410878743455}
   _rebellionController: {fileID: 481457712}
   _sqliteServiceAsync: {fileID: 6727299273675977357}
@@ -23005,6 +23005,7 @@ MonoBehaviour:
   EventCountdown: 5
   NPC: 1
   firstNPC: 1
+  PauseForEffect: 0
   PlusAnimation: 1
   HoldingPen: {fileID: 427794634592160510}
   PlayerHandlersRoot: {fileID: 5832311653500343382}
@@ -38391,7 +38392,7 @@ MonoBehaviour:
   _rebellionController: {fileID: 481457712}
   _sqliteServiceAsync: {fileID: 6727299273675977357}
   _unitTesting: {fileID: 550380675}
-  _ang: {fileID: 0}
+  _ang: {fileID: 465324813}
   DefaultPFP: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
   EventCountdown: 35
   RefreshCountdown: 250
@@ -63922,8 +63923,8 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
-  _forceThisRarity: 13
+  ForceThisTileNext: {fileID: 647519542019892001, guid: 1d9bf6103a3dd0f41851d3a9c0949420, type: 3}
+  _forceThisRarity: 6
   _forceGolden: 0
   _forceRuby: 0
   _SpinningNow: 0
