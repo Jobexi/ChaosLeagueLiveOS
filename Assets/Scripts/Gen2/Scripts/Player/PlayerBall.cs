@@ -396,7 +396,7 @@ public class PlayerBall : MonoBehaviour
                 Ph.pp.Gold += tollRate;
 
                 TextPopupMaster.Inst.CreateTravelingIndicator(payment.ToString(), payment, Ph.GetGameManager().GetKingController().currentKing.Ph, Ph, 0.1f, Color.yellow, null);
-            }
+            }            
         }
         else
         {
@@ -411,6 +411,14 @@ public class PlayerBall : MonoBehaviour
 
                 Ph.SubtractPoints(payment, false, true);
                 TextPopupMaster.Inst.CreateTravelingIndicator(payment.ToString(), payment, Ph, Ph.GetGameManager().GetKingController().currentKing.Ph, 0.1f, Color.red, null);
+            }
+            else if (tollRate < 0)
+            {
+                long payment = tollRate * -1;
+
+                Ph.pp.Gold -= tollRate;
+
+                TextPopupMaster.Inst.CreateTravelingIndicator(payment.ToString(), payment, Ph.GetGameManager().GetKingController().currentKing.Ph, Ph, 0.1f, Color.white, null);
             }
         }
     }

@@ -46,8 +46,11 @@ public class NPCHandler : MonoBehaviour
     public int GoldCount2 = 0;
     public int RubyCount1 = 0;
     public int RubyCount2 = 0;
+    public int CurseCount1 = 0;
+    public int CurseCount2 = 0;
 
-    private int maxNPC = 87;
+    private int maxNPC = 112;
+    private int maxMode = 15;
 
     void Awake()
     {
@@ -535,6 +538,54 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("ObsceneToll", "ObsceneToll", "bid", 1);
                 StartCoroutine(UpdateWaiter("ObsceneToll"));
                 break;
+            case 101:
+                _unitTesting.NPCReward("MomentaryCurse", "MomentaryCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryCurse"));
+                break;
+            case 102:
+                _unitTesting.NPCReward("BriefCurse", "BriefCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefCurse"));
+                break;
+            case 103:
+                _unitTesting.NPCReward("ShortCurse", "ShortCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortCurse"));
+                break;
+            case 104:
+                _unitTesting.NPCReward("TemporaryCurse", "TemporaryCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryCurse"));
+                break;
+            case 105:
+                _unitTesting.NPCReward("PassingCurse", "PassingCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingCurse"));
+                break;
+            case 106:
+                _unitTesting.NPCReward("InterimCurse", "InterimCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimCurse"));
+                break;
+            case 107:
+                _unitTesting.NPCReward("Curse", "Curse", "bid", 1);
+                StartCoroutine(UpdateWaiter("Curse"));
+                break;
+            case 108:
+                _unitTesting.NPCReward("ExtendedCurse", "ExtendedCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedCurse"));
+                break;
+            case 109:
+                _unitTesting.NPCReward("ProlongedCurse", "ProlongedCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedCurse"));
+                break;
+            case 110:
+                _unitTesting.NPCReward("LastingCurse", "LastingCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingCurse"));
+                break;
+            case 111:
+                _unitTesting.NPCReward("PermanentCurse", "PermanentCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentCurse"));
+                break;
+            case 112:
+                _unitTesting.NPCReward("EternalCurse", "EternalCurse", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalCurse"));
+                break;
         }
                 
     }
@@ -968,16 +1019,69 @@ public class NPCHandler : MonoBehaviour
                 SetNPCMode(13, ID, 17);
                 break;
             case "HugeToll":
-                SetNPCMode(13, ID, 25);
+                SetNPCMode(13, ID, 26);
                 break;
             case "MassiveToll":
-                SetNPCMode(13, ID, 50);
+                SetNPCMode(13, ID, 51);
                 break;
             case "EnormousToll":
-                SetNPCMode(13, ID, 100);
+                SetNPCMode(13, ID, 101);
                 break;
             case "ObsceneToll":
-                SetNPCMode(13, ID, 250);
+                SetNPCMode(13, ID, 251);
+                break;
+            case "MomentaryCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 1;
+                break;
+            case "BriefCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 2;
+                break;
+            case "ShortCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 3;
+                break;
+            case "TemporaryCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 5;
+                break;
+            case "PassingCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 7;
+                break;
+            case "InterimCurse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 10;
+                break;
+            case "Curse":
+                SetNPCMode(14, ID);
+                CurseCount1 += 17;
+                break;
+            case "ExtendedCurse":
+                SetNPCMode(15, ID);
+                CurseCount1 += 3;
+                CurseCount2 += 5;
+                break;
+            case "ProlongedCurse":
+                SetNPCMode(15, ID);
+                CurseCount1 += 5;
+                CurseCount2 += 7;
+                break;
+            case "LastingCurse":
+                SetNPCMode(15, ID);
+                CurseCount1 += 7;
+                CurseCount2 += 11;
+                break;
+            case "PermanentCurse":
+                SetNPCMode(15, ID);
+                CurseCount1 += 11;
+                CurseCount2 += 13;
+                break;
+            case "EternalCurse":
+                SetNPCMode(15, ID);
+                CurseCount1 += 13;
+                CurseCount2 += 17;
                 break;
         }
     
@@ -1382,7 +1486,7 @@ public class NPCHandler : MonoBehaviour
                             {
                                 NPCMessage(_gm.PlayerHandlers[key], "Halfway through my Upgrades!");
                                 _gm.PlayerHandlers[key].pp.StateNPC = 0;
-                                _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 7;
                             }
                         }
                         else
@@ -1392,7 +1496,7 @@ public class NPCHandler : MonoBehaviour
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
-                            _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 7;
                         }
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
@@ -1618,7 +1722,7 @@ public class NPCHandler : MonoBehaviour
                             {
                                 NPCMessage(_gm.PlayerHandlers[key], "Stay Clever, Darlings.");
                                 _gm.PlayerHandlers[key].pp.StateNPC = 0;
-                                _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 11;
                             }
                         }
                         else
@@ -1628,7 +1732,7 @@ public class NPCHandler : MonoBehaviour
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
-                            _gm.PlayerHandlers[key].pp.ModeNPC = 6;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 11;
                         }
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
@@ -1642,7 +1746,11 @@ public class NPCHandler : MonoBehaviour
                     {
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
-                            NPCMessage(_gm.PlayerHandlers[key], $"I decree a new toll: {_gm.PlayerHandlers[key].pp.StateNPC}");
+                            if (_gm.PlayerHandlers[key].pp.StateNPC > 10)
+                                NPCMessage(_gm.PlayerHandlers[key], $"I decree a new toll: {_gm.PlayerHandlers[key].pp.StateNPC - 1}");
+                            else
+                                NPCMessage(_gm.PlayerHandlers[key], $"I decree a new toll: {_gm.PlayerHandlers[key].pp.StateNPC}");
+
                             NPCToll(_gm.PlayerHandlers[key].pp.StateNPC);
                             _gm.PlayerHandlers[key].pp.StateNPC = 71717;
                         }
@@ -1657,46 +1765,118 @@ public class NPCHandler : MonoBehaviour
                         }
                         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     }                
-
-
-                    if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 14) //Single Curses
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
                     {
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.StateNPC = 2;
-                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's repeat some Tiles!");
+                            NPCMessage(_gm.PlayerHandlers[key], "Arrr. These Tiles be Accurse-ed");
                         }
                         else
                         {
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                         }
-                        
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
                     {
                         if (_gm.PlayerHandlers[key].IsKing())
                         {
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            if (RepeaterCount1 > 0)
+                            if (CurseCount1 > 0)
                             {
-                                NPCRepeatTile();
-                                RepeaterCount1 -= 1;
+                                NPCCursedTile();
+                                CurseCount1 -= 1;
                                 _gm.PlayerHandlers[key].pp.StateNPC = 3;
                             }
                             else
                             {
-                                NPCMessage(_gm.PlayerHandlers[key], "I'm all out of repeats! Feel free to take the throne.");
+                                NPCMessage(_gm.PlayerHandlers[key], "Curses! Me Stash-o-Curses has run dry!");
                                 _gm.PlayerHandlers[key].pp.StateNPC = 4;
                             }
                         }
                         else
                         {
-                            NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
+                            NPCMessage(_gm.PlayerHandlers[key], "Properly warned ye be, says I!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 15) //Double Curses
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Arrr. These Tiles be Accurse-ed");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (CurseCount2 > 0)
+                            {
+                                NPCCursedTile();
+                                CurseCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Halfway through my stash-o-curses! Arrr!");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 14;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Properly warned ye be, says I!");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 14;
                         }
                     }
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
@@ -1809,6 +1989,7 @@ public class NPCHandler : MonoBehaviour
                 _tileController.GameplayTile._indicator1.SetText("💛");
         }
 
+        _tileController._forceCurse = false;
         _tileController._forceGolden = true;
     }
 
@@ -1835,8 +2016,35 @@ public class NPCHandler : MonoBehaviour
                 _tileController.GameplayTile._indicator1.SetText("🔴");
         }
 
+        _tileController._forceCurse = false;
         _tileController._forceGolden = false;
         _tileController._forceRuby = true;
+    }
+
+    public void NPCCursedTile()
+    {
+        if (_tileController._forceRuby == true || _tileController._forceGolden == true)
+        {
+            Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+            return;
+        }
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.IsShop == true)
+                return;
+            else
+                _tileController.CurrentBiddingTile._indicator1.SetText("💚");
+        }
+        else
+        {
+            if (_tileController.GameplayTile.IsShop == true)
+                return;
+            else
+                _tileController.GameplayTile._indicator1.SetText("💚");
+        }
+
+        _tileController._forceCurse = true;
     }
 
     public void NPCGivePoints(string targetUsername, long desiredPointsToGive)

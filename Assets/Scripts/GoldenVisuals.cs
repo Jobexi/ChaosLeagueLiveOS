@@ -11,6 +11,7 @@ public class GoldenVisuals : MonoBehaviour
 
     [SerializeField] Material _Golds;
     [SerializeField] Material _Rubys;
+    [SerializeField] Material _Curse;
 
     float totalLength = 0f;
     float t = 0;
@@ -40,6 +41,10 @@ public class GoldenVisuals : MonoBehaviour
 
         }
 
+        { Debug.LogWarning($"{GameTile.GoldenSpids}"); }
+
+        if (GameTile.GoldenSpids == 3)        
+            _borderPath.material = _Curse;
         if (GameTile.GoldenSpids == 2)
             _borderPath.material = _Rubys;
         if (GameTile.GoldenSpids == 1)

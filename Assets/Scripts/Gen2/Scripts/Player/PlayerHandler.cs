@@ -782,6 +782,9 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         long scoreBefore = pp.SessionScore; 
         pp.SessionScore = (long)(pp.SessionScore / divideAmount);
 
+        if (pp.SessionScore < 0)
+            pp.SessionScore = 0;
+
         if (contributeToROI)
             TilePointsROI += (pp.SessionScore - scoreBefore); 
 

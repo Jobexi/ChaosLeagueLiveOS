@@ -139,11 +139,6 @@ public class TwitchClient : MonoBehaviour
             isMod = twitchUsername.ToLower() == "fifthepsilon";
             isAdmin = twitchUsername.ToLower() == "fifthepsilon";
         }
-        if (!isMod)
-        {
-            Debug.Log("isMod?");
-            isMod = twitchUsername.ToLower() == "virrexo";
-        }
         if (!isVIP)
         {
             Debug.Log("isVIP?");
@@ -490,7 +485,7 @@ public class TwitchClient : MonoBehaviour
         return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
 
     }
-    
+
     private Color GetVIPText(int vip)
     {
         switch (vip)
@@ -590,12 +585,12 @@ public class TwitchClient : MonoBehaviour
     }
 
     private void VIPTextbox(PlayerHandler ph, int idcode)
-    {        
+    {
         string hexString1 = MyUtil.ColorToHexString(GetVIPText(idcode));
         string hexString2 = MyUtil.ColorToHexString(GetVIPBubble(idcode));
         ph.pp.SpeechBubbleTxtHex = hexString1;
         ph.pp.SpeechBubbleFillHex = hexString2;
-        
+
 
         ph.SetCustomizationsFromPP();
     }
@@ -741,20 +736,21 @@ public class TwitchClient : MonoBehaviour
                         return;
                     }
                 }
-                
+
                 if (_tileController.GameplayTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                
+
                 if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
                 {
                     Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    return;
                 }
-                
+
                 if (_tileController.GameplayTile.IsShop == true)
                 {
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles cannot be upgraded.");
@@ -772,14 +768,14 @@ public class TwitchClient : MonoBehaviour
                         return;
                     }
                 }
-                
+
                 if (_tileController.CurrentBiddingTile.IsRuby)
                 {
                     Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Ruby Tiles can neither be upgraded nor Repeated.");
                     return;
                 }
-                
+
                 if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
                 {
                     Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
@@ -792,7 +788,14 @@ public class TwitchClient : MonoBehaviour
                     return;
                 }
             }
-            ph.pp.Gold -= 75000;
+
+            if (_tileController._TileRepeating)
+            {
+                ph.pp.Gold -= 25000;
+            }
+            else
+                ph.pp.Gold -= 75000;
+
             _tileController.doRepeatTile();
             _tileController.doUpgradeTile();
         }
@@ -850,7 +853,16 @@ public class TwitchClient : MonoBehaviour
                     _tileController.GameplayTile._indicator1.SetText("💛");
             }
 
-            ph.pp.Gold -= 200000;
+            if (_tileController._forceCurse == true)
+            {
+                ph.pp.Gold -= 75000;
+                _tileController._forceCurse = false;
+            }
+            else
+            {
+                ph.pp.Gold -= 200000;
+            }
+
             _tileController._forceGolden = true;
         }
 
@@ -907,9 +919,95 @@ public class TwitchClient : MonoBehaviour
                     _tileController.GameplayTile._indicator1.SetText("🔴");
             }
 
-            ph.pp.Gold -= 1000000;
-            _tileController._forceGolden = false;
+            if (_tileController._forceCurse == true)
+            {
+                ph.pp.Gold -= 875000;
+                _tileController._forceCurse = false;
+                _tileController._forceRuby = true;
+            }
+            else if (_tileController._forceGolden == true)
+            {
+                ph.pp.Gold -= 800000;
+                _tileController._forceGolden = false;
+                _tileController._forceRuby = true;
+            }
+            else
+            {
+                ph.pp.Gold -= 1000000;
+            }
+
             _tileController._forceRuby = true;
+        }
+
+        else if (commandKey.StartsWith("!cursetile") || commandKey.StartsWith("!cursedtile"))
+        {
+            Debug.Log("inCurseTile");
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 125000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Cursing this tile costs 125k Gold.");
+                return;
+            }
+
+            if (_tileController._forceCurse == true)
+            {
+                Debug.Log("The upcoming tile is already Cursed. Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Cursed Please wait until the reel spins to try again.");
+                return;
+            }
+
+            if (_tileController._forceGolden == true)
+            {
+                Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                return;
+            }
+
+            if (_tileController._forceRuby == true)
+            {
+                Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+                return;
+            }
+
+            if (_tileController._SpinningNow)
+            {
+                Debug.Log("Please wait until the tile stops spinning to try this command again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
+                return;
+            }
+
+            if (_tileController.GameplayTile == null)
+            {
+                if (_tileController.CurrentBiddingTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.CurrentBiddingTile._indicator1.SetText("💚");
+            }
+            else
+            {
+                if (_tileController.GameplayTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
+                    return;
+                }
+                else
+                    _tileController.GameplayTile._indicator1.SetText("💚");
+            }
+
+            ph.pp.Gold -= 125000;
+            _tileController._forceCurse = true;
         }
 
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
@@ -955,11 +1053,11 @@ public class TwitchClient : MonoBehaviour
             _attackPipe.ReceivePlayer(pb);
         }
 
-        else if (commandKey.StartsWith("!defendMax"))
+        else if (commandKey.StartsWith("!defendmax"))
         {
 
             long pointsToDefend = 10000000;
-        
+
             if (ph.pp.SessionScore <= 0)
             {
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You don't have any points to defend with.");
@@ -1077,12 +1175,12 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!tradeup"))
         {
-            if (!ph.IsKing())
-                if (ph.pb != null)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You can't !tradeup while your ball is spawned, unless you are the king.");
-                    return;
-                }
+            //if (!ph.IsKing())
+            //    if (ph.pb != null)
+            //    {
+            //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You can't !tradeup while your ball is spawned, unless you are the king.");
+            //        return;
+            //    }
 
             ph.TradeUp();
         }
@@ -1195,8 +1293,8 @@ public class TwitchClient : MonoBehaviour
             //Handled in pub sub
         }
     }
-    
-private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, string msg)
+
+    private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, string msg)
     {
         //Get a user from the message
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
@@ -1226,9 +1324,9 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
             yield break;
         }
 
-        MyUtil.ExtractQuotedSubstring(msg, out string quote); 
+        MyUtil.ExtractQuotedSubstring(msg, out string quote);
 
-        yield return _twitchPubSub.HandleOnBitsReceived(targetPlayer.pp.TwitchID, targetPlayer.pp.TwitchUsername, quote, (int)bitsAmount); 
+        yield return _twitchPubSub.HandleOnBitsReceived(targetPlayer.pp.TwitchID, targetPlayer.pp.TwitchUsername, quote, (int)bitsAmount);
     }
     private IEnumerator RedactPointsCommand(string messageId, PlayerHandler ph, string msg)
     {
@@ -1294,7 +1392,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
             Debug.Log($"Failed to find player with username: {targetUsername}");
             yield break;
         }
- 
+
 
         TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.green, ph.PfpTexture, TI_Type.GivePoints);
 
@@ -1305,59 +1403,59 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This command has been disabled to combat alt account abuse.");
         yield break;
 
-/*        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givepoints [amount] @username");
-            yield break;
-        }
+        /*        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givepoints [amount] @username");
+                    yield break;
+                }
 
-        long desiredPointsToGive;
-        if (!MyUtil.GetFirstLongFromString(msg, out desiredPointsToGive))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givepoints [amount] @username");
-            yield break;
-        }
+                long desiredPointsToGive;
+                if (!MyUtil.GetFirstLongFromString(msg, out desiredPointsToGive))
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givepoints [amount] @username");
+                    yield break;
+                }
 
-        if (desiredPointsToGive <= 0)
-            yield break;
+                if (desiredPointsToGive <= 0)
+                    yield break;
 
-        if (ph.pp.SessionScore <= 0)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to give.");
-            yield break;
-        }
+                if (ph.pp.SessionScore <= 0)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to give.");
+                    yield break;
+                }
 
-        //Find if the player handler is cached and able to receive points
-        CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
-        yield return _gm.GetPlayerByUsername(targetUsername, coResult);
-        PlayerHandler targetPlayer = coResult.Result;
+                //Find if the player handler is cached and able to receive points
+                CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
+                yield return _gm.GetPlayerByUsername(targetUsername, coResult);
+                PlayerHandler targetPlayer = coResult.Result;
 
 
-        if (targetPlayer == null)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
-            yield break;
-        }
+                if (targetPlayer == null)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+                    yield break;
+                }
 
-        //Can't give points to yourself
-        if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give points to yourself.");
-            yield break;
-        }
+                //Can't give points to yourself
+                if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give points to yourself.");
+                    yield break;
+                }
 
-        //If the user tries to use more points than they have, just clamp it
-        if (ph.pp.SessionScore < desiredPointsToGive)
-            desiredPointsToGive = ph.pp.SessionScore;
+                //If the user tries to use more points than they have, just clamp it
+                if (ph.pp.SessionScore < desiredPointsToGive)
+                    desiredPointsToGive = ph.pp.SessionScore;
 
-        //Clamp givepoints limit to 10,000
-        if (desiredPointsToGive > AppConfig.inst.GetI("GivePointsLimit"))
-            desiredPointsToGive = AppConfig.inst.GetI("GivePointsLimit");
+                //Clamp givepoints limit to 10,000
+                if (desiredPointsToGive > AppConfig.inst.GetI("GivePointsLimit"))
+                    desiredPointsToGive = AppConfig.inst.GetI("GivePointsLimit");
 
-        ph.SubtractPoints(desiredPointsToGive, canKill: false, createTextPopup: true);
+                ph.SubtractPoints(desiredPointsToGive, canKill: false, createTextPopup: true);
 
-        TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.green, ph.PfpTexture, TI_Type.GivePoints);
-*/
+                TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.green, ph.PfpTexture, TI_Type.GivePoints);
+        */
     }
     private IEnumerator ProcessGiveGoldCommand(string messageId, PlayerHandler ph, string msg)
     {
@@ -1419,7 +1517,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
     }
     private IEnumerator RewardGoldCommand(string messageId, PlayerHandler ph, string msg)
     {
-       
+
         if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givegold [amount] @username");
@@ -1497,7 +1595,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
                 hastomato = false;
             }
         }
-        
+
         CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
         yield return _gm.GetPlayerByUsername(targetUsername, coResult);
         PlayerHandler targetPlayer = coResult.Result;
@@ -1696,7 +1794,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
 
         if (type == "Sapphire")
         {
-            if(ph.pp.Sapphires < desiredCurrencyAmount)
+            if (ph.pp.Sapphires < desiredCurrencyAmount)
             {
                 Debug.Log("You don't have enough Sapphires");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Sapphires");
@@ -1734,7 +1832,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg, string type)
     {
         PlayerHandler phToLookup = ph;
-     
+
         int indxOfAtSymbol = msg.IndexOf('@');
         if (indxOfAtSymbol != -1 && msg.Length > indxOfAtSymbol + 1)
         {
@@ -1763,7 +1861,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
         else if (type == "items")
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, itemsString);
     }
-        
+
     private void ProcessGameplayCommands(string messageId, PlayerHandler ph, string rawMsg, string rawEmotesRemoved)
     {
         if (_tileController.GameplayTile == null)
@@ -1778,7 +1876,7 @@ private IEnumerator ProcessAdminGiveBits(string messageId, PlayerHandler ph, str
 
     private string RemoveTwitchEmotes(string rawMsg, List<Emote> emotes)
     {
-        if(emotes == null || emotes.Count <= 0)
+        if (emotes == null || emotes.Count <= 0)
             return rawMsg;
 
         StringBuilder noEmotesSb = new StringBuilder();

@@ -149,11 +149,12 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
     public void SpawnGoldFromTileRarity(GameTile gt)
     {
-        int mult = AppConfig.GetMult(gt.RarityType);
+        int mult = AppConfig.GetGoldMult(gt.RarityType);
         int totalGold = _baseGoldPerTile * mult;
 
-
-        if (gt.IsRuby)
+        if (gt.IsCurse)
+            totalGold *= 0;
+        else if (gt.IsRuby)
             totalGold *= 35;
         else if (gt.IsGolden)
             totalGold *= 7;
@@ -166,10 +167,12 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
             int coinValue = Mathf.Min(totalGold, 10);
             if (totalGold > 10000)
                 coinValue = 100;
-            if (totalGold > 50000)
-                coinValue = 1000;
             if (totalGold > 100000)
+                coinValue = 1000;
+            if (totalGold > 1000000)
                 coinValue = 10000;
+            if (totalGold > 10000000)
+                coinValue = 100000;
 
             float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
             float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;
@@ -220,6 +223,10 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
                 coinValue = 1000;
             if (totalGold > 1000000)
                 coinValue = 10000;
+            if (totalGold > 10000000)
+                coinValue = 100000;
+            if (totalGold > 100000000)
+                coinValue = 1000000;
 
             Vector2 spawnVel = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
 

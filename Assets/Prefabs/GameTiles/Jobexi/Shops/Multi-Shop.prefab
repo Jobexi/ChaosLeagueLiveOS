@@ -308,7 +308,7 @@ MonoBehaviour:
   - {fileID: 6039286995555061193}
   - {fileID: 6827696446324386242}
   - {fileID: 3167511419692612182}
-  _buyTime: 45
+  _buyTime: 30
 --- !u!1 &4705376843409729782
 GameObject:
   m_ObjectHideFlags: 0

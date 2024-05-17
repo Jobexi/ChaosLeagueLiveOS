@@ -59,7 +59,9 @@ public class TileController : MonoBehaviour
     [SerializeField] private RarityType _forceThisRarity;
     [SerializeField] public bool _forceGolden; 
     [SerializeField] public bool _forceRuby; 
+    [SerializeField] public bool _forceCurse; 
     [SerializeField] public bool _SpinningNow; 
+    [SerializeField] public bool _TileRepeating; 
 
     private Dictionary<int, ObjectPool<GameTile>> _tilePools = new Dictionary<int, ObjectPool<GameTile>>(); 
 
@@ -165,13 +167,13 @@ public class TileController : MonoBehaviour
 
 
         CurrentBiddingTile = SpawnOriginTile(LeftTileCenter.position, Side.Left, false);
-        CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby);
+        CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse);
         CurrentBiddingTile.InitTileInPos();
 
         StartCoroutine(BidHandler.RunBiddingOn(CurrentBiddingTile)); 
         
         GameplayTile = SpawnOriginTile(RightTileCenter.position, Side.Right, false);
-        GameplayTile.PreInitTile(this, _forceGolden, _forceRuby); 
+        GameplayTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse); 
         GameplayTile.InitTileInPos();
         StartCoroutine(GameplayTile.RunTile());
     }
@@ -227,6 +229,8 @@ public class TileController : MonoBehaviour
             _forceThisRarity = GameplayTile.GetRarity();
             GameplayTile._indicator2.SetText("🔁");
         }
+
+        _TileRepeating = true;
     }
 
     public void doUpgradeTile()
@@ -346,6 +350,7 @@ public class TileController : MonoBehaviour
             GameTile tile = animeTiles[i];
             bool isGolden = false;
             bool isRuby = false;
+            bool isCurse = false;
             float random = Random.Range(0f, 100f);
             if (random <= AppConfig.inst.GetI("GoldenTilePercentChance"))
                 isGolden = true;
@@ -359,13 +364,17 @@ public class TileController : MonoBehaviour
             if (_forceRuby)
                 isRuby = true;
 
+            if (_forceCurse)
+                isCurse = true;
+
             if (gt.IsShop)
             {
                 isGolden = false;
                 isRuby = false;
+                isCurse = false;
             }
 
-            tile.PreInitTile(this, isGolden, isRuby);
+            tile.PreInitTile(this, isGolden, isRuby, isCurse);
         }
 
         Vector3 finalTilePos = gt.transform.position;
@@ -400,6 +409,7 @@ public class TileController : MonoBehaviour
         }
 
         _SpinningNow = false;        
+        _TileRepeating = false;        
         StartCoroutine(_npcHandler.CheckWaiter());
     }
 

@@ -211,7 +211,9 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             }
             if (_effect.HasFlag(PBEffect.Zero))
             {
-                if (GetZoneMultiplier() > 0)
+                if (GetZoneMultiplyAppliedValue() < 0)
+                    meshColor = Color.red;
+                else if (GetZoneMultiplier() > 0)
                     meshColor = Color.green;
                 else
                     meshColor = Color.red;
@@ -223,7 +225,9 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             }
             if (_effect.HasFlag(PBEffect.Divide))
             {
-                if (GetZoneMultiplier() > 0)
+                if (GetZoneMultiplyAppliedValue() < 0)
+                    meshColor = Color.red;
+                else if (GetZoneMultiplier() > 0)
                     meshColor = Color.green;
                 else
                     meshColor = MyColors.Orange;

@@ -34,6 +34,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public DurationTYpe DurationTYpe;
     [SerializeField] public bool IsGolden; //1% chance
     [SerializeField] public bool IsRuby; //0.01% chance
+    [SerializeField] public bool IsCurse; //Special
     [SerializeField] public bool IsShop;
     [SerializeField] public bool IsRisk;
     [SerializeField] public bool HasBackground;
@@ -241,7 +242,7 @@ public class GameTile : MonoBehaviour
         foreach (var oscillators in GetComponentsInChildren<OscillatorV2>())
             oscillators.ToggleOnOff(toggle); 
     }
-    public void PreInitTile(TileController tc, bool isGolden, bool isRuby)
+    public void PreInitTile(TileController tc, bool isGolden, bool isRuby, bool isCurse)
     {
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
@@ -252,8 +253,6 @@ public class GameTile : MonoBehaviour
 
         Effectors = GetComponentsInChildren<PBEffector>();
 
-        IsGolden = isGolden;
-        IsRuby = isRuby;
         _timer = 0;
         UpdateTileTimer();
         ResetTicketBonus();
@@ -269,12 +268,12 @@ public class GameTile : MonoBehaviour
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
+            if (isCurse)
+                effector.MultiplyCurrValue(-1);
             if (isRuby)
                 effector.MultiplyCurrValue(50);
             else if (isGolden)
-                effector.MultiplyCurrValue(10);
-
-            
+                effector.MultiplyCurrValue(10);            
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -289,7 +288,12 @@ public class GameTile : MonoBehaviour
         if (_suddenDeath.gameObject.activeSelf)
             _suddenDeath.OnTilePreInit();
 
-        if (isRuby)
+        if (isCurse)
+        {            
+            _goldenVisuals.gameObject.SetActive(true);
+            GoldenSpids = 3;
+        }
+        else if (isRuby)
         {
             _goldenVisuals.gameObject.SetActive(true);
             GoldenSpids = 2;
@@ -339,6 +343,7 @@ public class GameTile : MonoBehaviour
 
         _tc._forceGolden = false;
         _tc._forceRuby = false;
+        _tc._forceCurse = false;
 
         TogglePhysics(true);
 

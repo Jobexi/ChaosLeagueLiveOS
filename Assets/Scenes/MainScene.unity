@@ -38406,6 +38406,8 @@ MonoBehaviour:
   GoldCount2: 0
   RubyCount1: 0
   RubyCount2: 0
+  CurseCount1: 0
+  CurseCount2: 0
 --- !u!1 &2015488422
 GameObject:
   m_ObjectHideFlags: 0
@@ -63849,7 +63851,6 @@ MonoBehaviour:
   - {fileID: 6275913431883320091, guid: 20b9c01c75b35e548ad271ade1b2253e, type: 3}
   - {fileID: 6216378128248226811, guid: 77738680a8747f347a4bebe51311c36c, type: 3}
   - {fileID: 5521807422773572966, guid: 8cb5b5eb8ce99754391feb9ac5e4e005, type: 3}
-  - {fileID: 3504160345019027322, guid: 43bfd3d81bc52eb42867e8c336c8665c, type: 3}
   - {fileID: 1653556322778236169, guid: ef4293e56c5516b4194511978eca9d8c, type: 3}
   - {fileID: 1653556322778236169, guid: d332252cecf7e00459a0aa4309a3caa2, type: 3}
   - {fileID: 2605624827304256445, guid: ec5b3d710e59a6646ae4f64b95bcbd4c, type: 3}
@@ -63862,6 +63863,7 @@ MonoBehaviour:
   - {fileID: 2605624827304256445, guid: 63656aac225b90f41ab4bf38f06eacb0, type: 3}
   - {fileID: 5481711066216898309, guid: 2dde99fa00c41fb46b80c6734ec8060f, type: 3}
   - {fileID: 1653556322778236169, guid: c4c9db7c0dd220a46a6fe024d3fae9eb, type: 3}
+  - {fileID: 647519542019892001, guid: 0e0deee75afd1384a8e6e1c660ff2f0d, type: 3}
   - {fileID: 647519542019892001, guid: a18aab497cf1c6841a82ebaa6dd15e94, type: 3}
   - {fileID: 2605624827304256445, guid: 76dc62e98326b4247961424ec779b712, type: 3}
   - {fileID: 647519542019892001, guid: 0298f78e094f3014991dc262d74a57b5, type: 3}
@@ -63923,11 +63925,13 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 647519542019892001, guid: 1d9bf6103a3dd0f41851d3a9c0949420, type: 3}
-  _forceThisRarity: 6
+  ForceThisTileNext: {fileID: 0}
+  _forceThisRarity: 0
   _forceGolden: 0
   _forceRuby: 0
+  _forceCurse: 0
   _SpinningNow: 0
+  _TileRepeating: 0
   _rotationDurationS: 10
   _animeTileCountMin: 10
   _animeTileCountMax: 10

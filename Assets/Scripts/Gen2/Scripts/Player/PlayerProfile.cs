@@ -57,6 +57,9 @@ public class PlayerProfile
     public bool IsNPC { get; set; }
     public int ModeNPC { get; set; }
     public int StateNPC { get; set; }
+    public int Data1NPC { get; set; }
+    public int Data2NPC { get; set; }
+    public int Data3NPC { get; set; }
 
     public int CrownTexture1 { get; set; }
     public int CrownTexture2 { get; set; }

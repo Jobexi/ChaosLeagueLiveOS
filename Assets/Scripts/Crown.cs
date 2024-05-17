@@ -192,6 +192,8 @@ public class Crown : MonoBehaviour
             Texture1 = Txtr1;
             Texture2 = Txtr1;
             Enhanced = true;
+            SetBaseColor(Color.white, 0);
+            SetTrimColor(Color.white, 0);
             return;
         }
         //If T1

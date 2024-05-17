@@ -173,7 +173,8 @@ public class RebellionController : MonoBehaviour
         capsule.InitRoyalCelebration(this, ph, pfp, GetRoyalZoneFor(ph), dollarAmount, label: MyUtil.AbbreviateNum4Char(bitsInMessage), _dollarColorMap, bodyBackgroundColor, headerBackgroundColor, particlesColor);
         _capsuleSpawnQ.Enqueue(capsule);
 
-        _kingController.UpdateTollRate(10);
+        if (_kingController.TollRate < 10)
+            _kingController.UpdateTollRate(10);
 
         CheckCelebration();
     }
