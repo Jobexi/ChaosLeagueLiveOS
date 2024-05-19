@@ -504,6 +504,12 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.cyan);
             Debug.Log($"Diamonds {amount}");
         }
+        else if (currencyType == "Gold")
+        {
+            pp.Gold += amount * 1000000;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.yellow);
+            Debug.Log($"Diamonds {amount}");
+        }
 
         if (State == PlayerHandlerState.King)
             _gm.GetKingController().UpdateGoldText();
@@ -708,7 +714,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         {
             pp.SessionScore -= 1000000000000000000;
             pp.Rubies += 1;
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+1 Ruby", Color.red);
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+1 Ruby", Color.red);
         }
 
         if (doInviteBonus)
@@ -748,7 +754,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             TradeUp();
             pp.SessionScore = 0;
             pp.Rubies += 5;
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), textPopupDirection, "+5 Rubies", Color.red);
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+5 Rubies", Color.red);
         }
         else
             pp.SessionScore = (long)(pp.SessionScore * multiplier);

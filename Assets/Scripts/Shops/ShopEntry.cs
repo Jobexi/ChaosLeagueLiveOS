@@ -11,6 +11,10 @@ public abstract class ShopEntry : PlayerReceiveable
     [SerializeField] private TextMeshPro _goldCostText;
 
     public int GoldCost;
+    public int SapphireCost;
+    public int EmeraldCost;
+    public int DiamondCost;
+    public int RubyCost;
     
     public void InitEntryBase(int goldCost, List<string> buyCommandText)
     {

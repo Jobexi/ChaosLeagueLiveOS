@@ -14,11 +14,10 @@ public class GoldShopEntry : ShopEntry
 
     private Color _purchaseColor;
     private int valuechoice;
+    private int randomPrice;
 
     public void InitEntry(int tier, bool isGolden, float goldenDiscount)
     {
-
-        int randomPrice; 
         if(tier == 1)
         {
             randomPrice = 1;
@@ -35,12 +34,7 @@ public class GoldShopEntry : ShopEntry
             valuechoice = 10000000;
         }
 
-
-        if (isGolden)
-            randomPrice = Mathf.RoundToInt(randomPrice * (1 - goldenDiscount));
-
         InitEntryBase(randomPrice, BuyCommands);
-
     }
 
     public override void ReceivePlayer(PlayerBall pb)
@@ -50,13 +44,13 @@ public class GoldShopEntry : ShopEntry
 
     public void AttemptPurchase(PlayerBall pb)
     {
-        if (pb.Ph.pp.Rubies < GoldCost)
+        if (pb.Ph.pp.Rubies < randomPrice)
         {
             Debug.Log("Player doesn't have enough Rubies");
             return;
         }
 
-        pb.Ph.pp.Rubies -= GoldCost;
+        pb.Ph.pp.Rubies -= randomPrice;
         //Gold subtraction popup
         TextPopupMaster.Inst.CreateTextPopup(pb.GetPosition(), Vector3.up, $"-{MyUtil.AbbreviateNum4Char(GoldCost)} RUBIES", Color.red);
 

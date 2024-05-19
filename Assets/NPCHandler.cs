@@ -602,156 +602,156 @@ public class NPCHandler : MonoBehaviour
         switch (ID)
         {
             case "GameMaster":
-                SetNPCMode(0, ID);
+                SetNPCMode(0, ID, "#5DADE2");
                 NPCAttack(_gm.PlayerHandlers[ID]);
                 break;
             case "TinyDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1);
                 break;
             case "SmallDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10);
                 break;
             case "LittleDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100);
                 break;
             case "MinorDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000);
                 break;
             case "ModerateDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000);
                 break;
             case "AverageDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000);
                 break;
             case "Defender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000);
                 break;
             case "LargeDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
             case "MajorDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000000);
                 break;
             case "HugeDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000);
                 break;
             case "MassiveDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000000);
                 break;
             case "GiganticDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000000000);
                 break;
             case "EnormousDefender":
-                SetNPCMode(1, ID);
+                SetNPCMode(1, ID, "#2E86C1");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000000);
                 break;
             case "TinyAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000);
                 break;
             case "SmallAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000);
                 break;
             case "LittleAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000);
                 break;
             case "MinorAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000);
                 break;
             case "ModerateAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
             case "AverageAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000000);
                 break;
             case "Attacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000);
                 break;
             case "LargeAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000000);
                 break;
             case "MajorAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000000000);
                 break;
             case "HugeAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000000);
                 break;
             case "MassiveAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000000000);
                 break;
             case "GiganticAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 100000000000000);
                 break;
             case "EnormousAttacker":
-                SetNPCMode(2, ID);
+                SetNPCMode(2, ID, "#E74C3C");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000000000);
                 break;
             case "TinyRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 200);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "SmallRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 300);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "LittleRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 400);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "ModerateRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 500);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "AverageRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 1000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "Rebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 1700);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "LargeRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 2500);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "HugeRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 5000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "MassiveRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 10000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
@@ -759,7 +759,7 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "EnormousRebel":
-                SetNPCMode(3, ID);
+                SetNPCMode(3, ID, "#F4D03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 25000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid B", 175);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
@@ -767,15 +767,15 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "Celebrant":
-                SetNPCMode(4, ID);
+                SetNPCMode(4, ID, "#82E0AA");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
             case "LargeCelebrant":
-                SetNPCMode(4, ID);
+                SetNPCMode(4, ID, "#82E0AA");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
             case "MassiveCelebrant":
-                SetNPCMode(4, ID);
+                SetNPCMode(4, ID, "#82E0AA");
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 10000000);
                 break;
             case "MomentaryRepeater":
@@ -886,200 +886,200 @@ public class NPCHandler : MonoBehaviour
                 UpgraderCount2 += 17;
                 break;
             case "MomentaryGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 1;
                 break;
             case "BriefGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 2;
                 break;
             case "ShortGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 3;
                 break;
             case "TemporaryGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 5;
                 break;
             case "PassingGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 7;
                 break;
             case "InterimGold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 10;
                 break;
             case "Gold":
-                SetNPCMode(9, ID);
+                SetNPCMode(9, ID, "#FFCC00");
                 GoldCount1 += 17;
                 break;
             case "ExtendedGold":
-                SetNPCMode(10, ID);
+                SetNPCMode(10, ID, "#FFCC00");
                 GoldCount1 += 3;
                 GoldCount2 += 5;
                 break;
             case "ProlongedGold":
-                SetNPCMode(10, ID);
+                SetNPCMode(10, ID, "#FFCC00");
                 GoldCount1 += 5;
                 GoldCount2 += 7;
                 break;
             case "LastingGold":
-                SetNPCMode(10, ID);
+                SetNPCMode(10, ID, "#FFCC00");
                 GoldCount1 += 7;
                 GoldCount2 += 11;
                 break;
             case "PermanentGold":
-                SetNPCMode(10, ID);
+                SetNPCMode(10, ID, "#FFCC00");
                 GoldCount1 += 11;
                 GoldCount2 += 13;
                 break;
             case "EternalGold":
-                SetNPCMode(10, ID);
+                SetNPCMode(10, ID, "#FFCC00");
                 GoldCount1 += 13;
                 GoldCount2 += 17;
                 break;
             case "MomentaryRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 1;
                 break;
             case "BriefRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 2;
                 break;
             case "ShortRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 3;
                 break;
             case "TemporaryRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 5;
                 break;
             case "PassingRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 7;
                 break;
             case "InterimRuby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 10;
                 break;
             case "Ruby":
-                SetNPCMode(11, ID);
+                SetNPCMode(11, ID, "#FF0000");
                 RubyCount1 += 17;
                 break;
             case "ExtendedRuby":
-                SetNPCMode(12, ID);
+                SetNPCMode(12, ID, "#FF0000");
                 RubyCount1 += 3;
                 RubyCount2 += 5;
                 break;
             case "ProlongedRuby":
-                SetNPCMode(12, ID);
+                SetNPCMode(12, ID, "#FF0000");
                 RubyCount1 += 5;
                 RubyCount2 += 7;
                 break;
             case "LastingRuby":
-                SetNPCMode(12, ID);
+                SetNPCMode(12, ID, "#FF0000");
                 RubyCount1 += 7;
                 RubyCount2 += 11;
                 break;
             case "PermanentRuby":
-                SetNPCMode(12, ID);
+                SetNPCMode(12, ID, "#FF0000");
                 RubyCount1 += 11;
                 RubyCount2 += 13;
                 break;
             case "EternalRuby":
-                SetNPCMode(12, ID);
+                SetNPCMode(12, ID, "#FF0000");
                 RubyCount1 += 13;
                 RubyCount2 += 17;
                 break;
             case "ReverseToll":
-                SetNPCMode(13, ID, -10);
+                SetNPCMode(13, ID, "#DDDDDD", -10);
                 break;
             case "NoToll":
-                SetNPCMode(13, ID, 0);
+                SetNPCMode(13, ID, "#DDDDDD", 0);
                 break;
             case "TinyToll":
-                SetNPCMode(13, ID, 1);
+                SetNPCMode(13, ID, "#DDDDDD", 1);
                 break;
             case "SmallToll":
-                SetNPCMode(13, ID, 2);
+                SetNPCMode(13, ID, "#DDDDDD", 2);
                 break;
             case "LittleToll":
-                SetNPCMode(13, ID, 3);
+                SetNPCMode(13, ID, "#DDDDDD", 3);
                 break;
             case "ModerateToll":
-                SetNPCMode(13, ID, 5);
+                SetNPCMode(13, ID, "#DDDDDD", 5);
                 break;
             case "AverageToll":
-                SetNPCMode(13, ID, 7);
+                SetNPCMode(13, ID, "#DDDDDD", 7);
                 break;
             case "Toll":
-                SetNPCMode(13, ID, 10);
+                SetNPCMode(13, ID, "#DDDDDD", 10);
                 break;
             case "LargeToll":
-                SetNPCMode(13, ID, 17);
+                SetNPCMode(13, ID, "#DDDDDD", 17);
                 break;
             case "HugeToll":
-                SetNPCMode(13, ID, 26);
+                SetNPCMode(13, ID, "#DDDDDD", 26);
                 break;
             case "MassiveToll":
-                SetNPCMode(13, ID, 51);
+                SetNPCMode(13, ID, "#DDDDDD", 51);
                 break;
             case "EnormousToll":
-                SetNPCMode(13, ID, 101);
+                SetNPCMode(13, ID, "#DDDDDD", 101);
                 break;
             case "ObsceneToll":
-                SetNPCMode(13, ID, 251);
+                SetNPCMode(13, ID, "#DDDDDD", 251);
                 break;
             case "MomentaryCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 1;
                 break;
             case "BriefCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 2;
                 break;
             case "ShortCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 3;
                 break;
             case "TemporaryCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 5;
                 break;
             case "PassingCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 7;
                 break;
             case "InterimCurse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 10;
                 break;
             case "Curse":
-                SetNPCMode(14, ID);
+                SetNPCMode(14, ID, "#00FF00");
                 CurseCount1 += 17;
                 break;
             case "ExtendedCurse":
-                SetNPCMode(15, ID);
+                SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 3;
                 CurseCount2 += 5;
                 break;
             case "ProlongedCurse":
-                SetNPCMode(15, ID);
+                SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 5;
                 CurseCount2 += 7;
                 break;
             case "LastingCurse":
-                SetNPCMode(15, ID);
+                SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 7;
                 CurseCount2 += 11;
                 break;
             case "PermanentCurse":
-                SetNPCMode(15, ID);
+                SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 11;
                 CurseCount2 += 13;
                 break;
             case "EternalCurse":
-                SetNPCMode(15, ID);
+                SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 13;
                 CurseCount2 += 17;
                 break;
@@ -1087,10 +1087,10 @@ public class NPCHandler : MonoBehaviour
     
     }
 
-    public void SetNPCMode(int mode, string key, int state = 0)
+    public void SetNPCMode(int mode, string key, string nameColorHex = "#FFFFFF", int state = 0)
     {
         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-        _gm.PlayerHandlers[key].pp.NameColorHex = "#FFFFFF";
+        _gm.PlayerHandlers[key].pp.NameColorHex = nameColorHex ;
         _gm.PlayerHandlers[key].pp.IsNPC = true;
         _gm.PlayerHandlers[key].pp.ModeNPC = mode;
         _gm.PlayerHandlers[key].pp.StateNPC = state;
@@ -1937,6 +1937,33 @@ public class NPCHandler : MonoBehaviour
             return;
         }
 
+        if (_tileController.GameplayTile != null)
+        {
+            if (_tileController.GameplayTile.IsRuby)
+            {
+                Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                return;
+            }
+            else if (_tileController.GameplayTile.IsGolden)
+            {
+                Debug.Log("Golden Tiles cannot be Repeated.");
+                return;
+            }
+        }
+        else
+        {
+            if (_tileController.CurrentBiddingTile.IsRuby)
+            {
+                Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                return;
+            }
+            else if (_tileController.CurrentBiddingTile.IsGolden)
+            {
+                Debug.Log("Golden Tiles cannot be Repeated.");
+                return;
+            }
+        }
+
         _tileController.doRepeatTile();
     }
 
@@ -1949,6 +1976,11 @@ public class NPCHandler : MonoBehaviour
 
         if (_tileController.GameplayTile == null)
         {
+            if (_tileController.GameplayTile.IsRuby)
+            {
+                Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                return;
+            }
             if (_tileController.CurrentBiddingTile.IsShop == true)
                 return;
             if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
@@ -1956,6 +1988,11 @@ public class NPCHandler : MonoBehaviour
         }
         else
         {
+            if (_tileController.CurrentBiddingTile.IsRuby)
+            {
+                Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
+                return;
+            }
             if (_tileController.GameplayTile.IsShop == true)
                 return;
             if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)

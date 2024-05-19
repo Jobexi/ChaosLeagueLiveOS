@@ -1190,6 +1190,11 @@ public class TwitchClient : MonoBehaviour
             StartCoroutine(ProcessBuyShields(messageId, ph, msg));
         }
 
+        else if (commandKey.StartsWith("!buygold"))
+        {
+            StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Gold"));
+        }
+
         else if (commandKey.StartsWith("!buysapphires"))
         {
             StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Sapphire"));
@@ -1737,7 +1742,7 @@ public class TwitchClient : MonoBehaviour
         if (!MyUtil.GetFirstLongFromString(msg, out desiredCurrencyAmount))
         {
             Debug.Log("Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount].");
             yield break;
         }
 
@@ -1756,28 +1761,61 @@ public class TwitchClient : MonoBehaviour
             currencyPrice = 1000000000000000;
             Debug.Log("Diamond");
         }
+        else if (type == "Gold")
+        {
+            currencyPrice = 1;
+            Debug.Log("Gold");
+        }
         else
             currencyPrice = 0;
 
         if (desiredCurrencyAmount <= 0)
             yield break;
 
-        if (ph.pp.SessionScore <= 0)
-        {
-            Debug.Log("You have no points to spend.");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to spend.");
-            yield break;
-        }
+        
 
-        if (ph.pp.SessionScore < currencyPrice * desiredCurrencyAmount)
+        if (type == "Gold")
         {
-            Debug.Log("You don't have enough points.");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points, Each Emerald costs 1t Points, and each Diamond costs 1q Points.");
-            yield break;
-        }
 
-        ph.pp.SessionScore -= currencyPrice * desiredCurrencyAmount;
+            if (ph.pp.Rubies <= 0)
+            {
+                Debug.Log("You have no rubies to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                yield break;
+            }
+
+            if (ph.pp.Rubies < currencyPrice * desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough rubies.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough rubies. The correct format is !buygold [rubies]");
+                yield break;
+            }
+
+            ph.pp.Rubies -= currencyPrice * desiredCurrencyAmount;
+
+        }
+        else
+        {
+
+            if (ph.pp.SessionScore <= 0)
+            {
+                Debug.Log("You have no points to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to spend.");
+                yield break;
+            }
+
+            if (ph.pp.SessionScore < currencyPrice * desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough points.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points, Each Emerald costs 1t Points, and each Diamond costs 1q Points.");
+                yield break;
+            }
+
+            ph.pp.SessionScore -= currencyPrice * desiredCurrencyAmount;
+        }
+        
         ph.AddCurrency((int)desiredCurrencyAmount, type);
+
     }
 
     private IEnumerator ProcessSellCurrency(string messageId, PlayerHandler ph, string msg, string type)

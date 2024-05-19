@@ -1687,7 +1687,11 @@ MonoBehaviour:
   DisplayBackground: {fileID: 5096157667644158349}
   _buyCommandText: {fileID: 6957423016659820891}
   _goldCostText: {fileID: 2392297936160037117}
-  GoldCost: 1
+  GoldCost: 0
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 1
   _bubbleContainer: {fileID: 6117432802799362137}
   _bubbleText: {fileID: 4221902967352925227}
   _bubbleStalk: {fileID: 1029243542293823566}
@@ -1891,7 +1895,11 @@ MonoBehaviour:
   DisplayBackground: {fileID: 6588297342304178742}
   _buyCommandText: {fileID: 9032776901776786144}
   _goldCostText: {fileID: 4387706357614705478}
-  GoldCost: 4
+  GoldCost: 0
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 4
   _bubbleContainer: {fileID: 6117432802799362137}
   _bubbleText: {fileID: 2828352385760231312}
   _bubbleStalk: {fileID: 2294273447450527537}
@@ -2130,6 +2138,10 @@ MonoBehaviour:
   _buyCommandText: {fileID: 8148073133481207332}
   _goldCostText: {fileID: 3507556765423607682}
   GoldCost: 0
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 7
   _bubbleContainer: {fileID: 5006598434090788646}
   _bubbleText: {fileID: 3953647573842163951}
   _bubbleStalk: {fileID: 2294273447450527537}
