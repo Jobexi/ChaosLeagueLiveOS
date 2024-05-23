@@ -107,6 +107,47 @@ public class GameManager : MonoBehaviour
                 _tileController._npcHandler.PerformShopPurchases();
             }
         }
+
+        if (_tileController._npcHandler._KingTile.HasBackground)
+        {
+            var BaseMaterials = _tileController._npcHandler._KingTexture.materials;
+
+            switch (_tileController._npcHandler._KingTile.GetRarity())
+            {
+                case RarityType.CommonPlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.RarePlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.EpicPlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.LegendaryPlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.MythicPlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.EtherealPlus:
+                    goto case RarityType.CosmicPlus;
+                case RarityType.CosmicPlus:
+
+                    BaseMaterials[0].SetFloat("Vector1_4200F1D7", PlusAnimation);
+
+                    if (PlusUp)
+                        PlusAnimation += 0.0005f;
+                    else
+                        PlusAnimation -= 0.0005f;
+
+                    if (PlusAnimation > 1.499f)
+                        PlusUp = false;
+
+                    if (PlusAnimation < 0.0001f)
+                        PlusUp = true;
+
+                    _tileController._npcHandler._KingTexture.materials = BaseMaterials;
+
+                    break;
+            }
+            
+        }                
+    
         if (_tileController.GameplayTile != null)
         {
             if (_tileController.GameplayTile.HasBackground)
@@ -130,7 +171,6 @@ public class GameManager : MonoBehaviour
                     case RarityType.CosmicPlus:
 
                         BaseMaterials[0].SetFloat("Vector1_4200F1D7", PlusAnimation);
-
 
                         if (PlusUp)
                             PlusAnimation += 0.0005f;

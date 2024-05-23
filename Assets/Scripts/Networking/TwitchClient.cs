@@ -1153,6 +1153,44 @@ public class TwitchClient : MonoBehaviour
             _kingController.UpdateTollRate(desiredTollRate);
         }
 
+        else if (commandKey.StartsWith("!kingbg") || commandKey.StartsWith("!kingbackground") || commandKey.StartsWith("!kingbackround"))
+        {
+
+            if (!ph.IsKing())
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You must hold the throne to change the King's background.");
+                return;
+            }
+
+            if (_tileController._SpinningNow)
+            {
+                Debug.Log("Please wait until the tile stops spinning to try this command again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
+                return;
+            }
+
+            if (_tileController.GameplayTile != null)
+            {
+                if (!_tileController.GameplayTile.HasBackground)
+                {
+                    Debug.Log("This tile doesn't have a background for you to use!");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background for you to use!");
+                    return;
+                }
+            }
+            else if (_tileController.CurrentBiddingTile != null)
+            {
+                if (!_tileController.CurrentBiddingTile.HasBackground)
+                {
+                    Debug.Log("This tile doesn't have a background for you to use!");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background for you to use!");
+                    return;
+                }
+            }
+
+            _tileController._npcHandler.ChangeKingBackground();
+        }
+
         /*        else if (commandKey.StartsWith("!givepoints"))
                 {
                     StartCoroutine(ProcessGivePointsCommand(messageId, ph, msg));
@@ -1230,7 +1268,7 @@ public class TwitchClient : MonoBehaviour
             StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "stats"));
         }
 
-        else if (commandKey.StartsWith("!points") || commandKey.StartsWith("!money") || commandKey.StartsWith("!currency") || commandKey.StartsWith("!riches") || commandKey.StartsWith("!loot") || commandKey.StartsWith("!swag"))
+        else if (commandKey.StartsWith("!points") || commandKey.StartsWith("!money") || commandKey.StartsWith("!currency") || commandKey.StartsWith("!wendells") || commandKey.StartsWith("!purse") || commandKey.StartsWith("!wallet") || commandKey.StartsWith("!cash")  || commandKey.StartsWith("!treasure")  || commandKey.StartsWith("!riches") || commandKey.StartsWith("!loot") || commandKey.StartsWith("!swag"))
         {
             StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "riches"));
         }
@@ -1741,8 +1779,8 @@ public class TwitchClient : MonoBehaviour
         long desiredCurrencyAmount;
         if (!MyUtil.GetFirstLongFromString(msg, out desiredCurrencyAmount))
         {
-            Debug.Log("Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount]");
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds] [amount].");
+            Debug.Log("Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds/Gold] [amount]");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse currency amount. Correct format is: !Buy[Sapphires/Emeralds/Diamonds/Gold] [amount].");
             yield break;
         }
 

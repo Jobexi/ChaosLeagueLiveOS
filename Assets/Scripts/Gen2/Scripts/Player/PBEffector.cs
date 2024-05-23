@@ -220,8 +220,13 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             }
             if (_effect.HasFlag(PBEffect.Multiply))
             {
-                meshColor = Color.cyan;
-                _labelColor = Color.black;
+                if (GetZoneMultiplyAppliedValue() < 0)
+                    meshColor = Color.red;
+                else
+                {
+                    meshColor = Color.cyan;
+                    _labelColor = Color.black;
+                }
             }
             if (_effect.HasFlag(PBEffect.Divide))
             {

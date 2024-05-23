@@ -25,7 +25,7 @@ public class UnitTesting : MonoBehaviour
     [SerializeField] public string testUsername;
     [SerializeField] public string userInput;
     [SerializeField] public Color nameColor;
-    [SerializeField] public bool randomizeNameColor = true; 
+    [SerializeField] public bool randomizeNameColor = false; 
     [SerializeField] public int rewardCost;
     [SerializeField] public string rewardTitle; 
     [SerializeField] public int bits;

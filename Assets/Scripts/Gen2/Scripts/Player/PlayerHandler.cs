@@ -751,7 +751,6 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if ((ulong)prevScore * (ulong)multiplier > (ulong)5000000000000000000)
         {
-            TradeUp();
             pp.SessionScore = 0;
             pp.Rubies += 5;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+5 Rubies", Color.red);

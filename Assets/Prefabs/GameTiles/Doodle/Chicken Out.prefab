@@ -3512,6 +3512,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u221E"
       objectReference: {fileID: 0}
+    - target: {fileID: 3718462915744285473, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.67
+      objectReference: {fileID: 0}
     - target: {fileID: 5329309636357083852, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_Enabled
       value: 1

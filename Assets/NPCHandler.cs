@@ -24,6 +24,9 @@ public class NPCHandler : MonoBehaviour
     [SerializeField] private InvitePromo _invitePromo;
     [SerializeField] public BidHandler _bidHandler;
 
+    [SerializeField] public MeshRenderer _KingTexture;
+    [SerializeField] public GameTile _KingTile;
+
     [SerializeField] private TileController _tileController;
     [SerializeField] private MyHttpClient _myHttpClient;
     [SerializeField] private KingController _kingController;
@@ -1090,7 +1093,7 @@ public class NPCHandler : MonoBehaviour
     public void SetNPCMode(int mode, string key, string nameColorHex = "#FFFFFF", int state = 0)
     {
         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-        _gm.PlayerHandlers[key].pp.NameColorHex = nameColorHex ;
+        _gm.PlayerHandlers[key].pp.NameColorHex = nameColorHex;
         _gm.PlayerHandlers[key].pp.IsNPC = true;
         _gm.PlayerHandlers[key].pp.ModeNPC = mode;
         _gm.PlayerHandlers[key].pp.StateNPC = state;
@@ -2117,5 +2120,42 @@ public class NPCHandler : MonoBehaviour
 
     }
 
+    public void ChangeKingBackground()
+    {
+        if (_tileController.GameplayTile != null)
+        {
+            _KingTexture.materials = _tileController.GameplayTile._background.materials;
+            _KingTile.RarityType = _tileController.GameplayTile.GetRarity();           
+
+        }
+        else
+        {
+            _KingTexture.materials = _tileController.CurrentBiddingTile._background.materials;
+            _KingTile.RarityType = _tileController.CurrentBiddingTile.GetRarity();            
+        }
+
+        switch (_KingTile.GetRarity())
+        {
+            case RarityType.CommonPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.RarePlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.EpicPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.LegendaryPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.MythicPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.EtherealPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.CosmicPlus:
+                _KingTile.HasBackground = true;
+                break;
+            default:
+                _KingTile.HasBackground = false;
+                break;
+        }
+
+    }
 
 }

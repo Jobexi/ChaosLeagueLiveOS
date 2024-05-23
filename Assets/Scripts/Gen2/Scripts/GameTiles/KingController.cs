@@ -111,7 +111,8 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         BaseMaterials[1] = DesiredMaterials[Txtr2];
         _crown._crownMeshRenderer.materials = BaseMaterials;
 
-        _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+        if (pb.Ph.pp.EnhancedCrown == false)
+                _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1; 
