@@ -1979,7 +1979,7 @@ public class NPCHandler : MonoBehaviour
 
         if (_tileController.GameplayTile == null)
         {
-            if (_tileController.GameplayTile.IsRuby)
+            if (_tileController.CurrentBiddingTile.IsRuby)
             {
                 Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                 return;
@@ -1991,7 +1991,7 @@ public class NPCHandler : MonoBehaviour
         }
         else
         {
-            if (_tileController.CurrentBiddingTile.IsRuby)
+            if (_tileController.GameplayTile.IsRuby)
             {
                 Debug.Log("Ruby Tiles can neither be upgraded nor Repeated.");
                 return;
@@ -2031,6 +2031,7 @@ public class NPCHandler : MonoBehaviour
 
         _tileController._forceCurse = false;
         _tileController._forceGolden = true;
+        
     }
 
     public void NPCRubyTile()

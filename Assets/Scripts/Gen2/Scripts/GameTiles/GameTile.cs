@@ -37,6 +37,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsCurse; //Special
     [SerializeField] public bool IsShop;
     [SerializeField] public bool IsRisk;
+    [SerializeField] public bool IsKing;
     [SerializeField] public bool HasBackground;
     [SerializeField] public bool BuyingActive;
     [SerializeField] private CycleMode _cycleMode;
@@ -122,6 +123,7 @@ public class GameTile : MonoBehaviour
 
         Effectors = GetComponentsInChildren<PBEffector>();
 
+        if(!IsKing)
         _tileNameText.SetText(gameObject.name.Replace("(Clone)", ""));
     }
 
@@ -143,52 +145,54 @@ public class GameTile : MonoBehaviour
         var DesiredMaterials = _bgOptions;
         var MaterialsPlus = _bgOptionsPlus;
 
-        switch (GetRarity())
+        if (!IsKing)
         {
-            case RarityType.Common:
-                BaseMaterials[0] = DesiredMaterials[0];
-                break;
-            case RarityType.Rare:
-                BaseMaterials[0] = DesiredMaterials[1];
-                break;
-            case RarityType.Epic:
-                BaseMaterials[0] = DesiredMaterials[2];
-                break;
-            case RarityType.Legendary:
-                BaseMaterials[0] = DesiredMaterials[3];
-                break;
-            case RarityType.Mythic:
-                BaseMaterials[0] = DesiredMaterials[4];
-                break;
-            case RarityType.Ethereal:
-                BaseMaterials[0] = DesiredMaterials[5];
-                break;
-            case RarityType.Cosmic:
-                BaseMaterials[0] = DesiredMaterials[6];
-                break;
-            case RarityType.CommonPlus:
-                BaseMaterials[0] = MaterialsPlus[0];
-                break;
-            case RarityType.RarePlus:
-                BaseMaterials[0] = MaterialsPlus[1];
-                break;
-            case RarityType.EpicPlus:
-                BaseMaterials[0] = MaterialsPlus[2];
-                break;
-            case RarityType.LegendaryPlus:
-                BaseMaterials[0] = MaterialsPlus[3];
-                break;
-            case RarityType.MythicPlus:
-                BaseMaterials[0] = MaterialsPlus[4];
-                break;
-            case RarityType.EtherealPlus:
-                BaseMaterials[0] = MaterialsPlus[5];
-                break;
-            case RarityType.CosmicPlus:
-                BaseMaterials[0] = MaterialsPlus[6];
-                break;
+            switch (GetRarity())
+            {
+                case RarityType.Common:
+                    BaseMaterials[0] = DesiredMaterials[0];
+                    break;
+                case RarityType.Rare:
+                    BaseMaterials[0] = DesiredMaterials[1];
+                    break;
+                case RarityType.Epic:
+                    BaseMaterials[0] = DesiredMaterials[2];
+                    break;
+                case RarityType.Legendary:
+                    BaseMaterials[0] = DesiredMaterials[3];
+                    break;
+                case RarityType.Mythic:
+                    BaseMaterials[0] = DesiredMaterials[4];
+                    break;
+                case RarityType.Ethereal:
+                    BaseMaterials[0] = DesiredMaterials[5];
+                    break;
+                case RarityType.Cosmic:
+                    BaseMaterials[0] = DesiredMaterials[6];
+                    break;
+                case RarityType.CommonPlus:
+                    BaseMaterials[0] = MaterialsPlus[0];
+                    break;
+                case RarityType.RarePlus:
+                    BaseMaterials[0] = MaterialsPlus[1];
+                    break;
+                case RarityType.EpicPlus:
+                    BaseMaterials[0] = MaterialsPlus[2];
+                    break;
+                case RarityType.LegendaryPlus:
+                    BaseMaterials[0] = MaterialsPlus[3];
+                    break;
+                case RarityType.MythicPlus:
+                    BaseMaterials[0] = MaterialsPlus[4];
+                    break;
+                case RarityType.EtherealPlus:
+                    BaseMaterials[0] = MaterialsPlus[5];
+                    break;
+                case RarityType.CosmicPlus:
+                    BaseMaterials[0] = MaterialsPlus[6];
+                    break;
+            }
         }
-
         _background.materials = BaseMaterials;
     }
 
@@ -242,7 +246,7 @@ public class GameTile : MonoBehaviour
         foreach (var oscillators in GetComponentsInChildren<OscillatorV2>())
             oscillators.ToggleOnOff(toggle); 
     }
-    public void PreInitTile(TileController tc, bool isGolden, bool isRuby, bool isCurse)
+    public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse)
     {
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
@@ -268,11 +272,11 @@ public class GameTile : MonoBehaviour
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
-            if (isCurse)
+            if (insideCurse)
                 effector.MultiplyCurrValue(-1);
-            if (isRuby)
+            if (insideRuby)
                 effector.MultiplyCurrValue(50);
-            else if (isGolden)
+            else if (insideGolden)
                 effector.MultiplyCurrValue(10);            
         }
         
@@ -288,25 +292,33 @@ public class GameTile : MonoBehaviour
         if (_suddenDeath.gameObject.activeSelf)
             _suddenDeath.OnTilePreInit();
 
-        if (isCurse)
+        if (insideCurse)
         {            
             _goldenVisuals.gameObject.SetActive(true);
+            IsCurse = true;
             GoldenSpids = 3;
+            _goldenVisuals.UpdateSettings(3);
         }
-        else if (isRuby)
+        else if (insideRuby)
         {
             _goldenVisuals.gameObject.SetActive(true);
+            IsRuby = true;
             GoldenSpids = 2;
+            _goldenVisuals.UpdateSettings(2);
         }
-        else if (isGolden)
+        else if (insideGolden)
         {
             _goldenVisuals.gameObject.SetActive(true);
+            IsGolden = true;
             GoldenSpids = 1;
+            _goldenVisuals.UpdateSettings(1);
         }
         else
         {
+            _goldenVisuals.UpdateSettings(0);
             _goldenVisuals.gameObject.SetActive(false);
             GoldenSpids = 0;
+            
         }
 
 

@@ -57,9 +57,11 @@ public class TileController : MonoBehaviour
     [SerializeField] public GameTile NextBiddingTile;
     [SerializeField] private GameTile ForceThisTileNext;
     [SerializeField] private RarityType _forceThisRarity;
+
+    [SerializeField] public bool _forceCurse;
     [SerializeField] public bool _forceGolden; 
     [SerializeField] public bool _forceRuby; 
-    [SerializeField] public bool _forceCurse; 
+    
     [SerializeField] public bool _SpinningNow; 
     [SerializeField] public bool _TileRepeating; 
 
@@ -352,11 +354,13 @@ public class TileController : MonoBehaviour
             bool isRuby = false;
             bool isCurse = false;
             float random = Random.Range(0f, 100f);
-            if (random <= AppConfig.inst.GetI("GoldenTilePercentChance"))
-                isGolden = true;
 
-            if (random <= 0.1f)
+            if (random <= 0.05f)
                 isRuby = true;
+            else if (random <= 0.25f)
+                isCurse = true;
+            else if (random <= 1f)
+                isGolden = true;            
 
             if (_forceGolden)
                 isGolden = true;

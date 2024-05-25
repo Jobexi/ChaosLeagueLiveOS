@@ -168,6 +168,7 @@ public class BidHandler : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             i++;
         }
+        UpdateBiddingQ();
         yield return ReleasePlayersWhenReady(gt);
 
     }

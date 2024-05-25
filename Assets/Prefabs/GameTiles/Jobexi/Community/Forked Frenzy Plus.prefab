@@ -2714,7 +2714,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 88268596640976697, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_fontSize
-      value: 7.15
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 88268596640976697, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_margin.w
@@ -2722,7 +2722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88268596640976697, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_margin.x
-      value: -0.07436848
+      value: -0.049233437
       objectReference: {fileID: 0}
     - target: {fileID: 746487210997908662, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
