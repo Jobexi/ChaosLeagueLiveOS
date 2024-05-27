@@ -200,7 +200,7 @@ public class TwitchClient : MonoBehaviour
         ph.pp.LastInteraction = DateTime.Now;
         ph.pp.TwitchUsername = twitchUsername;
         ph.pp.IsSubscriber = isSubscriber;
-        ph.pp.NameColorHex = MyUtil.ColorToHexString(usernameColor);
+        //ph.pp.NameColorHex = MyUtil.ColorToHexString(usernameColor);
 
         //Set the player handler customizations
         ph.SetCustomizationsFromPP();
@@ -630,6 +630,13 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("inRepeatTile");
 
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                return;
+            }    
+
             if (ph.pp.Gold <= 0)
             {
                 Debug.Log("You have no gold to spend.");
@@ -696,6 +703,13 @@ public class TwitchClient : MonoBehaviour
         else if (commandKey.StartsWith("!tileupgrade") || commandKey.StartsWith("!upgradetile"))
         {
             Debug.Log("inUpgradeTile");
+
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                return;
+            }
 
             if (ph.pp.Gold <= 0)
             {
@@ -804,6 +818,13 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("inGoldenTile");
 
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                return;
+            }
+
             if (ph.pp.Gold <= 0)
             {
                 Debug.Log("You have no gold to spend.");
@@ -869,6 +890,13 @@ public class TwitchClient : MonoBehaviour
         else if (commandKey.StartsWith("!rubytile"))
         {
             Debug.Log("inRubyTile");
+
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                return;
+            }
 
             if (ph.pp.Gold <= 0)
             {
@@ -939,9 +967,80 @@ public class TwitchClient : MonoBehaviour
             _tileController._forceRuby = true;
         }
 
+        else if (commandKey.StartsWith("!mysterytile"))
+        {
+            Debug.Log("inMysteryTile");
+
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already a mystery tile.");
+                return;
+            }
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 500000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Mystery Tiles cost 500k Gold.");
+                return;
+            }
+
+            if (_tileController._forceCurse == true || _tileController._forceGolden == true || _tileController._forceRuby == true || _tileController.getNextForcedTile() == "NotOkay")
+            {
+                Debug.Log("The upcoming tile is already Cursed, Golden, Ruby, Repeated, or Upgraded. Please wait until the reel spins to try again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Cursed, Golden, Ruby, Repeated, or Upgraded. Please wait until the reel spins to try again.");
+                return;
+            }
+
+            if (_tileController._SpinningNow)
+            {
+                Debug.Log("Please wait until the tile stops spinning to try this command again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
+                return;
+            }
+
+            if (_tileController.GameplayTile == null)
+            {
+                if (_tileController.CurrentBiddingTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The status of a shop tile cannot be changed.");
+                    return;
+                }
+                else
+                    _tileController.CurrentBiddingTile._indicator1.SetText("❔");
+            }
+            else
+            {
+                if (_tileController.GameplayTile.IsShop == true)
+                {
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The status of a shop tile cannot be changed.");
+                    return;
+                }
+                else
+                    _tileController.GameplayTile._indicator1.SetText("❔");
+            }
+
+            ph.pp.Gold -= 500000;
+            _tileController._forceMystery = true;
+        }
+
         else if (commandKey.StartsWith("!cursetile") || commandKey.StartsWith("!cursedtile"))
         {
             Debug.Log("inCurseTile");
+
+            if (_tileController._forceMystery == true)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                return;
+            }
 
             if (ph.pp.Gold <= 0)
             {

@@ -130,7 +130,16 @@ public class JobexiPlinko : Game, IObsSpawner
         newObs.Init(_gt.RarityType, this, obsType, radius);
 
         if (_gt.IsGolden)
-            newObs.MultiplyCurrValue(AppConfig.inst.GetI("GoldenTileMultiplier"));
+            newObs.MultiplyCurrValue(10);
+
+        if (_gt.IsRuby)
+            newObs.MultiplyCurrValue(50);
+
+        if (_gt.IsCurse)
+            newObs.MultiplyCurrValue(-1);
+
+        if (_gt.IsMystery)
+            newObs.MultiplyCurrValue(100);
 
         if (_gt.GetSuddenDeath().GetCurrInterval() > 0)
             newObs.MultiplyCurrValue(2 * _gt.GetSuddenDeath().GetCurrInterval()); 

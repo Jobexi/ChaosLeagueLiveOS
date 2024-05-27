@@ -61,6 +61,7 @@ public class TileController : MonoBehaviour
     [SerializeField] public bool _forceCurse;
     [SerializeField] public bool _forceGolden; 
     [SerializeField] public bool _forceRuby; 
+    [SerializeField] public bool _forceMystery; 
     
     [SerializeField] public bool _SpinningNow; 
     [SerializeField] public bool _TileRepeating; 
@@ -169,13 +170,13 @@ public class TileController : MonoBehaviour
 
 
         CurrentBiddingTile = SpawnOriginTile(LeftTileCenter.position, Side.Left, false);
-        CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse);
+        CurrentBiddingTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse, _forceMystery);
         CurrentBiddingTile.InitTileInPos();
 
         StartCoroutine(BidHandler.RunBiddingOn(CurrentBiddingTile)); 
         
         GameplayTile = SpawnOriginTile(RightTileCenter.position, Side.Right, false);
-        GameplayTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse); 
+        GameplayTile.PreInitTile(this, _forceGolden, _forceRuby, _forceCurse, _forceMystery); 
         GameplayTile.InitTileInPos();
         StartCoroutine(GameplayTile.RunTile());
     }
@@ -353,14 +354,17 @@ public class TileController : MonoBehaviour
             bool isGolden = false;
             bool isRuby = false;
             bool isCurse = false;
+            bool isMystery = false;
             float random = Random.Range(0f, 100f);
 
-            if (random <= 0.05f)
+            if (random <= 0.001f)
+                isMystery = true;
+            else if (random <= 0.05f)
                 isRuby = true;
             else if (random <= 0.25f)
                 isCurse = true;
             else if (random <= 1f)
-                isGolden = true;            
+                isGolden = true;
 
             if (_forceGolden)
                 isGolden = true;
@@ -371,14 +375,18 @@ public class TileController : MonoBehaviour
             if (_forceCurse)
                 isCurse = true;
 
+            if (_forceMystery)
+                isMystery = true;
+
             if (gt.IsShop)
             {
                 isGolden = false;
                 isRuby = false;
-                isCurse = false;
+                isCurse = false; 
+                isMystery = false;
             }
 
-            tile.PreInitTile(this, isGolden, isRuby, isCurse);
+            tile.PreInitTile(this, isGolden, isRuby, isCurse, isMystery);
         }
 
         Vector3 finalTilePos = gt.transform.position;

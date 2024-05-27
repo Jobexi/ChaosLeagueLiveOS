@@ -702,8 +702,13 @@ public class GameManager : MonoBehaviour
                 {
                     PlayerHandlers[key].pp.AutoBidRemainder -= 1;
                 }
+                
+                if (_tileController.CurrentBiddingTile.IsMystery)
+                {
+                    PlayerHandlers[key].pp.AutoBidRemainder -= 1;
+                }
 
-                if (!_tileController.CurrentBiddingTile.IsRisk && !_tileController.CurrentBiddingTile.IsShop && PlayerHandlers[key].pp.RiskSkips > 0)
+                if (!_tileController.CurrentBiddingTile.IsRisk && !_tileController.CurrentBiddingTile.IsMystery && !_tileController.CurrentBiddingTile.IsShop && PlayerHandlers[key].pp.RiskSkips > 0)
                 {
                     GetSneakyPlayerHandler(PlayerHandlers[key], PlayerHandlers[key].pp.TwitchID); //Do I need this?
                     _tileController.BidHandler.BidRedemption((PlayerHandlers[key]), 1, BidType.ChannelPoints, "1", "1");

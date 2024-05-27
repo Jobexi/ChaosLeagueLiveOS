@@ -35,6 +35,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsGolden; //1% chance
     [SerializeField] public bool IsRuby; //0.01% chance
     [SerializeField] public bool IsCurse; //Special
+    [SerializeField] public bool IsMystery; //Special
     [SerializeField] public bool IsShop;
     [SerializeField] public bool IsRisk;
     [SerializeField] public bool IsKing;
@@ -246,12 +247,15 @@ public class GameTile : MonoBehaviour
         foreach (var oscillators in GetComponentsInChildren<OscillatorV2>())
             oscillators.ToggleOnOff(toggle); 
     }
-    public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse)
+    public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse, bool insideMystery)
     {
         IsCurse = false;
         IsRuby = false;
         IsGolden = false;
-        
+        IsMystery = false;
+
+        int Mysteries = UnityEngine.Random.Range(1, 1);
+
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
         
@@ -275,13 +279,38 @@ public class GameTile : MonoBehaviour
             effector.ResetEffector();
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
+            bool do100Effect = false;
 
+            if (insideMystery)
+            {
+                switch (Mysteries)
+                {
+                    case 1:
+                        insideCurse = true;
+                        IsCurse = true;
+                        break;
+                    case 2:
+                        insideRuby = true;
+                        IsRuby = true;
+                        break;
+                    case 3:
+                        insideGolden = true;
+                        IsGolden = true;
+                        break;
+                    case 4:
+                        do100Effect = true;
+                        IsMystery = true;
+                        break;
+                }
+            }
             if (insideCurse)
-                effector.MultiplyCurrValue(0);
-            if (insideRuby)
+                effector.MultiplyCurrValue(-1);
+            else if (insideRuby)
                 effector.MultiplyCurrValue(50);
             else if (insideGolden)
                 effector.MultiplyCurrValue(10);
+            else if (do100Effect)
+                effector.MultiplyCurrValue(100);
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -301,8 +330,18 @@ public class GameTile : MonoBehaviour
             insideCurse = false;
             insideRuby = false;
             insideGolden = false;
+            insideMystery = false;
         }
-        if (insideCurse)
+
+        if (insideMystery)
+        {
+            _goldenVisuals.gameObject.SetActive(true);
+            _goldenVisuals._coverObj.gameObject.SetActive(true);
+            IsMystery = true;
+            GoldenSpids = 4;
+            _goldenVisuals.UpdateSettings(4);
+        }
+        else if (insideCurse)
         {            
             _goldenVisuals.gameObject.SetActive(true);
             IsCurse = true;
@@ -322,14 +361,15 @@ public class GameTile : MonoBehaviour
             IsGolden = true;
             GoldenSpids = 1;
             _goldenVisuals.UpdateSettings(1);
-        }
+        }        
         else
         {
             _goldenVisuals.UpdateSettings(0);
             _goldenVisuals.gameObject.SetActive(false);
+            _goldenVisuals._coverObj.gameObject.SetActive(false);
             GoldenSpids = 0;
-            
         }
+
 
 
         _mpb.SetColor("_StartColor", _backgroundStartColor);
@@ -364,8 +404,11 @@ public class GameTile : MonoBehaviour
         if (_game != null)
             _game.OnTileInitInPos();
 
-
-        if (IsRuby)
+        if (IsMystery)
+        {
+            StartCoroutine(PlaySoundSequence("Mystery"));
+        }
+        else if (IsRuby)
         {
             AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.4f, 0.5f);
         }
@@ -375,18 +418,14 @@ public class GameTile : MonoBehaviour
         }
         else if (IsCurse)
         {
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.06f, 0.08f);
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.05f, 0.07f);
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.04f, 0.06f);
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.03f, 0.05f);
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.02f, 0.04f);
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.01f, 0.03f);
+            StartCoroutine(PlaySoundSequence("Curse"));
         }
         else if (IsShop)
         {
             AudioController.inst.PlaySound(AudioController.inst.BattlePerchEarn, 0.4f, 0.5f);
         }
 
+        if(!IsMystery)
         switch (GetRarity())
         {
             case RarityType.Legendary:
@@ -427,6 +466,7 @@ public class GameTile : MonoBehaviour
         _tc._forceGolden = false;
         _tc._forceRuby = false;
         _tc._forceCurse = false;
+        _tc._forceMystery = false;
 
         TogglePhysics(true);
 
@@ -439,11 +479,45 @@ public class GameTile : MonoBehaviour
         //_playersReleased++; 
     }
 
+    public IEnumerator PlaySoundSequence(string Which)
+    {
+        switch (Which)
+        {
+            case "Mystery":
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.4f, 0.8f);
+                yield return new WaitForSeconds(0.1f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.35f, 0.7f);
+                yield return new WaitForSeconds(0.1f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.3f, 0.6f);
+                yield return new WaitForSeconds(0.1f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.25f, 0.5f);
+                yield return new WaitForSeconds(0.1f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.2f, 0.4f);
+                yield return new WaitForSeconds(0.1f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.15f, 0.3f);
+                break;
+            case "Curse":
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.06f, 0.08f);
+                yield return new WaitForSeconds(0.5f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.05f, 0.07f);
+                yield return new WaitForSeconds(0.5f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.04f, 0.06f);
+                yield return new WaitForSeconds(0.5f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.03f, 0.05f);
+                yield return new WaitForSeconds(0.5f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.02f, 0.04f);
+                yield return new WaitForSeconds(0.5f);
+                AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.01f, 0.03f);
+                break;
+        }
+    }
     public IEnumerator RunTile()
     {
         TileState = TileState.Gameplay; 
         EntrancePipe.LockIcon.enabled = false;
         _tileStartTime = DateTime.Now;
+
+        _goldenVisuals._coverObj.gameObject.SetActive(false);
 
         _playerPointsSumStart = 0;
         foreach (var player in Players)
@@ -648,8 +722,8 @@ public class GameTile : MonoBehaviour
         IsCurse = false;
         IsGolden = false;
         IsRuby = false;
-
-
+        IsMystery = false;
+        _goldenVisuals._coverObj.gameObject.SetActive(false);
     }
 
     public void SetTicketBonus(int count)

@@ -51,9 +51,11 @@ public class NPCHandler : MonoBehaviour
     public int RubyCount2 = 0;
     public int CurseCount1 = 0;
     public int CurseCount2 = 0;
+    public int MysteryCount1 = 0;
+    public int MysteryCount2 = 0;
 
-    private int maxNPC = 112;
-    private int maxMode = 15;
+    private int maxNPC = 124;
+    private int maxMode = 17;
 
     void Awake()
     {
@@ -589,6 +591,54 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("EternalCurse", "EternalCurse", "bid", 1);
                 StartCoroutine(UpdateWaiter("EternalCurse"));
                 break;
+            case 113:
+                _unitTesting.NPCReward("MomentaryMystery", "MomentaryMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryMystery"));
+                break;
+            case 114:
+                _unitTesting.NPCReward("BriefMystery", "BriefMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefMystery"));
+                break;
+            case 115:
+                _unitTesting.NPCReward("ShortMystery", "ShortMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortMystery"));
+                break;
+            case 116:
+                _unitTesting.NPCReward("TemporaryMystery", "TemporaryMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryMystery"));
+                break;
+            case 117:
+                _unitTesting.NPCReward("PassingMystery", "PassingMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingMystery"));
+                break;
+            case 118:
+                _unitTesting.NPCReward("InterimMystery", "InterimMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimMystery"));
+                break;
+            case 119:
+                _unitTesting.NPCReward("Mystery", "Mystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("Mystery"));
+                break;
+            case 120:
+                _unitTesting.NPCReward("ExtendedMystery", "ExtendedMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedMystery"));
+                break;
+            case 121:
+                _unitTesting.NPCReward("ProlongedMystery", "ProlongedMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedMystery"));
+                break;
+            case 122:
+                _unitTesting.NPCReward("LastingMystery", "LastingMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingMystery"));
+                break;
+            case 123:
+                _unitTesting.NPCReward("PermanentMystery", "PermanentMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentMystery"));
+                break;
+            case 124:
+                _unitTesting.NPCReward("EternalMystery", "EternalMystery", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalMystery"));
+                break;
         }
                 
     }
@@ -713,48 +763,48 @@ public class NPCHandler : MonoBehaviour
                 NPCGivePoints(_gm.PlayerHandlers[ID].pp.TwitchUsername, 1000000000000000);
                 break;
             case "TinyRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 200);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "SmallRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 300);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "LittleRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 400);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "ModerateRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 500);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "AverageRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 1000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid A", 15);
                 break;
             case "Rebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 1700);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "LargeRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 2500);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "HugeRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 5000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "MassiveRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 10000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
@@ -762,7 +812,7 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
                 break;
             case "EnormousRebel":
-                SetNPCMode(3, ID, "#F4D03F");
+                SetNPCMode(3, ID, "#E4E03F");
                 _unitTesting.NPCBits(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, 25000);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid B", 175);
                 _unitTesting.NPCReward(_gm.PlayerHandlers[ID].pp.TwitchID, _gm.PlayerHandlers[ID].pp.TwitchUsername, "AutoBid D", 25);
@@ -1085,6 +1135,59 @@ public class NPCHandler : MonoBehaviour
                 SetNPCMode(15, ID, "#00FF00");
                 CurseCount1 += 13;
                 CurseCount2 += 17;
+                break;
+            case "MomentaryMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 1;
+                break;
+            case "BriefMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 2;
+                break;
+            case "ShortMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 3;
+                break;
+            case "TemporaryMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 5;
+                break;
+            case "PassingMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 7;
+                break;
+            case "InterimMystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 10;
+                break;
+            case "Mystery":
+                SetNPCMode(16, ID, "#8800FF");
+                MysteryCount1 += 17;
+                break;
+            case "ExtendedMystery":
+                SetNPCMode(17, ID, "#8800FF");
+                MysteryCount1 += 3;
+                MysteryCount2 += 5;
+                break;
+            case "ProlongedMystery":
+                SetNPCMode(17, ID, "#8800FF");
+                MysteryCount1 += 5;
+                MysteryCount2 += 7;
+                break;
+            case "LastingMystery":
+                SetNPCMode(17, ID, "#8800FF");
+                MysteryCount1 += 7;
+                MysteryCount2 += 11;
+                break;
+            case "PermanentMystery":
+                SetNPCMode(17, ID, "#8800FF");
+                MysteryCount1 += 11;
+                MysteryCount2 += 13;
+                break;
+            case "EternalMystery":
+                SetNPCMode(17, ID, "#8800FF");
+                MysteryCount1 += 13;
+                MysteryCount2 += 17;
                 break;
         }
     
@@ -1903,6 +2006,126 @@ public class NPCHandler : MonoBehaviour
                         _gm.PlayerHandlers[key].pp.StateNPC = 2;
                     }
                 }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 16) //Single Mystery
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "We're on the trail!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (MysteryCount1 > 0)
+                            {
+                                NPCMysteryTile();
+                                MysteryCount1 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "Mystery Solved!");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Hmmm... How very mysterious.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 17) //Double Mystery
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "We're on the trail!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (MysteryCount2 > 0)
+                            {
+                                NPCMysteryTile();
+                                MysteryCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "I need a break from all these mysteries.");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 16;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Hmmm... How very mysterious.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 16;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
             }
         }
     }
@@ -2102,6 +2325,32 @@ public class NPCHandler : MonoBehaviour
         }
 
         _tileController._forceCurse = true;
+    }
+
+    public void NPCMysteryTile()
+    {
+        if (_tileController._forceCurse == true || _tileController._forceGolden == true || _tileController._forceRuby == true || _tileController.getNextForcedTile() == "NotOkay")
+        {
+            Debug.Log("The upcoming tile is already Cursed, Golden, Ruby, Repeated, or Upgraded. Please wait until the reel spins to try again.");
+            return;
+        }
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.IsShop == true)
+                return;
+            else
+                _tileController.CurrentBiddingTile._indicator1.SetText("❔");
+        }
+        else
+        {
+            if (_tileController.GameplayTile.IsShop == true)
+                return;
+            else
+                _tileController.GameplayTile._indicator1.SetText("❔");
+        }
+
+        _tileController._forceMystery = true;
     }
 
     public void NPCGivePoints(string targetUsername, long desiredPointsToGive)
