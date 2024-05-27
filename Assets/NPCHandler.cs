@@ -1108,7 +1108,9 @@ public class NPCHandler : MonoBehaviour
             {
                 if (_gm.PlayerHandlers[key].pp.ModeNPC == 0) //GameMaster
                 {
-                    NPCTradeUp(_gm.PlayerHandlers[key]);
+                    if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                        NPCTradeUp(_gm.PlayerHandlers[key]);
+                   
                     _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                 }
@@ -1149,7 +1151,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Oh No, My Gold!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }
@@ -1197,7 +1200,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Time to Give Back to the community.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }
@@ -1206,7 +1210,8 @@ public class NPCHandler : MonoBehaviour
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
                         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                        NPCTradeUp(_gm.PlayerHandlers[key]);
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
                         _gm.PlayerHandlers[key].pp.StateNPC = 1;
                     }
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
@@ -1266,7 +1271,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "I hope you enjoyed the celebration!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
                 }
@@ -1320,7 +1326,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
                     }
@@ -1379,7 +1386,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             _gm.PlayerHandlers[key].pp.ModeNPC = 5;
                         }
@@ -1438,7 +1446,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
                     }
@@ -1497,7 +1506,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             _gm.PlayerHandlers[key].pp.ModeNPC = 7;
                         }
@@ -1556,7 +1566,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Stay Golden, Folks");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
                     }
@@ -1615,7 +1626,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Stay Golden, Folks!.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             _gm.PlayerHandlers[key].pp.ModeNPC = 9;
                         }
@@ -1674,7 +1686,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Stay Clever, Darlings.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
                     }
@@ -1733,7 +1746,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             _gm.PlayerHandlers[key].pp.ModeNPC = 11;
                         }
@@ -1767,7 +1781,7 @@ public class NPCHandler : MonoBehaviour
                                 _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                         }
                         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                    }                
+                    }
                 }
                 else if (_gm.PlayerHandlers[key].pp.ModeNPC == 14) //Single Curses
                 {
@@ -1818,7 +1832,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Properly warned ye be, says I!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 4;
                         }
                     }
@@ -1877,7 +1892,8 @@ public class NPCHandler : MonoBehaviour
                             NPCMessage(_gm.PlayerHandlers[key], "Properly warned ye be, says I!");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
-                            NPCTradeUp(_gm.PlayerHandlers[key]);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.StateNPC = 0;
                             _gm.PlayerHandlers[key].pp.ModeNPC = 14;
                         }

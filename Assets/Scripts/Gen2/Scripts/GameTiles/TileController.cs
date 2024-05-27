@@ -413,7 +413,8 @@ public class TileController : MonoBehaviour
         }
 
         _SpinningNow = false;        
-        _TileRepeating = false;        
+        _TileRepeating = false;       
+
         StartCoroutine(_npcHandler.CheckWaiter());
     }
 

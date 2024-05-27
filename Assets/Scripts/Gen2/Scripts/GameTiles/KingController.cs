@@ -169,6 +169,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         }
         _newKingBlockade.SetActive(false);
         _newKingBlockadeTimer.enabled = false;
+        AudioController.inst.PlaySound(AudioController.inst.KingVuln, 0.2f, 0.3f);
     }
 
     private void CleanupCurrentKing()

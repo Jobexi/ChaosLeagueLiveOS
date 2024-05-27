@@ -586,6 +586,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         long diamonds = pp.Diamonds;
         long rubies = pp.Rubies;
 
+        AudioController.inst.PlaySound(AudioController.inst.TradeUp, 0.95f, 1.05f);
+
         while (score >= 1000000000000000000)
         {
             score -= 1000000000000000000;
@@ -656,8 +658,6 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if (State == PlayerHandlerState.King)
             _gm.GetKingController().UpdateGoldText();
-
-        AudioController.inst.PlaySound(AudioController.inst.CollectGold, 0.95f, 1.05f);
     }
 
     public void AddGold(int amount, bool createTextPopup, bool doInviteBonus)

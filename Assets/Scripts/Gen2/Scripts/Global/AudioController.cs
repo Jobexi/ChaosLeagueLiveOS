@@ -6,6 +6,11 @@ public class AudioController : MonoBehaviour
 {
     public static AudioController inst;
 
+    public AudioSource TileRarity;
+    public AudioSource TileStatus;
+    public AudioSource KingVuln;
+    public AudioSource TradeUp;
+    [Space(20)]    
     public AudioSource DefenseBrickTakeDamage; 
     public AudioSource PayItForwardExplosion;
     public AudioSource DeathByLava;
@@ -43,6 +48,7 @@ public class AudioController : MonoBehaviour
     public AudioSource ButtonDown;
     public AudioSource ButtonUp;
     public AudioSource MechanicalPivotMove;
+    
 
     // Start is called before the first frame update
     void Awake()

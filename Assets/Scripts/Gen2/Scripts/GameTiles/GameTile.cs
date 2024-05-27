@@ -248,6 +248,10 @@ public class GameTile : MonoBehaviour
     }
     public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse)
     {
+        IsCurse = false;
+        IsRuby = false;
+        IsGolden = false;
+        
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
         
@@ -273,11 +277,11 @@ public class GameTile : MonoBehaviour
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
             if (insideCurse)
-                effector.MultiplyCurrValue(-1);
+                effector.MultiplyCurrValue(0);
             if (insideRuby)
                 effector.MultiplyCurrValue(50);
             else if (insideGolden)
-                effector.MultiplyCurrValue(10);            
+                effector.MultiplyCurrValue(10);
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -292,6 +296,12 @@ public class GameTile : MonoBehaviour
         if (_suddenDeath.gameObject.activeSelf)
             _suddenDeath.OnTilePreInit();
 
+        if (IsShop)
+        {
+            insideCurse = false;
+            insideRuby = false;
+            insideGolden = false;
+        }
         if (insideCurse)
         {            
             _goldenVisuals.gameObject.SetActive(true);
@@ -338,7 +348,8 @@ public class GameTile : MonoBehaviour
 
     public void InitTileInPos()
     {
-        TileState = TileState.LockedInPos; 
+
+        TileState = TileState.LockedInPos;
         //TileActive = true;
         _timer = 0;
         //_playersReleased = 0;
@@ -353,6 +364,66 @@ public class GameTile : MonoBehaviour
         if (_game != null)
             _game.OnTileInitInPos();
 
+
+        if (IsRuby)
+        {
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.4f, 0.5f);
+        }
+        else if (IsGolden)
+        {
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.2f, 0.3f);
+        }
+        else if (IsCurse)
+        {
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.06f, 0.08f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.05f, 0.07f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.04f, 0.06f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.03f, 0.05f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.02f, 0.04f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.01f, 0.03f);
+        }
+        else if (IsShop)
+        {
+            AudioController.inst.PlaySound(AudioController.inst.BattlePerchEarn, 0.4f, 0.5f);
+        }
+
+        switch (GetRarity())
+        {
+            case RarityType.Legendary:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.2f, 0.3f);
+                break;
+            case RarityType.Mythic:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.3f, 0.4f);
+                break;
+            case RarityType.Ethereal:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.4f, 0.5f);
+                break;
+            case RarityType.Cosmic:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.5f, 0.6f);
+                break;
+            case RarityType.CommonPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.RarePlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.EpicPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.LegendaryPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.MythicPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.EtherealPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+            case RarityType.CosmicPlus:
+                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
+                break;
+        }
+
         _tc._forceGolden = false;
         _tc._forceRuby = false;
         _tc._forceCurse = false;
@@ -360,6 +431,7 @@ public class GameTile : MonoBehaviour
         TogglePhysics(true);
 
         UpdateTileTimer();
+
     }
 
     public void OnPipeReleasePlayer(PlayerBall pb)
@@ -572,6 +644,12 @@ public class GameTile : MonoBehaviour
 
         //Once the gameplay tile finishes, spin it to a new tile
         _tc.SpinNewTile(this);
+
+        IsCurse = false;
+        IsGolden = false;
+        IsRuby = false;
+
+
     }
 
     public void SetTicketBonus(int count)
