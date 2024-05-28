@@ -116,7 +116,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         }
     }
 
-    public void SpawnCoin(Vector3 origin, Vector2 spawnVel, TravelingIndicatorIO target, int coinValue)
+    public void SpawnCoin(Vector3 origin, Vector2 spawnVel, TravelingIndicatorIO target, long coinValue)
     {
         Color coinColor = _coinColor.Evaluate(coinValue / _coinAmountColorMap.y);
 
@@ -185,11 +185,11 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         }
     }
 
-    public void SpawnGoldFromEvent(int totalGold)
+    public void SpawnGoldFromEvent(long totalGold)
     {
         while (totalGold > 0)
         {
-            int coinValue = Mathf.Min(totalGold, 10);
+            long coinValue = Math.Min(totalGold, 10);
             if (totalGold > 10000)
                 coinValue = 100;
             if (totalGold > 100000)

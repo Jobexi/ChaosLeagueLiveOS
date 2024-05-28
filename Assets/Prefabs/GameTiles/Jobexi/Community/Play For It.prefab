@@ -1710,7 +1710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1965222229307729085, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.24
+      value: 7.708
       objectReference: {fileID: 0}
     - target: {fileID: 2221752522102408061, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: playerReceiver

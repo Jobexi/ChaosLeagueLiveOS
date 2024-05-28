@@ -7,12 +7,14 @@ public class MythicCrownShopEntry : ShopEntry
     [SerializeField] private Crown _crown; 
     [SerializeField] public List<string> BuyCommands;
 
+    private int CrownTier = 0;
+
     private List<Color> colors = new List<Color>();
     public void InitEntry(int tier, int goldCost)
     {
         InitEntryBase(goldCost, BuyCommands);
-
-        _crown.AdvancedCustomizations(tier); 
+        CrownTier = tier;
+        _crown.EnhancedCustomizations(tier); 
     }
 
     public override void ReceivePlayer(PlayerBall pb)
@@ -39,12 +41,16 @@ public class MythicCrownShopEntry : ShopEntry
         pb.Ph.pp.CrownTexture1 = _crown.Texture1;
         pb.Ph.pp.CrownTexture2 = _crown.Texture2;
         pb.Ph.pp.EnhancedCrown = _crown.Enhanced;
+        pb.Ph.pp.CrownTier = CrownTier;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture3;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture4;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture5;
         //pb.Ph.pp.CrownTexture2 = _crown.Texture6;
 
         StartCoroutine(PurchaseAnimation(pb));
+
+        if (pb.Ph.IsKing())
+            pb.Ph.ReloadCosmetics(71717);
 
         AudioController.inst.PlaySound(AudioController.inst.StorePurchase, 0.95f, 1.05f);
     }

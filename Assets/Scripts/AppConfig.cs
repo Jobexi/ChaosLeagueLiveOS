@@ -236,7 +236,7 @@ public class AppConfig
         else if (rarity == RarityType.EtherealPlus)
             return EtherealPlusGoldMult;
         else
-            return CosmicPlusMult;
+            return CosmicPlusGoldMult;
 
     }
 

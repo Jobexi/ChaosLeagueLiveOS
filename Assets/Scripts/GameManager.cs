@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TileController _tileController;
     [SerializeField] private MyHttpClient _myHttpClient;
     [SerializeField] private BidHandler _bidHandler;
-    [SerializeField] private KingController _kingController;
+    [SerializeField] public KingController _kingController;
     [SerializeField] private RebellionController _rebellionController;
     [SerializeField] private SQLiteServiceAsync _sqliteServiceAsync; 
     [SerializeField] private UnitTesting _unitTesting; 

@@ -79,6 +79,8 @@ public class GameTile : MonoBehaviour
     private MaterialPropertyBlock _mpb;
     private MaterialPropertyBlock _trimMpb;
 
+    private int MysteriousAnnouncer;
+
     [SerializeField] [HideInInspector] private Color _backgroundStartColor;
     [SerializeField] [HideInInspector] private Color _backgroundEndColor;
     [SerializeField] [HideInInspector] private Color _trimColor;
@@ -249,13 +251,15 @@ public class GameTile : MonoBehaviour
     }
     public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse, bool insideMystery)
     {
+        _goldenVisuals._coverObj.gameObject.SetActive(false);
+
         IsCurse = false;
         IsRuby = false;
         IsGolden = false;
         IsMystery = false;
 
-        int Mysteries = UnityEngine.Random.Range(1, 1);
-
+        int Mysteries = UnityEngine.Random.Range(1, 5);
+        MysteriousAnnouncer = Mysteries;
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
         
@@ -280,6 +284,7 @@ public class GameTile : MonoBehaviour
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
             bool do100Effect = false;
+            bool doZeroEffect = false;
 
             if (insideMystery)
             {
@@ -301,6 +306,10 @@ public class GameTile : MonoBehaviour
                         do100Effect = true;
                         IsMystery = true;
                         break;
+                    case 5:
+                        doZeroEffect = true;
+                        IsMystery = true;
+                        break;
                 }
             }
             if (insideCurse)
@@ -311,6 +320,8 @@ public class GameTile : MonoBehaviour
                 effector.MultiplyCurrValue(10);
             else if (do100Effect)
                 effector.MultiplyCurrValue(100);
+            else if (doZeroEffect)
+                effector.MultiplyCurrValue(0);
         }
         
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
@@ -518,6 +529,9 @@ public class GameTile : MonoBehaviour
         _tileStartTime = DateTime.Now;
 
         _goldenVisuals._coverObj.gameObject.SetActive(false);
+        
+        if (IsMystery)
+        AnnounceMystery(MysteriousAnnouncer);
 
         _playerPointsSumStart = 0;
         foreach (var player in Players)
@@ -603,6 +617,28 @@ public class GameTile : MonoBehaviour
 
         yield return null; //Wait one frame to allow time for bid handler to switch in case the tile has no bidders and instantly spins after countdown
         FinishTile(); 
+    }
+
+    private void AnnounceMystery(int Mystery)
+    {
+        switch (Mystery)
+        {
+            case 1:
+                MyTTS.inst.PlayerSpeech("Cursed Tile", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 2:
+                MyTTS.inst.PlayerSpeech("10x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 3:
+                MyTTS.inst.PlayerSpeech("50x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 4:
+                MyTTS.inst.PlayerSpeech("100x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 5:
+                MyTTS.inst.PlayerSpeech("Null Tile", Amazon.Polly.VoiceId.Emma);
+                break;
+        }
     }
 
     public void EliminatePlayer(PlayerHandler ph, bool setRankScoreByElimOrder)

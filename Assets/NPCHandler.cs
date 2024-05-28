@@ -54,7 +54,7 @@ public class NPCHandler : MonoBehaviour
     public int MysteryCount1 = 0;
     public int MysteryCount2 = 0;
 
-    private int maxNPC = 124;
+    private int maxNPC = 126;
     private int maxMode = 17;
 
     void Awake()
@@ -639,6 +639,14 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("EternalMystery", "EternalMystery", "bid", 1);
                 StartCoroutine(UpdateWaiter("EternalMystery"));
                 break;
+            case 125:
+                _unitTesting.NPCReward("Lava", "Lava", "bid", 1);
+                StartCoroutine(UpdateWaiter("Lava"));
+                break;
+            case 126:
+                _unitTesting.NPCReward("Water", "Water", "bid", 1);
+                StartCoroutine(UpdateWaiter("Water"));
+                break;
         }
                 
     }
@@ -1188,6 +1196,12 @@ public class NPCHandler : MonoBehaviour
                 SetNPCMode(17, ID, "#8800FF");
                 MysteryCount1 += 13;
                 MysteryCount2 += 17;
+                break;
+            case "Lava":
+                SetNPCMode(18, ID, "#FF2222");
+                break;
+            case "Water":
+                SetNPCMode(19, ID, "#2222FF");
                 break;
         }
     
@@ -2124,6 +2138,64 @@ public class NPCHandler : MonoBehaviour
                     else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
                     {
                         _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 18) //Lava
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Can't breach these defenses!");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "Activate Lava", 1);
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Awww, you got me.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                        }
+                    }
+                    if (_gm.PlayerHandlers[key].pp.ModeNPC == 19) //Water
+                    {
+                        if (_gm.PlayerHandlers[key].pp.StateNPC < 17)
+                        {
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "Activate Water", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC += 1;
+                        }
                     }
                 }
             }

@@ -739,7 +739,66 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
     }
 
-    private int AddCombo()
+    public void ReloadCosmetics(int AnimationMode)
+    {
+        var Txtr1 = pp.CrownTexture1;
+        var Txtr2 = pp.CrownTexture2;
+        var BGT = pp.KingBGTier;
+        var BG = pp.KingBG;
+
+        var BaseMaterials = _gm._kingController._crown._crownMeshRenderer.materials;
+        var DesiredMaterials = _gm._kingController._crown.EnhancedMaterials;
+        var BGMaterials = _gm._kingController._KingTile._background.materials;
+
+        switch (AnimationMode)
+        {
+            case 0:
+                _gm._kingController._KingTile.RarityType = RarityType.Common;
+                _gm._kingController._KingTile.HasBackground = false;
+                break;
+            case 1:
+                _gm._kingController._KingTile.RarityType = RarityType.CommonPlus;
+                _gm._kingController._KingTile.HasBackground = true;
+                break;
+        }
+
+
+        if (pp.EnhancedCrown == false)
+        {
+            Txtr1 = 0;
+            Txtr2 = 1;
+        }
+
+        BaseMaterials[0] = DesiredMaterials[Txtr1];
+        BaseMaterials[1] = DesiredMaterials[Txtr2];
+
+        _gm._kingController._crown._crownMeshRenderer.materials = BaseMaterials;
+
+        if (pb.Ph.pp.EnhancedCrown == false)
+            _gm._kingController._crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+        else
+            _gm._kingController._crown.EnhancedCustomizations(pb.Ph.pp.CrownTier, true, pb.Ph.pp.CrownTexture1);
+
+        switch (BGT)
+        {
+            case 1:
+                BGMaterials[0] = _gm._kingController.T1Materials[BG];
+                break;
+            case 2:
+                BGMaterials[0] = _gm._kingController.T2Materials[BG];
+                break;
+            case 3:
+                BGMaterials[0] = _gm._kingController.T3Materials[BG];
+                break;
+            default:
+                BGMaterials[0] = _gm._kingController._baseMaterial;
+                break;
+        }
+
+        _gm._kingController._KingTile._background.materials = BGMaterials;
+    }
+
+private int AddCombo()
     {
         comboTimer = timeoutComboAfter;
         return comboCount++;

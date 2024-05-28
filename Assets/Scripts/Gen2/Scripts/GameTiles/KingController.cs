@@ -21,8 +21,9 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private TextMeshPro _tollRateText;
     [SerializeField] private AutoPredictions _autoPredictions;
     [SerializeField] private GoldDistributor _liveViewCount;
-    [SerializeField] private Crown _crown;
+    [SerializeField] public Crown _crown;
     [SerializeField] private MyCameraController _myCameraController;
+    [SerializeField] public GameTile _KingTile;
 
     [SerializeField] private TextMeshPro _kingPointsText;
     [SerializeField] private TextMeshPro _kingGoldText;
@@ -39,7 +40,12 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private GameObject _newKingBlockade;
     [SerializeField] private TextMeshPro _newKingBlockadeTimer;
     [SerializeField] private Material _throneTileTrim;
-    [SerializeField] private bool _enableNewKingBlockade = true; 
+    [SerializeField] private bool _enableNewKingBlockade = true;
+
+    [SerializeField] public Material _baseMaterial;
+    [SerializeField] public List<Material> T1Materials;
+    [SerializeField] public List<Material> T2Materials;
+    [SerializeField] public List<Material> T3Materials;
 
     public int TollRate = 0;
     public static PlayerHandler CKPH;
@@ -85,21 +91,23 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         _currentKingTimer += Time.deltaTime;
     }
 
-
     public IEnumerator ThroneNewKing(PlayerBall pb)
     {
-        if(_enableNewKingBlockade)
+        if (_enableNewKingBlockade)
             StartCoroutine(NewKingBlockade());
 
         //_myCameraController.KingFocusCameraMove(); 
 
-        CleanupCurrentKing();        
+        CleanupCurrentKing();
 
         var Txtr1 = pb.Ph.pp.CrownTexture1;
         var Txtr2 = pb.Ph.pp.CrownTexture2;
+        var BGT = pb.Ph.pp.KingBGTier;
+        var BG = pb.Ph.pp.KingBG;
 
         var BaseMaterials = _crown._crownMeshRenderer.materials;
         var DesiredMaterials = _crown.EnhancedMaterials;
+        var BGMaterials = _KingTile._background.materials;
 
         if (pb.Ph.pp.EnhancedCrown == false)
         {
@@ -109,13 +117,34 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         BaseMaterials[0] = DesiredMaterials[Txtr1];
         BaseMaterials[1] = DesiredMaterials[Txtr2];
+
         _crown._crownMeshRenderer.materials = BaseMaterials;
 
         if (pb.Ph.pp.EnhancedCrown == false)
-                _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+            _crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(pb.Ph.pp.CrownJSON));
+        else
+            _crown.EnhancedCustomizations(pb.Ph.pp.CrownTier);
+
+        switch (BGT)
+        {
+            case 1:
+                BGMaterials[0] = T1Materials[BG];
+                break;
+            case 2:
+                BGMaterials[0] = T2Materials[BG];
+                break;
+            case 3:
+                BGMaterials[0] = T3Materials[BG];
+                break;
+            default:
+                BGMaterials[0] = _baseMaterial;
+                break;
+        }
+
+        _KingTile._background.materials = BGMaterials;
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
-        pb.Ph.pp.ThroneCaptures += 1; 
+        pb.Ph.pp.ThroneCaptures += 1;
         _autoPredictions.NewKingSignal(newKingUsername, (int)_previousKingDuration);
 
         MyTTS.inst.Announce($"Throne captured by {newKingUsername}");
@@ -133,7 +162,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         AudioController.inst.PlaySound(AudioController.inst.NewKingThroned, 1f, 1f);
         AudioController.inst.PlaySound(AudioController.inst.Beheading, 1f, 1f);
-        confetti.Play(); 
+        confetti.Play();
 
         //pointPopUpTimer = 0;
 
@@ -145,14 +174,14 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         UpdateCurrExponentScale();
 
-        _defaultDefenseV2.ResetDefense(DefaultDefenseMode.Random, 10, 5); 
+        _defaultDefenseV2.ResetDefense(DefaultDefenseMode.Random, 10, 5);
 
         //Force spending half of points on defense
         long halfOfPoints = pb.Ph.pp.SessionScore / 2;
         if (halfOfPoints > 0)
             _defaultDefenseV2.AddBonusDefense(halfOfPoints, pb.Ph);
 
-        _liveViewCount.NewKingSignal(); 
+        _liveViewCount.NewKingSignal();
     }
 
     private IEnumerator NewKingBlockade()
@@ -199,7 +228,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
     }
     
     public void UpdateGoldText()
-    {
+    {        
         _kingPointsText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.SessionScore)} Points");
         _kingGoldText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Gold)} Gold");
         _kingEmeraldText.SetText($"{MyUtil.AbbreviateNum4Char(currentKing.Ph.pp.Emeralds)} Emeralds");

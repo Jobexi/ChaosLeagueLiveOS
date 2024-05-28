@@ -38,7 +38,7 @@ public class PlayerProfile
     public int CurrentBid { get; set; }
        
     public int LifeTimeScore { get; set; }
-    public int Gold { get; set; }
+    public long Gold { get; set; }
     public int SeasonScore { get; set; }
     public long SessionScore { get; set; }
     public DateTime LastInteraction { get; set; }
@@ -68,6 +68,10 @@ public class PlayerProfile
     public int CrownTexture5 { get; set; }
     public int CrownTexture6 { get; set; }
     public bool EnhancedCrown { get; set; }
+    public int CrownTier { get; set; }
+
+    public int KingBG { get; set; }
+    public int KingBGTier { get; set; }
 
     public string[] GetInviteIds() 
     {

@@ -1268,6 +1268,20 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 10000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Purchasing a temporary background costs 10k Gold.");
+                return;
+            }
+
             if (_tileController.GameplayTile != null)
             {
                 if (!_tileController.GameplayTile.HasBackground)
@@ -1287,6 +1301,7 @@ public class TwitchClient : MonoBehaviour
                 }
             }
 
+            ph.pp.Gold -= 10000;
             _tileController._npcHandler.ChangeKingBackground();
         }
 

@@ -171,14 +171,19 @@ public class Crown : MonoBehaviour
         _gemsMeshRenderer.SetPropertyBlock(_gemsPropBlock);
     }
 
-    public void AdvancedCustomizations(int tier)
+    public void EnhancedCustomizations(int tier, bool ovrd = false, int OVtxtr1 = 0)
     {
         _gemsMeshRenderer.gameObject.SetActive(false);
         _fourthMeshRenderer.gameObject.SetActive(false);
         _fifthMeshRenderer.gameObject.SetActive(false);
         _sixthMeshRenderer.gameObject.SetActive(false);
 
-        int Txtr1 = UnityEngine.Random.Range(2, TotalTextures);
+        int Txtr1 = 0;
+
+        if (ovrd)
+            Txtr1 = OVtxtr1;
+        else
+            Txtr1 = UnityEngine.Random.Range(2, TotalTextures);
 
         //If T1
         if (tier == 1)
@@ -206,7 +211,7 @@ public class Crown : MonoBehaviour
         {
             return;
         }
-    }
+    }    
 
 }
 
