@@ -285,7 +285,7 @@ public static class MyUtil
             return $"{numString.Substring(0, 2)}{suffixes[suffixIndex]}";
 
         // 100 - 999
-        return $"0.{numString[0]}{suffixes[suffixIndex + 1]}";
+        return $"{numString.Substring(0, 3)}{suffixes[suffixIndex]}";
 
     }
 

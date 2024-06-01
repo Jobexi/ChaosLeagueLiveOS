@@ -703,7 +703,7 @@ MonoBehaviour:
   DisplayBackground: {fileID: 4351772007122185676}
   _buyCommandText: {fileID: 1896035989096447258}
   _goldCostText: {fileID: 6624390143130830012}
-  GoldCost: 1250000
+  GoldCost: 50000000
   SapphireCost: 3
   EmeraldCost: 0
   DiamondCost: 0
@@ -1271,7 +1271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6766867589588036922, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.05
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 6766867589588036922, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1378,15 +1378,15 @@ MonoBehaviour:
   DisplayBackground: {fileID: 4564937976244344040}
   _buyCommandText: {fileID: 1832228229265392702}
   _goldCostText: {fileID: 6400737459756613016}
-  GoldCost: 150000
+  GoldCost: 5000000
   SapphireCost: 1
   EmeraldCost: 0
   DiamondCost: 0
   RubyCost: 0
   _crown: {fileID: 859019419077770521}
   BuyCommands:
-  - '!buy1'
-  - '!buy 1'
+  - '!buy2'
+  - '!buy 2'
 --- !u!23 &5171734078801177411 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5826493631784159632, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
@@ -2139,7 +2139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6766867589588036922, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45
+      value: 4.05
       objectReference: {fileID: 0}
     - target: {fileID: 6766867589588036922, guid: aafc374824bbbee4189b26c178f63c67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2235,15 +2235,15 @@ MonoBehaviour:
   DisplayBackground: {fileID: 7355980667836354407}
   _buyCommandText: {fileID: 4621038787906265009}
   _goldCostText: {fileID: 116996112739395095}
-  GoldCost: 650000
+  GoldCost: 500000
   SapphireCost: 2
   EmeraldCost: 0
   DiamondCost: 0
   RubyCost: 0
   _crown: {fileID: 5955872015573329558}
   BuyCommands:
-  - '!buy2'
-  - '!buy 2'
+  - '!buy1'
+  - '!buy 1'
 --- !u!23 &2200548454156153036 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5826493631784159632, guid: aafc374824bbbee4189b26c178f63c67, type: 3}

@@ -125,6 +125,8 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         else
             _crown.EnhancedCustomizations(pb.Ph.pp.CrownTier);
 
+        _crown._crownMeshRenderer.materials = BaseMaterials;
+
         switch (BGT)
         {
             case 1:

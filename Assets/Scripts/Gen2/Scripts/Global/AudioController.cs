@@ -10,6 +10,7 @@ public class AudioController : MonoBehaviour
     public AudioSource TileStatus;
     public AudioSource KingVuln;
     public AudioSource TradeUp;
+    public AudioSource CrabRave;
     [Space(20)]    
     public AudioSource DefenseBrickTakeDamage; 
     public AudioSource PayItForwardExplosion;

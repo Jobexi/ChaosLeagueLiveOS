@@ -1214,6 +1214,7 @@ public class NPCHandler : MonoBehaviour
         _gm.PlayerHandlers[key].pp.IsNPC = true;
         _gm.PlayerHandlers[key].pp.ModeNPC = mode;
         _gm.PlayerHandlers[key].pp.StateNPC = state;
+        _gm.PlayerHandlers[key].SetCustomizationsFromPP();
     }
 
     public void CheckNPCs()

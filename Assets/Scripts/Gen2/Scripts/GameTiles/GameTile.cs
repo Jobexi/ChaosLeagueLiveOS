@@ -436,44 +436,6 @@ public class GameTile : MonoBehaviour
             AudioController.inst.PlaySound(AudioController.inst.BattlePerchEarn, 0.4f, 0.5f);
         }
 
-        if(!IsMystery)
-        switch (GetRarity())
-        {
-            case RarityType.Legendary:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.2f, 0.3f);
-                break;
-            case RarityType.Mythic:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.3f, 0.4f);
-                break;
-            case RarityType.Ethereal:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.4f, 0.5f);
-                break;
-            case RarityType.Cosmic:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.5f, 0.6f);
-                break;
-            case RarityType.CommonPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.RarePlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.EpicPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.LegendaryPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.MythicPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.EtherealPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-            case RarityType.CosmicPlus:
-                AudioController.inst.PlaySound(AudioController.inst.TileRarity, 0.6f, 0.7f);
-                break;
-        }
-
         _tc._forceGolden = false;
         _tc._forceRuby = false;
         _tc._forceCurse = false;

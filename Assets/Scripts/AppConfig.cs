@@ -135,7 +135,7 @@ public class AppConfig
             EtherealPlusMult = 125;
             CosmicPlusMult = 313;
 
-            CommonPlusGoldMult = 2;
+            CommonPlusGoldMult = 3;
             RarePlusGoldMult = 5;
             EpicPlusGoldMult = 10;
             LegendaryPlusGoldMult = 25;

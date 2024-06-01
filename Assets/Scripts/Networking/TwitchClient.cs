@@ -113,7 +113,7 @@ public class TwitchClient : MonoBehaviour
 
     public IEnumerator HandleMessage(string messageId, string twitchId, string twitchUsername, Color usernameColor, string rawMsg, List<Emote> emotes, bool isSubscriber, bool isFirstMessage, int bits, bool isAdmin, bool isMod, bool isVIP)
     {
-
+                
         //Debug.LogError($"Handling message from: API_MODE: {AppConfig.inst.GetS("API_MODE")} ClientID: {AppConfig.GetClientID()} ClientSecret: {AppConfig.GetClientSecret()}");
 
         bool isMe = twitchId == Secrets.CHANNEL_ID;
@@ -152,7 +152,12 @@ public class TwitchClient : MonoBehaviour
         if (!isVIP)
         {
             Debug.Log("isVIP?");
-            isVIP = twitchUsername.ToLower() == "qoobsweet";
+            isVIP = twitchUsername.ToLower() == "infershock";
+        }
+        if (!isVIP)
+        {
+            Debug.Log("isVIP?");
+            isVIP = twitchUsername.ToLower() == "andre_601";
         }
         if (!isVIP)
         {
@@ -448,6 +453,32 @@ public class TwitchClient : MonoBehaviour
                 colorKeys[4].color = Color.HSVToRGB(0.579f, 0.6919f, 0.7765f); //5
                 break;
 
+            case 6: //InferShock
+                    // Create alpha keys
+
+                alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+                alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+                colorKeys[4].color = Color.HSVToRGB(0f, 0f, 25.1f); //1
+                colorKeys[3].color = Color.HSVToRGB(0f, 1f, 1f); //2
+                colorKeys[2].color = Color.HSVToRGB(0f, 1f, 1f); //2
+                colorKeys[1].color = Color.HSVToRGB(0.083f, 1f, 1f); //3
+                colorKeys[0].color = Color.HSVToRGB(0.083f, 1f, 1f); //3
+                break;
+
+            case 7: //Andre_601
+                    // Create alpha keys
+
+                alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+                alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+                colorKeys[0].color = Color.HSVToRGB(0.625f, 0.7519f, 0.5216f); //1
+                colorKeys[1].color = Color.HSVToRGB(0.752f, 0.8655f, 0.6235f); //2
+                colorKeys[2].color = Color.HSVToRGB(0f, 0f, 1f); //3
+                colorKeys[3].color = Color.HSVToRGB(0.085f, 0.7565f, 0.902f); //4
+                colorKeys[4].color = Color.HSVToRGB(0.579f, 0.6919f, 0.7765f); //5
+                break;
+
         }
         // Assign random colors at random positions for each color key
         for (int i = 0; i < numColors; i++)
@@ -533,11 +564,17 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!vipcooking"))
         {
             VIPTrail(ph, 2);
+            VIPTextbox(ph, 2);
         }
 
         if (commandKey.StartsWith("!thiscouldbeacustomcommandforaviptrailbutnoonewilleverreallyknow"))
         {
             VIPTrail(ph, 2);
+        }
+
+        if (commandKey.StartsWith("!CookingBox"))
+        {
+            VIPTextbox(ph, 2);
         }
 
         if (commandKey.StartsWith("!vipqoob"))
@@ -568,6 +605,26 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!gimmetrailxd"))
         {
             VIPTrail(ph, 5);
+        }
+
+        if (commandKey.StartsWith("!vipinfer"))
+        {
+            VIPTrail(ph, 6);
+        }
+
+        if (commandKey.StartsWith("!infertrail"))
+        {
+            VIPTrail(ph, 6);
+        }
+
+        if (commandKey.StartsWith("!vipandre"))
+        {
+            VIPTrail(ph, 7);
+        }
+
+        if (commandKey.StartsWith("!andretrail"))
+        {
+            VIPTrail(ph, 7);
         }
     }
 
@@ -607,7 +664,7 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!wiki"))
         {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"https://chaosleaguewiki.github.io");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"https://jobexileague.wiki.gg");
             return;
         }
         else if (commandKey.StartsWith("!play"))
@@ -635,7 +692,7 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("You have no gold to spend.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
                 return;
-            }    
+            }
 
             if (ph.pp.Gold <= 0)
             {
@@ -794,6 +851,7 @@ public class TwitchClient : MonoBehaviour
                 {
                     Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    return;
                 }
 
                 if (_tileController.CurrentBiddingTile.IsShop == true)
@@ -1109,6 +1167,52 @@ public class TwitchClient : MonoBehaviour
             _tileController._forceCurse = true;
         }
 
+        else if (commandKey.StartsWith("!crabrave"))
+        {
+            Debug.Log("inCrabRave");
+
+            if (!ph.IsKing())
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You must hold the throne to play CrabRave.");
+                return;
+            }
+
+            if (_tileController.GameplayTile == null)
+            {
+                if (_tileController.CurrentBiddingTile.IsCurse == true)
+                {
+                    AudioController.inst.PlaySound(AudioController.inst.CrabRave, .05f, .75f);
+                    return;
+                }
+            }
+            else
+            {
+                if (_tileController.GameplayTile.IsCurse == true)
+                {
+                    AudioController.inst.PlaySound(AudioController.inst.CrabRave, .005f, .5f);
+                    return;
+                }
+            }
+
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 25000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Playing CrabRave costs 25k Gold.");
+                return;
+            }                   
+
+            ph.pp.Gold -= 25000;
+
+            AudioController.inst.PlaySound(AudioController.inst.CrabRave, 1f, 1f);
+        }
+
         else if (commandKey.StartsWith("!invite") || commandKey.StartsWith("!recruit") || commandKey.StartsWith("!pyramidscheme") || commandKey.StartsWith("!invitelink") || commandKey.StartsWith("!getinvitelink") || commandKey.StartsWith("!getreferrallink"))
         {
             string url = $"{Secrets.CHAOS_LEAGUE_DOMAIN}/@{ph.pp.TwitchUsername}";
@@ -1312,7 +1416,7 @@ public class TwitchClient : MonoBehaviour
 
         else if (commandKey.StartsWith("!givegold"))
         {
-            StartCoroutine(ProcessGiveGoldCommand(messageId, ph, msg));
+            //StartCoroutine(ProcessGiveGoldCommand(messageId, ph, msg));
         }
 
         else if (commandKey.StartsWith("!buyriskskips"))
@@ -1342,7 +1446,7 @@ public class TwitchClient : MonoBehaviour
             StartCoroutine(ProcessBuyShields(messageId, ph, msg));
         }
 
-        else if (commandKey.StartsWith("!buygold"))
+        else if (commandKey.StartsWith("!buygold") || commandKey.StartsWith("!sellrubies"))
         {
             StartCoroutine(ProcessBuyCurrency(messageId, ph, msg, "Gold"));
         }
@@ -1382,7 +1486,7 @@ public class TwitchClient : MonoBehaviour
             StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "stats"));
         }
 
-        else if (commandKey.StartsWith("!points") || commandKey.StartsWith("!money") || commandKey.StartsWith("!currency") || commandKey.StartsWith("!wendells") || commandKey.StartsWith("!purse") || commandKey.StartsWith("!wallet") || commandKey.StartsWith("!cash")  || commandKey.StartsWith("!treasure")  || commandKey.StartsWith("!riches") || commandKey.StartsWith("!loot") || commandKey.StartsWith("!swag"))
+        else if (commandKey.StartsWith("!points") || commandKey.StartsWith("!money") || commandKey.StartsWith("!dough") || commandKey.StartsWith("!doubloons") || commandKey.StartsWith("!bread") || commandKey.StartsWith("!gems") || commandKey.StartsWith("!currency") || commandKey.StartsWith("!wendells") || commandKey.StartsWith("!purse") || commandKey.StartsWith("!wallet") || commandKey.StartsWith("!cash") || commandKey.StartsWith("!treasure") || commandKey.StartsWith("!riches") || commandKey.StartsWith("!loot") || commandKey.StartsWith("!swag"))
         {
             StartCoroutine(ProcessStatsCommand(messageId, ph, msg, "riches"));
         }
@@ -1402,33 +1506,33 @@ public class TwitchClient : MonoBehaviour
             _bidHandler.ClearAutoBid(ph);
         }
 
-        else if (commandKey.StartsWith("!song"))
-        {
-            if (!ph.IsKing())
-            {
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You must hold the throne to use !song");
-                return;
-            }
-            string[] split = commandKey.Split("!song");
-            if (split.Length < 2)
-            {
-                Debug.Log($"!song command failed. split.length: {split.Length}");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse song name from command. ");
-                return;
-            }
+        //else if (commandKey.StartsWith("!song"))
+        //{
+        //    if (!ph.IsKing())
+        //    {
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You must hold the throne to use !song");
+        //        return;
+        //    }
+        //    string[] split = commandKey.Split("!song");
+        //    if (split.Length < 2)
+        //    {
+        //        Debug.Log($"!song command failed. split.length: {split.Length}");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse song name from command. ");
+        //        return;
+        //    }
 
-            _ = _spotifyDJ.SearchAndPlay(messageId, split[1], ph);
-        }
+        //    _ = _spotifyDJ.SearchAndPlay(messageId, split[1], ph);
+        //}
 
         else if (commandKey.StartsWith("!playlist"))
         {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Music Options: {AppConfig.inst.GetS("SpotifySafePlaylistURL")}");
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Try 'Every State's Official CLL Song' Playlist! Curated by Luke Holmes. https://www.youtube.com/playlist?list=PLD43lBoK7pXXMqNTx9IkQkqWMEEIKr0lP");
         }
 
-        else if (ph.IsKing() && (commandKey.StartsWith("!skipsong") || commandKey.StartsWith("!skip song") || commandKey.StartsWith("!nextsong") || commandKey.StartsWith("!next song")))
-        {
-            _ = _spotifyDJ.SkipSong();
-        }
+        //else if (ph.IsKing() && (commandKey.StartsWith("!skipsong") || commandKey.StartsWith("!skip song") || commandKey.StartsWith("!nextsong") || commandKey.StartsWith("!next song")))
+        //{
+        //    _ = _spotifyDJ.SkipSong();
+        //}
 
         else if (commandKey.StartsWith("!lava"))
         {
@@ -1555,123 +1659,123 @@ public class TwitchClient : MonoBehaviour
 
     }
 
-    private IEnumerator ProcessGivePointsCommand(string messageId, PlayerHandler ph, string msg)
-    {
-        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This command has been disabled to combat alt account abuse.");
-        yield break;
+    //private IEnumerator ProcessGivePointsCommand(string messageId, PlayerHandler ph, string msg)
+    //{
+    //    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This command has been disabled to combat alt account abuse.");
+    //    yield break;
 
-        /*        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givepoints [amount] @username");
-                    yield break;
-                }
+    //    /*        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
+    //            {
+    //                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givepoints [amount] @username");
+    //                yield break;
+    //            }
 
-                long desiredPointsToGive;
-                if (!MyUtil.GetFirstLongFromString(msg, out desiredPointsToGive))
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givepoints [amount] @username");
-                    yield break;
-                }
+    //            long desiredPointsToGive;
+    //            if (!MyUtil.GetFirstLongFromString(msg, out desiredPointsToGive))
+    //            {
+    //                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givepoints [amount] @username");
+    //                yield break;
+    //            }
 
-                if (desiredPointsToGive <= 0)
-                    yield break;
+    //            if (desiredPointsToGive <= 0)
+    //                yield break;
 
-                if (ph.pp.SessionScore <= 0)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to give.");
-                    yield break;
-                }
+    //            if (ph.pp.SessionScore <= 0)
+    //            {
+    //                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no points to give.");
+    //                yield break;
+    //            }
 
-                //Find if the player handler is cached and able to receive points
-                CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
-                yield return _gm.GetPlayerByUsername(targetUsername, coResult);
-                PlayerHandler targetPlayer = coResult.Result;
+    //            Find if the player handler is cached and able to receive points
+    //            CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
+    //            yield return _gm.GetPlayerByUsername(targetUsername, coResult);
+    //            PlayerHandler targetPlayer = coResult.Result;
 
 
-                if (targetPlayer == null)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
-                    yield break;
-                }
+    //            if (targetPlayer == null)
+    //            {
+    //                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+    //                yield break;
+    //            }
 
-                //Can't give points to yourself
-                if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give points to yourself.");
-                    yield break;
-                }
+    //            Can't give points to yourself
+    //            if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
+    //            {
+    //                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give points to yourself.");
+    //                yield break;
+    //            }
 
-                //If the user tries to use more points than they have, just clamp it
-                if (ph.pp.SessionScore < desiredPointsToGive)
-                    desiredPointsToGive = ph.pp.SessionScore;
+    //            If the user tries to use more points than they have, just clamp it
+    //            if (ph.pp.SessionScore < desiredPointsToGive)
+    //                desiredPointsToGive = ph.pp.SessionScore;
 
-                //Clamp givepoints limit to 10,000
-                if (desiredPointsToGive > AppConfig.inst.GetI("GivePointsLimit"))
-                    desiredPointsToGive = AppConfig.inst.GetI("GivePointsLimit");
+    //            Clamp givepoints limit to 10,000
+    //            if (desiredPointsToGive > AppConfig.inst.GetI("GivePointsLimit"))
+    //                desiredPointsToGive = AppConfig.inst.GetI("GivePointsLimit");
 
-                ph.SubtractPoints(desiredPointsToGive, canKill: false, createTextPopup: true);
+    //            ph.SubtractPoints(desiredPointsToGive, canKill: false, createTextPopup: true);
 
-                TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.green, ph.PfpTexture, TI_Type.GivePoints);
-        */
-    }
-    private IEnumerator ProcessGiveGoldCommand(string messageId, PlayerHandler ph, string msg)
-    {
-        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This command has been disabled (temporarily?) to combat alt account abuse.");
-        yield break;
-        /*
-        if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givegold [amount] @username");
-            yield break;
-        }
+    //            TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredPointsToGive), desiredPointsToGive, ph, targetPlayer, 0.1f, Color.green, ph.PfpTexture, TI_Type.GivePoints);
+    //    */
+    //}
+    //private IEnumerator ProcessGiveGoldCommand(string messageId, PlayerHandler ph, string msg)
+    //{
+    //    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This command has been disabled (temporarily?) to combat alt account abuse.");
+    //    yield break;
+    //    /*
+    //    if (!MyUtil.GetUsernameFromString(msg, out string targetUsername))
+    //    {
+    //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to find target username. Correct format is: !givegold [amount] @username");
+    //        yield break;
+    //    }
 
-        long desiredGoldToGive;
-        if (!MyUtil.GetFirstLongFromString(msg, out desiredGoldToGive))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givegold [amount] @username");
-            yield break;
-        }
+    //    long desiredGoldToGive;
+    //    if (!MyUtil.GetFirstLongFromString(msg, out desiredGoldToGive))
+    //    {
+    //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Failed to parse point amount. Correct format is: !givegold [amount] @username");
+    //        yield break;
+    //    }
 
-        if (desiredGoldToGive <= 0)
-            yield break;
+    //    if (desiredGoldToGive <= 0)
+    //        yield break;
 
-        if (ph.pp.Gold <= 0)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to give.");
-            yield break;
-        }
+    //    if (ph.pp.Gold <= 0)
+    //    {
+    //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to give.");
+    //        yield break;
+    //    }
 
-        //Find if the player handler is cached and able to receive points
-        CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
-        yield return _gm.GetPlayerByUsername(targetUsername, coResult);
-        PlayerHandler targetPlayer = coResult.Result;
+    //    Find if the player handler is cached and able to receive points
+    //    CoroutineResult<PlayerHandler> coResult = new CoroutineResult<PlayerHandler>();
+    //    yield return _gm.GetPlayerByUsername(targetUsername, coResult);
+    //    PlayerHandler targetPlayer = coResult.Result;
 
-        if (targetPlayer == null)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
-            yield break;
-        }
+    //    if (targetPlayer == null)
+    //    {
+    //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Failed to find player with username: {targetUsername}");
+    //        yield break;
+    //    }
 
-        //Can't give points to yourself
-        if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give gold to yourself.");
-            yield break;
-        }
+    //    Can't give points to yourself
+    //    if (targetPlayer.pp.TwitchID == ph.pp.TwitchID)
+    //    {
+    //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You can't give gold to yourself.");
+    //        yield break;
+    //    }
 
-        //If the user tries to use more points than they have, just clamp it
-        if (ph.pp.Gold < desiredGoldToGive)
-            desiredGoldToGive = ph.pp.Gold;
+    //    If the user tries to use more points than they have, just clamp it
+    //    if (ph.pp.Gold < desiredGoldToGive)
+    //        desiredGoldToGive = ph.pp.Gold;
 
-        //Clamp givepoints limit to 10,000
-        if (desiredGoldToGive > AppConfig.inst.GetI("GivePointsLimit"))
-            desiredGoldToGive = AppConfig.inst.GetI("GivePointsLimit");
+    //    Clamp givepoints limit to 10,000
+    //    if (desiredGoldToGive > AppConfig.inst.GetI("GivePointsLimit"))
+    //        desiredGoldToGive = AppConfig.inst.GetI("GivePointsLimit");
 
-        ph.SubtractGold((int)desiredGoldToGive, createTextPopup: true);
+    //    ph.SubtractGold((int)desiredGoldToGive, createTextPopup: true);
 
-        TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredGoldToGive), desiredGoldToGive, ph, targetPlayer, 0.1f, MyColors.Gold, ph.PfpTexture, TI_Type.GiveGold);
-        */
-    }
+    //    TextPopupMaster.Inst.CreateTravelingIndicator(MyUtil.AbbreviateNum4Char(desiredGoldToGive), desiredGoldToGive, ph, targetPlayer, 0.1f, MyColors.Gold, ph.PfpTexture, TI_Type.GiveGold);
+    //    */
+    //}
     private IEnumerator RewardGoldCommand(string messageId, PlayerHandler ph, string msg)
     {
 

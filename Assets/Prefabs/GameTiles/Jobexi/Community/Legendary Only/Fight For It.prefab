@@ -1794,7 +1794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1965222229307729085, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.24
+      value: 7.71
       objectReference: {fileID: 0}
     - target: {fileID: 2221752522102408061, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: playerReceiver
@@ -1848,6 +1848,10 @@ PrefabInstance:
       propertyPath: _game
       value: 
       objectReference: {fileID: 5304409137433828191}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: IsRisk
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: TileIDNum
       value: 9

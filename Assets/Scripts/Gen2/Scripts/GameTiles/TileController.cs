@@ -39,10 +39,10 @@ public class TileController : MonoBehaviour
     [SerializeField] private List<GameTile> CommonTiles; //69%      // 45%
     [SerializeField] private List<GameTile> RareTiles; // 25%       // 30%
     [SerializeField] private List<GameTile> EpicTiles; // 5%        // 18%
-    [SerializeField] private List<GameTile> LegendaryTiles; // 1%   // 0.05%
-    [SerializeField] private List<GameTile> MythicTiles; // X       // 0.015%
-    [SerializeField] private List<GameTile> EtherealTiles; // X     // 0.003%
-    [SerializeField] private List<GameTile> CosmicTiles; // X       // 0.002%
+    [SerializeField] private List<GameTile> LegendaryTiles; // 1%   // 5%
+    [SerializeField] private List<GameTile> MythicTiles; // X       // 1.5%
+    [SerializeField] private List<GameTile> EtherealTiles; // X     // 0.3%
+    [SerializeField] private List<GameTile> CosmicTiles; // X       // 0.2%
 
     public Transform HoldingPen;
     public Transform TilesRoot;
