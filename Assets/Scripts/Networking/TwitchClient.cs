@@ -472,11 +472,11 @@ public class TwitchClient : MonoBehaviour
                 alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
                 alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
 
-                colorKeys[0].color = Color.HSVToRGB(0.625f, 0.7519f, 0.5216f); //1
-                colorKeys[1].color = Color.HSVToRGB(0.752f, 0.8655f, 0.6235f); //2
-                colorKeys[2].color = Color.HSVToRGB(0f, 0f, 1f); //3
-                colorKeys[3].color = Color.HSVToRGB(0.085f, 0.7565f, 0.902f); //4
-                colorKeys[4].color = Color.HSVToRGB(0.579f, 0.6919f, 0.7765f); //5
+                colorKeys[0].color = Color.HSVToRGB(0.16f, 1f, 1f); //1
+                colorKeys[1].color = Color.HSVToRGB(0.502f, 1f, 1f); //2
+                colorKeys[2].color = Color.HSVToRGB(0.592f, 1f, 1f); //3
+                colorKeys[3].color = Color.HSVToRGB(0f, 0f, 0.6196f); //4
+                colorKeys[4].color = Color.HSVToRGB(0f, 0f, 1f); //5
                 break;
 
         }
@@ -500,7 +500,7 @@ public class TwitchClient : MonoBehaviour
                 return Color.HSVToRGB(0.064f, 0.7f, 0.24f);
 
             case 2: //CookingSumEP
-                return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
+                return Color.HSVToRGB(0.725f, 0.5517f, 0.5686f);
 
             case 3: //Qoobsweet
                 return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
@@ -525,7 +525,7 @@ public class TwitchClient : MonoBehaviour
                 return Color.HSVToRGB(0.122f, 0.4f, 0.98f);
 
             case 2: //CookingSumEP
-                return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
+                return Color.HSVToRGB(0.542f, 1f, 0.8784f);
 
             case 3: //Qoobsweet
                 return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
@@ -572,7 +572,7 @@ public class TwitchClient : MonoBehaviour
             VIPTrail(ph, 2);
         }
 
-        if (commandKey.StartsWith("!CookingBox"))
+        if (commandKey.StartsWith("!cookingbubble"))
         {
             VIPTextbox(ph, 2);
         }

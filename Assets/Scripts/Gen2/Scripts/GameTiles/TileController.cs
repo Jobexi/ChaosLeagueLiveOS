@@ -548,19 +548,15 @@ public class TileController : MonoBehaviour
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
-                int index = Random.Range(0, MythicTiles.Count + AllRarities.Count + FirstRemove.Count);
+                int index = Random.Range(0, MythicTiles.Count + AllRarities.Count);
                 if (index < MythicTiles.Count)
                 {
                     tile = MythicTiles[index];
                 }
-                else if (index < MythicTiles.Count + AllRarities.Count)
+                else
                 {
                     tile = AllRarities[index - MythicTiles.Count];
                 }
-                else 
-                {
-                    tile = FirstRemove[index - MythicTiles.Count - AllRarities.Count];
-                }                   
                 rarity = RarityType.Mythic;
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
