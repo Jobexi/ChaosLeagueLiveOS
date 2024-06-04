@@ -93,7 +93,7 @@ public class KingBackgroundShopEntry : ShopEntry
             AnimationMode = 0;
 
         if (pb.Ph.IsKing())
-            pb.Ph.ReloadCosmetics(AnimationMode);
+            pb.Ph.ReloadKingCosmetics(AnimationMode);
 
         StartCoroutine(PurchaseAnimation(pb));
 

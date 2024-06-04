@@ -23519,9 +23519,6 @@ MonoBehaviour:
   DefaultPFP: {fileID: 2800000, guid: 78a791b466191b34d8c9dad44b7a6789, type: 3}
   _pbHologramPrefab: {fileID: 550971265783947472, guid: f6becf710035fcb4194cd38797bec6ab, type: 3}
   _event1Text: {fileID: 1250069598}
-  EventCountdown: 5
-  NPC: 1
-  firstNPC: 1
   PauseForEffect: 0
   PlusAnimation: 1
   HoldingPen: {fileID: 427794634592160510}

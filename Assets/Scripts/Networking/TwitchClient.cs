@@ -96,12 +96,13 @@ public class TwitchClient : MonoBehaviour
         bool isAdmin = (twitchId == "realjobexi"); //e.chatmessage.isMe doesn't work for some reason
         bool isMod = false;
         bool isVIP = false;
+        bool VIP4 = false;
 
         //Debug.Log($"Total emotes: {e.ChatMessage.EmoteSet.Emotes.Count} emote replaced message: {e.ChatMessage.EmoteReplacedMessage} rawIrcMsg: {rawIrcMsg}");
         List<Emote> emotes = e.ChatMessage.EmoteSet.Emotes;
         emotes.Sort((emote1, emote2) => emote1.StartIndex.CompareTo(emote2.StartIndex));
 
-        StartCoroutine(HandleMessage(messageId, twitchId, twitchUsername, usernameColor, rawMsg, emotes, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP));
+        StartCoroutine(HandleMessage(messageId, twitchId, twitchUsername, usernameColor, rawMsg, emotes, isSubscriber, isFirstMessage, bits, isAdmin, isMod, isVIP, VIP4));
 
         Debug.Log(JsonConvert.SerializeObject(e, formatting: Formatting.Indented).ToString());
 
@@ -111,9 +112,9 @@ public class TwitchClient : MonoBehaviour
 
     }
 
-    public IEnumerator HandleMessage(string messageId, string twitchId, string twitchUsername, Color usernameColor, string rawMsg, List<Emote> emotes, bool isSubscriber, bool isFirstMessage, int bits, bool isAdmin, bool isMod, bool isVIP)
+    public IEnumerator HandleMessage(string messageId, string twitchId, string twitchUsername, Color usernameColor, string rawMsg, List<Emote> emotes, bool isSubscriber, bool isFirstMessage, int bits, bool isAdmin, bool isMod, bool isVIP, bool VIP4)
     {
-                
+
         //Debug.LogError($"Handling message from: API_MODE: {AppConfig.inst.GetS("API_MODE")} ClientID: {AppConfig.GetClientID()} ClientSecret: {AppConfig.GetClientSecret()}");
 
         bool isMe = twitchId == Secrets.CHANNEL_ID;
@@ -143,6 +144,7 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isVIP?");
             isVIP = twitchUsername.ToLower() == "lxtroach";
+            VIP4 = true;
         }
         if (!isVIP)
         {
@@ -219,7 +221,7 @@ public class TwitchClient : MonoBehaviour
                 ProcessModCommands(messageId, ph, sanitizedMsg, bits);
 
             if (isVIP || isAdmin)
-                ProcessVIPCommands(messageId, ph, sanitizedMsg, bits);
+                ProcessVIPCommands(messageId, ph, sanitizedMsg, bits, VIP4);
             //If player is not spawned in bidding or gameplay tile in any form
             ProcessGlobalCommands(messageId, ph, sanitizedMsg, bits);
         }
@@ -541,7 +543,7 @@ public class TwitchClient : MonoBehaviour
         return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
     }
 
-    private void ProcessVIPCommands(string messageId, PlayerHandler ph, string msg, int bits)
+    private void ProcessVIPCommands(string messageId, PlayerHandler ph, string msg, int bits, bool VIP4)
     {
         Debug.Log("VIP Command");
         string commandKey = msg.ToLower();
@@ -626,6 +628,45 @@ public class TwitchClient : MonoBehaviour
         {
             VIPTrail(ph, 7);
         }
+
+        if (commandKey.StartsWith("!savevipconfig"))
+        {
+            if (VIP4)
+                ph.pp.LoadoutVIP = (ph.pp.SaveLoadout());
+            else
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You haven't been a VIP for four months, yet!");
+        }
+
+        if (commandKey.StartsWith("!loadvipconfig"))
+        {
+            if (!VIP4)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You haven't been a VIP for four months, yet!");
+            else
+            {
+                string[] cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutVIP);
+                ph.pp.CrownJSON = cheese[0];
+                ph.pp.TrailGradientJSON = cheese[1];
+                ph.pp.SpeechBubbleFillHex = cheese[2];
+                ph.pp.SpeechBubbleTxtHex = cheese[3];
+                ph.pp.CrownTexture1 = int.Parse(cheese[4]);
+                ph.pp.CrownTexture2 = int.Parse(cheese[5]);
+                ph.pp.CrownTexture3 = int.Parse(cheese[6]);
+                ph.pp.CrownTexture4 = int.Parse(cheese[7]);
+                ph.pp.CrownTexture5 = int.Parse(cheese[8]);
+                ph.pp.CrownTexture6 = int.Parse(cheese[9]);
+                ph.pp.EnhancedCrown = Convert.ToBoolean(cheese[10]);        
+                ph.pp.CrownTier = int.Parse(cheese[11]);
+                ph.pp.KingBG = int.Parse(cheese[12]);
+                ph.pp.KingBGTier = int.Parse(cheese[13]);
+
+                if (ph.IsKing())
+                    ph.ReloadKingCosmetics(71717);
+
+                ph.SetCustomizationsFromPP();
+            }
+        }
+
+
     }
 
     private void VIPTrail(PlayerHandler ph, int idcode)
@@ -667,6 +708,12 @@ public class TwitchClient : MonoBehaviour
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"https://jobexileague.wiki.gg");
             return;
         }
+
+        else if (commandKey.StartsWith("!playlist"))
+        {
+            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Try 'Every State's Official CLL Song' Playlist! Curated by Luke Holmes. https://www.youtube.com/playlist?list=PLD43lBoK7pXXMqNTx9IkQkqWMEEIKr0lP");
+        }
+
         else if (commandKey.StartsWith("!play"))
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"This game uses tickets (channel points) to play. Please redeem a 'Bid Spawn Ticket' reward to join in the fun!");
@@ -879,7 +926,7 @@ public class TwitchClient : MonoBehaviour
             if (_tileController._forceMystery == true)
             {
                 Debug.Log("You have no gold to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
                 return;
             }
 
@@ -952,7 +999,7 @@ public class TwitchClient : MonoBehaviour
             if (_tileController._forceMystery == true)
             {
                 Debug.Log("You have no gold to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
                 return;
             }
 
@@ -1096,7 +1143,7 @@ public class TwitchClient : MonoBehaviour
             if (_tileController._forceMystery == true)
             {
                 Debug.Log("You have no gold to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
                 return;
             }
 
@@ -1206,7 +1253,7 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("You don't have enough gold.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Playing CrabRave costs 25k Gold.");
                 return;
-            }                   
+            }
 
             ph.pp.Gold -= 25000;
 
@@ -1409,10 +1456,156 @@ public class TwitchClient : MonoBehaviour
             _tileController._npcHandler.ChangeKingBackground();
         }
 
+        else if (commandKey.StartsWith("!buyconfigslot"))
+        {
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            switch (ph.pp.LoadoutCount)
+            {
+                case 0:
+                    if (ph.pp.Gold < 1000000)
+                    {
+                        Debug.Log("You don't have enough gold. The First ConfigSlot costs 1M Gold.");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The First ConfigSlot costs 1M Gold.");
+                        break;
+                    }
+
+                    ph.pp.LoadoutCount = 1;
+                    break;
+                case 1:
+                    if (ph.pp.Gold < 10000000)
+                    {
+                        Debug.Log("You don't have enough gold. The Second ConfigSlot costs 10M Gold.");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Second ConfigSlot costs 10M Gold.");
+                        break;
+                    }
+
+                    ph.pp.LoadoutCount = 2;
+                    break;
+                case 2:
+                    if (ph.pp.Gold < 75000000)
+                    {
+                        Debug.Log("You don't have enough gold. The Third ConfigSlot costs 75M Gold.");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Third ConfigSlot costs 75M Gold.");
+                        break;
+                    }
+
+                    ph.pp.LoadoutCount = 3;
+                    break;
+                case 3:
+                    if (ph.pp.Gold < 200000000)
+                    {
+                        Debug.Log("You don't have enough gold. The Fourth ConfigSlot costs 200M Gold.");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Fourth ConfigSlot costs 200M Gold.");
+                        break;
+                    }
+
+                    ph.pp.LoadoutCount = 4;
+                    break;
+                case 4:
+                    if (ph.pp.Gold < 500000000)
+                    {
+                        Debug.Log("You don't have enough gold. The Fifth ConfigSlot costs 500M Gold.");
+                        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Fifth ConfigSlot costs 500M Gold.");
+                        break;
+                    }
+
+                    ph.pp.LoadoutCount = 5;
+                    break;
+                case 5:
+                    Debug.Log("You already own all non-VIP Loadouts! Consider qualifying for our VIP program to unlock additional ConfigSlots. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You already own all non-VIP Loadouts! Consider qualifying for our VIP program to unlock additional ConfigSlots. :)");
+                    break;
+            }
+            
+        }
+
         /*        else if (commandKey.StartsWith("!givepoints"))
                 {
                     StartCoroutine(ProcessGivePointsCommand(messageId, ph, msg));
                 }*/
+
+        else if (commandKey.StartsWith("!save1"))
+        {
+            if (ph.pp.LoadoutCount < 1)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 1, but you will not be able to load them until you purchase Config Slot 1 for 1M Gold. !BuyConfigSlot");
+            ProcessSaveConfig(ph, 1);
+        }
+        else if (commandKey.StartsWith("!save2"))
+        {
+            if (ph.pp.LoadoutCount < 2)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 2, but you will not be able to load them until you purchase Config Slot 2 for 10M Gold. !BuyConfigSlot");
+            ProcessSaveConfig(ph, 2);
+        }
+        else if (commandKey.StartsWith("!save3"))
+        {
+            if (ph.pp.LoadoutCount < 3)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 3, but you will not be able to load them until you purchase Config Slot 3 for 75M Gold. !BuyConfigSlot");
+            ProcessSaveConfig(ph, 3);
+        }
+        else if (commandKey.StartsWith("!save4"))
+        {
+            if (ph.pp.LoadoutCount < 4)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 4, but you will not be able to load them until you purchase Config Slot 4 for 200M Gold. !BuyConfigSlot");
+            ProcessSaveConfig(ph, 4);
+        }
+        else if (commandKey.StartsWith("!save5"))
+        {
+            if (ph.pp.LoadoutCount < 5)
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 5, but you will not be able to load them until you purchase Config Slot 5 for 500M Gold. !BuyConfigSlot");
+            ProcessSaveConfig(ph, 5);
+        }
+
+        else if (commandKey.StartsWith("!load1"))
+        {
+            if (ph.pp.LoadoutCount < 1)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 1 until you purchase it for 1M Gold. !BuyConfigSlot");
+                return;
+            }
+            ProcessLoadConfig(ph, 1);
+        }
+        else if (commandKey.StartsWith("!load2"))
+        {
+            if (ph.pp.LoadoutCount < 2)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 2 until you purchase it for 10M Gold. !BuyConfigSlot");
+                return;
+            }
+            ProcessLoadConfig(ph, 2);
+        }
+        else if (commandKey.StartsWith("!load3"))
+        {
+            if (ph.pp.LoadoutCount < 3)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 3 until you purchase it for 75M Gold. !BuyConfigSlot");
+                return;
+            }
+            ProcessLoadConfig(ph, 3);
+        }
+        else if (commandKey.StartsWith("!load4"))
+        {
+            if (ph.pp.LoadoutCount < 4)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 4 until you purchase it for 200M Gold. !BuyConfigSlot");
+                return;
+            }
+            ProcessLoadConfig(ph, 4);
+        }
+        else if (commandKey.StartsWith("!load5"))
+        {
+            if (ph.pp.LoadoutCount < 5)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 5 until you purchase it for 500M Gold. !BuyConfigSlot");
+                return;
+            }
+            ProcessLoadConfig(ph, 5);
+        }
 
         else if (commandKey.StartsWith("!givegold"))
         {
@@ -1523,11 +1716,6 @@ public class TwitchClient : MonoBehaviour
 
         //    _ = _spotifyDJ.SearchAndPlay(messageId, split[1], ph);
         //}
-
-        else if (commandKey.StartsWith("!playlist"))
-        {
-            ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Try 'Every State's Official CLL Song' Playlist! Curated by Luke Holmes. https://www.youtube.com/playlist?list=PLD43lBoK7pXXMqNTx9IkQkqWMEEIKr0lP");
-        }
 
         //else if (ph.IsKing() && (commandKey.StartsWith("!skipsong") || commandKey.StartsWith("!skip song") || commandKey.StartsWith("!nextsong") || commandKey.StartsWith("!next song")))
         //{
@@ -2028,7 +2216,7 @@ public class TwitchClient : MonoBehaviour
         if (desiredCurrencyAmount <= 0)
             yield break;
 
-        
+
 
         if (type == "Gold")
         {
@@ -2069,7 +2257,7 @@ public class TwitchClient : MonoBehaviour
 
             ph.pp.SessionScore -= currencyPrice * desiredCurrencyAmount;
         }
-        
+
         ph.AddCurrency((int)desiredCurrencyAmount, type);
 
     }
@@ -2123,6 +2311,73 @@ public class TwitchClient : MonoBehaviour
         ph.SellCurrency((int)desiredCurrencyAmount, type);
     }
 
+    private void ProcessSaveConfig(PlayerHandler ph, int wardrobe)
+    {
+        switch (wardrobe)
+        {
+            case 1:
+                ph.pp.LoadoutOne = (ph.pp.SaveLoadout());
+                break;
+            case 2:
+                ph.pp.LoadoutTwo = (ph.pp.SaveLoadout());
+                break;
+            case 3:
+                ph.pp.LoadoutThree = (ph.pp.SaveLoadout());
+                break;
+            case 4:
+                ph.pp.LoadoutFour = (ph.pp.SaveLoadout());
+                break;
+            case 5:
+                ph.pp.LoadoutFive = (ph.pp.SaveLoadout());
+                break;
+        }
+    }
+
+    private void ProcessLoadConfig(PlayerHandler ph, int wardrobe)
+    {
+        string[] cheese = null;
+
+        switch (wardrobe)
+        {
+            case 1:
+                cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutOne);
+                break;
+            case 2:
+                cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutTwo);
+                break;
+            case 3:
+                cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutThree);
+                break;
+            case 4:
+                cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutFour);
+                break;
+            case 5:
+                cheese = JsonConvert.DeserializeObject<string[]>(ph.pp.LoadoutFive);
+                break;
+        }
+
+        ph.pp.CrownJSON = cheese[0];
+        ph.pp.TrailGradientJSON = cheese[1];
+        ph.pp.SpeechBubbleFillHex = cheese[2];
+        ph.pp.SpeechBubbleTxtHex = cheese[3];
+        ph.pp.CrownTexture1 = int.Parse(cheese[4]);
+        ph.pp.CrownTexture2 = int.Parse(cheese[5]);
+        ph.pp.CrownTexture3 = int.Parse(cheese[6]);
+        ph.pp.CrownTexture4 = int.Parse(cheese[7]);
+        ph.pp.CrownTexture5 = int.Parse(cheese[8]);
+        ph.pp.CrownTexture6 = int.Parse(cheese[9]);
+        ph.pp.EnhancedCrown = Convert.ToBoolean(cheese[10]);
+        ph.pp.CrownTier = int.Parse(cheese[11]);
+        ph.pp.KingBG = int.Parse(cheese[12]);
+        ph.pp.KingBGTier = int.Parse(cheese[13]);
+
+        if (ph.IsKing())
+            ph.ReloadKingCosmetics(71717);
+
+        ph.SetCustomizationsFromPP();
+
+    }
+    
     private IEnumerator ProcessStatsCommand(string messageId, PlayerHandler ph, string msg, string type)
     {
         PlayerHandler phToLookup = ph;

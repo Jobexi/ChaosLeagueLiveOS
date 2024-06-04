@@ -15,8 +15,7 @@ public class PlayerProfile
     public string TwitchID { get; set; }
     public string TwitchUsername { get; set; }
     public string InvitedByID { get; set; }
-    public string InvitesJSON { get; set; }
-    
+    public string InvitesJSON { get; set; }    
 
     public bool IsSubscriber { get; set; }
 
@@ -38,19 +37,20 @@ public class PlayerProfile
     public int CurrentBid { get; set; }
        
     public int LifeTimeScore { get; set; }
-    public long Gold { get; set; }
     public int SeasonScore { get; set; }
-    public long SessionScore { get; set; }
     public DateTime LastInteraction { get; set; }
 
     public int InviteCount { get; set; }
     public int TomatoCount { get; set; }
     public int ShieldValue { get; set; }
     public int AutoBidRemainder { get; set; }
-    public long Rubies { get; set; }
+
+    public long SessionScore { get; set; }
+    public long Gold { get; set; }
     public long Sapphires { get; set; }
-    public long Diamonds { get; set; }
     public long Emeralds { get; set; }
+    public long Diamonds { get; set; }
+    public long Rubies { get; set; }
 
     public int RiskSkips { get; set; }
 
@@ -72,6 +72,40 @@ public class PlayerProfile
 
     public int KingBG { get; set; }
     public int KingBGTier { get; set; }
+
+    public int LoadoutCount { get; set; }
+    public string LoadoutOne { get; set; }
+    public string LoadoutTwo { get; set; }
+    public string LoadoutThree { get; set; }
+    public string LoadoutFour { get; set; }
+    public string LoadoutFive { get; set; }
+    public string LoadoutVIP { get; set; }
+
+    public string SaveLoadout()
+    {
+        string[] cheese = new string[14];
+
+        if (CrownJSON != null)
+            cheese[0] = CrownJSON;
+        if (TrailGradientJSON != null)
+            cheese[1] = TrailGradientJSON;
+        if (SpeechBubbleFillHex != null)
+            cheese[2] = SpeechBubbleFillHex;
+        if (SpeechBubbleTxtHex != null)
+            cheese[3] = SpeechBubbleTxtHex;
+        cheese[4] = CrownTexture1.ToString();
+        cheese[5] = CrownTexture2.ToString();
+        cheese[6] = CrownTexture3.ToString();
+        cheese[7] = CrownTexture4.ToString();
+        cheese[8] = CrownTexture5.ToString();
+        cheese[9] = CrownTexture6.ToString();
+        cheese[10] = EnhancedCrown.ToString();
+        cheese[11] = CrownTier.ToString();
+        cheese[12] = KingBG.ToString();
+        cheese[13] = KingBGTier.ToString();
+
+        return JsonConvert.SerializeObject(cheese);
+    }
 
     public string[] GetInviteIds() 
     {

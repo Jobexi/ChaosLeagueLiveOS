@@ -37,15 +37,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshPro _event1Text;
 
-    public int EventCountdown = 35;
-    public int NPC = 0;
-    public bool firstNPC = true;
-
     private byte redhue = 150;
     private byte bluehue = 150;
     private byte greenhue = 150;
     private int huehuehue = 0;
-
+    private int backupSystem = 9;
     public bool PauseForEffect = false;
 
     public float PlusAnimation = 1;
@@ -282,8 +278,6 @@ public class GameManager : MonoBehaviour
         ph.gameObject.transform.SetParent(PlayerHandlersRoot);
         PlayerHandlers.Add(twitchId, ph);
         yield return ph.CInitPlayerHandler(this, twitchId);
-
-
     }
 
     public IEnumerator GetPlayerHandler(string twitchID, CoroutineResult<PlayerHandler> phResult)
@@ -349,7 +343,6 @@ public class GameManager : MonoBehaviour
 
         ph.LastAccess = DateTime.Now;
         ph.SetCustomizationsFromPP();
-
     }
 
     public IEnumerator GetPlayerByUsername(string twitchUsername, CoroutineResult<PlayerHandler> coResult)
@@ -565,17 +558,34 @@ public class GameManager : MonoBehaviour
         {
             bluehue -= 1;
             if (bluehue == 25)
+            {
                 huehuehue = 1;
+                backupSystem += 1;
+                Debug.LogWarning($"{backupSystem}");
+            }
+
+            if (backupSystem >= 10)
+            {
+                backupSystem = 0;
+                StartCoroutine(SaveThenBackup());
+            }
         }
 
         _event1Text.color = new Color32(redhue, greenhue, bluehue, 255);
-            }
+    }
 
     public void SaveAndQuitButtonClick()
     {
         StartCoroutine(SaveAndQuit());
     }
 
+    public IEnumerator SaveThenBackup()
+    {
+        yield return SaveAllPlayerProfilesToDB();
+
+        _sqliteServiceAsync.BackupDB();
+    }
+  
 
     public IEnumerator HandleInviteSignal(User invitedUser, User invitorUser)
     {

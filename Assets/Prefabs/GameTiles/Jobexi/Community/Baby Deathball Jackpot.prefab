@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 3567709996276609725}
   - component: {fileID: 2014429743407514224}
   - component: {fileID: 7604625400774762900}
+  - component: {fileID: 6445372597155725689}
   m_Layer: 0
   m_Name: SpinPeg7
   m_TagString: Untagged
@@ -566,6 +567,33 @@ MonoBehaviour:
   rotationSpeed: 0.2
   spinAxis: {x: 0, y: 0, z: 1}
   tile: {fileID: 0}
+--- !u!50 &6445372597155725689
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308280083655252113}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &2341448535399339917
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +764,7 @@ GameObject:
   - component: {fileID: 6837134633551327619}
   - component: {fileID: 685129046884397409}
   - component: {fileID: 3889676772443411391}
+  - component: {fileID: 2572484185803189929}
   m_Layer: 0
   m_Name: SpinPeg3
   m_TagString: Untagged
@@ -868,6 +897,33 @@ MonoBehaviour:
   rotationSpeed: 0.2
   spinAxis: {x: 0, y: 0, z: 1}
   tile: {fileID: 0}
+--- !u!50 &2572484185803189929
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937088326030163841}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &3313962328915869068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1229,7 @@ GameObject:
   - component: {fileID: 887142631459666893}
   - component: {fileID: 6118398229696701522}
   - component: {fileID: 131381000712883702}
+  - component: {fileID: 13659652920690448}
   m_Layer: 0
   m_Name: SpinPeg5
   m_TagString: Untagged
@@ -1305,6 +1362,33 @@ MonoBehaviour:
   rotationSpeed: 0.2
   spinAxis: {x: 0, y: 0, z: 1}
   tile: {fileID: 0}
+--- !u!50 &13659652920690448
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160809945369247132}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &5503573710877520978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,7 +2121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3436,7 +3520,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3514,7 +3598,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3592,7 +3676,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3670,7 +3754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3822,7 +3906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3900,7 +3984,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5299,7 +5383,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5377,7 +5461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5455,7 +5539,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5533,7 +5617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5611,7 +5695,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5689,7 +5773,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5767,7 +5851,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -5845,7 +5929,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -6373,7 +6457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -6451,7 +6535,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965765051147884900, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5791002901948860398, guid: 8474496a634190f4ca59e6adcdac387e, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -6533,7 +6617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31231686028661205, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.066484
+      value: 1.0830144
       objectReference: {fileID: 0}
     - target: {fileID: 31231686028661205, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6541,7 +6625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31231686028661205, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0033
+      value: -0.0116
       objectReference: {fileID: 0}
     - target: {fileID: 352355907733435357, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: m_LocalPosition.x

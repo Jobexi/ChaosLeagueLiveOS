@@ -74,7 +74,7 @@ public class SQLiteServiceAsync : MonoBehaviour
         }
     }
 
-    private void BackupDB()
+    public void BackupDB()
     {
         string backupFolder = Path.Combine(Application.streamingAssetsPath, "DatabaseBackups");
         if (!Directory.Exists(backupFolder))

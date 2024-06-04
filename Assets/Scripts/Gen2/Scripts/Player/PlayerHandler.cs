@@ -660,7 +660,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             _gm.GetKingController().UpdateGoldText();
     }
 
-    public void AddGold(int amount, bool createTextPopup, bool doInviteBonus)
+    public void AddGold(long amount, bool createTextPopup, bool doInviteBonus)
     {
         pp.Gold += amount;
 
@@ -680,7 +680,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         if (createTextPopup)
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), MyColors.Gold);
     }
-    public void SubtractGold(int amount, bool createTextPopup)
+    public void SubtractGold(long amount, bool createTextPopup)
     {
         pp.Gold -= amount;
         if (pp.Gold <= 0)
@@ -739,7 +739,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
     }
 
-    public void ReloadCosmetics(int AnimationMode)
+    public void ReloadKingCosmetics(int AnimationMode)
     {
         var Txtr1 = pp.CrownTexture1;
         var Txtr2 = pp.CrownTexture2;
@@ -798,7 +798,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         _gm._kingController._KingTile._background.materials = BGMaterials;
     }
 
-private int AddCombo()
+    private int AddCombo()
     {
         comboTimer = timeoutComboAfter;
         return comboCount++;
@@ -893,13 +893,13 @@ private int AddCombo()
 
         if (TI.TI_Type == TI_Type.GiveGold)
         {
-            AddGold((int)TI.value, true, doInviteBonus:false); 
+            AddGold(TI.value, true, doInviteBonus:false); 
             return;
         }
 
         if (TI.TI_Type == TI_Type.GiveGoldDoBonus)
         {
-            AddGold((int)TI.value, true, doInviteBonus: true);
+            AddGold(TI.value, true, doInviteBonus: true);
             return;
         }
 

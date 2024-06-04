@@ -50,7 +50,7 @@ public class MythicCrownShopEntry : ShopEntry
         StartCoroutine(PurchaseAnimation(pb));
 
         if (pb.Ph.IsKing())
-            pb.Ph.ReloadCosmetics(71717);
+            pb.Ph.ReloadKingCosmetics(71717);
 
         AudioController.inst.PlaySound(AudioController.inst.StorePurchase, 0.95f, 1.05f);
     }
