@@ -19,6 +19,7 @@ public class GoldenVisuals : MonoBehaviour
     [SerializeField] Material _Rubys;
     [SerializeField] Material _Curse;
     [SerializeField] Material _Mystery;
+    [SerializeField] Material _Nulls;
 
     private float v = 0f;
     private float h = 0f;
@@ -77,6 +78,11 @@ public class GoldenVisuals : MonoBehaviour
 
         }
 
+        if (GameTile.GoldenSpids == 5)
+        {
+            _borderPath.material = _Nulls;
+            GameTile.GoldenSpids = 71717;
+        }
         if (GameTile.GoldenSpids == 4)
         {
             _borderPath.material = _Mystery;
@@ -103,6 +109,11 @@ public class GoldenVisuals : MonoBehaviour
 
     public void UpdateSettings(int mode)
     {
+        if (mode == 5)
+        {
+            _borderMesh.material = _Nulls;
+            _borderObj.gameObject.SetActive(true);
+        }
         if (mode == 4)
         {
             _borderMesh.material = _Mystery;

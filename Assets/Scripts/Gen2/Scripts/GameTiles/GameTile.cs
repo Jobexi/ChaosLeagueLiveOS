@@ -37,6 +37,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsRuby; //0.01% chance
     [SerializeField] public bool IsCurse; //Special
     [SerializeField] public bool IsMystery; //Special
+    [SerializeField] public bool IsNull; //Special
     [SerializeField] public bool IsShop;
     [SerializeField] public bool IsRisk;
     [SerializeField] public bool IsKing;
@@ -250,15 +251,15 @@ public class GameTile : MonoBehaviour
         foreach (var oscillators in GetComponentsInChildren<OscillatorV2>())
             oscillators.ToggleOnOff(toggle); 
     }
-    public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse, bool insideMystery)
+    public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse, bool insideMystery, bool insideNull)
     {
+        IsCurse = false;
+        IsGolden = false;
+        IsRuby = false;
+        IsMystery = false;
+        IsNull = false;
         _goldenVisuals._coverObj.gameObject.SetActive(false);
         _indicator3.gameObject.SetActive(false);
-
-        IsCurse = false;
-        IsRuby = false;
-        IsGolden = false;
-        IsMystery = false;
 
         int Mysteries = UnityEngine.Random.Range(1, 5);
 
@@ -287,7 +288,7 @@ public class GameTile : MonoBehaviour
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
 
             if (insideMystery)
-            {                
+            {
 
                 switch (Mysteries)
                 {
@@ -306,13 +307,29 @@ public class GameTile : MonoBehaviour
                     case 4:
                         effector.MultiplyCurrValue(50);
                         _indicator3.SetText("50x");
-                        break;                    
+                        break;
                     case 5:
                         effector.MultiplyCurrValue(100);
                         _indicator3.SetText("100x");
                         break;
-                    
+
                 }
+            }
+            else if (insideRuby)
+            {
+                effector.MultiplyCurrValue(50);
+            }
+            else if (insideGolden)
+            {
+                effector.MultiplyCurrValue(10);
+            }
+            else if (insideCurse)
+            {
+                effector.MultiplyCurrValue(-1);
+            }
+            else if (insideNull)
+            {
+                effector.MultiplyCurrValue(0);
             }
         }       
 
@@ -338,7 +355,7 @@ public class GameTile : MonoBehaviour
         }
 
         MysteriousAnnouncer = Mysteries;
-
+                
         if (insideMystery)
         {
             _indicator3.gameObject.SetActive(true);
@@ -347,6 +364,13 @@ public class GameTile : MonoBehaviour
             IsMystery = true;
             GoldenSpids = 4;
             _goldenVisuals.UpdateSettings(4);
+        }
+        else if (insideNull)
+        {
+            _goldenVisuals.gameObject.SetActive(true);
+            IsNull = true;
+            GoldenSpids = 5;
+            _goldenVisuals.UpdateSettings(5);
         }
         else if (insideCurse)
         {            
@@ -425,6 +449,10 @@ public class GameTile : MonoBehaviour
         {
             StartCoroutine(PlaySoundSequence("Curse"));
         }
+        else if (IsNull)
+        {
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.01f, 0.1f);
+        }
         else if (IsShop)
         {
             AudioController.inst.PlaySound(AudioController.inst.BattlePerchEarn, 0.4f, 0.5f);
@@ -434,6 +462,7 @@ public class GameTile : MonoBehaviour
         _tc._forceRuby = false;
         _tc._forceCurse = false;
         _tc._forceMystery = false;
+        _tc._forceNull = false;
 
         TogglePhysics(true);
 
@@ -706,6 +735,13 @@ public class GameTile : MonoBehaviour
 
     public void FinishTile()
     {
+        IsCurse = false;
+        IsGolden = false;
+        IsRuby = false;
+        IsMystery = false;
+        IsNull = false;
+        _goldenVisuals._coverObj.gameObject.SetActive(false);
+
         //TileActive = false;
         TileState = TileState.Inactive; 
         if (_game != null)
@@ -718,16 +754,10 @@ public class GameTile : MonoBehaviour
 
         Players.Clear();
         AlivePlayers.Clear();
-        EliminatedPlayers.Clear();
+        EliminatedPlayers.Clear();        
 
         //Once the gameplay tile finishes, spin it to a new tile
-        _tc.SpinNewTile(this);
-
-        IsCurse = false;
-        IsGolden = false;
-        IsRuby = false;
-        IsMystery = false;
-        _goldenVisuals._coverObj.gameObject.SetActive(false);
+        _tc.SpinNewTile(this);        
     }
 
     public void SetTicketBonus(int count)

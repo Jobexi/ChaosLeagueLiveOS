@@ -2317,7 +2317,35 @@ public class NPCHandler : MonoBehaviour
         _tileController.doRepeatTile();
         _tileController.doUpgradeTile();
     }
-    
+
+    public void NPCNullTile()
+    {
+        if (_tileController._forceGolden == true || _tileController._forceRuby == true)
+        {
+            Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+            return;
+        }
+
+        if (_tileController.GameplayTile == null)
+        {
+            if (_tileController.CurrentBiddingTile.IsNull == true)
+                return;
+            else
+                _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+        }
+        else
+        {
+            if (_tileController.GameplayTile.IsNull == true)
+                return;
+            else
+                _tileController.GameplayTile._indicator1.SetText("💛");
+        }
+
+        _tileController._forceCurse = false;
+        _tileController._forceNull = true;
+
+    }
+
     public void NPCGoldenTile()
     {
         if (_tileController._forceGolden == true || _tileController._forceRuby == true)
@@ -2376,9 +2404,9 @@ public class NPCHandler : MonoBehaviour
 
     public void NPCCursedTile()
     {
-        if (_tileController._forceRuby == true || _tileController._forceGolden == true)
+        if (_tileController._forceRuby == true || _tileController._forceGolden == true || _tileController._forceNull)
         {
-            Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+            Debug.Log("The upcoming tile is already Golden, Ruby, or Null. Please wait until the reel spins to try again.");
             return;
         }
 

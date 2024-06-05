@@ -5192,6 +5192,7 @@ MonoBehaviour:
   _Rubys: {fileID: 2100000, guid: 726cfd55c2fe4804c98ff0c4ca9470ae, type: 2}
   _Curse: {fileID: 2100000, guid: 222f8a98b03af3144b8dde67e65a1883, type: 2}
   _Mystery: {fileID: 2100000, guid: 4bb6bc59ddb9c5d489147f950fc06caa, type: 2}
+  _Nulls: {fileID: 2100000, guid: 8bc0a39ce0468184a95a3daaeb1c9bbe, type: 2}
 --- !u!120 &5356786635198935080
 LineRenderer:
   serializedVersion: 2
@@ -6012,6 +6013,7 @@ MonoBehaviour:
   IsRuby: 0
   IsCurse: 0
   IsMystery: 0
+  IsNull: 0
   IsShop: 0
   IsRisk: 0
   IsKing: 0
@@ -7204,7 +7206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bb6bc59ddb9c5d489147f950fc06caa, type: 2}
+  - {fileID: 2100000, guid: 8bc0a39ce0468184a95a3daaeb1c9bbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

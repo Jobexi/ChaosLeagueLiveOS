@@ -18,13 +18,13 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
     [SerializeField] private TwitchApi _twitchAPI;
     [SerializeField] private HoldingPen _holdingPen;
-    [SerializeField] private Transform _goldCoinsRoot; 
+    [SerializeField] private Transform _goldCoinsRoot;
 
     [SerializeField] private ParticleSystem _particleSys;
     [SerializeField] private MeshRenderer _pieTimer;
     [SerializeField] private SpriteRenderer _goldChest;
 
-    [SerializeField] private Vector2 _coinAmountColorMap; 
+    [SerializeField] private Vector2 _coinAmountColorMap;
     [SerializeField] private Gradient _coinColor;
 
     [SerializeField] private Color _startColor;
@@ -36,13 +36,13 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private bool testDistributeButton;
 
     [SerializeField] private Vector2 _spawnVelMin;
-    [SerializeField] private Vector2 _spawnVelMax; 
+    [SerializeField] private Vector2 _spawnVelMax;
 
     private ObjectPool<GoldCoin> _goldCoinPool;
 
     [SerializeField] private int _baseGoldPerTile = 100;
 
-    private int _storedGold; 
+    private int _storedGold;
     //private int _liveViewCount;
     //private CancellationTokenSource _cts;
     private MaterialPropertyBlock _mpb;
@@ -56,7 +56,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         //_cts = new CancellationTokenSource();
 
         //_ = UpdateLiveViewCount(_cts);
-        _storedGold = 0; 
+        _storedGold = 0;
         UpdateGoldStoredText();
 
 
@@ -70,8 +70,8 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         if (testDistributeButton)
         {
             testDistributeButton = false;
-            _storedGold = testDistributeAmount; 
-            DistributeGold(); 
+            _storedGold = testDistributeAmount;
+            DistributeGold();
         }
     }
 
@@ -82,7 +82,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
     private void GoldCoinTurnOn(GoldCoin goldCoin)
     {
-        goldCoin.gameObject.SetActive(true); 
+        goldCoin.gameObject.SetActive(true);
     }
 
     private void GoldCoinTurnOff(GoldCoin goldCoin)
@@ -110,7 +110,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
                 yield return new WaitForSeconds(1);
             }
 
-            DistributeGold(); 
+            DistributeGold();
 
             yield return null;
         }
@@ -138,13 +138,13 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
                 coinValue = 1000;
             if (_storedGold > 100000)
                 coinValue = 10000;
-            
+
             Vector3 spawnVel = new Vector2(Random.Range(_spawnVelMin.x, _spawnVelMax.x), Random.Range(_spawnVelMin.y, _spawnVelMax.y));
             SpawnCoin(Get_TI_IO_Position(), spawnVel, _kingController.currentKing.Ph, coinValue);
             _storedGold -= coinValue;
         }
 
-        UpdateGoldStoredText(); 
+        UpdateGoldStoredText();
     }
 
     public void SpawnGoldFromTileRarity(GameTile gt)
@@ -152,12 +152,14 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         int mult = AppConfig.GetGoldMult(gt.RarityType);
         int totalGold = _baseGoldPerTile * mult;
 
-        if (gt.IsCurse)
+        if (gt.IsCurse || gt.IsNull)
             totalGold *= 0;
         else if (gt.IsRuby)
             totalGold *= 35;
         else if (gt.IsGolden)
             totalGold *= 7;
+        else if (gt.IsMystery)
+            totalGold *= Random.Range(1, 7);
 
         if (AppConfig.Friday)
             totalGold *= 3;
