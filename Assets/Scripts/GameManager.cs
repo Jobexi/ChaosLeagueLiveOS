@@ -561,10 +561,9 @@ public class GameManager : MonoBehaviour
             {
                 huehuehue = 1;
                 backupSystem += 1;
-                Debug.LogWarning($"{backupSystem}");
             }
 
-            if (backupSystem >= 10)
+            if (backupSystem >= 50)
             {
                 backupSystem = 0;
                 StartCoroutine(SaveThenBackup());

@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 3507578811014104238}
   - {fileID: 8392808056722611757}
   - {fileID: 4877878943287500007}
-  _buyTime: 45
+  _buyTime: 30
 --- !u!1001 &2688455142938527749
 PrefabInstance:
   m_ObjectHideFlags: 0

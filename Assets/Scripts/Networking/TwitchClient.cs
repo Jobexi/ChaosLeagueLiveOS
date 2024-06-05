@@ -1435,7 +1435,7 @@ public class TwitchClient : MonoBehaviour
 
             if (_tileController.GameplayTile != null)
             {
-                if (!_tileController.GameplayTile.HasBackground)
+                if (!_tileController.GameplayTile.HasBackground && !_tileController.GameplayTile.IsShop)
                 {
                     Debug.Log("This tile doesn't have a background for you to use!");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background for you to use!");
@@ -1444,7 +1444,7 @@ public class TwitchClient : MonoBehaviour
             }
             else if (_tileController.CurrentBiddingTile != null)
             {
-                if (!_tileController.CurrentBiddingTile.HasBackground)
+                if (!_tileController.CurrentBiddingTile.HasBackground && !_tileController.CurrentBiddingTile.IsShop)
                 {
                     Debug.Log("This tile doesn't have a background for you to use!");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile doesn't have a background for you to use!");
@@ -1474,7 +1474,6 @@ public class TwitchClient : MonoBehaviour
                         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The First ConfigSlot costs 1M Gold.");
                         break;
                     }
-
                     ph.pp.LoadoutCount = 1;
                     break;
                 case 1:
@@ -1484,7 +1483,6 @@ public class TwitchClient : MonoBehaviour
                         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Second ConfigSlot costs 10M Gold.");
                         break;
                     }
-
                     ph.pp.LoadoutCount = 2;
                     break;
                 case 2:
@@ -1494,7 +1492,6 @@ public class TwitchClient : MonoBehaviour
                         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Third ConfigSlot costs 75M Gold.");
                         break;
                     }
-
                     ph.pp.LoadoutCount = 3;
                     break;
                 case 3:
@@ -1504,7 +1501,6 @@ public class TwitchClient : MonoBehaviour
                         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Fourth ConfigSlot costs 200M Gold.");
                         break;
                     }
-
                     ph.pp.LoadoutCount = 4;
                     break;
                 case 4:
@@ -1514,7 +1510,6 @@ public class TwitchClient : MonoBehaviour
                         ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. The Fifth ConfigSlot costs 500M Gold.");
                         break;
                     }
-
                     ph.pp.LoadoutCount = 5;
                     break;
                 case 5:

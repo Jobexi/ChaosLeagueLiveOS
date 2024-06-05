@@ -27,6 +27,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public TextMeshPro _ticketBonusAmountText;
     [SerializeField] public TextMeshPro _indicator1;
     [SerializeField] public TextMeshPro _indicator2;
+    [SerializeField] public TextMeshPro _indicator3;
     public int TicketBonusAmount;
 
     public TileState TileState = TileState.Inactive;
@@ -252,6 +253,7 @@ public class GameTile : MonoBehaviour
     public void PreInitTile(TileController tc, bool insideGolden, bool insideRuby, bool insideCurse, bool insideMystery)
     {
         _goldenVisuals._coverObj.gameObject.SetActive(false);
+        _indicator3.gameObject.SetActive(false);
 
         IsCurse = false;
         IsRuby = false;
@@ -259,7 +261,7 @@ public class GameTile : MonoBehaviour
         IsMystery = false;
 
         int Mysteries = UnityEngine.Random.Range(1, 5);
-        MysteriousAnnouncer = Mysteries;
+
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
         
@@ -283,47 +285,37 @@ public class GameTile : MonoBehaviour
             effector.ResetEffector();
 
             effector.MultiplyCurrValue(AppConfig.GetMult(RarityType));
-            bool do100Effect = false;
-            bool doZeroEffect = false;
 
             if (insideMystery)
-            {
+            {                
+
                 switch (Mysteries)
                 {
                     case 1:
-                        insideCurse = true;
-                        IsCurse = true;
+                        effector.MultiplyCurrValue(0);
+                        _indicator3.SetText("Null");
                         break;
                     case 2:
-                        insideRuby = true;
-                        IsRuby = true;
+                        effector.MultiplyCurrValue(-1);
+                        _indicator3.SetText("Cursed");
                         break;
                     case 3:
-                        insideGolden = true;
-                        IsGolden = true;
+                        effector.MultiplyCurrValue(10);
+                        _indicator3.SetText("10x");
                         break;
                     case 4:
-                        do100Effect = true;
-                        IsMystery = true;
-                        break;
+                        effector.MultiplyCurrValue(50);
+                        _indicator3.SetText("50x");
+                        break;                    
                     case 5:
-                        doZeroEffect = true;
-                        IsMystery = true;
+                        effector.MultiplyCurrValue(100);
+                        _indicator3.SetText("100x");
                         break;
+                    
                 }
             }
-            if (insideCurse)
-                effector.MultiplyCurrValue(-1);
-            else if (insideRuby)
-                effector.MultiplyCurrValue(50);
-            else if (insideGolden)
-                effector.MultiplyCurrValue(10);
-            else if (do100Effect)
-                effector.MultiplyCurrValue(100);
-            else if (doZeroEffect)
-                effector.MultiplyCurrValue(0);
-        }
-        
+        }       
+
         EntrancePipe.SetTollCost(tc.GetGameManager().GetKingController().TollRate * AppConfig.GetMult(RarityType));
 
         if (_game != null)
@@ -338,14 +330,18 @@ public class GameTile : MonoBehaviour
 
         if (IsShop)
         {
+            _indicator3.SetText("Shop");
             insideCurse = false;
             insideRuby = false;
             insideGolden = false;
-            insideMystery = false;
+            Mysteries = 0;
         }
+
+        MysteriousAnnouncer = Mysteries;
 
         if (insideMystery)
         {
+            _indicator3.gameObject.SetActive(true);
             _goldenVisuals.gameObject.SetActive(true);
             _goldenVisuals._coverObj.gameObject.SetActive(true);
             IsMystery = true;
@@ -380,8 +376,6 @@ public class GameTile : MonoBehaviour
             _goldenVisuals._coverObj.gameObject.SetActive(false);
             GoldenSpids = 0;
         }
-
-
 
         _mpb.SetColor("_StartColor", _backgroundStartColor);
         _mpb.SetColor("_EndColor", _backgroundEndColor);
@@ -486,6 +480,8 @@ public class GameTile : MonoBehaviour
     }
     public IEnumerator RunTile()
     {
+        float x = -1.15f;
+        
         TileState = TileState.Gameplay; 
         EntrancePipe.LockIcon.enabled = false;
         _tileStartTime = DateTime.Now;
@@ -534,6 +530,12 @@ public class GameTile : MonoBehaviour
             //Stop if the timer runs out
             if (_timer > _tileDurationS)
                 break;
+
+            if (x < 5)
+            {
+                x += 0.01f;
+                _indicator3.gameObject.transform.position = transform.position + new Vector3(0, 0, x);
+            }
 
             //Stop if there is only one player left alive and none on the belt
             if (!IsShop && AlivePlayers.Count <= ((_waitForAllDead) ? 0 : 1) && ConveyorBelt.Count <= 0)
@@ -585,21 +587,25 @@ public class GameTile : MonoBehaviour
     {
         switch (Mystery)
         {
+            case 0:
+                MyTTS.inst.PlayerSpeech("Shop Tile", Amazon.Polly.VoiceId.Emma);
+                break;
             case 1:
-                MyTTS.inst.PlayerSpeech("Cursed Tile", Amazon.Polly.VoiceId.Emma);
-                break;
-            case 2:
-                MyTTS.inst.PlayerSpeech("10x Multiplier", Amazon.Polly.VoiceId.Emma);
-                break;
-            case 3:
-                MyTTS.inst.PlayerSpeech("50x Multiplier", Amazon.Polly.VoiceId.Emma);
-                break;
-            case 4:
-                MyTTS.inst.PlayerSpeech("100x Multiplier", Amazon.Polly.VoiceId.Emma);
-                break;
-            case 5:
                 MyTTS.inst.PlayerSpeech("Null Tile", Amazon.Polly.VoiceId.Emma);
                 break;
+            case 2:
+                MyTTS.inst.PlayerSpeech("Cursed Tile", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 3:
+                MyTTS.inst.PlayerSpeech("10x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 4:
+                MyTTS.inst.PlayerSpeech("50x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 5:
+                MyTTS.inst.PlayerSpeech("100x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            
         }
     }
 
