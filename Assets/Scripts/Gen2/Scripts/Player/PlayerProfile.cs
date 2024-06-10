@@ -80,10 +80,11 @@ public class PlayerProfile
     public string LoadoutFour { get; set; }
     public string LoadoutFive { get; set; }
     public string LoadoutVIP { get; set; }
+    public int VoiceID { get; set; }
 
     public string SaveLoadout()
     {
-        string[] cheese = new string[14];
+        string[] cheese = new string[15];
 
         if (CrownJSON != null)
             cheese[0] = CrownJSON;
@@ -103,6 +104,7 @@ public class PlayerProfile
         cheese[11] = CrownTier.ToString();
         cheese[12] = KingBG.ToString();
         cheese[13] = KingBGTier.ToString();
+        cheese[14] = VoiceID.ToString();
 
         return JsonConvert.SerializeObject(cheese);
     }

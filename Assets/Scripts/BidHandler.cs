@@ -28,7 +28,7 @@ public class BidHandler : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 0.01f;
     [SerializeField] private float _timeBetweenRaffleReleases = 0.4f;
     [SerializeField] private Transform _drawingIndicatorsRoot;
-    [SerializeField] private PrizeDisplay _winnerPrizeText;
+    [SerializeField] public PrizeDisplay _winnerPrizeText;
     [SerializeField] public BidQueueOrigin BidQueueOrigin;
     
 
@@ -58,6 +58,7 @@ public class BidHandler : MonoBehaviour
     [SerializeField] private int _etherealBasePrize = 5_000;
     [SerializeField] private int _cosmicBasePrize = 10_000;
     private int _rarityBasePrize = 0;
+    private bool IsMystery = false;
 
     [SerializeField] private List<SpriteRenderer> _communityPointSpriteRenderers; 
 
@@ -90,8 +91,14 @@ public class BidHandler : MonoBehaviour
         _tileController.CurrentBiddingTile = gt;        
         _tileController.NextBiddingTile = null;
 
-        _winnerPrizeText.ResetWinnerPrize(); 
-        SetBasePrizeByRarity(gt.RarityType); 
+        _winnerPrizeText.ResetWinnerPrize();
+
+        if (gt.IsMystery)
+        {
+            SetBasePrizeByRarity(RarityType.Mystery);
+        }
+        else
+            SetBasePrizeByRarity(gt.RarityType);
 
         Debug.Log($"Starting new round in ticket handler: {gt.name}");
         //Immediately set which auction positions are valid, even before doing the spinning animation.
@@ -242,7 +249,7 @@ public class BidHandler : MonoBehaviour
     }
 
     public IEnumerator ReleasePlayersWhenReady(GameTile gt)
-    {        
+    {
         _auctionTimerText.SetText("");
 
         //Wait for gameplay on other tile to finish
@@ -259,11 +266,11 @@ public class BidHandler : MonoBehaviour
             //If we don't have enough players in the queue now due to !cancelbid or there just isn't enough, stop the timer
             if (_biddingQ.Count < gt.MinAuctionSlots)
             {
-                auctionTimeElapsed = 0; 
+                auctionTimeElapsed = 0;
                 _auctionTimerText.SetText("");
                 if (_countdownAudioSource.isPlaying)
-                    _countdownAudioSource.Stop(); 
-                continue; 
+                    _countdownAudioSource.Stop();
+                continue;
             }
 
             float t = auctionTimeElapsed / (float)gt.AuctionDuration;
@@ -274,7 +281,7 @@ public class BidHandler : MonoBehaviour
 
             if (secRemaining == 3)
             {
-                _countdownAudioSource.pitch = Random.Range(0.95f, 1.05f); 
+                _countdownAudioSource.pitch = Random.Range(0.95f, 1.05f);
                 _countdownAudioSource.Play();
             }
 
@@ -314,7 +321,9 @@ public class BidHandler : MonoBehaviour
 
         Vector3 beltWayPointPos = _beltWaypoint.transform.position; //It moves as soon as the Q flips to the other side, so cache the position
         ReleasePlayersIntoTile(gt, beltWayPointPos);
+
         gt.SetTicketBonus(_winnerPrizeText.GetWinnerPrize());
+
 
         //Immediately after this timer runs out, I need to finalize all players that made it in
         //Because I need to start populating the next tile from ticket requests
@@ -324,7 +333,7 @@ public class BidHandler : MonoBehaviour
         foreach (var ph in _raffleWinners)
         {
             //Traverse belt
-            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.1f);
+            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.075f);
             ph.ReceivableTarget = gt.EntrancePipe;
 
             yield return new WaitForSeconds(_timeBetweenRaffleReleases);
@@ -343,7 +352,7 @@ public class BidHandler : MonoBehaviour
         {
             PlayerHandler ph = _biddingQ[0];
             //Traverse belt
-            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.1f);
+            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.075f);
             ph.ReceivableTarget = gt.EntrancePipe;
             ph.ResetBid();
             ph.CheckAuto(ph.pp.AutoBidRemainder, ph.pp.RiskSkips);
@@ -489,14 +498,14 @@ public class BidHandler : MonoBehaviour
 
         int totalRaffleTickets = 0;
         int totalAuctionSlotTickets = 0;
-        int totalPlayersInRaffle = 0; 
+        int totalPlayersInRaffle = 0;
         //If a player is in the top auction slots, set their mode to full ball
         for (int i = 0; i < _biddingQ.Count; i++)
         {
             if (i < _auctionPositions.Count() && _auctionPositions[i].IsValid)
             {
                 _biddingQ[i].SetTicketQPos(_auctionPositions[i], false, this);
-                totalAuctionSlotTickets += _biddingQ[i].pp.CurrentBid; 
+                totalAuctionSlotTickets += _biddingQ[i].pp.CurrentBid;
             }
             else
             {
@@ -504,17 +513,17 @@ public class BidHandler : MonoBehaviour
 
                 _biddingQ[i].SetTicketQPos(RaffleBox, true, this);
                 totalRaffleTickets += _biddingQ[i].pp.CurrentBid;
-                totalPlayersInRaffle++; 
+                totalPlayersInRaffle++;
             }
         }
 
-        if(totalPlayersInRaffle <= _raffleDrawIndicators.Length + 1)
+        if (totalPlayersInRaffle <= _raffleDrawIndicators.Length + 1)
             SetRaffleDrawIndicatorsLit(totalPlayersInRaffle);
-        
 
         _winnerPrizeText.SetWinnerPrize(_rarityBasePrize + totalAuctionSlotTickets + totalRaffleTickets);
 
-        RaffleBox.SetRaffleCountText(MyUtil.AbbreviateNum4Char(totalRaffleTickets)); 
+
+        RaffleBox.SetRaffleCountText(MyUtil.AbbreviateNum4Char(totalRaffleTickets));
     }
 
     private void UpdateRaffleDrawIndicatorsCount(int count)
@@ -611,8 +620,11 @@ public class BidHandler : MonoBehaviour
             _rarityBasePrize = _mythicBasePrize;
         else if (rarity == RarityType.Ethereal)
             _rarityBasePrize = _etherealBasePrize;
+        else if (rarity == RarityType.Mystery)
+            _rarityBasePrize = UnityEngine.Random.Range(117, 71717) + UnityEngine.Random.Range(17, 1717) + UnityEngine.Random.Range(7, 717);
         else
             _rarityBasePrize = _cosmicBasePrize;
+    
 
         UpdateBiddingQ(); 
     }

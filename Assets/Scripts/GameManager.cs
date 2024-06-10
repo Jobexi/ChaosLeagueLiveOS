@@ -563,7 +563,7 @@ public class GameManager : MonoBehaviour
                 backupSystem += 1;
             }
 
-            if (backupSystem >= 50)
+            if (backupSystem >= 25)
             {
                 backupSystem = 0;
                 StartCoroutine(SaveThenBackup());

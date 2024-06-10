@@ -7,8 +7,8 @@ using UnityEngine;
 public class PrizeDisplay : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshPro _winnerPrizeTextFront;
-    [SerializeField] private TextMeshPro _winnerPrizeTextBack;
+    [SerializeField] public TextMeshPro _winnerPrizeTextFront;
+    [SerializeField] public TextMeshPro _winnerPrizeTextBack;
 
     [SerializeField] private Transform _prizeRotationRoot; 
 

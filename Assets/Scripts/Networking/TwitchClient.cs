@@ -1475,6 +1475,7 @@ public class TwitchClient : MonoBehaviour
                         break;
                     }
                     ph.pp.LoadoutCount = 1;
+                    ph.pp.Gold -= 1000000;
                     break;
                 case 1:
                     if (ph.pp.Gold < 10000000)
@@ -1484,6 +1485,7 @@ public class TwitchClient : MonoBehaviour
                         break;
                     }
                     ph.pp.LoadoutCount = 2;
+                    ph.pp.Gold -= 10000000;
                     break;
                 case 2:
                     if (ph.pp.Gold < 75000000)
@@ -1493,6 +1495,7 @@ public class TwitchClient : MonoBehaviour
                         break;
                     }
                     ph.pp.LoadoutCount = 3;
+                    ph.pp.Gold -= 75000000;
                     break;
                 case 3:
                     if (ph.pp.Gold < 200000000)
@@ -1502,6 +1505,7 @@ public class TwitchClient : MonoBehaviour
                         break;
                     }
                     ph.pp.LoadoutCount = 4;
+                    ph.pp.Gold -= 200000000;
                     break;
                 case 4:
                     if (ph.pp.Gold < 500000000)
@@ -1511,6 +1515,7 @@ public class TwitchClient : MonoBehaviour
                         break;
                     }
                     ph.pp.LoadoutCount = 5;
+                    ph.pp.Gold -= 500000000;
                     break;
                 case 5:
                     Debug.Log("You already own all non-VIP Loadouts! Consider qualifying for our VIP program to unlock additional ConfigSlots. :)");
@@ -2219,7 +2224,7 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.Rubies <= 0)
             {
                 Debug.Log("You have no rubies to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no rubies to spend.");
                 yield break;
             }
 

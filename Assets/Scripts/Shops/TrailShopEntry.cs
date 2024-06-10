@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrailShopEntry : ShopEntry
 {
     [SerializeField] private Transform _demoPlayer;
-    [SerializeField] private float _demoPlayerRotateSpeed = .8f;
+    [SerializeField] private float _demoPlayerRotateSpeed = 0.1f;
     [SerializeField] private TrailRenderer _demoTrail;
     [SerializeField] public List<string> BuyCommands; 
     private Gradient _gradient;

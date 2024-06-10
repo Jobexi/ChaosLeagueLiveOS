@@ -53,8 +53,10 @@ public class NPCHandler : MonoBehaviour
     public int CurseCount2 = 0;
     public int MysteryCount1 = 0;
     public int MysteryCount2 = 0;
+    public int NullCount1 = 0;
+    public int NullCount2 = 0;
 
-    private int maxNPC = 126;
+    private int maxNPC = 139;
     private int maxMode = 17;
 
     void Awake()
@@ -647,6 +649,54 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("Water", "Water", "bid", 1);
                 StartCoroutine(UpdateWaiter("Water"));
                 break;
+            case 127:
+                _unitTesting.NPCReward("MomentaryNull", "MomentaryNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("MomentaryNull"));
+                break;
+            case 128:
+                _unitTesting.NPCReward("BriefNull", "BriefNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("BriefNull"));
+                break;
+            case 129:
+                _unitTesting.NPCReward("ShortNull", "ShortNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("ShortNull"));
+                break;
+            case 130:
+                _unitTesting.NPCReward("TemporaryNull", "TemporaryNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("TemporaryNull"));
+                break;
+            case 131:
+                _unitTesting.NPCReward("PassingNull", "PassingNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("PassingNull"));
+                break;
+            case 132:
+                _unitTesting.NPCReward("InterimNull", "InterimNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("InterimNull"));
+                break;
+            case 133:
+                _unitTesting.NPCReward("Null", "Null", "bid", 1);
+                StartCoroutine(UpdateWaiter("Null"));
+                break;
+            case 134:
+                _unitTesting.NPCReward("ExtendedNull", "ExtendedNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("ExtendedNull"));
+                break;
+            case 135:
+                _unitTesting.NPCReward("ProlongedNull", "ProlongedNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("ProlongedNull"));
+                break;
+            case 136:
+                _unitTesting.NPCReward("LastingNull", "LastingNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("LastingNull"));
+                break;
+            case 137:
+                _unitTesting.NPCReward("PermanentNull", "PermanentNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("PermanentNull"));
+                break;
+            case 138:
+                _unitTesting.NPCReward("EternalNull", "EternalNull", "bid", 1);
+                StartCoroutine(UpdateWaiter("EternalNull"));
+                break;
         }
                 
     }
@@ -1202,6 +1252,59 @@ public class NPCHandler : MonoBehaviour
                 break;
             case "Water":
                 SetNPCMode(19, ID, "#2222FF");
+                break;
+            case "MomentaryNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 1;
+                break;
+            case "BriefNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 2;
+                break;
+            case "ShortNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 3;
+                break;
+            case "TemporaryNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 5;
+                break;
+            case "PassingNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 7;
+                break;
+            case "InterimNull":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 10;
+                break;
+            case "Null":
+                SetNPCMode(16, ID, "#808080");
+                NullCount1 += 17;
+                break;
+            case "ExtendedNull":
+                SetNPCMode(17, ID, "#808080");
+                NullCount1 += 3;
+                NullCount2 += 5;
+                break;
+            case "ProlongedNull":
+                SetNPCMode(17, ID, "#808080");
+                NullCount1 += 5;
+                NullCount2 += 7;
+                break;
+            case "LastingNull":
+                SetNPCMode(17, ID, "#808080");
+                NullCount1 += 7;
+                NullCount2 += 11;
+                break;
+            case "PermanentNull":
+                SetNPCMode(17, ID, "#808080");
+                NullCount1 += 11;
+                NullCount2 += 13;
+                break;
+            case "EternalNull":
+                SetNPCMode(17, ID, "#808080");
+                NullCount1 += 13;
+                NullCount2 += 17;
                 break;
         }
     
@@ -2199,6 +2302,126 @@ public class NPCHandler : MonoBehaviour
                         }
                     }
                 }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 20) //Single Null
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "...");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (MysteryCount1 > 0)
+                            {
+                                NPCNullTile();
+                                MysteryCount1 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "....");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], ".....");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 4;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 21) //Double Null
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "...");
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            if (MysteryCount2 > 0)
+                            {
+                                NPCNullTile();
+                                MysteryCount2 -= 1;
+                                _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                            }
+                            else
+                            {
+                                NPCMessage(_gm.PlayerHandlers[key], "....");
+                                _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                                _gm.PlayerHandlers[key].pp.ModeNPC = 20;
+                            }
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], ".....");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                            _gm.PlayerHandlers[key].pp.ModeNPC = 20;
+                        }
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 3)
+                    {
+                        _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                    }
+                }
             }
         }
     }
@@ -2298,7 +2521,7 @@ public class NPCHandler : MonoBehaviour
             }
             if (_tileController.CurrentBiddingTile.IsShop == true)
                 return;
-            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
+            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus);
                 return;
         }
         else
@@ -2320,7 +2543,7 @@ public class NPCHandler : MonoBehaviour
 
     public void NPCNullTile()
     {
-        if (_tileController._forceGolden == true || _tileController._forceRuby == true)
+        if (_tileController._forceGolden == true || _tileController._forceRuby == true || _tileController._forceMystery == true)
         {
             Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
             return;
@@ -2331,14 +2554,14 @@ public class NPCHandler : MonoBehaviour
             if (_tileController.CurrentBiddingTile.IsNull == true)
                 return;
             else
-                _tileController.CurrentBiddingTile._indicator1.SetText("💛");
+                _tileController.CurrentBiddingTile._indicator1.SetText("⚠️");
         }
         else
         {
             if (_tileController.GameplayTile.IsNull == true)
                 return;
             else
-                _tileController.GameplayTile._indicator1.SetText("💛");
+                _tileController.GameplayTile._indicator1.SetText("⚠️");
         }
 
         _tileController._forceCurse = false;

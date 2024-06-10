@@ -35,7 +35,8 @@ public class TileController : MonoBehaviour
     private static float _cosmicPlusRarity;
 
     [SerializeField] private List<GameTile> AllRarities; //Adds one to each rarity 
-    [SerializeField] private List<GameTile> FirstRemove; //Common - Mythic
+    [SerializeField] private List<GameTile> FirstRemove; //Common - Legendary
+    [SerializeField] private List<GameTile> SecondRemove; //Rare - Mythic
     [SerializeField] private List<GameTile> CommonTiles; //69%      // 45%
     [SerializeField] private List<GameTile> RareTiles; // 25%       // 30%
     [SerializeField] private List<GameTile> EpicTiles; // 5%        // 18%
@@ -553,37 +554,45 @@ public class TileController : MonoBehaviour
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
-                int index = Random.Range(0, MythicTiles.Count + AllRarities.Count);
+                int index = Random.Range(0, MythicTiles.Count + AllRarities.Count + SecondRemove.Count);
                 if (index < MythicTiles.Count)
                 {
                     tile = MythicTiles[index];
                 }
-                else
+                else if (index < MythicTiles.Count + AllRarities.Count)
                 {
                     tile = AllRarities[index - MythicTiles.Count];
+                }
+                else
+                {
+                    tile = SecondRemove[index - MythicTiles.Count - AllRarities.Count];
                 }
                 rarity = RarityType.Mythic;
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
-                int index = Random.Range(0, LegendaryTiles.Count + AllRarities.Count + FirstRemove.Count);
+                int index = Random.Range(0, LegendaryTiles.Count + AllRarities.Count + FirstRemove.Count + SecondRemove.Count);
                 if (index < LegendaryTiles.Count)
                 {
                     tile = LegendaryTiles[index];
                 }
                 else if (index < LegendaryTiles.Count + AllRarities.Count)
                 {
-                    tile = AllRarities[index -LegendaryTiles.Count];
+                    tile = AllRarities[index - LegendaryTiles.Count];
+                }
+                else if (index < LegendaryTiles.Count + AllRarities.Count + FirstRemove.Count)
+                {
+                    tile = FirstRemove[index - LegendaryTiles.Count - AllRarities.Count];
                 }
                 else
                 {
-                    tile = FirstRemove[index - LegendaryTiles.Count - AllRarities.Count];
+                    tile = SecondRemove[index - LegendaryTiles.Count - AllRarities.Count - FirstRemove.Count];
                 }
                 rarity = RarityType.Legendary;
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
-                int index = Random.Range(0, EpicTiles.Count + AllRarities.Count + FirstRemove.Count);
+                int index = Random.Range(0, EpicTiles.Count + AllRarities.Count + FirstRemove.Count + SecondRemove.Count);
                 if (index < EpicTiles.Count)
                 {
                     tile = EpicTiles[index];
@@ -592,15 +601,19 @@ public class TileController : MonoBehaviour
                 {
                     tile = AllRarities[index - EpicTiles.Count];
                 }
-                else
+                else if (index < EpicTiles.Count + AllRarities.Count + FirstRemove.Count)
                 {
                     tile = FirstRemove[index - EpicTiles.Count - AllRarities.Count];
+                }
+                else
+                {
+                    tile = SecondRemove[index - EpicTiles.Count - AllRarities.Count - FirstRemove.Count];
                 }
                 rarity = RarityType.Epic;
             }
             else if (t <= _cosmicRarity + _etherealRarity + _mythicRarity + _legendaryRarity + _epicRarity + _rareRarity + _commonPlusRarity + _rarePlusRarity + _epicPlusRarity + _legendaryPlusRarity + _mythicPlusRarity + _etherealPlusRarity + _cosmicPlusRarity)
             {
-                int index = Random.Range(0, RareTiles.Count + AllRarities.Count + FirstRemove.Count);
+                int index = Random.Range(0, RareTiles.Count + AllRarities.Count + FirstRemove.Count + SecondRemove.Count);
                 if (index < RareTiles.Count)
                 {
                     tile = RareTiles[index];
@@ -609,9 +622,13 @@ public class TileController : MonoBehaviour
                 {
                     tile = AllRarities[index - RareTiles.Count];
                 }
-                else
+                else if (index < RareTiles.Count + AllRarities.Count + FirstRemove.Count)
                 {
                     tile = FirstRemove[index - RareTiles.Count - AllRarities.Count];
+                }
+                else
+                {
+                    tile = SecondRemove[index - RareTiles.Count - AllRarities.Count - FirstRemove.Count];
                 }
                 rarity = RarityType.Rare;
             }

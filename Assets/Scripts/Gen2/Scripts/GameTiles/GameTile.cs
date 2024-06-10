@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, CommonPlus, RarePlus, EpicPlus, LegendaryPlus, MythicPlus, EtherealPlus, CosmicPlus }
+public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, CommonPlus, RarePlus, EpicPlus, LegendaryPlus, MythicPlus, EtherealPlus, CosmicPlus, Mystery }
 public enum DurationTYpe { Timer, Manual }
 public enum Side { Left, Center, Right}
 public enum TileState { Inactive, LockedInPos, Bidding, Gameplay}
@@ -67,6 +67,8 @@ public class GameTile : MonoBehaviour
     [SerializeField] public PipeReleaser EntrancePipe;
     [SerializeField] private GoldenVisuals _goldenVisuals;
     [SerializeField] private List<MeshRenderer> _colorTrimsByRarity;
+
+    [SerializeField] public int TileEffect;
 
     public List<PlayerHandler> ConveyorBelt = new List<PlayerHandler>();
 
@@ -258,10 +260,9 @@ public class GameTile : MonoBehaviour
         IsRuby = false;
         IsMystery = false;
         IsNull = false;
+
         _goldenVisuals._coverObj.gameObject.SetActive(false);
         _indicator3.gameObject.SetActive(false);
-
-        int Mysteries = UnityEngine.Random.Range(1, 5);
 
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
@@ -280,6 +281,8 @@ public class GameTile : MonoBehaviour
 
         foreach (var resetable in _resetablesRoot.GetComponentsInChildren<IResetable>())
             resetable.MyReset();
+
+        int Mysteries = UnityEngine.Random.Range(1, 10);
 
         foreach (var effector in Effectors)
         {
@@ -312,7 +315,22 @@ public class GameTile : MonoBehaviour
                         effector.MultiplyCurrValue(100);
                         _indicator3.SetText("100x");
                         break;
-
+                    case 6:
+                        effector.MultiplyCurrValue(1000);
+                        _indicator3.SetText("1000x");
+                        break;
+                    case 7: //Left to Right
+                        TileEffect = 1;
+                        _indicator3.SetText("<--->");
+                        break;
+                    case 8: //Elevator
+                        TileEffect = 2;
+                        _indicator3.SetText("Elevator");
+                        break;
+                    case 9: //7+8
+                        TileEffect = 3;
+                        _indicator3.SetText("←↑↓→");
+                        break;
                 }
             }
             else if (insideRuby)
@@ -351,6 +369,7 @@ public class GameTile : MonoBehaviour
             insideCurse = false;
             insideRuby = false;
             insideGolden = false;
+            insideNull = false;
             Mysteries = 0;
         }
 
@@ -451,7 +470,7 @@ public class GameTile : MonoBehaviour
         }
         else if (IsNull)
         {
-            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.01f, 0.1f);
+            AudioController.inst.PlaySound(AudioController.inst.TileStatus, 0.015f, 0.15f);
         }
         else if (IsShop)
         {
@@ -509,8 +528,16 @@ public class GameTile : MonoBehaviour
     }
     public IEnumerator RunTile()
     {
-        float x = -1.15f;
+        // TileEffect = 3; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
         
+        float textFade = -1.15f;
+        float positionX = 0f;
+        float positionY = 0f;
+        float positionZ = 0f;
+        bool boundary1 = false;
+        bool boundary2 = false;
+        Vector3 StartPosition = gameObject.transform.position;
+
         TileState = TileState.Gameplay; 
         EntrancePipe.LockIcon.enabled = false;
         _tileStartTime = DateTime.Now;
@@ -547,6 +574,29 @@ public class GameTile : MonoBehaviour
         }
 
         _forceEndGameplay = false;
+        //pre-Gameplay Settings Go here
+        switch (TileEffect)
+        {
+            case 1:
+                if (CurrentSide == Side.Right)
+                    boundary1 = true;
+                else
+                    boundary1 = false;
+                break;
+            case 2:
+                gameObject.transform.position = transform.position + new Vector3(0, -4.5f, 0);
+                break;
+            case 3:
+                if (CurrentSide == Side.Right)
+                    boundary1 = true;
+                else
+                    boundary1 = false;
+                gameObject.transform.position = transform.position + new Vector3(0, -4.5f, 0);
+                break;
+            default:
+                break;
+
+        }
 
         _tileGameplayTimeElapsed = 0; 
         //Run the gameplay until we either get a signal from the game that it's done, or there is only one player left alive
@@ -560,10 +610,65 @@ public class GameTile : MonoBehaviour
             if (_timer > _tileDurationS)
                 break;
 
-            if (x < 5)
+            // This is the Indicator for Mystery Tiles
+            if (textFade < 5)
             {
-                x += 0.01f;
-                _indicator3.gameObject.transform.position = transform.position + new Vector3(0, 0, x);
+                textFade += 0.01f;
+                _indicator3.gameObject.transform.position = transform.position + new Vector3(0, 0, textFade);
+            }
+
+            //This is the TileEffect Handler
+            switch (TileEffect)
+            {
+                case 1:
+                    if (boundary1)
+                        positionX -= 0.0001f;
+                    else
+                        positionX += 0.0001f;
+
+                    if (positionX > 0.011)
+                        boundary1 = true;
+                    if (positionX < -0.011)
+                        boundary1 = false;
+                    
+                    gameObject.transform.position = transform.position + new Vector3(positionX, 0, 0);
+                    break;
+                case 2:
+                    if (boundary1)
+                        positionY -= 0.001f;
+                    else
+                        positionY += 0.001f;
+
+                    if (positionY > 0.1)
+                        boundary1 = true;
+                    if (positionY < -0.1)
+                        boundary1 = false;
+
+                    gameObject.transform.position = transform.position + new Vector3(0, positionY, 0);
+                    break;
+                case 3:
+                    if (boundary1)
+                        positionX -= 0.0001f;
+                    else
+                        positionX += 0.0001f;
+
+                    if (positionX > 0.011)
+                        boundary1 = true;
+                    if (positionX < -0.011)
+                        boundary1 = false;
+
+                    if (boundary2)
+                        positionY -= 0.001f;
+                    else
+                        positionY += 0.001f;
+
+                    if (positionY > 0.1)
+                        boundary2 = true;
+                    if (positionY < -0.1)
+                        boundary2 = false;
+
+                    gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
+                    break;
             }
 
             //Stop if there is only one player left alive and none on the belt
@@ -585,6 +690,11 @@ public class GameTile : MonoBehaviour
             _tileGameplayTimeElapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (TileEffect != 0)
+            gameObject.transform.position = StartPosition;
+
+        TileEffect = 0;        
 
         Debug.Log($"about to start podium: tileTimeElapsed: {_timer} tileDuration:{_tileDurationS} alivePlayers:{AlivePlayers.Count} ConveyorBelt:{ConveyorBelt.Count}");
 
@@ -634,7 +744,19 @@ public class GameTile : MonoBehaviour
             case 5:
                 MyTTS.inst.PlayerSpeech("100x Multiplier", Amazon.Polly.VoiceId.Emma);
                 break;
-            
+            case 6:
+                MyTTS.inst.PlayerSpeech("1000x Multiplier", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 7:
+                MyTTS.inst.PlayerSpeech("Side to Side", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 8:
+                MyTTS.inst.PlayerSpeech("Elevator", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 9:
+                MyTTS.inst.PlayerSpeech("Slaunchwise", Amazon.Polly.VoiceId.Emma);
+                break;
+
         }
     }
 
