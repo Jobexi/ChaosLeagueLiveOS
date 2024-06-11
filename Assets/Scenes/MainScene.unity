@@ -65033,7 +65033,7 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 0}
+  ForceThisTileNext: {fileID: 2605624827304256445, guid: c1cc5c06e0cf6224d8b693e8f2ad9dd0, type: 3}
   _forceThisRarity: 3
   _forceCurse: 0
   _forceGolden: 0
@@ -73639,6 +73639,7 @@ MonoBehaviour:
   ButtonDown: {fileID: 1278781175}
   ButtonUp: {fileID: 165414931}
   MechanicalPivotMove: {fileID: 1517784447}
+  SuccessBell: {fileID: 2154576231330018709}
 --- !u!1 &8895845231537799657
 GameObject:
   m_ObjectHideFlags: 0

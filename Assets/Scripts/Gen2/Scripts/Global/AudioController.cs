@@ -49,6 +49,7 @@ public class AudioController : MonoBehaviour
     public AudioSource ButtonDown;
     public AudioSource ButtonUp;
     public AudioSource MechanicalPivotMove;
+    public AudioSource SuccessBell;
     
 
     // Start is called before the first frame update

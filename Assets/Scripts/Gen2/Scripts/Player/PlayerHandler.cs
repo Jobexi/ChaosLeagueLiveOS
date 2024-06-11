@@ -618,6 +618,12 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             diamonds += 1;
         }
 
+        while (diamonds >= 1000)
+        {
+            diamonds -= 1000;
+            rubies += 1;
+        }
+
         while (score >= 1000000000)
         {
             score -= 1000000000;
@@ -630,22 +636,16 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             emeralds += 1;
         }
 
-        while (diamonds >= 1000)
-        {
-            diamonds -= 1000;
-            rubies += 1;
-        }
-
         while (emeralds >= 1000)
         {
             emeralds -= 1000;
             diamonds += 1;
         }
 
-        while (sapphires >= 1000)
+        while (diamonds >= 1000)
         {
-            sapphires -= 1000;
-            emeralds += 1;
+            diamonds -= 1000;
+            rubies += 1;
         }
 
         pp.SessionScore = score;

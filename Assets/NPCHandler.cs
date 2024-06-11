@@ -2521,7 +2521,7 @@ public class NPCHandler : MonoBehaviour
             }
             if (_tileController.CurrentBiddingTile.IsShop == true)
                 return;
-            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus);
+            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
                 return;
         }
         else
@@ -2708,6 +2708,11 @@ public class NPCHandler : MonoBehaviour
         ph.ReceivableTarget = null; //Prevent bug where players would move to raffle after attacking and get stuck
         _twitchClient._attackPipe.ReceivePlayer(pb);
 
+    }
+
+    public void NPCSetTileEffect(int effect)
+    {
+        _tileController.CurrentBiddingTile.TileEffect = effect;
     }
 
     public void ChangeKingBackground()

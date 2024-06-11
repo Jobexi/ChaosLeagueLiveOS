@@ -260,6 +260,7 @@ public class GameTile : MonoBehaviour
         IsRuby = false;
         IsMystery = false;
         IsNull = false;
+        TileEffect = 0;
 
         _goldenVisuals._coverObj.gameObject.SetActive(false);
         _indicator3.gameObject.SetActive(false);
@@ -321,7 +322,7 @@ public class GameTile : MonoBehaviour
                         break;
                     case 7: //Left to Right
                         TileEffect = 1;
-                        _indicator3.SetText("<--->");
+                        _indicator3.SetText("Sway");
                         break;
                     case 8: //Elevator
                         TileEffect = 2;
@@ -329,8 +330,29 @@ public class GameTile : MonoBehaviour
                         break;
                     case 9: //7+8
                         TileEffect = 3;
-                        _indicator3.SetText("←↑↓→");
+                        _indicator3.SetText("Slaunchwise");
                         break;
+                    case 10: //Flip
+                        TileEffect = 4;
+                        _indicator3.SetText("Flip");
+                        break;
+                    case 11: //Flop
+                        TileEffect = 5;
+                        _indicator3.SetText("Flop");
+                        break;
+                    case 12: //Florp
+                        TileEffect = 6;
+                        _indicator3.SetText("Florp");
+                        break;
+                    case 13: //Space Training
+                        TileEffect = 7;
+                        _indicator3.SetText("Space Training");
+                        break;
+                    case 14: //Hyperspace Training
+                        TileEffect = 7;
+                        _indicator3.SetText("Hyperspace Training");
+                        break;
+
                 }
             }
             else if (insideRuby)
@@ -528,15 +550,23 @@ public class GameTile : MonoBehaviour
     }
     public IEnumerator RunTile()
     {
-        // TileEffect = 3; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
+        // TileEffect = 8; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
         
         float textFade = -1.15f;
         float positionX = 0f;
         float positionY = 0f;
         float positionZ = 0f;
+        float rotationX = 0f;
+        float rotationY = 0f;
+        float rotationZ = 0f;
+        float scaleX = 0f;
+        float scaleY = 0f;
+        float scaleZ = 0f;
         bool boundary1 = false;
         bool boundary2 = false;
+        int timer1 = 0;
         Vector3 StartPosition = gameObject.transform.position;
+        Quaternion StartRotation = gameObject.transform.rotation;
 
         TileState = TileState.Gameplay; 
         EntrancePipe.LockIcon.enabled = false;
@@ -577,6 +607,8 @@ public class GameTile : MonoBehaviour
         //pre-Gameplay Settings Go here
         switch (TileEffect)
         {
+            default:
+                break;
             case 1:
                 if (CurrentSide == Side.Right)
                     boundary1 = true;
@@ -593,8 +625,16 @@ public class GameTile : MonoBehaviour
                     boundary1 = false;
                 gameObject.transform.position = transform.position + new Vector3(0, -4.5f, 0);
                 break;
-            default:
-                break;
+            case 4:
+                goto case 1;
+            case 5:
+                goto case 1;
+            case 6:
+                goto case 1;
+            case 7:
+                goto case 1;
+            case 8:
+                goto case 3;
 
         }
 
@@ -618,59 +658,147 @@ public class GameTile : MonoBehaviour
             }
 
             //This is the TileEffect Handler
-            switch (TileEffect)
+            if (ConveyorBelt.Count == 0)
             {
-                case 1:
-                    if (boundary1)
-                        positionX -= 0.0001f;
-                    else
-                        positionX += 0.0001f;
+                switch (TileEffect)
+                {
+                    case 1:
+                        if (boundary1)
+                            positionX -= 0.0001f;
+                        else
+                            positionX += 0.0001f;
 
-                    if (positionX > 0.011)
-                        boundary1 = true;
-                    if (positionX < -0.011)
-                        boundary1 = false;
-                    
-                    gameObject.transform.position = transform.position + new Vector3(positionX, 0, 0);
-                    break;
-                case 2:
-                    if (boundary1)
-                        positionY -= 0.001f;
-                    else
-                        positionY += 0.001f;
+                        if (positionX > 0.025)
+                            boundary1 = true;
+                        if (positionX < -0.025)
+                            boundary1 = false;
 
-                    if (positionY > 0.1)
-                        boundary1 = true;
-                    if (positionY < -0.1)
-                        boundary1 = false;
+                        gameObject.transform.position = transform.position + new Vector3(positionX, 0, 0);
+                        break;
+                    case 2:
+                        if (boundary1)
+                            positionY -= 0.001f;
+                        else
+                            positionY += 0.001f;
 
-                    gameObject.transform.position = transform.position + new Vector3(0, positionY, 0);
-                    break;
-                case 3:
-                    if (boundary1)
-                        positionX -= 0.0001f;
-                    else
-                        positionX += 0.0001f;
+                        if (positionY > 0.1)
+                            boundary1 = true;
+                        if (positionY < -0.1)
+                            boundary1 = false;
 
-                    if (positionX > 0.011)
-                        boundary1 = true;
-                    if (positionX < -0.011)
-                        boundary1 = false;
+                        gameObject.transform.position = transform.position + new Vector3(0, positionY, 0);
+                        break;
+                    case 3:
+                        if (boundary1)
+                            positionX -= 0.0001f;
+                        else
+                            positionX += 0.0001f;
 
-                    if (boundary2)
-                        positionY -= 0.001f;
-                    else
-                        positionY += 0.001f;
+                        if (positionX > 0.025)
+                            boundary1 = true;
+                        if (positionX < -0.025)
+                            boundary1 = false;
 
-                    if (positionY > 0.1)
-                        boundary2 = true;
-                    if (positionY < -0.1)
-                        boundary2 = false;
+                        if (boundary2)
+                            positionY -= 0.001f;
+                        else
+                            positionY += 0.001f;
 
-                    gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
-                    break;
+                        if (positionY > 0.1)
+                            boundary2 = true;
+                        if (positionY < -0.1)
+                            boundary2 = false;
+
+                        gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
+                        break;
+                    case 4:
+                        if (boundary1)
+                        {
+                            rotationX = -.1f;
+                        }
+                        else
+                        {
+                            rotationX = .1f;
+                        }
+
+                        gameObject.transform.Rotate(rotationX, 0, 0, Space.Self);
+                        break;
+                    case 5:
+                        if (boundary1)
+                        {
+                            rotationY = -.2f;
+                        }
+                        else
+                        {
+                            rotationY = .2f;
+                        }
+
+                        gameObject.transform.Rotate(0, rotationY, 0, Space.Self);
+                        break;
+                    case 6:
+                        if (boundary1)
+                        {
+                            rotationZ = -.3f;
+                        }
+                        else
+                        {
+                            rotationZ = .3f;
+                        }
+
+                        gameObject.transform.Rotate(0, 0, rotationZ, Space.Self);
+                        break;
+                    case 7:
+                        if (boundary1)
+                        {
+                            rotationX = -.1f;
+                            rotationY = -.2f;
+                            rotationZ = -.3f;
+                        }
+                        else
+                        {
+                            rotationX = .1f;
+                            rotationY = .2f;
+                            rotationZ = .3f;
+                        }
+
+                        gameObject.transform.Rotate(rotationX, rotationY, rotationZ, Space.Self);
+                        break;
+                    case 8:
+                        if (boundary1)
+                        {
+                            rotationX = -.1f;
+                            rotationY = -.2f;
+                            rotationZ = -.3f;
+                            positionX -= 0.0001f;
+                        }
+                        else
+                        {
+                            rotationX = .15f;
+                            rotationY = .25f;
+                            rotationZ = .35f;
+                            positionX += 0.0001f;
+                        }
+
+                        if (boundary2)
+                            positionY -= 0.001f;
+                        else
+                            positionY += 0.001f;
+
+                        if (positionX > 0.025)
+                            boundary1 = true;
+                        if (positionX < -0.025)
+                            boundary1 = false;
+
+                        if (positionY > 0.1)
+                            boundary2 = true;
+                        if (positionY < -0.1)
+                            boundary2 = false;
+
+                        gameObject.transform.Rotate(rotationX, rotationY, rotationZ, Space.Self);
+                        gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
+                        break;
+                }
             }
-
             //Stop if there is only one player left alive and none on the belt
             if (!IsShop && AlivePlayers.Count <= ((_waitForAllDead) ? 0 : 1) && ConveyorBelt.Count <= 0)
                 break;
@@ -692,7 +820,10 @@ public class GameTile : MonoBehaviour
         }
 
         if (TileEffect != 0)
+        {
             gameObject.transform.position = StartPosition;
+            gameObject.transform.rotation = StartRotation;
+        }
 
         TileEffect = 0;        
 
@@ -748,13 +879,28 @@ public class GameTile : MonoBehaviour
                 MyTTS.inst.PlayerSpeech("1000x Multiplier", Amazon.Polly.VoiceId.Emma);
                 break;
             case 7:
-                MyTTS.inst.PlayerSpeech("Side to Side", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Sway", Amazon.Polly.VoiceId.Emma);
                 break;
             case 8:
                 MyTTS.inst.PlayerSpeech("Elevator", Amazon.Polly.VoiceId.Emma);
                 break;
             case 9:
                 MyTTS.inst.PlayerSpeech("Slaunchwise", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 10:
+                MyTTS.inst.PlayerSpeech("Flip", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 11:
+                MyTTS.inst.PlayerSpeech("Flop", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 12:
+                MyTTS.inst.PlayerSpeech("Florp", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 13:
+                MyTTS.inst.PlayerSpeech("Space Training", Amazon.Polly.VoiceId.Emma);
+                break;
+            case 14:
+                MyTTS.inst.PlayerSpeech("Hyperspace Training", Amazon.Polly.VoiceId.Emma);
                 break;
 
         }

@@ -106,6 +106,8 @@ public class PlayerProfile
         cheese[13] = KingBGTier.ToString();
         cheese[14] = VoiceID.ToString();
 
+        AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
+        
         return JsonConvert.SerializeObject(cheese);
     }
 

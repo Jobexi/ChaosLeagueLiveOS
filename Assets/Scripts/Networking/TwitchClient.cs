@@ -632,7 +632,11 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!savevipconfig"))
         {
             if (VIP4)
+            {
                 ph.pp.LoadoutVIP = (ph.pp.SaveLoadout());
+                TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
+
+            }
             else
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"You haven't been a VIP for four months, yet!");
         }
@@ -661,6 +665,9 @@ public class TwitchClient : MonoBehaviour
 
                 if (ph.IsKing())
                     ph.ReloadKingCosmetics(71717);
+
+                AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
+                TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
 
                 ph.SetCustomizationsFromPP();
             }
@@ -1476,6 +1483,7 @@ public class TwitchClient : MonoBehaviour
                     }
                     ph.pp.LoadoutCount = 1;
                     ph.pp.Gold -= 1000000;
+                    AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
                     break;
                 case 1:
                     if (ph.pp.Gold < 10000000)
@@ -1486,6 +1494,7 @@ public class TwitchClient : MonoBehaviour
                     }
                     ph.pp.LoadoutCount = 2;
                     ph.pp.Gold -= 10000000;
+                    AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
                     break;
                 case 2:
                     if (ph.pp.Gold < 75000000)
@@ -1496,6 +1505,7 @@ public class TwitchClient : MonoBehaviour
                     }
                     ph.pp.LoadoutCount = 3;
                     ph.pp.Gold -= 75000000;
+                    AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
                     break;
                 case 3:
                     if (ph.pp.Gold < 200000000)
@@ -1506,6 +1516,7 @@ public class TwitchClient : MonoBehaviour
                     }
                     ph.pp.LoadoutCount = 4;
                     ph.pp.Gold -= 200000000;
+                    AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
                     break;
                 case 4:
                     if (ph.pp.Gold < 500000000)
@@ -1516,6 +1527,7 @@ public class TwitchClient : MonoBehaviour
                     }
                     ph.pp.LoadoutCount = 5;
                     ph.pp.Gold -= 500000000;
+                    AudioController.inst.PlaySound(AudioController.inst.SuccessBell, 0.95f, 1.05f);
                     break;
                 case 5:
                     Debug.Log("You already own all non-VIP Loadouts! Consider qualifying for our VIP program to unlock additional ConfigSlots. :)");
@@ -1535,29 +1547,35 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.LoadoutCount < 1)
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 1, but you will not be able to load them until you purchase Config Slot 1 for 1M Gold. !BuyConfigSlot");
             ProcessSaveConfig(ph, 1);
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
+
         }
         else if (commandKey.StartsWith("!save2"))
         {
             if (ph.pp.LoadoutCount < 2)
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 2, but you will not be able to load them until you purchase Config Slot 2 for 10M Gold. !BuyConfigSlot");
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
             ProcessSaveConfig(ph, 2);
         }
         else if (commandKey.StartsWith("!save3"))
         {
             if (ph.pp.LoadoutCount < 3)
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 3, but you will not be able to load them until you purchase Config Slot 3 for 75M Gold. !BuyConfigSlot");
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
             ProcessSaveConfig(ph, 3);
         }
         else if (commandKey.StartsWith("!save4"))
         {
             if (ph.pp.LoadoutCount < 4)
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 4, but you will not be able to load them until you purchase Config Slot 4 for 200M Gold. !BuyConfigSlot");
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
             ProcessSaveConfig(ph, 4);
         }
         else if (commandKey.StartsWith("!save5"))
         {
             if (ph.pp.LoadoutCount < 5)
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Your cosmetics have been saved to Slot 5, but you will not be able to load them until you purchase Config Slot 5 for 500M Gold. !BuyConfigSlot");
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Saved", Color.magenta);
             ProcessSaveConfig(ph, 5);
         }
 
@@ -1568,6 +1586,7 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 1 until you purchase it for 1M Gold. !BuyConfigSlot");
                 return;
             }
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
             ProcessLoadConfig(ph, 1);
         }
         else if (commandKey.StartsWith("!load2"))
@@ -1577,6 +1596,7 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 2 until you purchase it for 10M Gold. !BuyConfigSlot");
                 return;
             }
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
             ProcessLoadConfig(ph, 2);
         }
         else if (commandKey.StartsWith("!load3"))
@@ -1586,6 +1606,7 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 3 until you purchase it for 75M Gold. !BuyConfigSlot");
                 return;
             }
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
             ProcessLoadConfig(ph, 3);
         }
         else if (commandKey.StartsWith("!load4"))
@@ -1595,6 +1616,7 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 4 until you purchase it for 200M Gold. !BuyConfigSlot");
                 return;
             }
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
             ProcessLoadConfig(ph, 4);
         }
         else if (commandKey.StartsWith("!load5"))
@@ -1604,6 +1626,7 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You cannot load your cosmetics from slot 5 until you purchase it for 500M Gold. !BuyConfigSlot");
                 return;
             }
+            TextPopupMaster.Inst.CreateTextPopup(ph.Get_TI_IO_Position(), Vector3.right, "+Loaded", Color.magenta);
             ProcessLoadConfig(ph, 5);
         }
 
@@ -2401,7 +2424,7 @@ public class TwitchClient : MonoBehaviour
         PlayerProfile pp = phToLookup.pp;
         string statsString = $"(@{phToLookup.pp.TwitchUsername}) [Throne Captures: {pp.ThroneCaptures}] [Total Throne Time: {MyUtil.FormatDurationDHMS(pp.TimeOnThrone)}] [Players invited: {pp.GetInviteIds().Length}] [Tickets Spent: {pp.TotalTicketsSpent:N0}]";
         string pointString = $"(@{phToLookup.pp.TwitchUsername}) [Points: {pp.SessionScore:N0}] [Gold: {pp.Gold:N0}] [Sapphires: {pp.Sapphires:N0}] [Emeralds: {pp.Emeralds:N0}] [Diamonds: {pp.Diamonds:N0}] [Rubies: {pp.Rubies:N0}]";
-        string itemsString = $"(@{phToLookup.pp.TwitchUsername}) [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [RiskSkips Remaining: {pp.RiskSkips:N0}]";
+        string itemsString = $"(@{phToLookup.pp.TwitchUsername}) [Tomatoes: {pp.TomatoCount:N0}] [Shield Value: {pp.ShieldValue:N0}] [Auto-Bids Remaining: {pp.AutoBidRemainder:N0}] [RiskSkips Remaining: {pp.RiskSkips:N0}] [Config Slots Owned: {pp.LoadoutCount:N0}]";
 
         if (type == "stats")
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, statsString);
