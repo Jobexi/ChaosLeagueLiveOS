@@ -18,13 +18,13 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] public TwitchApi _twitchAPI;
-    [SerializeField] private TwitchPubSub _twitchPubSub;
+    [SerializeField] public TwitchPubSub _twitchPubSub;
     [SerializeField] private GoldDistributor _goldDistributor;
     [SerializeField] private InvitePromo _invitePromo;
 
     [SerializeField] private GameObject _playerBallPrefab;
     [SerializeField] private CLDebug _clDebug;
-    [SerializeField] private TileController _tileController;
+    [SerializeField] public TileController _tileController;
     [SerializeField] private MyHttpClient _myHttpClient;
     [SerializeField] private BidHandler _bidHandler;
     [SerializeField] public KingController _kingController;

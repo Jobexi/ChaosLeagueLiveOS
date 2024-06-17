@@ -835,6 +835,12 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         float comboPitch = Mathf.Lerp(0.8f, 1.5f, Mathf.Clamp01((float)combo / 5f));
         AudioController.inst.PlaySound(AudioController.inst.MultiplyPoints, comboPitch, comboPitch);
 
+        if (pp.SessionScore < 0 && multiplier > 0)
+        {
+            pp.SessionScore = 0;
+            pp.Rubies += 5;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+5 Rubies", Color.red);
+        }
     }
 
     public void DividePoints(float divideAmount, bool textPopup, bool contributeToROI = true)

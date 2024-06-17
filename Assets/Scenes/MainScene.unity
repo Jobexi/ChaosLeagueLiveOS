@@ -52896,7 +52896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Redeem tickets (channel points) to play!
+  m_text: Redeem tickets to play!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -52923,7 +52923,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.7
+  m_fontSize: 9.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -52961,7 +52961,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.35890007, y: 0, z: -0.35899162, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -65004,6 +65004,7 @@ MonoBehaviour:
   - {fileID: 5529546809039867891, guid: 37849db5ac2c9c34e9c8479298f7b521, type: 3}
   - {fileID: 5156241915605114848, guid: 048cbc98047086a4ebada6acf6b82942, type: 3}
   - {fileID: 5529546809039867891, guid: 0a9188d181f1c5348855310874630ab6, type: 3}
+  - {fileID: 5529546809039867891, guid: 1f4b2ea25f75c57449633c369c822472, type: 3}
   - {fileID: 2605624827304256445, guid: 592a03bf44660eb459ba5d4e9ab7a9b3, type: 3}
   - {fileID: 647519542019892001, guid: 1e969b7de980d3e4296f5f8fcb89c99e, type: 3}
   - {fileID: 1653556322778236169, guid: 8deee83b2cb2f1a439a95d1295a1dd46, type: 3}
@@ -65033,7 +65034,7 @@ MonoBehaviour:
   GameplayTile: {fileID: 0}
   CurrentBiddingTile: {fileID: 0}
   NextBiddingTile: {fileID: 0}
-  ForceThisTileNext: {fileID: 2605624827304256445, guid: c1cc5c06e0cf6224d8b693e8f2ad9dd0, type: 3}
+  ForceThisTileNext: {fileID: 0}
   _forceThisRarity: 3
   _forceCurse: 0
   _forceGolden: 0
@@ -71371,7 +71372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4.49}
+  m_AnchoredPosition: {x: 0, y: -5.96}
   m_SizeDelta: {x: 9.34, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &8208729644968327970

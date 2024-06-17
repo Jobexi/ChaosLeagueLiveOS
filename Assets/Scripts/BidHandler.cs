@@ -282,7 +282,7 @@ public class BidHandler : MonoBehaviour
             if (secRemaining == 3)
             {
                 _countdownAudioSource.pitch = Random.Range(0.95f, 1.05f);
-                _countdownAudioSource.Play();
+                _countdownAudioSource.PlayOneShot(_countdownAudioSource.clip);
             }
 
             auctionTimeElapsed++;

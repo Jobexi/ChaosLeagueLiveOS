@@ -56,8 +56,8 @@ public class NPCHandler : MonoBehaviour
     public int NullCount1 = 0;
     public int NullCount2 = 0;
 
-    private int maxNPC = 139;
-    private int maxMode = 17;
+    private int maxNPC = 147;
+    private int maxMode = 23;
 
     void Awake()
     {
@@ -70,21 +70,19 @@ public class NPCHandler : MonoBehaviour
     }
 
     public void TestNPCs()
-    {      
-
+    {
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC)); 
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC)); 
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC)); 
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
-        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
-        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
-        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
-        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
-        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
+        InitializeNPCs(UnityEngine.Random.Range(0, maxNPC)); 
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
         InitializeNPCs(UnityEngine.Random.Range(0, maxNPC));
@@ -96,6 +94,30 @@ public class NPCHandler : MonoBehaviour
         yield return new WaitForSeconds(1);
         _gm.PauseForEffect = false;
         CheckCountdown();
+    }
+
+
+    public void ReignsCombo(int biscuits)
+    {
+        Debug.LogWarning($"{biscuits}");
+        
+        string[] keys = _gm.PlayerHandlers.Keys.ToArray();
+        foreach (string key in keys)
+        {
+            if (_gm.PlayerHandlers[key].IsKing())
+            {
+                MyTTS.inst.PlayerSpeech($"I've reached {biscuits} reigns!", _gm.PlayerHandlers[key].pp.VoiceID);
+                if (biscuits >= 500)
+                    StartCoroutine(_gm._twitchPubSub._rebellionController.CreateRoyalCelebration(_gm.PlayerHandlers[key], biscuits, ""));
+            }
+            else
+            {
+                if (biscuits >= 200)
+                    StartCoroutine(_gm._twitchPubSub._rebellionController.CreateRebellion(_gm.PlayerHandlers[key], biscuits, ""));
+            }
+
+            
+        }
     }
 
     public void CheckCountdown()
@@ -697,6 +719,38 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("EternalNull", "EternalNull", "bid", 1);
                 StartCoroutine(UpdateWaiter("EternalNull"));
                 break;
+            case 139:
+                _unitTesting.NPCReward("Sway", "Sway", "bid", 1);
+                StartCoroutine(UpdateWaiter("Sway"));
+                break;
+            case 140:
+                _unitTesting.NPCReward("Elevator", "Elevator", "bid", 1);
+                StartCoroutine(UpdateWaiter("Elevator"));
+                break;
+            case 141:
+                _unitTesting.NPCReward("Slaunchwise", "Slaunchwise", "bid", 1);
+                StartCoroutine(UpdateWaiter("Slaunchwise"));
+                break;
+            case 142:
+                _unitTesting.NPCReward("Flip", "Flip", "bid", 1);
+                StartCoroutine(UpdateWaiter("Flip"));
+                break;
+            case 143:
+                _unitTesting.NPCReward("Flop", "Flop", "bid", 1);
+                StartCoroutine(UpdateWaiter("Flop"));
+                break;
+            case 144:
+                _unitTesting.NPCReward("Florp", "Florp", "bid", 1);
+                StartCoroutine(UpdateWaiter("Florp"));
+                break;
+            case 145:
+                _unitTesting.NPCReward("SpaceTraining", "SpaceTraining", "bid", 1);
+                StartCoroutine(UpdateWaiter("SpaceTraining"));
+                break;
+            case 146:
+                _unitTesting.NPCReward("HyperspaceTraining", "HyperspaceTraining", "bid", 1);
+                StartCoroutine(UpdateWaiter("HyperspaceTraining"));
+                break;
         }
                 
     }
@@ -1254,69 +1308,94 @@ public class NPCHandler : MonoBehaviour
                 SetNPCMode(19, ID, "#2222FF");
                 break;
             case "MomentaryNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 1;
                 break;
             case "BriefNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 2;
                 break;
             case "ShortNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 3;
                 break;
             case "TemporaryNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 5;
                 break;
             case "PassingNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 7;
                 break;
             case "InterimNull":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 10;
                 break;
             case "Null":
-                SetNPCMode(16, ID, "#808080");
+                SetNPCMode(20, ID, "#808080");
                 NullCount1 += 17;
                 break;
             case "ExtendedNull":
-                SetNPCMode(17, ID, "#808080");
+                SetNPCMode(21, ID, "#808080");
                 NullCount1 += 3;
                 NullCount2 += 5;
                 break;
             case "ProlongedNull":
-                SetNPCMode(17, ID, "#808080");
+                SetNPCMode(21, ID, "#808080");
                 NullCount1 += 5;
                 NullCount2 += 7;
                 break;
             case "LastingNull":
-                SetNPCMode(17, ID, "#808080");
+                SetNPCMode(21, ID, "#808080");
                 NullCount1 += 7;
                 NullCount2 += 11;
                 break;
             case "PermanentNull":
-                SetNPCMode(17, ID, "#808080");
+                SetNPCMode(21, ID, "#808080");
                 NullCount1 += 11;
                 NullCount2 += 13;
                 break;
             case "EternalNull":
-                SetNPCMode(17, ID, "#808080");
+                SetNPCMode(21, ID, "#808080");
                 NullCount1 += 13;
                 NullCount2 += 17;
+                break;
+            case "Sway":
+                SetNPCMode(22, ID, "#FF00FF", 0, 1);
+                break;
+            case "Elevator":
+                SetNPCMode(22, ID, "#FF00FF", 0, 2);
+                break;
+            case "Slaunchwise":
+                SetNPCMode(22, ID, "#FF00FF", 0, 3);
+                break;
+            case "Flip":
+                SetNPCMode(22, ID, "#FF00FF", 0, 4);
+                break;
+            case "Flop":
+                SetNPCMode(22, ID, "#FF00FF", 0, 5);
+                break;
+            case "Florp":
+                SetNPCMode(22, ID, "#FF00FF", 0, 6);
+                break;
+            case "SpaceTraining":
+                SetNPCMode(22, ID, "#FF00FF", 0, 7);
+                break;
+            case "HyperspaceTraining":
+                SetNPCMode(22, ID, "#FF00FF", 0, 8);
                 break;
         }
     
     }
 
-    public void SetNPCMode(int mode, string key, string nameColorHex = "#FFFFFF", int state = 0)
+    public void SetNPCMode(int mode, string key, string nameColorHex = "#FFFFFF", int state = 0, int data1 = 0)
     {
         _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
         _gm.PlayerHandlers[key].pp.NameColorHex = nameColorHex;
         _gm.PlayerHandlers[key].pp.IsNPC = true;
         _gm.PlayerHandlers[key].pp.ModeNPC = mode;
         _gm.PlayerHandlers[key].pp.StateNPC = state;
+        _gm.PlayerHandlers[key].pp.Data1NPC = data1;
         _gm.PlayerHandlers[key].SetCustomizationsFromPP();
     }
 
@@ -1331,7 +1410,7 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
                         NPCTradeUp(_gm.PlayerHandlers[key]);
-                   
+
                     _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                     _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
                 }
@@ -1339,11 +1418,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Come and get me!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1381,12 +1465,17 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Fear Not. I have Rescued you all.");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1401,7 +1490,7 @@ public class NPCHandler : MonoBehaviour
                         }
                         else
                         {
-                            if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                             {
                                 _gm.PlayerHandlers[key].pp.StateNPC = 0;
                                 NPCAttack(_gm.PlayerHandlers[key]);
@@ -1446,11 +1535,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Preparing the Celebration!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1501,11 +1595,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's repeat some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1561,11 +1660,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's repeat some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1622,11 +1726,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Upgrade some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1681,11 +1790,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Upgrade some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1742,11 +1856,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Gild some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1801,11 +1920,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Alright! Let's Gild some Tiles!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1862,11 +1986,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Time for the Ruby Treatment.");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -1921,11 +2050,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Time for the Ruby Treatment.");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2008,11 +2142,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Arrr. These Tiles be Accurse-ed");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2067,11 +2206,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Arrr. These Tiles be Accurse-ed");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2128,11 +2272,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "We're on the trail!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2187,11 +2336,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "We're on the trail!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2248,11 +2402,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "Haha! Can't breach these defenses!");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2288,29 +2447,34 @@ public class NPCHandler : MonoBehaviour
                                 NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                     }
-                    if (_gm.PlayerHandlers[key].pp.ModeNPC == 19) //Water
+                }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 19) //Water
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC < 17)
                     {
-                        if (_gm.PlayerHandlers[key].pp.StateNPC < 17)
-                        {
-                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
-                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                            NPCTradeUp(_gm.PlayerHandlers[key]);
 
-                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
-                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "Activate Water", 1);
-                            _gm.PlayerHandlers[key].pp.StateNPC += 1;
-                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                        _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "Activate Water", 1);
+                        _gm.PlayerHandlers[key].pp.StateNPC += 1;
                     }
                 }
                 else if (_gm.PlayerHandlers[key].pp.ModeNPC == 20) //Single Null
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "...");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2365,11 +2529,16 @@ public class NPCHandler : MonoBehaviour
                 {
                     if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
                     {
-                        if (_gm.PlayerHandlers[key].pp.SessionScore > 0)
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
                         {
                             NPCAttack(_gm.PlayerHandlers[key]);
                             _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
                             _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCMessage(_gm.PlayerHandlers[key], "...");
                         }
                         else
                             _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
@@ -2422,6 +2591,58 @@ public class NPCHandler : MonoBehaviour
                         _gm.PlayerHandlers[key].pp.StateNPC = 2;
                     }
                 }
+                else if (_gm.PlayerHandlers[key].pp.ModeNPC == 22) //TileEffects
+                {
+                    if (_gm.PlayerHandlers[key].pp.StateNPC == 0)
+                    {
+                        
+                        if (_gm.PlayerHandlers[key].pp.SessionScore > 10000)
+                        {
+                            NPCAttack(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                        }
+                        else if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 1;
+                            NPCSetTileEffect(_gm.PlayerHandlers[key].pp.Data1NPC);
+                        }
+                        else
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 1)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.StateNPC = 2;
+                            NPCSetTileEffect(_gm.PlayerHandlers[key].pp.Data1NPC);
+                        }
+                        else
+                        {
+                            _unitTesting.NPCReward(_gm.PlayerHandlers[key].pp.TwitchID, _gm.PlayerHandlers[key].pp.TwitchUsername, "bid", 1);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 0;
+                        }
+                        _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                    }
+                    else if (_gm.PlayerHandlers[key].pp.StateNPC == 2)
+                    {
+                        if (_gm.PlayerHandlers[key].IsKing())
+                        {
+                            _gm.PlayerHandlers[key].pp.LastInteraction = DateTime.Now;
+                            NPCSetTileEffect(_gm.PlayerHandlers[key].pp.Data1NPC);
+                        }
+                        else
+                        {
+                            NPCMessage(_gm.PlayerHandlers[key], "Very Effective.");
+                            _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
+                            _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
+                            _gm.PlayerHandlers[key].pp.StateNPC = 3;
+                        }
+                    }
+                }
             }
         }
     }
@@ -2454,7 +2675,7 @@ public class NPCHandler : MonoBehaviour
         ph.SpeechBubble(msg);
         if (ph.IsKing())
         {
-            MyTTS.inst.PlayerSpeech(msg, Amazon.Polly.VoiceId.Joey);
+            MyTTS.inst.PlayerSpeech(msg, ph.pp.VoiceID);
         }
     }
 

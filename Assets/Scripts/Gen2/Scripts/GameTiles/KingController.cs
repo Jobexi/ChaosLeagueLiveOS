@@ -76,7 +76,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         }
         else
         {
-            MyTTS.inst.Announce($"I decree a new toll rate: {rate}");
+            MyTTS.inst.PlayerSpeech($"I decree a new toll rate: {rate}", currentKing.Ph.pp.VoiceID);
             currentKing.Ph.SpeechBubble($"I decree a new toll rate: {rate}");
         }
         TollRate = rate;
@@ -147,7 +147,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1;
-        _autoPredictions.NewKingSignal(newKingUsername, (int)_previousKingDuration);
+        _autoPredictions.NewKingSignal(newKingUsername, (int)_previousKingDuration);        
 
         MyTTS.inst.Announce($"Throne captured by {newKingUsername}");
         winnerNameText.SetText(newKingUsername);
@@ -184,6 +184,11 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
             _defaultDefenseV2.AddBonusDefense(halfOfPoints, pb.Ph);
 
         _liveViewCount.NewKingSignal();
+
+        if (pb.Ph.pp.ThroneCaptures % 100 == 0)
+        {
+            _gm._tileController._npcHandler.ReignsCombo(pb.Ph.pp.ThroneCaptures);
+        }
     }
 
     private IEnumerator NewKingBlockade()

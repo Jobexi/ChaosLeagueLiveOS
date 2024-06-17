@@ -125,10 +125,10 @@ public static class MyUtil
         { }
         else if (effect.HasFlag(PBEffect.Zero))
         {
-            if (_zoneMultiplier > 0)
+            if (_zoneMultiplier > 0 && value >= 0)
                 label = "\U0001F607"; //Angel if in zone
             else
-                label = "\U0000221E"; //Infinity if not in zone
+                label = "\U0000221E"; //Infinity if not in zone And Not a Cursed Tile.
         }
         else if (effect.HasFlag(PBEffect.Multiply))
             if (value < 0)

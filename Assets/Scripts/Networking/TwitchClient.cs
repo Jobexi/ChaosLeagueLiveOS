@@ -230,7 +230,7 @@ public class TwitchClient : MonoBehaviour
             ph.SpeechBubble(spriteInfusedMsg);
             if (ph.IsKing())
             {
-                MyTTS.inst.PlayerSpeech(rawEmotesRemoved, Amazon.Polly.VoiceId.Joey);
+                MyTTS.inst.PlayerSpeech(rawEmotesRemoved, ph.pp.VoiceID);
                 if (rawEmotesRemoved.ToLower().Contains("zobm"))
                     _autoPredictions.KingWordSignal();
             }
@@ -735,6 +735,46 @@ public class TwitchClient : MonoBehaviour
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Join the discord to chat with other players and share your thoughts on the game: https://discord.gg/A3bpgW9YfE");
             return;
+        }
+
+        else if (commandKey.StartsWith("!malevoice"))
+        {
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 5000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Choosing a default voice costs 5k Gold.");
+                return;
+            }
+
+            ph.pp.Gold -= 5000;
+            ph.pp.VoiceID = 0;
+        }
+
+        else if (commandKey.StartsWith("!femalevoice"))
+        {
+            if (ph.pp.Gold <= 0)
+            {
+                Debug.Log("You have no gold to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+                return;
+            }
+
+            if (ph.pp.Gold < 5000)
+            {
+                Debug.Log("You don't have enough gold.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Choosing a default voice costs 5k Gold.");
+                return;
+            }
+
+            ph.pp.Gold -= 5000;
+            ph.pp.VoiceID = 1;
         }
 
         else if (commandKey.StartsWith("!tilerepeat") || commandKey.StartsWith("!repeattile"))
@@ -2065,6 +2105,13 @@ public class TwitchClient : MonoBehaviour
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no Hearty Tomatoes. Tomato damage will be capped to 100 points.");
                 desiredTomatoAmount = 100;
                 hastomato = false;
+            }
+
+            if (desiredTomatoAmount > 5000000000000)
+            {
+                Debug.Log("Can't throw tomatoes larger than 5T.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The maximum tomato size is 5T. Launch!");
+                desiredTomatoAmount = 5000000000000;
             }
         }
 

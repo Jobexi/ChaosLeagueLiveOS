@@ -29,7 +29,7 @@ public class TwitchPubSub : MonoBehaviour
     [SerializeField] private TwitchClient _twitchClient;
     [SerializeField] private BitTrigger _lavaBitTrigger;
     [SerializeField] private BitTrigger _waterBitTrigger;
-    [SerializeField] private RebellionController _rebellionController;
+    [SerializeField] public RebellionController _rebellionController;
 
     private PubSub _pubSub;
 

@@ -92,7 +92,7 @@ public class MultiplierZone : MonoBehaviour
         float t = Mathf.Clamp(Multiplier, 1, _dollarColorMap.y) / _dollarColorMap.y;
 
         var main = _particleHype.main;
-        main.startColor = _dollarToColor.Evaluate(t);
+       // main.startColor = _dollarToColor.Evaluate(t);
 
         _bodyMeshRenderer.material.color = MyUtil.SetColorSaveAlpha(_dollarToColor.Evaluate(t), _bodyMeshRenderer.material.color);
 
@@ -102,7 +102,7 @@ public class MultiplierZone : MonoBehaviour
         newCurve.mode = ParticleSystemCurveMode.TwoConstants;
         main.startLifetime = newCurve;
 
-        _labelText.color = _dollarToTextColor.Evaluate(t);
+        //_labelText.color = _dollarToTextColor.Evaluate(t);
         _particleHype.Play();
     }
 

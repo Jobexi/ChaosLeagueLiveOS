@@ -351,7 +351,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             SendToKing(pb, (long)value / 2);
             pb.Ph.SubtractPoints((long)value, canKill: false, createTextPopup: true, textPopupDirection);
         }
-        if (effect.HasFlag(PBEffect.Zero) && GetZoneMultiplier() <= 0)
+        if (effect.HasFlag(PBEffect.Zero) && (GetZoneMultiplier() <= 0 && value <= 0))
         {
             SendToKing(pb, pb.Ph.pp.SessionScore / 2);
             pb.Ph.ZeroPoints(kill: false, true, textPopupDirection);

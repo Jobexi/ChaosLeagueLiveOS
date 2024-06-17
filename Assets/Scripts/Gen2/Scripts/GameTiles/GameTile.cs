@@ -283,7 +283,7 @@ public class GameTile : MonoBehaviour
         foreach (var resetable in _resetablesRoot.GetComponentsInChildren<IResetable>())
             resetable.MyReset();
 
-        int Mysteries = UnityEngine.Random.Range(1, 10);
+        int Mysteries = UnityEngine.Random.Range(1, 15);
 
         foreach (var effector in Effectors)
         {
@@ -858,49 +858,49 @@ public class GameTile : MonoBehaviour
         switch (Mystery)
         {
             case 0:
-                MyTTS.inst.PlayerSpeech("Shop Tile", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Shop Tile", 2);
                 break;
             case 1:
-                MyTTS.inst.PlayerSpeech("Null Tile", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Null Tile", 2);
                 break;
             case 2:
-                MyTTS.inst.PlayerSpeech("Cursed Tile", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Cursed Tile", 2);
                 break;
             case 3:
-                MyTTS.inst.PlayerSpeech("10x Multiplier", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("10x Multiplier", 2);
                 break;
             case 4:
-                MyTTS.inst.PlayerSpeech("50x Multiplier", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("50x Multiplier", 2);
                 break;
             case 5:
-                MyTTS.inst.PlayerSpeech("100x Multiplier", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("100x Multiplier", 2);
                 break;
             case 6:
-                MyTTS.inst.PlayerSpeech("1000x Multiplier", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("1000x Multiplier", 2);
                 break;
             case 7:
-                MyTTS.inst.PlayerSpeech("Sway", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Sway", 2);
                 break;
             case 8:
-                MyTTS.inst.PlayerSpeech("Elevator", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Elevator", 2);
                 break;
             case 9:
-                MyTTS.inst.PlayerSpeech("Slaunchwise", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Slaunchwise", 2);
                 break;
             case 10:
-                MyTTS.inst.PlayerSpeech("Flip", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Flip", 2);
                 break;
             case 11:
-                MyTTS.inst.PlayerSpeech("Flop", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Flop", 2);
                 break;
             case 12:
-                MyTTS.inst.PlayerSpeech("Florp", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Florp", 2);
                 break;
             case 13:
-                MyTTS.inst.PlayerSpeech("Space Training", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Space Training", 2);
                 break;
             case 14:
-                MyTTS.inst.PlayerSpeech("Hyperspace Training", Amazon.Polly.VoiceId.Emma);
+                MyTTS.inst.PlayerSpeech("Hyperspace Training", 2);
                 break;
 
         }
