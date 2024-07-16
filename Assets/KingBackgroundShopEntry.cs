@@ -9,9 +9,9 @@ public class KingBackgroundShopEntry : ShopEntry
 
     private List<Color> colors = new List<Color>();
 
-    private int TotalBGOne = 41;
-    private int TotalBGTwo = 84;
-    private int TotalBGThree = 84;
+    private int TotalBGOne = 48;
+    private int TotalBGTwo = 98;
+    private int TotalBGThree = 98;
     private int AnimationMode = 0;
 
     bool PlusUp = true;

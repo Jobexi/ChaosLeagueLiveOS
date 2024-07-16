@@ -2434,6 +2434,34 @@ PrefabInstance:
       propertyPath: _bgOptionsPlus.Array.data[6]
       value: 
       objectReference: {fileID: 2100000, guid: a35eb7299f3f7814390404836ff6d955, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cb160a70e9ee4ea4b8283fc3b62e8ca0, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a749a8cb38f5a0f46a08d560a2aa4b31, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c777f6e00fc13140aa4d06ae77373d9, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92aaa42e0168d7d4e8b05837bba3699e, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: f186f69c3e2909247afb7b8f2c511544, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: a78a6aaed45710943a5ed4fdea9ec6bb, type: 2}
+    - target: {fileID: 7650660916348049875, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
+      propertyPath: _bgOptionsSuper.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8ee95b9c5f470345aa0a4662df17814, type: 2}
     - target: {fileID: 8530902368550358140, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.68

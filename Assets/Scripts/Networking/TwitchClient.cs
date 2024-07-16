@@ -150,6 +150,7 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isVIP?");
             isVIP = twitchUsername.ToLower() == "cookingsumep";
+            VIP4 = true;
         }
         if (!isVIP)
         {
@@ -169,7 +170,12 @@ public class TwitchClient : MonoBehaviour
         if (!isVIP)
         {
             Debug.Log("isVIP?");
-            isVIP = twitchUsername.ToLower() == "altkeyher3";
+            isVIP = twitchUsername.ToLower() == "zap4213";
+        }
+        if (!isVIP)
+        {
+            Debug.Log("isVIP?");
+            isVIP = twitchUsername.ToLower() == "megamarcus92";
         }
         string sanitizedMsg = rawMsg.Replace("<", "").Replace(">", "");
 
@@ -461,7 +467,7 @@ public class TwitchClient : MonoBehaviour
                 alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
                 alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
 
-                colorKeys[4].color = Color.HSVToRGB(0f, 0f, 25.1f); //1
+                colorKeys[4].color = Color.HSVToRGB(0f, 0f, 0.251f); //1
                 colorKeys[3].color = Color.HSVToRGB(0f, 1f, 1f); //2
                 colorKeys[2].color = Color.HSVToRGB(0f, 1f, 1f); //2
                 colorKeys[1].color = Color.HSVToRGB(0.083f, 1f, 1f); //3
@@ -479,6 +485,32 @@ public class TwitchClient : MonoBehaviour
                 colorKeys[2].color = Color.HSVToRGB(0.592f, 1f, 1f); //3
                 colorKeys[3].color = Color.HSVToRGB(0f, 0f, 0.6196f); //4
                 colorKeys[4].color = Color.HSVToRGB(0f, 0f, 1f); //5
+                break;
+
+            case 8: //Zap4213
+                    // Create alpha keys
+
+                alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+                alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+                colorKeys[0].color = Color.HSVToRGB(0f, 0.9725f, 1f); //1
+                colorKeys[1].color = Color.HSVToRGB(0.056f, 0.9725f, 1f); //2
+                colorKeys[2].color = Color.HSVToRGB(0.083f, 0.9725f, 1f); //2
+                colorKeys[3].color = Color.HSVToRGB(0.120f, 0.9725f, 1f); //3
+                colorKeys[4].color = Color.HSVToRGB(0.163f, 0.9725f, 1f); //3
+                break;
+
+            case 9: //megamarcus92
+                    // Create alpha keys
+
+                alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+                alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+                colorKeys[0].color = Color.HSVToRGB(0.011f, 1f, 0.9608f); //1
+                colorKeys[1].color = Color.HSVToRGB(0.011f, 91.36f, 0.8627f); //2
+                colorKeys[2].color = Color.HSVToRGB(0.169f, 1f, 1f); //3
+                colorKeys[3].color = Color.HSVToRGB(0.786f, 1f, 1f); //4
+                colorKeys[4].color = Color.HSVToRGB(0.817f, 1f, 1f); //5
                 break;
 
         }
@@ -551,6 +583,7 @@ public class TwitchClient : MonoBehaviour
         {
             VIPTrail(ph, 1);
             VIPTextbox(ph, 1);
+            VIPCrownA(ph, 1);
         }
 
         if (commandKey.StartsWith("!thisismytrailtherearemanylikeitbutthisoneisroachs"))
@@ -561,6 +594,11 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!roachbubble"))
         {
             VIPTextbox(ph, 1);
+        }
+
+        if (commandKey.StartsWith("!roachcrown"))
+        {
+            VIPCrownA(ph, 1);
         }
 
         if (commandKey.StartsWith("!vipcooking"))
@@ -627,6 +665,26 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!andretrail"))
         {
             VIPTrail(ph, 7);
+        }
+
+        if (commandKey.StartsWith("!vipzap"))
+        {
+            VIPTrail(ph, 8);
+        }
+
+        if (commandKey.StartsWith("!zaptrail"))
+        {
+            VIPTrail(ph, 8);
+        }
+
+        if (commandKey.StartsWith("!vipmm"))
+        {
+            VIPTrail(ph, 9);
+        }
+
+        if (commandKey.StartsWith("!mmtrail"))
+        {
+            VIPTrail(ph, 9);
         }
 
         if (commandKey.StartsWith("!savevipconfig"))
@@ -700,6 +758,21 @@ public class TwitchClient : MonoBehaviour
         ph.SetCustomizationsFromPP();
     }
 
+    private void VIPCrownA(PlayerHandler ph, int idcode)
+    {
+        string cheese = "";
+
+        switch (idcode)
+        {
+            case 1:
+                cheese = "[{ \"R\":0.33600412,\"G\":0.202807604,\"B\":0.1444469},{ \"R\":1.0,\"G\":0.296213925,\"B\":0.0},{ \"R\":1.0,\"G\":0.8919319,\"B\":0.0},{ \"R\":0.13600412,\"G\":0.102807604,\"B\":0.2444469},{ \"R\":1.0,\"G\":0.296213925,\"B\":0.0},{ \"R\":1.0,\"G\":0.8919319,\"B\":0.0},{ \"R\":1.0,\"G\":1.0,\"B\":1.0}]";
+                break;
+        }
+
+        ph.pp.CrownJSON = cheese;
+        //_gm._kingController._crown.UpdateCustomizations(CrownSerializer.GetColorListFromJSON(cheese));
+    }
+
     private void ProcessGlobalCommands(string messageId, PlayerHandler ph, string msg, int bits)
     {
         string commandKey = msg.ToLower();
@@ -721,7 +794,7 @@ public class TwitchClient : MonoBehaviour
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"Try 'Every State's Official CLL Song' Playlist! Curated by Luke Holmes. https://www.youtube.com/playlist?list=PLD43lBoK7pXXMqNTx9IkQkqWMEEIKr0lP");
         }
 
-        else if (commandKey.StartsWith("!play"))
+        else if (commandKey.StartsWith("!play") || commandKey.StartsWith("!bid"))
         {
             ReplyToPlayer(messageId, ph.pp.TwitchUsername, $"This game uses tickets (channel points) to play. Please redeem a 'Bid Spawn Ticket' reward to join in the fun!");
             return;
@@ -909,10 +982,10 @@ public class TwitchClient : MonoBehaviour
                     return;
                 }
 
-                if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
+                if (_tileController.GameplayTile.GetRarity() == RarityType.SuperCosmic)
                 {
-                    Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    Debug.Log("This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
                     return;
                 }
 
@@ -941,10 +1014,10 @@ public class TwitchClient : MonoBehaviour
                     return;
                 }
 
-                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
+                if (_tileController.GameplayTile.GetRarity() == RarityType.SuperCosmic)
                 {
-                    Debug.Log("This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already CosmicPlus and cannot be upgraded. Please use !repeatTile to see it come around again.");
+                    Debug.Log("This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
                     return;
                 }
 
@@ -1574,7 +1647,7 @@ public class TwitchClient : MonoBehaviour
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You already own all non-VIP Loadouts! Consider qualifying for our VIP program to unlock additional ConfigSlots. :)");
                     break;
             }
-            
+
         }
 
         /*        else if (commandKey.StartsWith("!givepoints"))
@@ -2267,12 +2340,12 @@ public class TwitchClient : MonoBehaviour
         }
         else if (type == "Emerald")
         {
-            currencyPrice = 1000000000000;
+            currencyPrice = 1000000;
             Debug.Log("Emerald");
         }
         else if (type == "Diamond")
         {
-            currencyPrice = 1000000000000000;
+            currencyPrice = 1000000;
             Debug.Log("Diamond");
         }
         else if (type == "Gold")
@@ -2308,7 +2381,47 @@ public class TwitchClient : MonoBehaviour
             ph.pp.Rubies -= currencyPrice * desiredCurrencyAmount;
 
         }
-        else
+        else if (type == "Diamond")
+        {
+
+            if (ph.pp.Emeralds <= 0)
+            {
+                Debug.Log("You have no emeralds to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no emeralds to spend.");
+                yield break;
+            }
+
+            if (ph.pp.Emeralds < currencyPrice * desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough emeralds.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough emeralds. Each Diamond costs 1M Emeralds");
+                yield break;
+            }
+
+            ph.pp.Emeralds -= currencyPrice * desiredCurrencyAmount;
+
+        }
+        else if (type == "Emerald")
+        {
+
+            if (ph.pp.Sapphires <= 0)
+            {
+                Debug.Log("You have no sapphires to spend.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no sapphires to spend.");
+                yield break;
+            }
+
+            if (ph.pp.Sapphires < currencyPrice * desiredCurrencyAmount)
+            {
+                Debug.Log("You don't have enough sapphires.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough sapphires. Each Emerald costs 1M Sapphires");
+                yield break;
+            }
+
+            ph.pp.Sapphires -= currencyPrice * desiredCurrencyAmount;
+
+        }
+        else if (type == "Sapphire")
         {
 
             if (ph.pp.SessionScore <= 0)
@@ -2321,7 +2434,7 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.SessionScore < currencyPrice * desiredCurrencyAmount)
             {
                 Debug.Log("You don't have enough points.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points, Each Emerald costs 1t Points, and each Diamond costs 1q Points.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points");
                 yield break;
             }
 
@@ -2440,6 +2553,7 @@ public class TwitchClient : MonoBehaviour
         ph.pp.CrownTier = int.Parse(cheese[11]);
         ph.pp.KingBG = int.Parse(cheese[12]);
         ph.pp.KingBGTier = int.Parse(cheese[13]);
+        ph.pp.VoiceID = int.Parse(cheese[14]);
 
         if (ph.IsKing())
             ph.ReloadKingCosmetics(71717);

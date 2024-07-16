@@ -14,6 +14,9 @@ public class Crown : MonoBehaviour
     [SerializeField] private MeshRenderer _fourthMeshRenderer; 
     [SerializeField] private MeshRenderer _fifthMeshRenderer; 
     [SerializeField] private MeshRenderer _sixthMeshRenderer;
+    [SerializeField] private MeshRenderer _VIP1;
+    [SerializeField] private MeshRenderer _VIP2;
+    [SerializeField] private MeshRenderer _VIP3;
     [SerializeField] public List<Material> EnhancedMaterials;
 
     [SerializeField] private Color _defaultCrownBase;
@@ -26,7 +29,7 @@ public class Crown : MonoBehaviour
     private MaterialPropertyBlock _trimPropBlock;
     private MaterialPropertyBlock _gemsPropBlock;
 
-    private int TotalTextures = 127;
+    private int TotalTextures = 133;
 
     public int Texture1 = 0;
     public int Texture2 = 0;
@@ -77,6 +80,9 @@ public class Crown : MonoBehaviour
         _fourthMeshRenderer.gameObject.SetActive(false);
         _fifthMeshRenderer.gameObject.SetActive(false);
         _sixthMeshRenderer.gameObject.SetActive(false);
+        _VIP1.gameObject.SetActive(false);
+        _VIP2.gameObject.SetActive(false);
+        _VIP3.gameObject.SetActive(false);
 
         //Default
         if (colors.Count <= 0)
@@ -131,7 +137,7 @@ public class Crown : MonoBehaviour
             return;
         }
         //If 6 Colors Set
-        else if (colors.Count >= 6)
+        else if (colors.Count == 6)
         {
             SetBaseColor(colors[0], 25);
             SetTrimColor(colors[1], 25);
@@ -140,6 +146,20 @@ public class Crown : MonoBehaviour
             _fourthMeshRenderer.gameObject.SetActive(true);
             _fifthMeshRenderer.gameObject.SetActive(true);
             _sixthMeshRenderer.gameObject.SetActive(true);
+            return;
+        }
+        else if (colors.Count >= 7)
+        {
+            SetBaseColor(colors[0], 25);
+            SetTrimColor(colors[1], 25);
+            SetGemsColor(colors[2], 25);
+            SetfourthColor(colors[3], 25);
+            SetfifthColor(colors[4], 25);
+            SetsixthColor(colors[5], 25);
+            _gemsMeshRenderer.gameObject.SetActive(true);
+            _VIP1.gameObject.SetActive(true);
+            _VIP2.gameObject.SetActive(true);
+            _VIP3.gameObject.SetActive(true);
             return;
         }
     }
@@ -169,6 +189,33 @@ public class Crown : MonoBehaviour
         _gemsPropBlock.SetColor("_EmissionColor", color * emissionIntensity);
 
         _gemsMeshRenderer.SetPropertyBlock(_gemsPropBlock);
+    }
+
+    private void SetfourthColor(Color color, float emissionIntensity)
+    {
+        _gemsPropBlock.SetColor("_BaseColor", color);
+
+        _gemsPropBlock.SetColor("_EmissionColor", color * emissionIntensity);
+
+        _VIP1.SetPropertyBlock(_gemsPropBlock);
+    }
+
+    private void SetfifthColor(Color color, float emissionIntensity)
+    {
+        _gemsPropBlock.SetColor("_BaseColor", color);
+
+        _gemsPropBlock.SetColor("_EmissionColor", color * emissionIntensity);
+
+        _VIP2.SetPropertyBlock(_gemsPropBlock);
+    }
+
+    private void SetsixthColor(Color color, float emissionIntensity)
+    {
+        _gemsPropBlock.SetColor("_BaseColor", color);
+
+        _gemsPropBlock.SetColor("_EmissionColor", color * emissionIntensity);
+
+        _VIP3.SetPropertyBlock(_gemsPropBlock);
     }
 
     public void EnhancedCustomizations(int tier, bool ovrd = false, int OVtxtr1 = 0)

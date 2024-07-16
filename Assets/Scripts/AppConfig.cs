@@ -83,6 +83,14 @@ public class AppConfig
     public static int MythicPlusMult;
     public static int EtherealPlusMult;
     public static int CosmicPlusMult;
+    public static int SuperCommonMult;
+    public static int SuperRareMult;
+    public static int SuperEpicMult;
+    public static int SuperLegendaryMult;
+    public static int SuperMythicMult;
+    public static int SuperEtherealMult;
+    public static int SuperCosmicMult;
+
     public static int CommonPlusGoldMult;
     public static int RarePlusGoldMult;
     public static int EpicPlusGoldMult;
@@ -90,6 +98,14 @@ public class AppConfig
     public static int MythicPlusGoldMult;
     public static int EtherealPlusGoldMult;
     public static int CosmicPlusGoldMult;
+    public static int SuperCommonGoldMult;
+    public static int SuperRareGoldMult;
+    public static int SuperEpicGoldMult;
+    public static int SuperLegendaryGoldMult;
+    public static int SuperMythicGoldMult;
+    public static int SuperEtherealGoldMult;
+    public static int SuperCosmicGoldMult;
+
     public static bool Tuesday = false;    
     public static bool Wednesday = false;    
     public static bool Thursday = false;    
@@ -134,8 +150,14 @@ public class AppConfig
             MythicPlusMult = 63;
             EtherealPlusMult = 125;
             CosmicPlusMult = 313;
+            SuperCommonMult = 7;
+            SuperRareMult = 13;
+            SuperEpicMult = 32;
+            SuperLegendaryMult = 63;
+            SuperMythicMult = 125;
+            SuperEtherealMult = 313;
+            SuperCosmicMult = 375;
 
-            CommonPlusGoldMult = 3;
             CommonPlusGoldMult = 3;
             RarePlusGoldMult = 5;
             EpicPlusGoldMult = 10;
@@ -143,6 +165,13 @@ public class AppConfig
             MythicPlusGoldMult = 50;
             EtherealPlusGoldMult = 100;
             CosmicPlusGoldMult = 250;
+            SuperCommonGoldMult = 5;
+            SuperRareGoldMult = 10;
+            SuperEpicGoldMult = 25;
+            SuperLegendaryGoldMult = 50;
+            SuperMythicGoldMult = 100;
+            SuperEtherealGoldMult = 250;
+            SuperCosmicGoldMult = 300;
         }
         else
         {
@@ -160,6 +189,13 @@ public class AppConfig
             MythicPlusMult = 50;
             EtherealPlusMult = 100;
             CosmicPlusMult = 250;
+            SuperCommonMult = 5;
+            SuperRareMult = 10;
+            SuperEpicMult = 25;
+            SuperLegendaryMult = 50;
+            SuperMythicMult = 100;
+            SuperEtherealMult = 250;
+            SuperCosmicMult = 300;
 
             CommonPlusGoldMult = 2;
             RarePlusGoldMult = 3;
@@ -168,6 +204,13 @@ public class AppConfig
             MythicPlusGoldMult = 32;
             EtherealPlusGoldMult = 63;
             CosmicPlusGoldMult = 125;
+            SuperCommonGoldMult = 3;
+            SuperRareGoldMult = 7;
+            SuperEpicGoldMult = 13;
+            SuperLegendaryGoldMult = 32;
+            SuperMythicGoldMult = 63;
+            SuperEtherealGoldMult = 125;
+            SuperCosmicGoldMult = 313;
         }
     }
 
@@ -201,8 +244,22 @@ public class AppConfig
             return MythicPlusMult;
         else if (rarity == RarityType.EtherealPlus)
             return EtherealPlusMult;
-        else
+        else if (rarity == RarityType.CosmicPlus)
             return CosmicPlusMult;
+        else if (rarity == RarityType.SuperCommon)
+            return SuperCommonMult;
+        else if (rarity == RarityType.SuperRare)
+            return SuperRareMult;
+        else if (rarity == RarityType.SuperEpic)
+            return SuperEpicMult;
+        else if (rarity == RarityType.SuperLegendary)
+            return SuperLegendaryMult;
+        else if (rarity == RarityType.SuperMythic)
+            return SuperMythicMult;
+        else if (rarity == RarityType.SuperEthereal)
+            return SuperEtherealMult;
+        else
+            return SuperCosmicMult;
 
     }
 
@@ -236,8 +293,22 @@ public class AppConfig
             return MythicPlusGoldMult;
         else if (rarity == RarityType.EtherealPlus)
             return EtherealPlusGoldMult;
-        else
+        else if (rarity == RarityType.CosmicPlus)
             return CosmicPlusGoldMult;
+        else if (rarity == RarityType.SuperCommon)
+            return SuperCommonGoldMult;
+        else if (rarity == RarityType.SuperRare)
+            return SuperRareGoldMult;
+        else if (rarity == RarityType.SuperEpic)
+            return SuperEpicGoldMult;
+        else if (rarity == RarityType.SuperLegendary)
+            return SuperLegendaryGoldMult;
+        else if (rarity == RarityType.SuperMythic)
+            return SuperMythicGoldMult;
+        else if (rarity == RarityType.SuperEthereal)
+            return SuperEtherealGoldMult;
+        else
+            return SuperCosmicGoldMult;
 
     }
 

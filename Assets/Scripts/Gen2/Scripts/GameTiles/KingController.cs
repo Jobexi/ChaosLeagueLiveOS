@@ -131,19 +131,28 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         {
             case 1:
                 BGMaterials[0] = T1Materials[BG];
+                _KingTile.RarityType = RarityType.Common;
+                _KingTile.HasBackground = false;
                 break;
             case 2:
                 BGMaterials[0] = T2Materials[BG];
+                _KingTile.RarityType = RarityType.Common;
+                _KingTile.HasBackground = false;
                 break;
             case 3:
                 BGMaterials[0] = T3Materials[BG];
+                _KingTile.RarityType = RarityType.CommonPlus;
+                _KingTile.HasBackground = true;
                 break;
             default:
                 BGMaterials[0] = _baseMaterial;
+                _KingTile.RarityType = RarityType.Common;
+                _KingTile.HasBackground = false;
                 break;
         }
 
         _KingTile._background.materials = BGMaterials;
+        
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1;

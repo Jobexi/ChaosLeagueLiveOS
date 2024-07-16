@@ -6040,6 +6040,14 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
   - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
   - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  _bgOptionsSuper:
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
+  - {fileID: 2100000, guid: 4c9e8df7449443845b4498aa3bd0d7e6, type: 2}
   _tileDurationS: 60
   MinAuctionSlots: 2
   MaxAuctionSlots: 5
@@ -6054,6 +6062,7 @@ MonoBehaviour:
   - {fileID: 1319270291859773841}
   - {fileID: 3360055215466819110}
   - {fileID: 7091515534910087112}
+  TileEffect: 0
   ConveyorBelt: []
   _backgroundStartColor: {r: 0, g: 0, b: 0, a: 0}
   _backgroundEndColor: {r: 0, g: 0, b: 0, a: 0}

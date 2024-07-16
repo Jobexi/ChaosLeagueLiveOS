@@ -56,7 +56,7 @@ public class NPCHandler : MonoBehaviour
     public int NullCount1 = 0;
     public int NullCount2 = 0;
 
-    private int maxNPC = 147;
+    private int maxNPC = 154;
     private int maxMode = 23;
 
     void Awake()
@@ -751,6 +751,34 @@ public class NPCHandler : MonoBehaviour
                 _unitTesting.NPCReward("HyperspaceTraining", "HyperspaceTraining", "bid", 1);
                 StartCoroutine(UpdateWaiter("HyperspaceTraining"));
                 break;
+            case 147:
+                _unitTesting.NPCReward("Wide", "Wide", "bid", 1);
+                StartCoroutine(UpdateWaiter("Wide"));
+                break;
+            case 148:
+                _unitTesting.NPCReward("Tall", "Tall", "bid", 1);
+                StartCoroutine(UpdateWaiter("Tall"));
+                break;
+            case 149:
+                _unitTesting.NPCReward("Embiggen", "Embiggen", "bid", 1);
+                StartCoroutine(UpdateWaiter("Embiggen"));
+                break;
+            case 150:
+                _unitTesting.NPCReward("Squishy", "Squishy", "bid", 1);
+                StartCoroutine(UpdateWaiter("Squishy"));
+                break;
+            case 151:
+                _unitTesting.NPCReward("SquishySlaunch", "SquishySlaunch", "bid", 1);
+                StartCoroutine(UpdateWaiter("SquishySlaunch"));
+                break;
+            case 152:
+                _unitTesting.NPCReward("SquishySpaceTraining", "SquishySpaceTraining", "bid", 1);
+                StartCoroutine(UpdateWaiter("SquishySpaceTraining"));
+                break;
+            case 153:
+                _unitTesting.NPCReward("HyperSquishTraining", "HyperSquishTraining", "bid", 1);
+                StartCoroutine(UpdateWaiter("HyperSquishTraining"));
+                break;
         }
                 
     }
@@ -1383,6 +1411,27 @@ public class NPCHandler : MonoBehaviour
                 break;
             case "HyperspaceTraining":
                 SetNPCMode(22, ID, "#FF00FF", 0, 8);
+                break;
+            case "Wide":
+                SetNPCMode(22, ID, "#FF00FF", 0, 9);
+                break;
+            case "Tall":
+                SetNPCMode(22, ID, "#FF00FF", 0, 10);
+                break;
+            case "Embiggen":
+                SetNPCMode(22, ID, "#FF00FF", 0, 11);
+                break;
+            case "Squishy":
+                SetNPCMode(22, ID, "#FF00FF", 0, 12);
+                break;
+            case "SquishySlaunch":
+                SetNPCMode(22, ID, "#FF00FF", 0, 13);
+                break;
+            case "SquishySpaceTraining":
+                SetNPCMode(22, ID, "#FF00FF", 0, 14);
+                break;
+            case "HyperSquishTraining":
+                SetNPCMode(22, ID, "#FF00FF", 0, 15);
                 break;
         }
     
@@ -2125,6 +2174,8 @@ public class NPCHandler : MonoBehaviour
 
                             NPCToll(_gm.PlayerHandlers[key].pp.StateNPC);
                             _gm.PlayerHandlers[key].pp.StateNPC = 71717;
+                            if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
+                                NPCTradeUp(_gm.PlayerHandlers[key]);
                         }
                         else
                         {
@@ -2742,7 +2793,7 @@ public class NPCHandler : MonoBehaviour
             }
             if (_tileController.CurrentBiddingTile.IsShop == true)
                 return;
-            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.CosmicPlus)
+            if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.SuperCosmic)
                 return;
         }
         else
@@ -2754,7 +2805,7 @@ public class NPCHandler : MonoBehaviour
             }
             if (_tileController.GameplayTile.IsShop == true)
                 return;
-            if (_tileController.GameplayTile.GetRarity() == RarityType.CosmicPlus)
+            if (_tileController.GameplayTile.GetRarity() == RarityType.SuperCosmic)
                 return;
         }
 
@@ -2775,14 +2826,14 @@ public class NPCHandler : MonoBehaviour
             if (_tileController.CurrentBiddingTile.IsNull == true)
                 return;
             else
-                _tileController.CurrentBiddingTile._indicator1.SetText("⚠️");
+                _tileController.CurrentBiddingTile._indicator1.SetText("⚠");
         }
         else
         {
             if (_tileController.GameplayTile.IsNull == true)
                 return;
             else
-                _tileController.GameplayTile._indicator1.SetText("⚠️");
+                _tileController.GameplayTile._indicator1.SetText("⚠");
         }
 
         _tileController._forceCurse = false;
@@ -2963,6 +3014,20 @@ public class NPCHandler : MonoBehaviour
             case RarityType.MythicPlus:
                 goto case RarityType.CosmicPlus;
             case RarityType.EtherealPlus:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperCommon:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperRare:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperEpic:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperLegendary:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperMythic:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperEthereal:
+                goto case RarityType.CosmicPlus;
+            case RarityType.SuperCosmic:
                 goto case RarityType.CosmicPlus;
             case RarityType.CosmicPlus:
                 _KingTile.HasBackground = true;

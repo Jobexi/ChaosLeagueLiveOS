@@ -15,7 +15,12 @@ public enum PBEffect
     Divide = 8,
     Subtract = 16,
     Zero = 32,
-    Implode = 64
+    Implode = 64,
+    Sapphire = 128,
+    Emerald = 256,
+    Diamond = 512,
+    Ruby = 1024,
+    Gold = 2048
 }
 
 public class PBEffector : MonoBehaviour, TravelingIndicatorIO
@@ -222,6 +227,8 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             {
                 if (GetZoneMultiplyAppliedValue() < 0)
                     meshColor = Color.red;
+                else if (GetZoneMultiplyAppliedValue() < 1)
+                    meshColor = MyColors.Orange;
                 else
                 {
                     meshColor = Color.cyan;
@@ -351,7 +358,7 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
             SendToKing(pb, (long)value / 2);
             pb.Ph.SubtractPoints((long)value, canKill: false, createTextPopup: true, textPopupDirection);
         }
-        if (effect.HasFlag(PBEffect.Zero) && (GetZoneMultiplier() <= 0 && value <= 0))
+        if (effect.HasFlag(PBEffect.Zero) && (GetZoneMultiplier() <= 0 || value <= 0))
         {
             SendToKing(pb, pb.Ph.pp.SessionScore / 2);
             pb.Ph.ZeroPoints(kill: false, true, textPopupDirection);
@@ -366,6 +373,27 @@ public class PBEffector : MonoBehaviour, TravelingIndicatorIO
         }
         else if (effect.HasFlag(PBEffect.Implode))
             pb.ExplodeBall(true);
+        if (effect.HasFlag(PBEffect.Sapphire))
+        {
+            pb.Ph.AddGems((long)value, true, Vector3.up, "Sapphire");
+        }
+        if (effect.HasFlag(PBEffect.Emerald))
+        {
+            pb.Ph.AddGems((long)value, true, Vector3.up, "Emerald");
+        }
+        if (effect.HasFlag(PBEffect.Diamond))
+        {
+            pb.Ph.AddGems((long)value, true, Vector3.up, "Diamond");
+        }
+        if (effect.HasFlag(PBEffect.Ruby))
+        {
+            pb.Ph.AddGems((long)value, true, Vector3.up, "Ruby");
+        }
+        if (effect.HasFlag(PBEffect.Gold))
+        {
+            pb.Ph.AddGems((long)value, true, Vector3.up, "Gold");
+        }
+
     }
 
     private void SendToKing(PlayerBall pb, long amount)

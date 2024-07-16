@@ -174,6 +174,10 @@ MonoBehaviour:
   _buyCommandText: {fileID: 1910157311939906751}
   _goldCostText: {fileID: 6574306470166377753}
   GoldCost: 1000000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 577733668316870040}
   BuyCommands:
   - '!buy3'
@@ -208,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 746487210997908662, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 746487210997908662, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -525,6 +529,10 @@ MonoBehaviour:
   _buyCommandText: {fileID: 2346794879777419374}
   _goldCostText: {fileID: 7003062859165600200}
   GoldCost: 100000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 3609571071165122889}
   BuyCommands:
   - '!buy1'
@@ -624,6 +632,10 @@ MonoBehaviour:
   _buyCommandText: {fileID: 8665232448765238797}
   _goldCostText: {fileID: 4179210793856640939}
   GoldCost: 500000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 7694311185404094250}
   BuyCommands:
   - '!buy2'

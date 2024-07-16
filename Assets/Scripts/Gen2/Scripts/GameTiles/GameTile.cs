@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, CommonPlus, RarePlus, EpicPlus, LegendaryPlus, MythicPlus, EtherealPlus, CosmicPlus, Mystery }
+public enum RarityType { Common, Rare, Epic, Legendary, Mythic, Ethereal, Cosmic, CommonPlus, RarePlus, EpicPlus, LegendaryPlus, MythicPlus, EtherealPlus, CosmicPlus, SuperCommon, SuperRare, SuperEpic, SuperLegendary, SuperMythic, SuperEthereal, SuperCosmic, Mystery }
 public enum DurationTYpe { Timer, Manual }
 public enum Side { Left, Center, Right}
 public enum TileState { Inactive, LockedInPos, Bidding, Gameplay}
@@ -52,6 +52,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public MeshRenderer _background;
     [SerializeField] private List<Material> _bgOptions;
     [SerializeField] private List<Material> _bgOptionsPlus;
+    [SerializeField] private List<Material> _bgOptionsSuper;
 
     [SerializeField] private int _tileDurationS;
 
@@ -151,6 +152,7 @@ public class GameTile : MonoBehaviour
         var BaseMaterials = _background.materials;
         var DesiredMaterials = _bgOptions;
         var MaterialsPlus = _bgOptionsPlus;
+        var SuperMaterials = _bgOptionsSuper;
 
         if (!IsKing)
         {
@@ -197,6 +199,27 @@ public class GameTile : MonoBehaviour
                     break;
                 case RarityType.CosmicPlus:
                     BaseMaterials[0] = MaterialsPlus[6];
+                    break;
+                case RarityType.SuperCommon:
+                    BaseMaterials[0] = SuperMaterials[0];
+                    break;
+                case RarityType.SuperRare:
+                    BaseMaterials[0] = SuperMaterials[1];
+                    break;
+                case RarityType.SuperEpic:
+                    BaseMaterials[0] = SuperMaterials[2];
+                    break;
+                case RarityType.SuperLegendary:
+                    BaseMaterials[0] = SuperMaterials[3];
+                    break;
+                case RarityType.SuperMythic:
+                    BaseMaterials[0] = SuperMaterials[4];
+                    break;
+                case RarityType.SuperEthereal:
+                    BaseMaterials[0] = SuperMaterials[5];
+                    break;
+                case RarityType.SuperCosmic:
+                    BaseMaterials[0] = SuperMaterials[6];
                     break;
             }
         }
@@ -283,7 +306,7 @@ public class GameTile : MonoBehaviour
         foreach (var resetable in _resetablesRoot.GetComponentsInChildren<IResetable>())
             resetable.MyReset();
 
-        int Mysteries = UnityEngine.Random.Range(1, 15);
+        int Mysteries = UnityEngine.Random.Range(1, 23);
 
         foreach (var effector in Effectors)
         {
@@ -349,10 +372,41 @@ public class GameTile : MonoBehaviour
                         _indicator3.SetText("Space Training");
                         break;
                     case 14: //Hyperspace Training
-                        TileEffect = 7;
+                        TileEffect = 8;
                         _indicator3.SetText("Hyperspace Training");
                         break;
-
+                    case 15: //Wide
+                        TileEffect = 9;
+                        _indicator3.SetText("Wide");
+                        break;
+                    case 16: //Tall
+                        TileEffect = 10;
+                        _indicator3.SetText("Tall");
+                        break;
+                    case 17: //Embiggen
+                        TileEffect = 11;
+                        _indicator3.SetText("Embiggen");
+                        break;
+                    case 18: //Squishy
+                        TileEffect = 12;
+                        _indicator3.SetText("Squishy");
+                        break;
+                    case 19: //Squishy Slaunch
+                        TileEffect = 13;
+                        _indicator3.SetText("Squishy Slaunch");
+                        break;
+                    case 20: //Squishy Space Training
+                        TileEffect = 14;
+                        _indicator3.SetText("Squishy Space Training");
+                        break;
+                    case 21: //Slaunchwise Squish Training
+                        TileEffect = 15;
+                        _indicator3.SetText("HyperSquish Training");
+                        break;
+                    case 22:
+                        effector.MultiplyCurrValue(500);
+                        _indicator3.SetText("500x");
+                        break;
                 }
             }
             else if (insideRuby)
@@ -550,7 +604,7 @@ public class GameTile : MonoBehaviour
     }
     public IEnumerator RunTile()
     {
-        // TileEffect = 8; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
+        // TileEffect = 15; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
         
         float textFade = -1.15f;
         float positionX = 0f;
@@ -567,6 +621,7 @@ public class GameTile : MonoBehaviour
         int timer1 = 0;
         Vector3 StartPosition = gameObject.transform.position;
         Quaternion StartRotation = gameObject.transform.rotation;
+        Vector3 StartScale = gameObject.transform.localScale;
 
         TileState = TileState.Gameplay; 
         EntrancePipe.LockIcon.enabled = false;
@@ -635,7 +690,34 @@ public class GameTile : MonoBehaviour
                 goto case 1;
             case 8:
                 goto case 3;
+            case 9:
+                if (CurrentSide == Side.Right)
+                    boundary1 = true;
+                else
+                    boundary1 = false;
 
+                timer1 = 2000;
+                break;
+            case 10:
+                goto case 9;
+            case 11:
+                goto case 9;
+            case 12:
+                goto case 9;
+            case 13:
+                if (CurrentSide == Side.Right)
+                    boundary1 = true;
+                else
+                    boundary1 = false;
+                
+                gameObject.transform.position = transform.position + new Vector3(0, -4.5f, 0);
+
+                timer1 = 2000;
+                break;
+            case 14:
+                goto case 9;
+            case 15:
+                goto case 13;
         }
 
         _tileGameplayTimeElapsed = 0; 
@@ -797,6 +879,209 @@ public class GameTile : MonoBehaviour
                         gameObject.transform.Rotate(rotationX, rotationY, rotationZ, Space.Self);
                         gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
                         break;
+                    case 9:
+                        if (boundary1)
+                            scaleX = -0.001f;
+                        else
+                            scaleX = 0.001f;
+
+                        timer1 += 1;
+
+                        if (timer1 > 4000)
+                            if (boundary1)
+                            {
+                                timer1 = 0;
+                                boundary1 = false;
+                            }
+                            else
+                            {
+                                timer1 = 0;
+                                boundary1 = true;
+                            }
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, 0, 0);
+                        break;
+                    case 10:
+                        if (boundary1)
+                            scaleY = -0.001f;
+                        else
+                            scaleY = 0.001f;
+
+                        timer1 += 1;
+
+                        if (timer1 > 4000)
+                            if (boundary1)
+                            {
+                                timer1 = 0;
+                                boundary1 = false;
+                            }
+                            else
+                            {
+                                timer1 = 0;
+                                boundary1 = true;
+                            }
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(0, scaleY, 0);
+                        break;
+                    case 11:
+                        if (boundary1)
+                        {
+                            scaleX = -0.001f;
+                            scaleY = -0.001f;
+                        }
+                        else
+                        {
+                            scaleX = 0.001f;
+                            scaleY = 0.001f;
+                        }
+                        timer1 += 1;
+
+                        if (timer1 > 4000)
+                            if (boundary1)
+                            {
+                                timer1 = 0;
+                                boundary1 = false;
+                            }
+                            else
+                            {
+                                timer1 = 0;
+                                boundary1 = true;
+                            }
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, scaleY, 0);
+                        break;
+                    case 12:
+                        if (boundary1)
+                        {
+                            scaleX = -0.001f;
+                            scaleY = 0.001f;
+                        }
+                        else
+                        {
+                            scaleX = 0.001f;
+                            scaleY = -0.001f;
+                        }
+                        timer1 += 1;
+
+                        if (timer1 > 4000)
+                            if (boundary1)
+                            {
+                                timer1 = 0;
+                                boundary1 = false;
+                            }
+                            else
+                            {
+                                timer1 = 0;
+                                boundary1 = true;
+                            }
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, scaleY, 0);
+                        break;
+                    case 13:
+                        if (boundary1)
+                        {
+                            positionX -= 0.0001f;
+                            scaleX = -0.001f;
+                            scaleY = 0.001f;
+                        }
+                        else
+                        {
+                            positionX += 0.0001f;
+                            scaleX = 0.001f;
+                            scaleY = -0.001f;
+                        }
+                        if (positionX > 0.025)
+                            boundary1 = true;
+                        if (positionX < -0.025)
+                            boundary1 = false;
+
+                        if (boundary2)
+                            positionY -= 0.001f;
+                        else
+                            positionY += 0.001f;
+
+                        if (positionY > 0.1)
+                            boundary2 = true;
+                        if (positionY < -0.1)
+                            boundary2 = false;
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, scaleY, 0);
+                        gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
+                        break;
+                    case 14:
+                        if (boundary1)
+                        {
+                            rotationX = -.1f;
+                            rotationY = -.2f;
+                            rotationZ = -.3f;
+                            scaleX = -0.001f;
+                            scaleY = 0.001f;
+                        }
+                        else
+                        {
+                            rotationX = .1f;
+                            rotationY = .2f;
+                            rotationZ = .3f;
+                            scaleX = 0.001f;
+                            scaleY = -0.001f;
+                        }
+                        timer1 += 1;
+
+                        if (timer1 > 4000)
+                            if (boundary1)
+                            {
+                                timer1 = 0;
+                                boundary1 = false;
+                            }
+                            else
+                            {
+                                timer1 = 0;
+                                boundary1 = true;
+                            }
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, scaleY, 0);
+                        gameObject.transform.Rotate(rotationX, rotationY, rotationZ, Space.Self);
+                        break;
+                    case 15:
+                        if (boundary1)
+                        {
+                            rotationX = -.1f;
+                            rotationY = -.2f;
+                            rotationZ = -.3f;
+                            positionX -= 0.0001f;
+                            scaleX = -0.001f;
+                            scaleY = 0.001f;
+                        }
+                        else
+                        {
+                            rotationX = .1f;
+                            rotationY = .2f;
+                            rotationZ = .3f;
+                            positionX += 0.0001f;
+                            scaleX = 0.001f;
+                            scaleY = -0.001f;
+                        }
+                        timer1 += 1;
+
+                        if (boundary2)
+                            positionY -= 0.001f;
+                        else
+                            positionY += 0.001f;
+
+                        if (positionX > 0.025)
+                            boundary1 = true;
+                        if (positionX < -0.025)
+                            boundary1 = false;
+
+                        if (positionY > 0.1)
+                            boundary2 = true;
+                        if (positionY < -0.1)
+                            boundary2 = false;
+
+                        gameObject.transform.localScale = transform.localScale + new Vector3(scaleX, scaleY, 0);
+                        gameObject.transform.Rotate(rotationX, rotationY, rotationZ, Space.Self);
+                        gameObject.transform.position = transform.position + new Vector3(positionX, positionY, 0);
+                        break;
                 }
             }
             //Stop if there is only one player left alive and none on the belt
@@ -823,6 +1108,7 @@ public class GameTile : MonoBehaviour
         {
             gameObject.transform.position = StartPosition;
             gameObject.transform.rotation = StartRotation;
+            gameObject.transform.localScale = StartScale;
         }
 
         TileEffect = 0;        
@@ -901,6 +1187,30 @@ public class GameTile : MonoBehaviour
                 break;
             case 14:
                 MyTTS.inst.PlayerSpeech("Hyperspace Training", 2);
+                break;
+            case 15:
+                MyTTS.inst.PlayerSpeech("Wide", 2);
+                break;
+            case 16:
+                MyTTS.inst.PlayerSpeech("Tall", 2);
+                break;
+            case 17:
+                MyTTS.inst.PlayerSpeech("Embiggen", 2);
+                break;
+            case 18:
+                MyTTS.inst.PlayerSpeech("Squishy", 2);
+                break;
+            case 19:
+                MyTTS.inst.PlayerSpeech("Squishy Slaunch", 2);
+                break;
+            case 20:
+                MyTTS.inst.PlayerSpeech("Squishy Space Training", 2);
+                break;
+            case 21:
+                MyTTS.inst.PlayerSpeech("Slaunchwise Squish Training", 2);
+                break;
+            case 22:
+                MyTTS.inst.PlayerSpeech("500x", 2);
                 break;
 
         }

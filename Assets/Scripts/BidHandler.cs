@@ -333,7 +333,7 @@ public class BidHandler : MonoBehaviour
         foreach (var ph in _raffleWinners)
         {
             //Traverse belt
-            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.075f);
+            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.2f); // Speed Spot
             ph.ReceivableTarget = gt.EntrancePipe;
 
             yield return new WaitForSeconds(_timeBetweenRaffleReleases);
@@ -352,7 +352,7 @@ public class BidHandler : MonoBehaviour
         {
             PlayerHandler ph = _biddingQ[0];
             //Traverse belt
-            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.075f);
+            ph.pb.AddPriorityWaypoint(beltWayPointPos, 0.2f); // Speed Spot
             ph.ReceivableTarget = gt.EntrancePipe;
             ph.ResetBid();
             ph.CheckAuto(ph.pp.AutoBidRemainder, ph.pp.RiskSkips);

@@ -29,7 +29,7 @@ public class GoldCoin : TravelingIndicator
         _rb2D.transform.position = origin;
 
         _rb2D.velocity = vel;
-        _mr.material.color = color;
+  //      _mr.material.color = color;
 
         _timeAlive = 0; 
     }
