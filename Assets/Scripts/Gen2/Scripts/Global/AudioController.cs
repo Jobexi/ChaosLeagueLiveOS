@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     public AudioSource KingVuln;
     public AudioSource TradeUp;
     public AudioSource CrabRave;
+    public AudioSource RoachVIP;
     [Space(20)]    
     public AudioSource DefenseBrickTakeDamage; 
     public AudioSource PayItForwardExplosion;

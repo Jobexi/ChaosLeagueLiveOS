@@ -703,7 +703,7 @@ MonoBehaviour:
   DisplayBackground: {fileID: 4351772007122185676}
   _buyCommandText: {fileID: 1896035989096447258}
   _goldCostText: {fileID: 6624390143130830012}
-  GoldCost: 50000000
+  GoldCost: 5000000
   SapphireCost: 3
   EmeraldCost: 0
   DiamondCost: 0
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   DisplayBackground: {fileID: 4564937976244344040}
   _buyCommandText: {fileID: 1832228229265392702}
   _goldCostText: {fileID: 6400737459756613016}
-  GoldCost: 5000000
+  GoldCost: 500000
   SapphireCost: 1
   EmeraldCost: 0
   DiamondCost: 0
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   DisplayBackground: {fileID: 7355980667836354407}
   _buyCommandText: {fileID: 4621038787906265009}
   _goldCostText: {fileID: 116996112739395095}
-  GoldCost: 500000
+  GoldCost: 50000
   SapphireCost: 2
   EmeraldCost: 0
   DiamondCost: 0

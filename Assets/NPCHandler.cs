@@ -1822,7 +1822,7 @@ public class NPCHandler : MonoBehaviour
                         }
                         else
                         {
-                            NPCMessage(_gm.PlayerHandlers[key], "My time has come, again.");
+                            NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)
@@ -2147,7 +2147,7 @@ public class NPCHandler : MonoBehaviour
                         }
                         else
                         {
-                            NPCMessage(_gm.PlayerHandlers[key], "I guess I'll come up with the gold.");
+                            NPCMessage(_gm.PlayerHandlers[key], "Stay Clever, Darlings.");
                             _gm.PlayerHandlers[key].pp.Gold = _gm.PlayerHandlers[key].pp.Gold / 2;
                             _goldDistributor.SpawnGoldFromEvent(_gm.PlayerHandlers[key].pp.Gold);
                             if (_gm.PlayerHandlers[key].pp.SessionScore > 1000000000)

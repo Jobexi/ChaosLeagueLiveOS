@@ -152,14 +152,23 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         }
 
         _KingTile._background.materials = BGMaterials;
-        
+
 
         string newKingUsername = pb.Ph.pp.TwitchUsername;
         pb.Ph.pp.ThroneCaptures += 1;
-        _autoPredictions.NewKingSignal(newKingUsername, (int)_previousKingDuration);        
+        _autoPredictions.NewKingSignal(newKingUsername, (int)_previousKingDuration);
 
         MyTTS.inst.Announce($"Throne captured by {newKingUsername}");
         winnerNameText.SetText(newKingUsername);
+
+        // Handles Playing VIP Songs
+        switch (newKingUsername)
+        {
+            case "LXTRoach":
+                AudioController.inst.PlaySound(AudioController.inst.RoachVIP, 0.95f, 1.05f);
+                break;
+        }
+
 
         winnerNameText.color = pb._usernameText.color;
         _throneTileTrim.color = pb._usernameText.color;
@@ -198,6 +207,7 @@ public class KingController : MonoBehaviour, TravelingIndicatorIO
         {
             _gm._tileController._npcHandler.ReignsCombo(pb.Ph.pp.ThroneCaptures);
         }
+
     }
 
     private IEnumerator NewKingBlockade()

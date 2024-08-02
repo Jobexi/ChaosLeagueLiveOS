@@ -166,6 +166,7 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isVIP?");
             isVIP = twitchUsername.ToLower() == "deathv55";
+            VIP4 = true;
         }
         if (!isVIP)
         {
@@ -176,6 +177,11 @@ public class TwitchClient : MonoBehaviour
         {
             Debug.Log("isVIP?");
             isVIP = twitchUsername.ToLower() == "megamarcus92";
+        }
+        if (!isVIP)
+        {
+            Debug.Log("isVIP?");
+            isVIP = twitchUsername.ToLower() == "slugggle";
         }
         string sanitizedMsg = rawMsg.Replace("<", "").Replace(">", "");
 
@@ -507,10 +513,23 @@ public class TwitchClient : MonoBehaviour
                 alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
 
                 colorKeys[0].color = Color.HSVToRGB(0.011f, 1f, 0.9608f); //1
-                colorKeys[1].color = Color.HSVToRGB(0.011f, 91.36f, 0.8627f); //2
+                colorKeys[1].color = Color.HSVToRGB(0.011f, 0.9136f, 0.8627f); //2
                 colorKeys[2].color = Color.HSVToRGB(0.169f, 1f, 1f); //3
                 colorKeys[3].color = Color.HSVToRGB(0.786f, 1f, 1f); //4
                 colorKeys[4].color = Color.HSVToRGB(0.817f, 1f, 1f); //5
+                break;
+
+            case 10: //SLuGGGLe
+                    // Create alpha keys
+
+                alphaKeys[0] = new GradientAlphaKey(startAlpha, 0); // Alpha starts at 1
+                alphaKeys[1] = new GradientAlphaKey(0, 1); // Alpha ends at 0
+
+                colorKeys[0].color = Color.HSVToRGB(0.730f, 0.7368f, 0.2235f); //1
+                colorKeys[1].color = Color.HSVToRGB(0.759f, 0.6341f, 0.3216f); //2
+                colorKeys[2].color = Color.HSVToRGB(0.657f, 0.6f, 0.4706f); //3
+                colorKeys[3].color = Color.HSVToRGB(0.592f, 0.6931f, 0.3961f); //4
+                colorKeys[4].color = Color.HSVToRGB(0.120f, 0.3739f, 0.451f); //5
                 break;
 
         }
@@ -545,6 +564,12 @@ public class TwitchClient : MonoBehaviour
             case 5: //AltKeyHer3
                 return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
 
+            case 6: //Andre_601
+                return Color.HSVToRGB(0f, 0f, 0.1804f);
+
+            case 7: //InferShock
+                return Color.HSVToRGB(0f, 0f, 0.251f);
+
         }
 
         return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
@@ -570,6 +595,11 @@ public class TwitchClient : MonoBehaviour
             case 5: //AltKeyHer3
                 return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
 
+            case 6: //Andre_601
+                return Color.HSVToRGB(0f, 0f, 1f);
+
+            case 7: //InferShock
+                return Color.HSVToRGB(0f, 1f, 1f);
         }
 
         return Color.HSVToRGB(0.052f, 0.8f, 0.58f);
@@ -617,6 +647,11 @@ public class TwitchClient : MonoBehaviour
             VIPTextbox(ph, 2);
         }
 
+        if (commandKey.StartsWith("!cookingcrown"))
+        {
+            VIPCrownA(ph, 2);
+        }
+
         if (commandKey.StartsWith("!vipqoob"))
         {
             VIPTrail(ph, 3);
@@ -657,6 +692,11 @@ public class TwitchClient : MonoBehaviour
             VIPTrail(ph, 6);
         }
 
+        if (commandKey.StartsWith("!inferbubble"))
+        {
+            VIPTextbox(ph, 6);
+        }
+
         if (commandKey.StartsWith("!vipandre"))
         {
             VIPTrail(ph, 7);
@@ -665,6 +705,11 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!andretrail"))
         {
             VIPTrail(ph, 7);
+        }
+
+        if (commandKey.StartsWith("!andrebubble"))
+        {
+            VIPTextbox(ph, 7);
         }
 
         if (commandKey.StartsWith("!vipzap"))
@@ -685,6 +730,16 @@ public class TwitchClient : MonoBehaviour
         if (commandKey.StartsWith("!mmtrail"))
         {
             VIPTrail(ph, 9);
+        }
+
+        if (commandKey.StartsWith("!vipsluggle") || commandKey.StartsWith("!vipslugggle"))
+        {
+            VIPTrail(ph, 10);
+        }
+
+        if (commandKey.StartsWith("!sluggletrail") || commandKey.StartsWith("!slugggletrail"))
+        {
+            VIPTrail(ph, 10);
         }
 
         if (commandKey.StartsWith("!savevipconfig"))
@@ -767,6 +822,9 @@ public class TwitchClient : MonoBehaviour
             case 1:
                 cheese = "[{ \"R\":0.33600412,\"G\":0.202807604,\"B\":0.1444469},{ \"R\":1.0,\"G\":0.296213925,\"B\":0.0},{ \"R\":1.0,\"G\":0.8919319,\"B\":0.0},{ \"R\":0.13600412,\"G\":0.102807604,\"B\":0.2444469},{ \"R\":1.0,\"G\":0.296213925,\"B\":0.0},{ \"R\":1.0,\"G\":0.8919319,\"B\":0.0},{ \"R\":1.0,\"G\":1.0,\"B\":1.0}]";
                 break;
+            case 2:
+                cheese = "[{ \"R\":0,\"G\":0,\"B\":0},{ \"R\":0.90196,\"G\":0.90196,\"B\":0.98039},{ \"R\":0.83529,\"G\":0.65098,\"B\":0.74117},{ \"R\":0.50588,\"G\":0.14117,\"B\":1},{ \"R\":0.70588,\"G\":0.65490,\"B\":0.83921},{ \"R\":0.99215,\"G\":0.28235,\"B\":1},{ \"R\":1.0,\"G\":1.0,\"B\":1.0}]";
+                break;
         }
 
         ph.pp.CrownJSON = cheese;
@@ -848,6 +906,64 @@ public class TwitchClient : MonoBehaviour
 
             ph.pp.Gold -= 5000;
             ph.pp.VoiceID = 1;
+        }
+
+        else if (commandKey.StartsWith("!sponsorship"))
+        {
+            if (_tileController._SpinningNow)
+            {
+                Debug.Log("Please wait until the tile stops spinning to try this command again.");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
+                return;
+            }
+
+            if (_tileController.GameplayTile != null)
+            {
+                if (_tileController.GameplayTile.SponsorshipPrice > ph.pp.Sapphires)
+                {
+                    Debug.Log("You don't have enough Sapphires to purchase this sponsorship!");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Sapphires to purchase this sponsorship!");
+                    return;
+                }
+
+                if (_tileController.GameplayTile.Sponsored)
+                {
+                    Debug.Log("This tile has already received a sponsor this spin. Try again next time.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile has already received a sponsor this spin. Try again next time.");
+                    return;
+                }
+                else 
+                {
+                    _tileController.GameplayTile.NewSponsor(ph, ph.pp.TwitchUsername);
+                    _tileController.GameplayTile._indicator4.gameObject.SetActive(false);
+                    _tileController.GameplayTile._indicator5.gameObject.SetActive(false);
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Sponsorship Successful! Thank you!");
+                }
+            }
+            else
+            {
+                if (_tileController.CurrentBiddingTile.SponsorshipPrice > ph.pp.Sapphires)
+                {
+                    Debug.Log("You don't have enough Sapphires to purchase this sponsorship!");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Sapphires to purchase this sponsorship!");
+                    return;
+                }
+
+                if (_tileController.CurrentBiddingTile.Sponsored)
+                {
+                    Debug.Log("This tile has already received a sponsor this spin. Try again next time.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile has already received a sponsor this spin. Try again next time.");
+                    return;
+                }
+                else
+                {
+                    _tileController.CurrentBiddingTile.NewSponsor(ph, ph.pp.TwitchUsername);
+                    _tileController.CurrentBiddingTile._indicator4.gameObject.SetActive(false);
+                    _tileController.CurrentBiddingTile._indicator5.gameObject.SetActive(false);
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Sponsorship Successful! Thank you!");
+                }
+            }
+
         }
 
         else if (commandKey.StartsWith("!tilerepeat") || commandKey.StartsWith("!repeattile"))
@@ -1014,7 +1130,7 @@ public class TwitchClient : MonoBehaviour
                     return;
                 }
 
-                if (_tileController.GameplayTile.GetRarity() == RarityType.SuperCosmic)
+                if (_tileController.CurrentBiddingTile.GetRarity() == RarityType.SuperCosmic)
                 {
                     Debug.Log("This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again. :)");
                     ReplyToPlayer(messageId, ph.pp.TwitchUsername, "This tile is already SuperCosmic and cannot be upgraded. Please use !repeatTile to see it come around again.");
@@ -1210,7 +1326,7 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 500000)
+            if (ph.pp.Gold < 100000)
             {
                 Debug.Log("You don't have enough gold.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Mystery Tiles cost 500k Gold.");
@@ -1252,87 +1368,87 @@ public class TwitchClient : MonoBehaviour
                     _tileController.GameplayTile._indicator1.SetText("❔");
             }
 
-            ph.pp.Gold -= 500000;
+            ph.pp.Gold -= 100000;
             _tileController._forceMystery = true;
         }
 
-        else if (commandKey.StartsWith("!cursetile") || commandKey.StartsWith("!cursedtile"))
-        {
-            Debug.Log("inCurseTile");
+        //else if (commandKey.StartsWith("!cursetile") || commandKey.StartsWith("!cursedtile"))
+        //{
+        //    Debug.Log("inCurseTile");
 
-            if (_tileController._forceMystery == true)
-            {
-                Debug.Log("You have no gold to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
-                return;
-            }
+        //    if (_tileController._forceMystery == true)
+        //    {
+        //        Debug.Log("You have no gold to spend.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is set to be a Mystery Tile, this tile cannot be repeated, upgraded, or have its status changed.");
+        //        return;
+        //    }
 
-            if (ph.pp.Gold <= 0)
-            {
-                Debug.Log("You have no gold to spend.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
-                return;
-            }
+        //    if (ph.pp.Gold <= 0)
+        //    {
+        //        Debug.Log("You have no gold to spend.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You have no gold to spend.");
+        //        return;
+        //    }
 
-            if (ph.pp.Gold < 125000)
-            {
-                Debug.Log("You don't have enough gold.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Cursing this tile costs 125k Gold.");
-                return;
-            }
+        //    if (ph.pp.Gold < 125000)
+        //    {
+        //        Debug.Log("You don't have enough gold.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Cursing this tile costs 125k Gold.");
+        //        return;
+        //    }
 
-            if (_tileController._forceCurse == true)
-            {
-                Debug.Log("The upcoming tile is already Cursed. Please wait until the reel spins to try again.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Cursed Please wait until the reel spins to try again.");
-                return;
-            }
+        //    if (_tileController._forceCurse == true)
+        //    {
+        //        Debug.Log("The upcoming tile is already Cursed. Please wait until the reel spins to try again.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Cursed Please wait until the reel spins to try again.");
+        //        return;
+        //    }
 
-            if (_tileController._forceGolden == true)
-            {
-                Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
-                return;
-            }
+        //    if (_tileController._forceGolden == true)
+        //    {
+        //        Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+        //        return;
+        //    }
 
-            if (_tileController._forceRuby == true)
-            {
-                Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
-                return;
-            }
+        //    if (_tileController._forceRuby == true)
+        //    {
+        //        Debug.Log("The upcoming tile is already Golden or Ruby. Please wait until the reel spins to try again.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "The upcoming tile is already Golden or Ruby Please wait until the reel spins to try again.");
+        //        return;
+        //    }
 
-            if (_tileController._SpinningNow)
-            {
-                Debug.Log("Please wait until the tile stops spinning to try this command again.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
-                return;
-            }
+        //    if (_tileController._SpinningNow)
+        //    {
+        //        Debug.Log("Please wait until the tile stops spinning to try this command again.");
+        //        ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Please wait until the tile stops spinning to try again.");
+        //        return;
+        //    }
 
-            if (_tileController.GameplayTile == null)
-            {
-                if (_tileController.CurrentBiddingTile.IsShop == true)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
-                    return;
-                }
-                else
-                    _tileController.CurrentBiddingTile._indicator1.SetText("💚");
-            }
-            else
-            {
-                if (_tileController.GameplayTile.IsShop == true)
-                {
-                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
-                    return;
-                }
-                else
-                    _tileController.GameplayTile._indicator1.SetText("💚");
-            }
+        //    if (_tileController.GameplayTile == null)
+        //    {
+        //        if (_tileController.CurrentBiddingTile.IsShop == true)
+        //        {
+        //            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
+        //            return;
+        //        }
+        //        else
+        //            _tileController.CurrentBiddingTile._indicator1.SetText("💚");
+        //    }
+        //    else
+        //    {
+        //        if (_tileController.GameplayTile.IsShop == true)
+        //        {
+        //            ReplyToPlayer(messageId, ph.pp.TwitchUsername, "Shop tiles can neither be Cursed nor upgraded to Ruby or Gold.");
+        //            return;
+        //        }
+        //        else
+        //            _tileController.GameplayTile._indicator1.SetText("💚");
+        //    }
 
-            ph.pp.Gold -= 125000;
-            _tileController._forceCurse = true;
-        }
+        //    ph.pp.Gold -= 125000;
+        //    _tileController._forceCurse = true;
+        //}
 
         else if (commandKey.StartsWith("!crabrave"))
         {
@@ -1368,14 +1484,14 @@ public class TwitchClient : MonoBehaviour
                 return;
             }
 
-            if (ph.pp.Gold < 25000)
+            if (ph.pp.Gold < 2500)
             {
                 Debug.Log("You don't have enough gold.");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough gold. Playing CrabRave costs 25k Gold.");
                 return;
             }
 
-            ph.pp.Gold -= 25000;
+            ph.pp.Gold -= 2500;
 
             AudioController.inst.PlaySound(AudioController.inst.CrabRave, 1f, 1f);
         }
@@ -1798,6 +1914,11 @@ public class TwitchClient : MonoBehaviour
         else if (commandKey.StartsWith("!sellsapphires"))
         {
             StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Sapphire"));
+        }
+
+        else if (commandKey.StartsWith("!quadup"))
+        {
+            StartCoroutine(ProcessSellCurrency(messageId, ph, msg, "Quad"));
         }
 
         else if (commandKey.StartsWith("!sellemeralds"))
@@ -2335,7 +2456,7 @@ public class TwitchClient : MonoBehaviour
 
         if (type == "Sapphire")
         {
-            currencyPrice = 1000000000;
+            currencyPrice = 1000000;
             Debug.Log("Sapphire");
         }
         else if (type == "Emerald")
@@ -2434,7 +2555,7 @@ public class TwitchClient : MonoBehaviour
             if (ph.pp.SessionScore < currencyPrice * desiredCurrencyAmount)
             {
                 Debug.Log("You don't have enough points.");
-                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1B Points");
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough points. Each Sapphire costs 1M Points");
                 yield break;
             }
 
@@ -2450,6 +2571,29 @@ public class TwitchClient : MonoBehaviour
         Debug.Log("InSellCurrency");
 
         long desiredCurrencyAmount;
+
+        if (type == "Quad")
+        {
+            ph.TradeUp();
+
+            if (ph.pp.Emeralds < 1000)
+            {
+                if (ph.pp.Diamonds == 0)
+                {
+                    Debug.Log("You don't have enough Emeralds, and No Diamonds.");
+                    ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Emeralds, and No Diamonds.");
+                    yield break;
+                }
+
+                ph.SellCurrency((int)1, "Diamonds");
+
+            }
+            Debug.Log("Quad");
+
+            ph.SellCurrency((int)1000, type);
+            yield break;
+        }
+
         if (!MyUtil.GetFirstLongFromString(msg, out desiredCurrencyAmount))
         {
             Debug.Log("Failed to parse currency amount. Correct format is: !Sell[Sapphires/Emeralds/Diamonds] [amount]");
@@ -2464,6 +2608,11 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("You don't have enough Sapphires");
                 ReplyToPlayer(messageId, ph.pp.TwitchUsername, "You don't have enough Sapphires");
                 yield break;
+            }
+            else if (desiredCurrencyAmount > 1000000000)
+            {
+                ReplyToPlayer(messageId, ph.pp.TwitchUsername, "No more than 1B sapphires may be sold at a time. Use !QuadUp if you would like to turn more gems into points.");
+                desiredCurrencyAmount = 1000000000;
             }
             Debug.Log("Sapphire");
         }
@@ -2492,7 +2641,7 @@ public class TwitchClient : MonoBehaviour
             yield break;
 
         ph.SellCurrency((int)desiredCurrencyAmount, type);
-    }
+    }    
 
     private void ProcessSaveConfig(PlayerHandler ph, int wardrobe)
     {

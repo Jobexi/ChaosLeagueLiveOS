@@ -19,6 +19,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private TwitchApi _twitchAPI;
     [SerializeField] private HoldingPen _holdingPen;
     [SerializeField] private Transform _goldCoinsRoot;
+    [SerializeField] private Transform _sapphiresRoot;
 
     [SerializeField] private ParticleSystem _particleSys;
     [SerializeField] private MeshRenderer _pieTimer;
@@ -31,6 +32,8 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private Color _endColor;
 
     [SerializeField] private GameObject _goldCoinPrefab;
+    [SerializeField] private GameObject _sapphirePrefab;
+    [SerializeField] private PrizeDisplay _PrizeDisplay;
 
     [SerializeField] private int testDistributeAmount = 30;
     [SerializeField] private bool testDistributeButton;
@@ -39,6 +42,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     [SerializeField] private Vector2 _spawnVelMax;
 
     private ObjectPool<GoldCoin> _goldCoinPool;
+    private ObjectPool<GoldCoin> _sapphirePool;
 
     [SerializeField] private int _baseGoldPerTile = 100;
 
@@ -63,6 +67,7 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
         StartCoroutine(ViewerGoldFaucet());
 
         _goldCoinPool = new ObjectPool<GoldCoin>(GoldCoinFactory, GoldCoinTurnOn, GoldCoinTurnOff);
+        _sapphirePool = new ObjectPool<GoldCoin>(SapphireFactory, GoldCoinTurnOn, GoldCoinTurnOff);
     }
 
     private void OnValidate()
@@ -78,6 +83,11 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
     private GoldCoin GoldCoinFactory()
     {
         return Instantiate(_goldCoinPrefab, _goldCoinsRoot).GetComponent<GoldCoin>();
+    }
+
+    private GoldCoin SapphireFactory()
+    {
+        return Instantiate(_sapphirePrefab, _sapphiresRoot).GetComponent<GoldCoin>();
     }
 
     private void GoldCoinTurnOn(GoldCoin goldCoin)
@@ -122,6 +132,14 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
 
         GoldCoin newCoin = _goldCoinPool.GetObject();
         newCoin.InitializeCoin(this, origin, spawnVel, target, coinValue, coinColor);
+    }
+
+    public void SpawnSapphire(Vector3 origin, Vector2 spawnVel, TravelingIndicatorIO target, long coinValue)
+    {
+        Color coinColor = _coinColor.Evaluate(coinValue / _coinAmountColorMap.y);
+
+        GoldCoin newCoin = _sapphirePool.GetObject();
+        newCoin.InitializeSapphire(this, origin, spawnVel, target, coinValue, coinColor);
     }
 
     private void DistributeGold()
@@ -185,6 +203,61 @@ public class GoldDistributor : MonoBehaviour, TravelingIndicatorIO
             //newCoin.InitializeCoin(this, gt.GetGoldSpawnPos(), spawnVel, this, coinValue, coinColor);
             totalGold -= coinValue;
         }
+    }
+
+    public void SpawnSapphiresFromTileRarity(GameTile gt, PlayerHandler Ph)
+    {
+        int mult = AppConfig.GetGoldMult(gt.RarityType);
+        int totalGold = _baseGoldPerTile * mult;
+
+        if (gt.IsCurse || gt.IsNull)
+            totalGold *= 0;
+        else if (gt.IsRuby)
+            totalGold *= 35;
+        else if (gt.IsGolden)
+            totalGold *= 7;
+        else if (gt.IsMystery)
+            totalGold *= Random.Range(1, 7);
+
+        if (AppConfig.Friday)
+            totalGold *= 3;
+
+        if (Ph != null)
+        {
+            Ph.pp.Sapphires += totalGold;
+            Debug.LogWarning("Attempted to Give Sapphires");
+        }
+        else if (_kingController.currentKing != null)
+        {
+            _kingController.currentKing.Ph.pp.Sapphires += totalGold;
+                Debug.LogWarning("Attempted to Give Sapphires");
+        }
+
+        while (totalGold > 0)
+        {
+            int coinValue = 100;
+
+            if (totalGold > 1000)
+                coinValue = 250;
+            if (totalGold > 10000)
+                coinValue = 500;
+            if (totalGold > 100000)
+                coinValue = 1000;
+            if (totalGold > 1000000)
+                coinValue = 10000;
+            if (totalGold > 10000000)
+                coinValue = 100000;
+
+            float randomX = Mathf.Pow(Random.Range(0f, 1f), 2) * 10f;
+            float randomY = Mathf.Pow(Random.Range(0f, 1f), 2) * (-20f - -10f) + -10f;
+
+            Vector2 spawnVel = new Vector2(randomX, randomY);
+
+            SpawnSapphire(gt.GetGoldSpawnPos(), spawnVel, _PrizeDisplay, 1);
+            //newCoin.InitializeCoin(this, gt.GetGoldSpawnPos(), spawnVel, this, coinValue, coinColor);
+            totalGold -= coinValue;
+        }
+        
     }
 
     public void SpawnGoldFromEvent(long totalGold)

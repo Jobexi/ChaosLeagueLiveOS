@@ -28,6 +28,8 @@ public class GameTile : MonoBehaviour
     [SerializeField] public TextMeshPro _indicator1;
     [SerializeField] public TextMeshPro _indicator2;
     [SerializeField] public TextMeshPro _indicator3;
+    [SerializeField] public TextMeshPro _indicator4;
+    [SerializeField] public TextMeshPro _indicator5;
     public int TicketBonusAmount;
 
     public TileState TileState = TileState.Inactive;
@@ -43,6 +45,7 @@ public class GameTile : MonoBehaviour
     [SerializeField] public bool IsKing;
     [SerializeField] public bool HasBackground;
     [SerializeField] public bool BuyingActive;
+    [SerializeField] public bool Sponsored;
     [SerializeField] private CycleMode _cycleMode;
     [SerializeField] private bool _updateCycleModeButton;
     [SerializeField] private ContactWarp _contactWarp;
@@ -53,6 +56,11 @@ public class GameTile : MonoBehaviour
     [SerializeField] private List<Material> _bgOptions;
     [SerializeField] private List<Material> _bgOptionsPlus;
     [SerializeField] private List<Material> _bgOptionsSuper;
+
+    [SerializeField] public int SponsorshipPrice;
+    [SerializeField] public string CurrentSponsor;
+    public PlayerHandler SponsorHandler;
+
 
     [SerializeField] private int _tileDurationS;
 
@@ -145,6 +153,18 @@ public class GameTile : MonoBehaviour
         _backgroundEndColor = backgroundEndColor;
         _trimColor = trimColor;
 
+    }
+
+    public void NewSponsor(PlayerHandler ph, string playername)
+    {
+        Debug.LogWarning("DidNewSponsor");
+        
+        SponsorHandler = ph;
+        CurrentSponsor = playername;
+
+        ph.pp.Sapphires -= SponsorshipPrice;
+        SponsorshipPrice += 5;
+        Sponsored = true;
     }
 
     public void SetBackground()
@@ -286,7 +306,7 @@ public class GameTile : MonoBehaviour
         TileEffect = 0;
 
         _goldenVisuals._coverObj.gameObject.SetActive(false);
-        _indicator3.gameObject.SetActive(false);
+        _indicator3.gameObject.SetActive(false);  
 
         if (_mpb == null)
             _mpb = new MaterialPropertyBlock();
@@ -316,7 +336,6 @@ public class GameTile : MonoBehaviour
 
             if (insideMystery)
             {
-
                 switch (Mysteries)
                 {
                     case 1:
@@ -513,6 +532,11 @@ public class GameTile : MonoBehaviour
     public void InitTileInPos()
     {
 
+        _indicator4.gameObject.SetActive(true);
+        _indicator5.gameObject.SetActive(true);
+        _indicator4.SetText($"Current Sponsor: {CurrentSponsor}");
+        _indicator5.SetText($"{SponsorshipPrice} Sapphires to Sponsor!");
+
         TileState = TileState.LockedInPos;
         //TileActive = true;
         _timer = 0;
@@ -605,7 +629,10 @@ public class GameTile : MonoBehaviour
     public IEnumerator RunTile()
     {
         // TileEffect = 15; // TESTING ONLY!! COMMENT OUT BEFORE BUILDING!
-        
+
+        _indicator4.gameObject.SetActive(false);
+        _indicator5.gameObject.SetActive(false);
+
         float textFade = -1.15f;
         float positionX = 0f;
         float positionY = 0f;

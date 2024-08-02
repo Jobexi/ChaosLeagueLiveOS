@@ -387,7 +387,11 @@ MonoBehaviour:
   DisplayBackground: {fileID: 7944465625153928919}
   _buyCommandText: {fileID: 5221046762238340609}
   _goldCostText: {fileID: 705516261927409575}
-  GoldCost: 25000000
+  GoldCost: 2500000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 6553399499173074726}
   BuyCommands:
   - '!buy1'
@@ -539,7 +543,11 @@ MonoBehaviour:
   DisplayBackground: {fileID: 7965054426781795924}
   _buyCommandText: {fileID: 5241352096045454978}
   _goldCostText: {fileID: 649530881896312612}
-  GoldCost: 25000000
+  GoldCost: 2500000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 6501999083166478245}
   BuyCommands:
   - '!buy2'
@@ -670,7 +678,11 @@ MonoBehaviour:
   DisplayBackground: {fileID: 6652901045970407330}
   _buyCommandText: {fileID: 8820107981763288948}
   _goldCostText: {fileID: 4312702869796824786}
-  GoldCost: 25000000
+  GoldCost: 2500000
+  SapphireCost: 0
+  EmeraldCost: 0
+  DiamondCost: 0
+  RubyCost: 0
   _crown: {fileID: 7557578092740535891}
   BuyCommands:
   - '!buy3'

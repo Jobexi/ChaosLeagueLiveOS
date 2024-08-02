@@ -546,7 +546,7 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         if (currencyType == "Sapphire")
         {
-            pp.SessionScore += (amount * 970000000);
+            pp.SessionScore += (amount * 970000);
             pp.Sapphires -= (int)amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.white);            
             Debug.Log($"Sapphires {amount}");
@@ -564,6 +564,13 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
             pp.Diamonds -= (int)amount;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
             Debug.Log($"Diamonds {amount}");
+        }
+        else if (currencyType == "Quad")
+        {
+            pp.SessionScore += 970000000000000;
+            pp.Emeralds -= (int)1000;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.up, "+" + MyUtil.AbbreviateNum4Char(amount), Color.green);
+            Debug.Log($"Quad {amount}");
         }
 
         if (State == PlayerHandlerState.King)
@@ -583,15 +590,15 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         AudioController.inst.PlaySound(AudioController.inst.TradeUp, 0.95f, 1.05f);
 
         stillTrading = false;
-        while (score >= 1000000000000000)
+        while (score >= 1000000000000)
         {
-            score -= 1000000000000000;
+            score -= 1000000000000;
             emeralds += 1;
             stillTrading = true;
         }
-        while (score >= 1000000000)
+        while (score >= 1000000)
         {
-            score -= 1000000000;
+            score -= 1000000;
             sapphires += 1;
             stillTrading = true;
         }
@@ -680,9 +687,9 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
 
         _gm.ChangeHue();
 
-        if (pp.SessionScore > 1000000000000000000)
+        if (pp.SessionScore > 1000000000000000)
         {
-            pp.SessionScore -= 1000000000000000000;
+            pp.SessionScore -= 1000000000000000;
             pp.Emeralds += 1000;
             TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+1K Emeralds", Color.green);
         }
@@ -833,8 +840,8 @@ public class PlayerHandler : MonoBehaviour, TravelingIndicatorIO, TI_Bid_IO
         if ((ulong)prevScore * (ulong)multiplier > (ulong)5000000000000000000)
         {
             pp.SessionScore = 0;
-            pp.Emeralds += 5000;
-            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+5K Emeralds", Color.green);
+            pp.Diamonds += 5;
+            TextPopupMaster.Inst.CreateTextPopup(Get_TI_IO_Position(), Vector3.right, "+5 Diamonds", Color.cyan);
         }
         else
             pp.SessionScore = (long)(pp.SessionScore * multiplier);

@@ -512,7 +512,9 @@ public class TileController : MonoBehaviour
             {
                 tile.transform.SetPositionAndRotation(finalTilePos, finalTileRot);
                 tile.InitTileInPos();
+                tile.Sponsored = false;
                 _goldDistributor.SpawnGoldFromTileRarity(tile); 
+                _goldDistributor.SpawnSapphiresFromTileRarity(tile, tile.SponsorHandler); 
                 if (tile.RarityType == RarityType.Legendary)
                     _autoPredictions.LegendarySignal(); 
                 else if (tile.RarityType == RarityType.Mythic)

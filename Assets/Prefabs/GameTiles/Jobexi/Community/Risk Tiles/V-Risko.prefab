@@ -3253,7 +3253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 198733809829394089, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198733809829394089, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -3317,7 +3317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052647226284147622, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1052647226284147622, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -3401,7 +3401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2105990114058059124, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.125
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2105990114058059124, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -3441,7 +3441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3480812452627126860, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.125
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3480812452627126860, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -3501,7 +3501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4253336707757313819, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.15
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4253336707757313819, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -3621,7 +3621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7653099011671737493, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.15
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7653099011671737493, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect

@@ -8262,7 +8262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _value
-      value: 0.02
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _effect
@@ -8546,7 +8546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _value
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _effect
@@ -8758,7 +8758,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 198733809829394089, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _value
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198733809829394089, guid: 84c301c90f5a0d74495dd4e93a8ffe19, type: 3}
       propertyPath: _effect
@@ -9603,7 +9603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _value
-      value: 0.02
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _effect

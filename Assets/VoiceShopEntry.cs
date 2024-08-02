@@ -23,17 +23,17 @@ public class VoiceShopEntry : ShopEntry
         if(tier == 1)
         {
             VoiceID = UnityEngine.Random.Range(2, 15);
-            randomPrice = 300000;
+            randomPrice = 30000;
         }
         else if(tier == 2)
         {
             VoiceID = UnityEngine.Random.Range(15, 36);
-            randomPrice = 3000000;
+            randomPrice = 300000;
         }
         else
         {
             VoiceID = UnityEngine.Random.Range(36, 60);
-            randomPrice = 30000000;
+            randomPrice = 3000000;
         }
 
         _bubbleText.SetText(GetName(VoiceID));

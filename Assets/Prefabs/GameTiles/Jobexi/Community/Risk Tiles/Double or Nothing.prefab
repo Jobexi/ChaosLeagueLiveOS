@@ -2740,7 +2740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88268596640976697, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_fontSize
-      value: 4.7
+      value: 5.15
       objectReference: {fileID: 0}
     - target: {fileID: 746487210997908662, guid: 3b12c201b1666ad46a5bc38322ec5b1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3392,7 +3392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _value
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6192801997605837540, guid: 8bf6241eee0553d4d87eb353c783df6c, type: 3}
       propertyPath: _effect

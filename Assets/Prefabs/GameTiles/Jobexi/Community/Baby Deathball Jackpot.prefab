@@ -1994,7 +1994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982894525657917853, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1517414946815354325, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: _infiniteDurability
@@ -3397,7 +3397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982894525657917853, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1517414946815354325, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: _infiniteDurability
@@ -5284,7 +5284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982894525657917853, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: m_Constraints
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1517414946815354325, guid: f7f3850250e3d2e41841a45449d277ba, type: 3}
       propertyPath: _infiniteDurability

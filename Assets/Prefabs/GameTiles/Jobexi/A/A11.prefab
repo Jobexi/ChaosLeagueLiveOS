@@ -7013,6 +7013,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7100,6 +7104,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7191,6 +7199,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7278,6 +7290,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7365,6 +7381,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7452,6 +7472,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7539,6 +7563,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7626,6 +7654,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7713,6 +7745,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -7800,6 +7836,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8269,6 +8309,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8356,6 +8400,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8585,6 +8633,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8672,6 +8724,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8759,6 +8815,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8846,6 +8906,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -8933,6 +8997,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)
@@ -9020,6 +9088,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 2b2467b94baf94546a1257c3affbaebd, type: 2}
+    - target: {fileID: 4557415147874627764, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5002039395499501763, guid: ae8e7fe1824ded1459213849710aec7a, type: 3}
       propertyPath: m_Name
       value: PlayerObsHexagon (1)

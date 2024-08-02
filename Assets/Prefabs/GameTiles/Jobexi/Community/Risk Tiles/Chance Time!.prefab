@@ -4130,7 +4130,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 2010812664198446849}
   _textLabel: {fileID: 1889882603245238306}
   _effect: 6
-  _value: 0.2
+  _value: 1
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0
@@ -11180,7 +11180,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 7515125286914280363}
   _textLabel: {fileID: 8790440377892226729}
   _effect: 6
-  _value: 0.125
+  _value: 0.5
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0
@@ -14184,7 +14184,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 3763329465610961170}
   _textLabel: {fileID: 5666263322280773079}
   _effect: 6
-  _value: 0.125
+  _value: 0.5
   _infiniteDurability: 1
   _maxHP: 0
   _zeroPlayerBallVelOnDetection: 0
